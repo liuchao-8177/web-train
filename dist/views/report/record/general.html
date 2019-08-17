@@ -1,0 +1,119 @@
+<title>记录一览表</title>
+<ul class="layui-nav" lay-filter="">
+	<li class="layui-nav-item" layui-this><a href="">培训记录</a></li>
+	<li class="layui-nav-item "><a href="">讲师相关</a></li>
+</ul>
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">课程类型</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">课程属性</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训形式</label>
+					<div class="layui-input-inline">
+						<select name="" lay-verify="required" lay-search="">
+							<option value="">--所有--</option>
+							<option value="1">草稿</option>
+							<option value="2">审批中</option>
+							<option value="3">撤回</option>
+							<option value="4">拒绝</option>
+							<option value="5">要求更多</option>
+							<option value="6">审批中</option>
+							<option value="7">审批通过</option>
+							<option value="8">中止</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训机构</label>
+					<div class="layui-input-inline">
+						<select name="" lay-verify="required" lay-search="">
+							<option value="">--所有--</option>
+							<option value="1">草稿</option>
+							<option value="2">审批中</option>
+							<option value="3">撤回</option>
+							<option value="4">拒绝</option>
+							<option value="5">要求更多</option>
+							<option value="6">审批中</option>
+							<option value="7">审批通过</option>
+							<option value="8">中止</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">需求日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="leaPost" lay-verify="title" autocomplete="off" placeholder="需求日期" class="layui-input dete">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="leaPost" lay-verify="title" autocomplete="off" placeholder="至" class="layui-input dete">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">等效课程</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">讲师姓名</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<script type="text/html" id="buttonTpl">
+						{{#  if(d.checkStatus==1){ }}
+		        <button class="layui-btn layui-btn-normal layui-btn-xs">保存</button>
+		        {{#  } else if(d.checkStatus==2) { }}
+		        <button class="layui-btn layui-btn-warm layui-btn-xs">审核中</button>
+		        {{#  } else if(d.checkStatus==3) { }}
+		        <button class="layui-btn layui-btn-xs">审核通过</button>
+		        {{#  } else if(d.checkStatus==4) { }}
+		        <button class="layui-btn layui-btn-danger layui-btn-xs">审核失败</button>
+		        {{#  } else { }}
+		        <button class="layui-btn layui-btn-disabled layui-btn-xs">废弃</button>
+		        {{#  } }}
+		            </script>
+
+					<script>
+						//注意：导航 依赖 element 模块，否则无法进行功能性操作
+						layui.use('element', function() {
+							var element = layui.element;
+
+							//…
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="layui-card-body">
+			<div style="padding-bottom: 10px;">
+				<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+			</div>
+		</div>
+	</div>

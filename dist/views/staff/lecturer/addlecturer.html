@@ -1,0 +1,342 @@
+<title>讲师信息</title>
+
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">基础数据</a>
+		<a><cite>讲师信息</cite></a>
+	</div>
+</div>
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+			<div class="layui-form-item">
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">讲师姓名</label>
+					<div class="layui-input-inline">
+						<input type="text" name="applyName" placeholder="请输入讲师姓名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">讲师类型</label>
+					<div class="layui-input-inline">
+						<select name="status">
+							<option value="">--请选择--</option>
+							<option value="1">领导</option>
+							<option value="2">内部讲师</option>
+							<option value="3">外部讲师</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">认证讲师</label>
+					<div class="layui-input-inline">
+						<select name="status">
+							<option value="">--请选择--</option>
+							<option value="1">是</option>
+							<option value="2">否</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<button type="button" class="layui-btn" lay-submit="" lay-filter="search">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="layui-card-body">
+			<div style="padding-bottom: 10px;">
+				<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
+				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+			</div>
+			
+			<table id="test" lay-filter="test"></table>
+			
+			<script type="text/html" id="barDemo">
+				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+			</script>
+		</div>
+		
+	</div>
+</div>
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
+
+		//表格渲染
+		table.render({
+			elem: '#test',
+			method: "GET",
+			url: commonSrc + 'api/hr/nightShiftController/list', //数据接口
+			page: true, //开启分页
+			// toolbar: '#toolbarDemo',
+			response: {
+				statusCode: 200 //规定成功的状态码，默认：0
+			},
+			request: {
+				pageName: 'pageNum' //页码的参数名称，默认：page
+					,
+				limitName: 'pageSize' //每页数据量的参数名，默认：limit
+			},
+			parseData: function(res) { //res 即为原始返回的数据
+				// console.log(res);
+				return {
+					"code": res.code, //解析接口状态
+					"msg": res.desc, //解析提示文本
+					"count": res.total, //解析数据长度
+					"data": res.dataList //解析数据列表
+				};
+			},
+			//表头
+			cols: [
+				[{
+						type: 'checkbox',
+						fixed: "left"
+					}, {
+						field: 'id',
+						title: 'id',
+						hide: true,
+					}, {
+						field: 'applyId',
+						title: '讲师类型',
+						align: 'center',
+		     		}, {
+						field: 'applyName',
+						title: '讲师姓名',
+						align: 'center'
+					}, {
+						field: 'nightType',
+						title: '职务',
+						align: 'center'
+					}, {
+						field: 'applyType',
+						title: '对应员工',
+						align: 'center'
+					}, {
+						field: 'applyTime',
+						title: '内部',
+						align: 'center',
+					}, {
+						field: 'startTime',
+						title: '已认证',
+						align: 'center',
+					}, {
+						field: 'endTime',
+						title: '任初级日',
+						align: 'center'
+					}, {
+						field: 'status',
+						title: '任中级日',
+						templet: "#status",
+						align: 'center'
+					}, {
+					 	field: 'checkStatus',
+					 	title: '审核状态',
+					 	align: 'center'
+		            }, {
+						field: 'salaryMonth',
+						title: '任高日',
+						align: 'center'
+					}, {
+						field: 'remark',
+						title: '备注',
+						align: 'center'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						fixed: 'right',
+						toolbar: '#barDemo',
+						width: 150,
+						align: 'center'
+					}
+				]
+			]
+		});
+
+		var active = {
+			batchdel: function() {
+					var checkStatus = table.checkStatus('test'),
+						checkData = checkStatus.data; //得到选中的数据
+					if (checkData.length === 0) {
+						return layer.msg('请选择数据');
+					}
+					let arr = "";
+					let arrTwo = "";
+					for (var i in checkData) {
+						arr += checkData[i].id + ",";
+					}
+					for (var i in checkData) {
+						arrTwo += checkData[i].commonId + ",";
+					}
+					layer.confirm('确定删除吗？', function(index) {
+						$.ajax({
+							type: "GET",
+							url: commonSrc + "api/hr/nightShiftController/deleteNightShiftAll",
+							dataType: "json",
+							data: {
+								id: arr,
+								comId: arrTwo
+							},
+							success: function(json) {
+								table.reload('test');
+								layer.msg('已删除');
+							}
+						})
+					});
+				}
+
+				//添加
+				,
+			add: function(othis) {
+				admin.popup({
+					title: '添加讲师信息',
+					area: ['720px', '600px'],
+					success: function(layero, index) {
+						view(this.id).render('staff/lecturer/NightShiftForm').done(function() {
+							form.render(null, 'layuiadmin-app-form-list');
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									type: 'datetime',
+									trigger: 'click',
+								});
+							})
+							//监听提交
+							form.on('submit(form_submit)', function(data) {
+								var field = data.field; //获取提交的字段
+								$.post(commonSrc + "api/hr/nightShiftController/insertNightShift",
+									data.field,
+									function(ev) {
+										if (ev.desc == 'success') {
+											layer.msg("新增成功", {
+												time: 1000
+											}, function() {
+												layer.close(index); //执行关闭 
+												layui.table.reload('test'); //重载表格
+											})
+										}
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						});
+					}
+				});
+			}
+		};
+
+
+		table.on("tool(test)", function(obj) {
+			var data = obj.data;
+			"del" === obj.event ? layer.confirm("确定删除此记录？", function(e) {
+				$.ajax({
+					url: commonSrc + "api/hr/nightShiftController/deleteNightShift", //换成自己的url
+					type: "GET",
+					dataType: "json",
+					data: {
+						id: data.id,
+						comId: data.comId
+					},
+					success: function(e) {
+						if (e.desc == 'success') {
+							layer.msg('删除成功');
+							obj.del(), layer.close(e)
+						}
+					},
+					error: function(e) {
+						layer.msg('删除失败')
+						layer.msg(e);
+					}
+				})
+			}) : "edit" === obj.event && admin.popup({
+				title: "修改夜班申请",
+				area: ['720px', '500px'],
+				id: "LAY-popup-content-edit",
+				success: function(t, layero) {
+					view(this.id).render("apply/nightshift/NightShiftForm").done(function() {
+						$.ajax({
+							url: commonSrc + "api/hr/nightShiftController/selectNightShiftById", //换成自己的url
+							type: "GET",
+							dataType: "json",
+							data: {
+								id: data.id
+							},
+							success: function(e) {
+								let obj = e.data;
+								console.log(obj)
+								form.val("layuiadmin-app-form-list", {
+									"id": obj.id,
+									"comId": obj.comId,
+									"applyName": obj.applyName,
+									"nightType": obj.nightType,
+									"applyType": obj.applyType,
+									"applyTime": obj.applyTime,
+									"startTime": obj.startTime,
+									"endTime": obj.endTime,
+									"salaryMonth": obj.salaryMonth,
+									"status": obj.status,
+									"remark": obj.remark
+								});
+								//日期
+								$(".date").each(function() {
+									laydate.render({
+										elem: this,
+										trigger: 'click',
+									});
+								})
+							},
+							error: function(e) {
+								layer.msg(e);
+							}
+						})
+						form.render(null, "layuiadmin-app-form-list"), form.on("submit(form_submit)", function(
+							data) {
+							console.log(data.field)
+							$.post(commonSrc + "api/hr/nightShiftController/updateNightShift",
+								data.field,
+								function(ev) {
+									layer.msg("修改成功", {
+										time: 1000
+									}, function() {
+										layui.table.reload("test"), layer.close(layero)
+									})
+								});
+							return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+						})
+					})
+				}
+			})
+		})
+
+
+		form.render(null, 'app-content-list');
+
+		//监听搜索
+		form.on('submit(search)', function(data) {
+			var field = data.field;
+			//执行重载
+			table.reload('test', {
+				where: field
+			});
+		});
+
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+	});
+</script>

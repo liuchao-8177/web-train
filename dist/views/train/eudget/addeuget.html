@@ -1,0 +1,259 @@
+<title>培训预算</title>
+
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">培训运作</a>
+		<a><cite>培训预算</cite></a>
+	</div>
+</div>
+
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">部门名称</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="部门名称" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">职位级别</label>
+					<div class="layui-input-inline">
+						<select name="" lay-verify="required" lay-search="">
+							<option value="1"></option>
+							<option value="2">主任</option>
+							<option value="3">经理</option>
+							<option value="4">工人</option>
+							<option value="5">科员</option>
+							<option value="6">总监</option>
+							<option value="7">文员</option>
+							<option value="8">主管</option>
+							<option value="9">互动专员</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">职位类型</label>
+					<div class="layui-input-inline">
+						<input type="text" name="title" lay-verify="title" placeholder="职位类型" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">职位名称</label>
+					<div class="layui-input-inline">
+						<select name="" lay-verify="required" lay-search="">
+							<option value="1"></option>
+							<option value="2">人事专员</option>
+							<option value="3">项目经理</option>
+						</select>
+					</div>
+				</div>
+                
+				<div class="layui-inline">
+					<label class="layui-form-label">工龄</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="工龄" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">自定义</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="自定义" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">课程类型</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="课程类型" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">课程属性</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="课程属性" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">优先级</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="title" placeholder="优先级" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			    <div class="layui-inline">
+					<label class="layui-form-label">员工姓名</label>
+					<div class="layui-input-inline">
+					    <input type="text" name="code" lay-verify="title" autocomplete="off" placeholder="员工姓名"
+					               class="layui-input">
+				    </div>	
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">等效课程</label>
+					<div class="layui-input-inline">
+						<select name="" lay-verify="required" lay-search="">
+							<option value="">--所有--</option>
+							<option value="1">压力容器操作证审</option>
+							<option value="2">电焊工操作证</option>
+							<option value="3">叉车证审培训</option>
+							<option value="4">采购策略规划</option>
+							<option value="5">物料计划与控制实务</option>
+							<option value="6">仓储运输管理</option>
+							<option value="7">库存管理</option>
+							<option value="8">绩效管理</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 搜索按钮 -->
+				<div class="layui-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-card-body">
+
+			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+			
+		</div>
+	</div>
+</div>
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
+		
+		//表格渲染
+		table.render({
+				elem: '#LAY-app-content-list',
+				url: commonSrc + '',
+				request: {
+					pageName: 'pageNum' //页码的参数名称，默认：page
+						,
+					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				},
+				response: {
+					statusCode: 200 //规定成功的状态码，默认：0
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.desc, //解析提示文本
+						"count": res.total, //解析数据长度
+						"data": res.dataList //解析数据列表
+					};
+				},
+				cols: [
+					[{
+						type: 'checkbox',
+						fixed: "left"
+					}, {
+						field: 'id',
+						title: 'id',
+						hide: true,
+					}, {
+						field: 'commonId',
+						title: '申请公共id',
+						hide: true,
+					}, {
+						field: 'leaveUserIid',
+						title: '员工id',
+						hide: true,
+					}, {
+						field: 'leaveUserName',
+						title: '类型',
+						align: 'center'
+					}, {
+						field: 'leaPost',
+						title: '名称',
+						align: 'center'
+					}, {
+						field: 'entryDate',
+						title: '总人次',
+						align: 'center'
+					}, {
+						field: 'workPlace',
+						title: '已完成',
+						align: 'center'
+					}, {
+						field: 'leaveType',
+						title: '未完成',
+						align: 'center'
+					}, {
+						field: 'linkTel',
+						title: '增加人次',
+						align: 'center'
+					}, {
+						field: 'leaveReason',
+						title: '开班数',
+						align: 'center'
+					}, {
+						field: 'hopeLeaveDate',
+						title: '每班人数',
+						align: 'center'
+					}, {
+						field: 'remark',
+						title: '培训人次',
+						align: 'center'
+					}, {
+						field: 'operateType',
+						title: '需求完成率%',
+						align: 'center'
+					}, {
+						field: 'applyType',
+						title: '总成本',
+						align: 'center'
+					},{
+						field: 'applyType',
+						title: '每班成本',
+						align: 'center'
+					},{
+						field: 'applyType',
+						title: '标准',
+						align: 'center'
+					},{
+						field: 'applyType',
+						title: '学员',
+						align: 'center'
+					},{
+						field: 'applyType',
+						title: '讲师',
+						align: 'center'
+					}]
+				],
+				page: !0,
+				limit: 10,
+				limits: [10, 15, 20, 25, 30],
+			}),
+			
+
+
+		form.render(null, 'app-content-list');
+
+		//监听搜索
+		form.on('submit(LAY-app-contlist-search)', function(data) {
+			var field = data.field;
+			console.log(field);
+			//执行重载
+			table.reload('LAY-app-content-list', {
+				where: field
+			});
+		});
+
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+		//日期
+        layTime();
+	});
+</script>

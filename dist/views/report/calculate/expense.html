@@ -1,0 +1,75 @@
+<title>费用统计</title>
+<ul class="layui-nav" lay-filter="">
+	<li class="layui-nav-item" layui-this><a href="">未培训</a></li>
+	<li class="layui-nav-item "><a href="">按部门</a></li>
+	<li class="layui-nav-item"><a href="">按职位类型</a></li>
+	<li class="layui-nav-item"><a href="">按职位级别</a></li>
+	<li class="layui-nav-item"><a href="">按课程类型</a></li>
+	<li class="layui-nav-item"><a href="">按等效课程</a></li>
+	<li class="layui-nav-item"><a href="">按优先级</a></li>
+	<li class="layui-nav-item"><a href="">按课程属性</a></li>
+	<li class="layui-nav-item"><a href="">按职位</a></li>
+	<li class="layui-nav-item"><a href="">按工龄</a></li>
+	<li class="layui-nav-item"><a href="">按员工</a></li>
+</ul>
+
+
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">培训部门</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="培训部门" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="培训日期" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="至" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="性别" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-card-body">
+			<script>
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function() {
+					var element = layui.element;
+
+					//…
+				});
+			</script>
+		</div>
+	</div>
+	<div class="layui-card-body">
+		<div style="padding-bottom: 10px;">
+			<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+		</div>
+	</div>
+</div>
+
