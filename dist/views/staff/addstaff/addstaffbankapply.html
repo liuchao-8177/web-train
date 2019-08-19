@@ -1,12 +1,10 @@
 <title>基础数据</title>
-
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
 		<a lay-href="">基础数据</a>
 		<a><cite>员工信息</cite></a>
 	</div>
 </div>
-
 
 <div class="layui-fluid">
 	<div class="layui-card">
@@ -25,7 +23,14 @@
 						<input type="text" name="transUserName" lay-verify="title" autocomplete="off" placeholder="姓名" class="layui-input">
 					</div>
 				</div>
-
+                
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<input type="text" name="transUserName" lay-verify="title" autocomplete="off" placeholder="性别" class="layui-input">
+					</div>
+				</div>
+				
 				<!-- 搜索按钮 -->
 				<div class="layui-inline">
 					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
@@ -35,18 +40,24 @@
 			</div>
 		</div>
 
-		<div class="layui-card-body">
+		    <div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
 				<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-				<button class="layui-btn layuiadmin-btn-list add" data-type="add">添加</button>
+				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
 			</div>
-			
-			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-			
-			<script type="text/html" id="table-content-list">
-				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-        </script>
+		
+		    <div class="tab">
+				
+				<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+	            
+				<div class="layui-card-body">
+			    <script type="text/html" id="table-content-list">
+			    	<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+			        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+			    </script>
+				</div>
+				
+			</div>
 		</div>
 	</div>
 </div>
@@ -62,7 +73,7 @@
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
-				url: commonSrc + 'api/hr/sysOvertimeController/list',
+				url: commonSrc + '',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
 						,
@@ -163,12 +174,12 @@
 				page: !0,
 				limit: 10,
 				limits: [10, 15, 20, 25, 30],
-			}),
-			table.on("tool(LAY-app-content-list)", function(obj) {
+			}), 
+			 table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
-						url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
+						url: commonSrc + "", //换成自己的url
 						type: "GET",
 						dataType: "json",
 						data: {
@@ -185,13 +196,13 @@
 						}
 					})
 				}) : "edit" === obj.event && admin.popup({
-					title: "编辑加班申请",
+					title: "",
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
 						view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
 							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
+								url: commonSrc + "", //换成自己的url
 								type: "GET",
 								dataType: "json",
 								data: {
@@ -205,16 +216,6 @@
 										"commonId": obj.commonId,
 										"overtimeCode": obj.overtimeCode,
 										"startTime": obj.startTime,
-										"endTime": obj.endTime,
-										"overtimeType": obj.overtimeType,
-										"overtimeHours": obj.overtimeHours,
-										"changeRest": obj.changeRest,
-										"place": obj.place,
-										"reason": obj.reason,
-										"remark": obj.remark,
-										"detials": obj.detials,
-										"applyId": obj.commonId,
-										"applyTime": obj.applyTime,
 										"applyType": obj.applyType,
 										"checkStatus": obj.checkStatus
 									});
@@ -222,8 +223,6 @@
 									$(".date").each(function() {
 										laydate.render({
 											elem: this,
-											min: -7,//7天前
-											max: 7, //7天后
 											trigger: 'click',
 										});
 									})
@@ -232,18 +231,7 @@
 										laydate.render({
 											elem: this,
 											type:'datetime',
-											min: -7,//7天前
-											max: 0, //7天后
 											trigger: 'click',
-											done:function(value,date,endDate){
-												var startTime=new Date($('#qBeginTime').val()).getTime();
-												var endTime =new Date($('#qEndTime').val()).getTime();
-												if(endTime<startTime){
-													layer.msg('结束时间不能小于开始时间');
-			                                  $('#qBeginTime').val($('#qEndTime').val());
-												}
-												
-											}
 										});
 									})
 								},
@@ -267,22 +255,22 @@
 						})
 					}
 				})
-			})
+			}) 
 
 
 		form.render(null, 'app-content-list');
 
 		//监听搜索
-		form.on('submit(LAY-app-contlist-search)', function(data) {
+		 form.on('submit(LAY-app-contlist-search)', function(data) {
 			var field = data.field;
 			console.log(field);
 			//执行重载
 			table.reload('LAY-app-content-list', {
 				where: field
 			});
-		});
+		}); 
 
-		var active = {
+		 var active = {
 			batchdel: function() {
 					var checkStatus = table.checkStatus('LAY-app-content-list'),
 						checkData = checkStatus.data; //得到选中的数据
@@ -301,7 +289,7 @@
 					layer.confirm('确定删除吗？', function(index) {
 						$.ajax({
 							type: "GET",
-							url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
+							url: commonSrc + "",
 							contentType: "application/json; charset=utf-8",
 							dataType: "json",
 							data: {
@@ -325,7 +313,7 @@
 
 				//添加
 				,
-			add: function(othis) {
+			 add: function(othis) {
 				admin.popup({
 					title: '添加人员信息',
 					area: ['720px', '700px'],
@@ -333,22 +321,12 @@
 					success: function(layero, index) {
 						view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
+						    
 							//日期
 							$(".date").each(function() {
 								laydate.render({
 									elem: this,
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
-									done:function(value,date,endDate){
-										var startTime=new Date($('#qBeginTime').val()).getTime();
-										var endTime =new Date($('#qEndTime').val()).getTime();
-										if(endTime<startTime){
-											layer.msg('结束时间不能小于开始时间');
-									  $('#qBeginTime').val($('#qEndTime').val());
-										}
-										
-									}
 								});
 							})
 							//年-月-日 时:分:秒
@@ -356,11 +334,10 @@
 								laydate.render({
 									elem: this,
 									type:'datetime',
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
 								});
 							})
+							
 							//监听提交
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
@@ -374,27 +351,32 @@
 											layui.table.reload('LAY-app-content-list'); //重载表格
 										})
 									});
-								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+								// false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 							});
 						});
 					}
 				});
 			} 
-		};
+		}; 
 
-		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+	     $('.layui-btn.layuiadmin-btn-list').on('click', function() {
 			var type = $(this).data('type');
 			active[type] ? active[type].call(this) : '';
-		});
+		}); 
+	
 		//日期
-		$(".date").each(function() {
+		 $(".date").each(function() {
 			laydate.render({
 				elem: this,
 				trigger: 'click',
 			});
+			
+		}) 
+		
+	    /*    $("#targ").click(function() {
+		     	$(".tab").hide();
+		 		$("#show").show();
+				window.location.href = "OvertimeApplyForm.html";
+		     }); */
 		})
-        /*$(".add").click(function() {
-        	$("table").hide();
-        });*/
-	})
 </script>

@@ -55,13 +55,17 @@
     <div class="layui-form-item">
         <label class="layui-form-label">职位级别</label>
         <div class="layui-input-inline">
+			<script type="text/html" template>
               <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="添加职位级别"
-                     class="layui-input">    
+                     class="layui-input">
+			</script>		   
         </div>
         <label class="layui-form-label">学历</label>
         <div class="layui-input-inline">
+			<script type="text/html" template>
               <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="添加学历"
                      class="layui-input">
+			</script>		 
         </div>
     </div>
 	
@@ -69,7 +73,7 @@
         <label class="layui-form-label">职务</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-<input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="添加职务"
+              <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="添加职务"
                      class="layui-input">
             </script>
         </div>
@@ -121,15 +125,11 @@
         </div>
     </div>
 
-    <script type="text/html" template>
-        <input type="hidden" name="id" value="">
-        <input type="hidden" name="applyId" value="">
-        <input type="hidden" name="commonId" value="">
-    </script>
+    
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
         <div class="layui-input-inline">
-            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
-        </div>
+           <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
+		</div>
     </div>
 </div>

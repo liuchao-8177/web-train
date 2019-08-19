@@ -50,20 +50,13 @@
 				<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
 				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
 			</div>
+			
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-			<script type="text/html" id="buttonTpl">
-				{{#  if(d.checkStatus==1){ }}
-            <button class="layui-btn layui-btn-xs">已通过</button>
-          {{#  } else if(d.checkStatus==2) { }}
-            <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="wait">待审核</button>
-          {{#  } else { }}
-            <button class="layui-btn layui-btn-primary layui-btn-xs">未通过</button>
-          {{#  } }}
-        </script>
+				
 			<script type="text/html" id="table-content-list">
 				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-        </script>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
 		</div>
 	</div>
 </div>
@@ -79,7 +72,7 @@
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
-				url: commonSrc + 'api/hr/LeaveController/list',
+				url: commonSrc + '',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
 						,
@@ -174,7 +167,7 @@
 						btn: ['通过', '不行'] //按钮
 					}, function(index) {
 						data.checkStatus = 1
-						$.post(commonSrc + "api/hr/LeaveController/updateLeave",
+						$.post(commonSrc + "",
 							data,
 							function(ev) {
 								layer.msg("修改成功");
@@ -184,7 +177,7 @@
 							});
 					}, function(index) {
 						data.checkStatus = 3
-						$.post(commonSrc + "api/hr/LeaveController/updateLeave",
+						$.post(commonSrc + "",
 							data,
 							function(ev) {
 								layer.msg("修改成功");
@@ -196,7 +189,7 @@
 				}
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
-						url: commonSrc + "api/hr/LeaveController/deleteLeave", //换成自己的url
+						url: commonSrc + "", //换成自己的url
 						type: "GET",
 						dataType: "json",
 						data: {
@@ -213,7 +206,7 @@
 						}
 					})
 				}) : "edit" === obj.event && admin.popup({
-					title: "编辑离职申请",
+					title: "",
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
