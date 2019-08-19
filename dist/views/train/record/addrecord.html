@@ -227,11 +227,11 @@
 						}
 					})
 				}) : "edit" === obj.event && admin.popup({
-					title: "编辑加班申请",
+					title: "编辑记录评估",
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
-						view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
+						view(this.id).render("", data).done(function() {
 							$.ajax({
 								url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
 								type: "GET",
@@ -260,12 +260,11 @@
 										"applyType": obj.applyType,
 										"checkStatus": obj.checkStatus
 									});
+									
 									//日期 年-月-日
 									$(".date").each(function() {
 										laydate.render({
 											elem: this,
-											min: -7,//7天前
-											max: 7, //7天后
 											trigger: 'click',
 										});
 									})
@@ -274,18 +273,7 @@
 										laydate.render({
 											elem: this,
 											type:'datetime',
-											min: -7,//7天前
-											max: 0, //7天后
 											trigger: 'click',
-											done:function(value,date,endDate){
-												var startTime=new Date($('#qBeginTime').val()).getTime();
-												var endTime =new Date($('#qEndTime').val()).getTime();
-												if(endTime<startTime){
-													layer.msg('结束时间不能小于开始时间');
-			                                  $('#qBeginTime').val($('#qEndTime').val());
-												}
-												
-											}
 										});
 									})
 								},
@@ -369,28 +357,17 @@
 				,
 			add: function(othis) {
 				admin.popup({
-					title: '添加人员信息',
+					title: '添加记录评估',
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						view(this.id).render('').done(function() {
+						view(this.id).render('train/record/editrecord').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
 							//日期
 							$(".date").each(function() {
 								laydate.render({
 									elem: this,
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
-									done:function(value,date,endDate){
-										var startTime=new Date($('#qBeginTime').val()).getTime();
-										var endTime =new Date($('#qEndTime').val()).getTime();
-										if(endTime<startTime){
-											layer.msg('结束时间不能小于开始时间');
-									  $('#qBeginTime').val($('#qEndTime').val());
-										}
-										
-									}
 								});
 							})
 							//年-月-日 时:分:秒
@@ -398,8 +375,6 @@
 								laydate.render({
 									elem: this,
 									type:'datetime',
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
 								});
 							})

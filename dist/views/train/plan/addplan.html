@@ -1,9 +1,9 @@
-<title>计划报表</title>
+<title>计划报名</title>
 
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
 		<a lay-href="">培训运作</a>
-		<a><cite>计划报表</cite></a>
+		<a><cite>计划报名</cite></a>
 	</div>
 </div>
 
@@ -315,18 +315,7 @@
 							$(".date").each(function() {
 								laydate.render({
 									elem: this,
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
-									done:function(value,date,endDate){
-										var startTime=new Date($('#qBeginTime').val()).getTime();
-										var endTime =new Date($('#qEndTime').val()).getTime();
-										if(endTime<startTime){
-											layer.msg('结束时间不能小于开始时间');
-									  $('#qBeginTime').val($('#qEndTime').val());
-										}
-										
-									}
 								});
 							})
 							//年-月-日 时:分:秒
@@ -334,11 +323,10 @@
 								laydate.render({
 									elem: this,
 									type:'datetime',
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
 								});
 							})
+							
 							//监听提交
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段

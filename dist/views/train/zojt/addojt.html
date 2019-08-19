@@ -55,37 +55,37 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">考核日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="考核日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="考核日期" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">至</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">开始日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="开始日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="开始日期" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">至</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">结束日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="结束日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="结束日期" class="layui-input date ">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">至</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input">
+						<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="日期" class="layui-input date">
 					</div>
 				</div>
 				
@@ -215,7 +215,7 @@
 						}
 					})
 				}) : "edit" === obj.event && admin.popup({
-					title: "编辑加班申请",
+					title: "",
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
@@ -252,8 +252,6 @@
 									$(".date").each(function() {
 										laydate.render({
 											elem: this,
-											min: -7,//7天前
-											max: 7, //7天后
 											trigger: 'click',
 										});
 									})
@@ -262,18 +260,7 @@
 										laydate.render({
 											elem: this,
 											type:'datetime',
-											min: -7,//7天前
-											max: 0, //7天后
 											trigger: 'click',
-											done:function(value,date,endDate){
-												var startTime=new Date($('#qBeginTime').val()).getTime();
-												var endTime =new Date($('#qEndTime').val()).getTime();
-												if(endTime<startTime){
-													layer.msg('结束时间不能小于开始时间');
-			                                  $('#qBeginTime').val($('#qEndTime').val());
-												}
-												
-											}
 										});
 									})
 								},
@@ -361,24 +348,13 @@
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						view(this.id).render('').done(function() {
+						view(this.id).render('train/zojt/editrecord').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
 							//日期
 							$(".date").each(function() {
 								laydate.render({
 									elem: this,
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
-									done:function(value,date,endDate){
-										var startTime=new Date($('#qBeginTime').val()).getTime();
-										var endTime =new Date($('#qEndTime').val()).getTime();
-										if(endTime<startTime){
-											layer.msg('结束时间不能小于开始时间');
-									  $('#qBeginTime').val($('#qEndTime').val());
-										}
-										
-									}
 								});
 							})
 							//年-月-日 时:分:秒
@@ -386,8 +362,6 @@
 								laydate.render({
 									elem: this,
 									type:'datetime',
-									min: -7,//7天前
-									max: 0, //7天后
 									trigger: 'click',
 								});
 							})
