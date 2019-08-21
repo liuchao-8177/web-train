@@ -1,0 +1,54 @@
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"
+     style="padding: 20px 30px 0 0;">
+    
+	<div class="layui-form-item">
+        <label class="layui-form-label">等效课程</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="等效课程"
+                       class="layui-input">
+            </script>
+        </div>
+        <label class="layui-form-label">课程类型</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="code" lay-verify="title" autocomplete="off" placeholder="课程类型"
+                       class="layui-input">
+            </script>
+        </div>
+    </div>
+    
+	<div class="layui-form-item">
+        <label class="layui-form-label">课时(H)</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="课时(H)"
+                       class="layui-input">
+            </script>
+        </div>
+        <label class="layui-form-label">部门级</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+               <input type="text" name="startTime" lay-verify="title"  autocomplete="off" placeholder="部门级"
+                      class="layui-input">
+            </script>
+        </div>
+    </div>
+	
+    <div class="layui-form-item">
+        <label class="layui-form-label">参考号</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+               <input type="text" name="startTime" lay-verify="title"  autocomplete="off" placeholder="参考号"
+                      class="layui-input">
+            </script>
+        </div>
+    </div>
+   
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>

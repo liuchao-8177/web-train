@@ -1,75 +1,859 @@
 <title>费用统计</title>
-<ul class="layui-nav" lay-filter="">
-	<li class="layui-nav-item" layui-this><a href="">未培训</a></li>
-	<li class="layui-nav-item "><a href="">按部门</a></li>
-	<li class="layui-nav-item"><a href="">按职位类型</a></li>
-	<li class="layui-nav-item"><a href="">按职位级别</a></li>
-	<li class="layui-nav-item"><a href="">按课程类型</a></li>
-	<li class="layui-nav-item"><a href="">按等效课程</a></li>
-	<li class="layui-nav-item"><a href="">按优先级</a></li>
-	<li class="layui-nav-item"><a href="">按课程属性</a></li>
-	<li class="layui-nav-item"><a href="">按职位</a></li>
-	<li class="layui-nav-item"><a href="">按工龄</a></li>
-	<li class="layui-nav-item"><a href="">按员工</a></li>
-</ul>
 
+<div class="layui-tab layui-tab-card" lay-allowclose="true">
+	<ul class="layui-tab-title layui-bg-black">
+		<li class="layui-this">未培训</li>
+		<li>按部门</li>
+		<li>按职位类型</li>
+		<li>按职位级别</li>
+		<li>按课程类型</li>
+		<li>按等效课程</li>
+		<li>按优先级</li>
+		<li>按课程属性</li>
+		<li>按职位</li>
+		<li>按工龄</li>
+		<li>按员工</li>
+	</ul>
 
-<div class="layui-fluid">
-	<div class="layui-card">
-		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layui-tab-content">
+		<!-- 按部门查询，默认开始 -->
+		<div class="layui-tab-item layui-show">
 
 			<div class="layui-form-item">
 				<!-- 搜索按钮 -->
-				<div class="layui-inline">
+				<div class="layui-input-inline">
 					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
 					</button>
 				</div>
 			</div>
 
 			<div class="layui-form-item">
 				<div class="layui-inline">
-					<label class="layui-form-label">培训部门</label>
+					<label class="layui-form-label">部门名称</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="培训部门" autocomplete="off" class="layui-input">
+						<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">培训日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="培训日期" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
+
 				<div class="layui-inline">
 					<label class="layui-form-label">至</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="至" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">性别</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="性别" autocomplete="off" class="layui-input">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按职位类型查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">职位类型</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="职位类型" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按职位级别查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">职位级别</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按课程类型查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">课程类型</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按等效课程查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">等效课程</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按优先级查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">优先级</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按课程属性查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">课程属性</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按职位查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">职位</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="职位" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按自定义查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">自定义</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按工龄查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">工龄</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 按员工查询 -->
+		<div class="layui-tab-item">
+
+			<div class="layui-form-item">
+				<!-- 搜索按钮 -->
+				<div class="layui-input-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">员工</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">培训日期</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">至</label>
+					<div class="layui-input-inline">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-inline">
+						<select name="buttonTpl" lay-verify="" lay-search="">
+							<option value="">男</option>
+							<option value="1">女</option>
+						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="layui-card-body">
-			<script>
-				//注意：导航 依赖 element 模块，否则无法进行功能性操作
-				layui.use('element', function() {
-					var element = layui.element;
-
-					//…
-				});
-			</script>
-		</div>
-	</div>
-	<div class="layui-card-body">
-		<div style="padding-bottom: 10px;">
-			<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+			<div class="layui-form-item">
+				<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+				<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+			</div>
+			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
 		</div>
 	</div>
 </div>
 
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form,
+			element = layui.element;
+
+		//表格渲染
+		table.render({
+				elem: '#LAY-app-content-list',
+				url: commonSrc + '',
+				request: {
+					pageName: 'pageNum' //页码的参数名称，默认：page
+						,
+					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				},
+				response: {
+					statusCode: 200 //规定成功的状态码，默认：0
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.desc, //解析提示文本
+						"count": res.total, //解析数据长度
+						"data": res.dataList //解析数据列表
+					};
+				},
+				cols: [
+					[{
+						type: 'checkbox',
+						fixed: "left"
+					}, {
+						field: 'id',
+						title: 'id',
+						hide: true,
+					}, {
+						field: 'commonId',
+						title: '申请公共id',
+						hide: true,
+					}, {
+						field: 'overtimeCode',
+						title: '申请编号',
+						hide: true,
+					}, {
+						field: 'startTime',
+						title: '员工号',
+						align: 'center'
+					}, {
+						field: 'startTime',
+						title: '员工姓名',
+						align: 'center'
+					}, {
+						field: 'endTime',
+						title: '姓别',
+						align: 'center'
+					}, {
+						field: 'overtimeType',
+						title: '出生日期',
+						align: 'center'
+					}, {
+						field: 'overtimeHours',
+						title: '入职日期',
+						align: 'center'
+					}, {
+						field: 'changeRest',
+						title: '部门全名职位类型',
+						align: 'center'
+					}, {
+						field: 'place',
+						title: '职位级别',
+						align: 'center'
+					}, {
+						field: 'reason',
+						title: '学历',
+						align: 'center'
+					}, {
+						field: 'remark',
+						title: '职务',
+						align: 'center'
+					}, {
+						field: 'applyTime',
+						title: '成本中心',
+						align: 'center'
+					}, {
+						field: 'applyType',
+						title: '到岗日期',
+						align: 'center'
+					}, {
+						field: 'applyType',
+						title: '是否离职',
+						align: 'center'
+					}, {
+						field: 'applyType',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'checkStatus',
+						title: '离职日期',
+						templet: "#buttonTpl",
+						minWidth: 80,
+						align: 'center'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						toolbar: '#table-content-list',
+						minWidth: 150,
+					}]
+				],
+				page: !0,
+				limit: 10,
+				limits: [10, 15, 20, 25, 30],
+			}),
+			table.on("tool(LAY-app-content-list)", function(obj) {
+				var data = obj.data;
+				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+					$.ajax({
+						url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
+						type: "GET",
+						dataType: "json",
+						data: {
+							id: data.id,
+							applyId: data.commonId
+						},
+						success: function(b) {
+							layer.msg('删除成功');
+							obj.del(), layer.close(e)
+						},
+						error: function(e) {
+							layer.msg('删除失败')
+							layer.msg(e);
+						}
+					})
+				}) : "edit" === obj.event && admin.popup({
+					title: "",
+					area: ['720px', '700px'],
+					id: "LAY-popup-content-edit",
+					success: function(t, layero) {
+						view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
+							$.ajax({
+								url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
+								type: "GET",
+								dataType: "json",
+								data: {
+									id: data.id
+								},
+								success: function(e) {
+									//layer.msg(e.contractCheckVo);
+									let obj = e.data;
+									form.val("layuiadmin-app-form-list", {
+										"id": obj.id,
+										"commonId": obj.commonId,
+										"overtimeCode": obj.overtimeCode,
+										"startTime": obj.startTime,
+										"endTime": obj.endTime,
+										"overtimeType": obj.overtimeType,
+										"overtimeHours": obj.overtimeHours,
+										"changeRest": obj.changeRest,
+										"place": obj.place,
+										"reason": obj.reason,
+										"remark": obj.remark,
+										"detials": obj.detials,
+										"applyId": obj.commonId,
+										"applyTime": obj.applyTime,
+										"applyType": obj.applyType,
+										"checkStatus": obj.checkStatus
+									});
+									//日期 年-月-日
+									$(".date").each(function() {
+										laydate.render({
+											elem: this,
+
+											trigger: 'click',
+										});
+									})
+									//年-月-日 时:分:秒
+									$(".datetime").each(function() {
+										laydate.render({
+											elem: this,
+											type: 'datetime',
+
+											trigger: 'click',
+											done: function(value, date, endDate) {
+												var startTime = new Date($('#qBeginTime').val()).getTime();
+												var endTime = new Date($('#qEndTime').val()).getTime();
+												if (endTime < startTime) {
+													layer.msg('结束时间不能小于开始时间');
+													$('#qBeginTime').val($('#qEndTime').val());
+												}
+
+											}
+										});
+									})
+								},
+								error: function(e) {
+									layer.msg(e);
+								}
+							})
+							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+								data) {
+								$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
+									data.field,
+									function(ev) {
+										layer.msg("修改成功", {
+											time: 1000
+										}, function() {
+											layui.table.reload("LAY-app-content-list"), layer.close(layero)
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							})
+						})
+					}
+				})
+			})
+
+
+		form.render(null, 'app-content-list');
+
+		//监听搜索
+		form.on('submit(LAY-app-contlist-search)', function(data) {
+			var field = data.field;
+			console.log(field);
+			//执行重载
+			table.reload('LAY-app-content-list', {
+				where: field
+			});
+		});
+
+		var active = {
+			batchdel: function() {
+					var checkStatus = table.checkStatus('LAY-app-content-list'),
+						checkData = checkStatus.data; //得到选中的数据
+
+					if (checkData.length === 0) {
+						return layer.msg('请选择数据');
+					}
+					let arr = [];
+					let brr = [];
+					for (var i in checkData) {
+						arr += checkData[i].id + ","
+					}
+					for (var i in checkData) {
+						brr += checkData[i].commonId + ","
+					}
+					layer.confirm('确定删除吗？', function(index) {
+						$.ajax({
+							type: "GET",
+							url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
+							contentType: "application/json; charset=utf-8",
+							dataType: "json",
+							data: {
+								id: arr,
+								applyId: brr
+
+							},
+							success: function(json) {
+								table.reload('LAY-app-content-list');
+								layer.msg('已删除');
+							}
+						});
+
+						//执行 Ajax 后重载
+						/*
+								
+											*/
+
+					});
+				}
+
+				//添加
+				,
+			add: function(othis) {
+				admin.popup({
+					title: '添加人员信息',
+					area: ['720px', '700px'],
+					id: 'LAY-popup-content-add',
+					success: function(layero, index) {
+						view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
+							form.render(null, 'layuiadmin-app-form-list');
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									min: -7, //7天前
+									max: 0, //7天后
+									trigger: 'click',
+									done: function(value, date, endDate) {
+										var startTime = new Date($('#qBeginTime').val()).getTime();
+										var endTime = new Date($('#qEndTime').val()).getTime();
+										if (endTime < startTime) {
+											layer.msg('结束时间不能小于开始时间');
+											$('#qBeginTime').val($('#qEndTime').val());
+										}
+
+									}
+								});
+							})
+							//年-月-日 时:分:秒
+							$(".datetime").each(function() {
+								laydate.render({
+									elem: this,
+									type: 'datetime',
+									min: -7, //7天前
+									max: 0, //7天后
+									trigger: 'click',
+								});
+							})
+							//监听提交
+							form.on('submit(layuiadmin-app-form-submit)', function(data) {
+								var field = data.field; //获取提交的字段
+								$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
+									data.field,
+									function(ev) {
+										layer.msg("新增成功", {
+											time: 1000
+										}, function() {
+											layer.close(index); //执行关闭 
+											layui.table.reload('LAY-app-content-list'); //重载表格
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						});
+					}
+				});
+			}
+		};
+
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+		//日期
+		$(".date").each(function() {
+			laydate.render({
+				elem: this,
+				trigger: 'click',
+			});
+		})
+		/*$(".add").click(function() {
+			$("table").hide();
+		});*/
+	})
+</script>

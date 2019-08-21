@@ -59,7 +59,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">截至日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="截至日期" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
 			</div>
@@ -68,297 +68,299 @@
 	<div class="layui-card-body">
 		<div style="padding-bottom: 10px;">
 			<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+			<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 		</div>
+		<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
 	</div>
 </div>
 
 <script>
-				layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-					var $ = layui.$,
-						admin = layui.admin,
-						view = layui.view,
-						table = layui.table,
-						laydate = layui.laydate,
-						form = layui.form;
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
 
-					//表格渲染
-					table.render({
-							elem: '#LAY-app-content-list',
-							url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
-							request: {
-								pageName: 'pageNum' //页码的参数名称，默认：page
-									,
-								limitName: 'pageSize' //每页数据量的参数名，默认：limit
+		//表格渲染
+		table.render({
+				elem: '#LAY-app-content-list',
+				url: commonSrc + '',
+				request: {
+					pageName: 'pageNum' //页码的参数名称，默认：page
+						,
+					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				},
+				response: {
+					statusCode: 200 //规定成功的状态码，默认：0
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.desc, //解析提示文本
+						"count": res.total, //解析数据长度
+						"data": res.dataList //解析数据列表
+					};
+				},
+				cols: [
+					[{
+						type: 'checkbox',
+						fixed: "left"
+					}, {
+						field: 'id',
+						title: 'id',
+						hide: true
+					}, {
+						field: 'commonId',
+						title: '申请公共id',
+						hide: true
+					}, {
+						type: 'applyId',
+						title: '申请人id',
+						fixed: "left",
+						hide: true
+					}, {
+						field: 'applyName',
+						title: '申请人姓名',
+						align: 'center'
+					}, {
+						field: 'countDay',
+						title: '休假总天数',
+						align: 'center'
+					}, {
+						field: 'countHour',
+						title: '休假总小时数',
+						align: 'center'
+
+					}, {
+						field: 'endTime',
+						title: '请假结束日期',
+						align: 'center'
+					}, {
+						field: 'extension',
+						title: '临时代理人分机',
+						align: 'center'
+					}, {
+						field: 'linkTel',
+						title: '联系电话',
+						align: 'center'
+					}, {
+						field: 'name',
+						title: '申请单名称',
+						align: 'center'
+					}, {
+						field: 'proxyName',
+						title: '临时工作代理人',
+						align: 'center'
+					}, {
+						field: 'reason',
+						title: '休假申请理由',
+						align: 'center'
+					}, {
+						field: 'remark',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'startTime',
+						title: '请假开始日期',
+						align: 'center'
+					}, {
+						field: 'type',
+						title: '休假类型',
+						align: 'center'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						toolbar: '#table-content-list',
+						minWidth: 150
+					}]
+				],
+				page: !0,
+				limit: 10,
+				limits: [10, 15, 20, 25, 30],
+			}),
+			table.on("tool(LAY-app-content-list)", function(obj) {
+				var data = obj.data;
+				"del" === obj.event ? layer.confirm("确定删除申请？", function(e) {
+						$.ajax({
+							url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+							type: "GET",
+							dataType: "json",
+							data: {
+								id: data.id,
 							},
-							response: {
-								statusCode: 200 //规定成功的状态码，默认：0
+							success: function(b) {
+								table.reload('LAY-app-content-list');
+								layer.msg('删除成功');
+								obj.del(), layer.close(e)
 							},
-							parseData: function(res) { //res 即为原始返回的数据
-								return {
-									"code": res.code, //解析接口状态
-									"msg": res.desc, //解析提示文本
-									"count": res.total, //解析数据长度
-									"data": res.dataList //解析数据列表
-								};
-							},
-							cols: [
-								[{
-									type: 'checkbox',
-									fixed: "left"
-								}, {
-									field: 'id',
-									title: 'id',
-									hide: true
-								}, {
-									field: 'commonId',
-									title: '申请公共id',
-									hide: true
-								}, {
-									type: 'applyId',
-									title: '申请人id',
-									fixed: "left",
-									hide: true
-								}, {
-									field: 'applyName',
-									title: '申请人姓名',
-									align: 'center'
-								}, {
-									field: 'countDay',
-									title: '休假总天数',
-									align: 'center'
-								}, {
-									field: 'countHour',
-									title: '休假总小时数',
-									align: 'center'
-
-								}, {
-									field: 'endTime',
-									title: '请假结束日期',
-									align: 'center'
-								}, {
-									field: 'extension',
-									title: '临时代理人分机',
-									align: 'center'
-								}, {
-									field: 'linkTel',
-									title: '联系电话',
-									align: 'center'
-								}, {
-									field: 'name',
-									title: '申请单名称',
-									align: 'center'
-								}, {
-									field: 'proxyName',
-									title: '临时工作代理人',
-									align: 'center'
-								}, {
-									field: 'reason',
-									title: '休假申请理由',
-									align: 'center'
-								}, {
-									field: 'remark',
-									title: '备注',
-									align: 'center'
-								}, {
-									field: 'startTime',
-									title: '请假开始日期',
-									align: 'center'
-								}, {
-									field: 'type',
-									title: '休假类型',
-									align: 'center'
-								}, {
-									fixed: 'right',
-									title: '操作',
-									toolbar: '#table-content-list',
-									minWidth: 150
-								}]
-							],
-							page: !0,
-							limit: 10,
-							limits: [10, 15, 20, 25, 30],
-						}),
-						table.on("tool(LAY-app-content-list)", function(obj) {
-							var data = obj.data;
-							"del" === obj.event ? layer.confirm("确定删除申请？", function(e) {
-									$.ajax({
-										url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id,
-										},
-										success: function(b) {
-											table.reload('LAY-app-content-list');
-											layer.msg('删除成功');
-											obj.del(), layer.close(e)
-										},
-										error: function(e) {
-											layer.msg('删除失败')
-											layer.msg(e);
-										}
-									})
-								}) :
-								"edit" === obj.event && admin.popup({
-									title: "编辑休假申请",
-									area: ['720px', '700px'],
-									id: "LAY-popup-content-edit",
-									success: function(t, layero) {
-										view(this.id).render("apply/Leave/testform", data).done(function() {
-											$.ajax({
-												url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
-												type: "GET",
-												dataType: "json",
-												data: {
-													id: data.id
-												},
-												success: function(e) {
-													//layer.msg(e.contractCheckVo);
-													let obj = e.data;
-													form.val("layuiadmin-app-form-list", {
-														"id": obj.id,
-														"applyId": obj.applyId,
-														"applyName": obj.applyName,
-														"countDay": obj.countDay,
-														"countHour": obj.countHour,
-														"endTime": obj.endTime,
-														"extension": obj.extension,
-														"linkTel": obj.linkTel,
-														"name": obj.name,
-														"proxyName": obj.proxyName,
-														"reason": obj.reason,
-														"remark": obj.remark,
-														"startTime": obj.startTime,
-														"type": obj.type,
-														"updated_by": obj.updated_by,
-													});
-
-													$(".date").each(function() {
-														laydate.render({
-															elem: this,
-															trigger: 'click',
-														});
-													})
-												},
-												error: function(e) {
-													layer.msg(e);
-												}
-											})
-											form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-												data) {
-												$.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
-													data.field,
-													function(ev) {
-														layer.msg("修改成功", {
-															time: 1000
-														}, function() {
-															layui.table.reload("LAY-app-content-list"), layer.close(layero)
-														})
-													});
-												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-											})
-										})
-									}
-								})
-						})
-
-
-					form.render(null, 'app-content-list');
-
-					//监听搜索
-					form.on('submit(LAY-app-contlist-search)', function(data) {
-						var field = data.field;
-						console.log(field);
-						//执行重载
-						table.reload('LAY-app-content-list', {
-							where: field
-						});
-					});
-
-					var active = {
-						batchdel: function() {
-								var checkStatus = table.checkStatus('LAY-app-content-list'),
-									checkData = checkStatus.data; //得到选中的数据
-								if (checkData.length === 0) {
-									return layer.msg('请选择数据');
-								}
-								let arr = "";
-								let arrTwo = "";
-								for (var i in checkData) {
-									arr += checkData[i].id + ",";
-								}
-								for (var i in checkData) {
-									arrTwo += checkData[i].commonId + ",";
-								}
-								layer.confirm('确定删除吗？', function(index) {
-									$.ajax({
-										type: "GET",
-										url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
-										dataType: "json",
-										data: {
-											ids: arr,
-										},
-										success: function(json) {
-											table.reload('LAY-app-content-list');
-											layer.msg('已删除');
-										}
-									});
-
-									//执行 Ajax 后重载
-									/*
-						
-									*/
-								});
+							error: function(e) {
+								layer.msg('删除失败')
+								layer.msg(e);
 							}
+						})
+					}) :
+					"edit" === obj.event && admin.popup({
+						title: "编辑休假申请",
+						area: ['720px', '700px'],
+						id: "LAY-popup-content-edit",
+						success: function(t, layero) {
+							view(this.id).render("apply/Leave/testform", data).done(function() {
+								$.ajax({
+									url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+									type: "GET",
+									dataType: "json",
+									data: {
+										id: data.id
+									},
+									success: function(e) {
+										//layer.msg(e.contractCheckVo);
+										let obj = e.data;
+										form.val("layuiadmin-app-form-list", {
+											"id": obj.id,
+											"applyId": obj.applyId,
+											"applyName": obj.applyName,
+											"countDay": obj.countDay,
+											"countHour": obj.countHour,
+											"endTime": obj.endTime,
+											"extension": obj.extension,
+											"linkTel": obj.linkTel,
+											"name": obj.name,
+											"proxyName": obj.proxyName,
+											"reason": obj.reason,
+											"remark": obj.remark,
+											"startTime": obj.startTime,
+											"type": obj.type,
+											"updated_by": obj.updated_by,
+										});
 
-							//添加
-							,
-						add: function(othis) {
-							admin.popup({
-								title: '添加休假申请',
-								area: ['720px', '700px'],
-								id: 'LAY-popup-content-add',
-								success: function(layero, index) {
-									view(this.id).render('apply/leave/testform').done(function() {
-										form.render(null, 'layuiadmin-app-form-list');
-										//日期
 										$(".date").each(function() {
 											laydate.render({
 												elem: this,
 												trigger: 'click',
 											});
 										})
-										//监听提交
-										form.on('submit(layuiadmin-app-form-submit)', function(data) {
-											var field = data.field; //获取提交的字段
-											$.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
-												data.field,
-												function(ev) {
-													layer.msg("新增成功", {
-														time: 1000
-													}, function() {
-														layer.close(index); //执行关闭 
-														layui.table.reload('LAY-app-content-list'); //重载表格
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+									},
+									error: function(e) {
+										layer.msg(e);
+									}
+								})
+								form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+									data) {
+									$.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+										data.field,
+										function(ev) {
+											layer.msg("修改成功", {
+												time: 1000
+											}, function() {
+												layui.table.reload("LAY-app-content-list"), layer.close(layero)
+											})
 										});
-									});
-								}
-							});
+									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+								})
+							})
 						}
-					};
-					$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-						var type = $(this).data('type');
-						active[type] ? active[type].call(this) : '';
-					});
-					//日期
-					$(".date").each(function() {
-						laydate.render({
-							elem: this,
-							trigger: 'click',
-						});
 					})
+			})
 
+
+		form.render(null, 'app-content-list');
+
+		//监听搜索
+		form.on('submit(LAY-app-contlist-search)', function(data) {
+			var field = data.field;
+			console.log(field);
+			//执行重载
+			table.reload('LAY-app-content-list', {
+				where: field
+			});
+		});
+
+		var active = {
+			batchdel: function() {
+					var checkStatus = table.checkStatus('LAY-app-content-list'),
+						checkData = checkStatus.data; //得到选中的数据
+					if (checkData.length === 0) {
+						return layer.msg('请选择数据');
+					}
+					let arr = "";
+					let arrTwo = "";
+					for (var i in checkData) {
+						arr += checkData[i].id + ",";
+					}
+					for (var i in checkData) {
+						arrTwo += checkData[i].commonId + ",";
+					}
+					layer.confirm('确定删除吗？', function(index) {
+						$.ajax({
+							type: "GET",
+							url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+							dataType: "json",
+							data: {
+								ids: arr,
+							},
+							success: function(json) {
+								table.reload('LAY-app-content-list');
+								layer.msg('已删除');
+							}
+						});
+
+						//执行 Ajax 后重载
+						/*
+						
+									*/
+					});
+				}
+
+				//添加
+				,
+			add: function(othis) {
+				admin.popup({
+					title: '添加休假申请',
+					area: ['720px', '700px'],
+					id: 'LAY-popup-content-add',
+					success: function(layero, index) {
+						view(this.id).render('apply/leave/testform').done(function() {
+							form.render(null, 'layuiadmin-app-form-list');
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									trigger: 'click',
+								});
+							})
+							//监听提交
+							form.on('submit(layuiadmin-app-form-submit)', function(data) {
+								var field = data.field; //获取提交的字段
+								$.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+									data.field,
+									function(ev) {
+										layer.msg("新增成功", {
+											time: 1000
+										}, function() {
+											layer.close(index); //执行关闭 
+											layui.table.reload('LAY-app-content-list'); //重载表格
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						});
+					}
 				});
-			</script>
+			}
+		};
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+		//日期
+		$(".date").each(function() {
+			laydate.render({
+				elem: this,
+				trigger: 'click',
+			});
+		})
+
+	});
+</script>

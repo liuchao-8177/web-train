@@ -81,7 +81,7 @@
 		table.render({
 			elem: '#test',
 			method: "GET",
-			url: commonSrc + 'api/hr/nightShiftController/list', //数据接口
+			url: commonSrc + 'api/train/teacherController/list', //数据接口
 			page: true, //开启分页
 			// toolbar: '#toolbarDemo',
 			response: {
@@ -111,48 +111,104 @@
 						title: 'id',
 						hide: true,
 					}, {
-						field: 'applyId',
+						field: 'attest',
 						title: '讲师类型',
 						align: 'center',
 		     		}, {
-						field: 'applyName',
+						field: 'award',
 						title: '讲师姓名',
 						align: 'center'
 					}, {
-						field: 'nightType',
+						field: 'companyId',
 						title: '职务',
 						align: 'center'
 					}, {
-						field: 'applyType',
+						field: 'companyName',
 						title: '对应员工',
 						align: 'center'
 					}, {
-						field: 'applyTime',
+						field: 'createBy',
 						title: '内部',
 						align: 'center',
 					}, {
-						field: 'startTime',
+						field: 'deptId',
 						title: '已认证',
 						align: 'center',
 					}, {
-						field: 'endTime',
+						field: 'deptName',
 						title: '任初级日',
 						align: 'center'
 					}, {
-						field: 'status',
+						field: 'employId',
 						title: '任中级日',
 						templet: "#status",
 						align: 'center'
 					}, {
-					 	field: 'checkStatus',
+					 	field: 'gmtGreated',
 					 	title: '审核状态',
 					 	align: 'center'
 		            }, {
-						field: 'salaryMonth',
+						field: 'gmtUpdated',
 						title: '任高日',
 						align: 'center'
 					}, {
+						field: 'goldDay',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'inside',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'institution',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'introduction',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'name',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'position',
+						title: '备注',
+						align: 'center'
+					}, {
 						field: 'remark',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'seniorDay',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'silverDay',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'tenantCode',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'tenantName',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'type',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'updateBy',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'userId',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'userName',
 						title: '备注',
 						align: 'center'
 					}, {
