@@ -1,10 +1,10 @@
-{
+﻿{
 	"code": 0,
-	"msg": "",
+	"msg": "0",
 	"data": [{
 		"name": "basicdata",
 		"title": "基础数据",
-		"icon": "layui-icon-home",
+		"icon": "layui-icon-list",
 		"list": [{
 			"name": "employeeinformation",
 			"title": "员工信息",
@@ -25,7 +25,7 @@
 	}, {
 		"name": "examination",
 		"title": "培训运作",
-		"icon": "layui-icon-home",
+		"icon": "layui-icon-group",
 		"list": [{
 			"name": "createpaper",
 			"title": "需求设置",
@@ -50,7 +50,7 @@
 	}, {
 		"name": "selfTesting",
 		"title": "报表中心",
-		"icon": "layui-icon-home",
+		"icon": "layui-icon-form",
 		"list": [{
 			"name": "createpaper",
 			"title": "需求查询",
@@ -58,7 +58,7 @@
 	    }, {
 			"name": "createpaper",
 			"title": "需求统计",
-			"jump": "report/demand/statistics"
+			"jump": "report/need/statistics"
 		}, {
 			"name": "createpaper",
 			"title": "记录一览表",
@@ -75,15 +75,15 @@
 	}, {
 		"name": "analysis",
 		"title": "系统参数",
-		"icon": "layui-icon-home",
+		"icon": "layui-icon-set",
 		"list": [{
 			"name": "paperanalysis",
 			"title": "系统参数",
-			"jump": "parameter/system"
+			"jump": "parameter/system/system"
 		}, {
 			"name": "examanalysis",
 			"title": "用户权限",
-			"jump": "parameter/jurisdiction"
+			"jump": "parameter/user/jurisdiction"
 		}]
 	}]
 }
