@@ -7,1635 +7,933 @@
 	</div>
 </div>
 
-<div class="layui-tab">
-  <ul class="layui-tab-title">
-    <li class="layui-this">员工导入</li>
-    <li>课程导入</li>
-    <li>讲师导入</li>
-    <li>记录导入</li>
-    <li>批量免除</li>
-  </ul>
-  <div class="layui-tab-content">
-	  
-	<!-- 员工导入 -->
-    <div class="layui-tab-item layui-show">
-        <div class="layui-card-body">
-           	<div style="padding-bottom: 10px;">
-           		<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-           		<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
-           	</div>
-           	
-           		<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-                   
-           	<div class="layui-card-body">
-           	    <script type="text/html" id="table-content-list">
-           	    	<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-           	        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-           	    </script>
-            </div>
-        </div>
-             	
-    <script>
-	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-		var $ = layui.$,
-			admin = layui.admin,
-			view = layui.view,
-			table = layui.table,
-			laydate = layui.laydate,
-			form = layui.form;
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-tab">
+			<ul class="layui-tab-title">
+				<li class="layui-this">员工导入</li>
+				<li>课程导入</li>
+				<li>讲师导入</li>
+				<li>记录导入</li>
+				<li>批量免除</li>
+			</ul>
+			<div class="layui-tab-content">
+				<!-- 员工导入 begin -->
+				<div class="layui-tab-item layui-show">
+					<div class="layui-card-body">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="addes">添加</button>
+						</div>
 
-		//表格渲染
-		table.render({
-				elem: '#LAY-app-content-list',
-				url: commonSrc + '',
-				request: {
-					pageName: 'pageNum' //页码的参数名称，默认：page
-						,
-					limitName: 'pageSize' //每页数据量的参数名，默认：limit
-				},
-				response: {
-					statusCode: 200 //规定成功的状态码，默认：0
-				},
-				parseData: function(res) { //res 即为原始返回的数据
-					return {
-						"code": res.code, //解析接口状态
-						"msg": res.desc, //解析提示文本
-						"count": res.total, //解析数据长度
-						"data": res.dataList //解析数据列表
-					};
-				},
-				cols: [
-					[{
-						type: 'checkbox',
-						fixed: "left"
-					}, {
-						field: 'id',
-						title: 'id',
-						hide:true,
-					}, {
-						field: 'commonId',
-						title: '申请公共id',
-						hide: true,
-					}, {
-						field: 'overtimeCode',
-						title: '申请编号',
-						hide: true,
-					}, {
-					    field: 'startTime',
-					    title: '员工号',
-					    align: 'center'
-					}, {
-						field: 'startTime',
-						title: '员工姓名',
-						align: 'center'
-					}, {
-						field: 'endTime',
-						title: '姓别',
-						align: 'center'
-					}, {
-						field: 'overtimeType',
-						title: '出生日期',
-						align: 'center'
-					}, {
-						field: 'overtimeHours',
-						title: '入职日期',
-						align: 'center'
-					}, {
-						field: 'changeRest',
-						title: '部门全名职位类型',
-						align: 'center'
-					}, {
-						field: 'place',
-						title: '职位级别',
-						align: 'center'
-					}, {
-						field: 'reason',
-						title: '学历',
-						align: 'center'
-					}, {
-						field: 'remark',
-						title: '职务',
-						align: 'center'
-					}, {
-						field: 'applyTime',
-						title: '成本中心',
-						align: 'center'
-					}, {
-						field: 'applyType',
-						title: '到岗日期',
-						align: 'center'
-					}, {
-						field: 'applyType',
-						title: '是否离职',
-						align: 'center'
-					}, {
-						field: 'applyType',
-						title: '备注',
-						align: 'center'
-					}, {
-						field: 'checkStatus',
-						title: '离职日期',
-						templet: "#buttonTpl",
-						minWidth: 80,
-						align: 'center'
-					}, {
-						fixed: 'right',
-						title: '操作',
-						toolbar: '#table-content-list',
-						minWidth: 150,
-					}]
-				],
-				page: !0,
-				limit: 10,
-				limits: [10, 15, 20, 25, 30],
-			}), 
-			 table.on("tool(LAY-app-content-list)", function(obj) {
-				var data = obj.data;
-				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-					$.ajax({
-						url: commonSrc + "", //换成自己的url
-						type: "GET",
-						dataType: "json",
-						data: {
-							id: data.id,
-							applyId:data.commonId
-						},
-						success: function(b) {
-							layer.msg('删除成功');
-							obj.del(), layer.close(e)
-						},
-						error: function(e) {
-							layer.msg('删除失败')
-							layer.msg(e);
-						}
-					})
-				}) : "edit" === obj.event && admin.popup({
-					title: "",
-					area: ['720px', '700px'],
-					id: "LAY-popup-content-edit",
-					success: function(t, layero) {
-						view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-							$.ajax({
-								url: commonSrc + "", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id
-								},
-								success: function(e) {
-									//layer.msg(e.contractCheckVo);
-									let obj = e.data;
-									form.val("layuiadmin-app-form-list", {
-										"id": obj.id,
-										"commonId": obj.commonId,
-										"overtimeCode": obj.overtimeCode,
-										"startTime": obj.startTime,
-										"applyType": obj.applyType,
-										"checkStatus": obj.checkStatus
-									});
-									//日期 年-月-日
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											trigger: 'click',
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type:'datetime',
-											trigger: 'click',
-										});
-									})
-								},
-								error: function(e) {
-									layer.msg(e);
-								}
-							})
-							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-								data) {
-								$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-									data.field,
-									function(ev) {
-										layer.msg("修改成功", {
-											time: 1000
-										}, function() {
-											layui.table.reload("LAY-app-content-list"), layer.close(layero)
+						<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+
+						<script type="text/html" id="barDemo">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+					    				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+					    			</script>
+					</div>
+
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+							var $ = layui.$,
+								admin = layui.admin,
+								view = layui.view,
+								table = layui.table,
+								laydate = layui.laydate,
+								form = layui.form;
+
+							//表格渲染
+							table.render({
+									elem: '#LAY-app-content-list',
+									url: commonSrc + '',
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
+									},
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
+									},
+									parseData: function(res) { //res 即为原始返回的数据
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									cols: [
+										[{
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'id',
+											title: 'id',
+											hide: true,
+										}, {
+											field: 'commonId',
+											title: '申请公共id',
+											hide: true,
+										}, {
+											field: 'overtimeCode',
+											title: '申请编号',
+											hide: true,
+										}, {
+											field: 'startTime',
+											title: '员工号',
+											align: 'center'
+										}, {
+											field: 'startTime',
+											title: '员工姓名',
+											align: 'center'
+										}, {
+											field: 'endTime',
+											title: '姓别',
+											align: 'center'
+										}, {
+											field: 'overtimeType',
+											title: '出生日期',
+											align: 'center'
+										}, {
+											field: 'overtimeHours',
+											title: '入职日期',
+											align: 'center'
+										}, {
+											field: 'changeRest',
+											title: '部门全名职位类型',
+											align: 'center'
+										}, {
+											field: 'place',
+											title: '职位级别',
+											align: 'center'
+										}, {
+											field: 'reason',
+											title: '学历',
+											align: 'center'
+										}, {
+											field: 'remark',
+											title: '职务',
+											align: 'center'
+										}, {
+											field: 'applyTime',
+											title: '成本中心',
+											align: 'center'
+										}, {
+											field: 'applyType',
+											title: '到岗日期',
+											align: 'center'
+										}, {
+											field: 'applyType',
+											title: '是否离职',
+											align: 'center'
+										}, {
+											field: 'applyType',
+											title: '备注',
+											align: 'center'
+										}, {
+											field: 'checkStatus',
+											title: '离职日期',
+											templet: "#buttonTpl",
+											minWidth: 80,
+											align: 'center'
+										}, {
+											fixed: 'right',
+											title: '操作',
+											toolbar: '#table-content-list',
+											minWidth: 150,
+										}]
+									],
+									page: !0,
+									limit: 10,
+									limits: [10, 15, 20, 25, 30],
+								}),
+								table.on("tool(LAY-app-content-list)", function(obj) {
+									var data = obj.data;
+									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+										$.ajax({
+											url: commonSrc + "", //换成自己的url
+											type: "GET",
+											dataType: "json",
+											data: {
+												id: data.id,
+												applyId: data.commonId
+											},
+											success: function(b) {
+												layer.msg('删除成功');
+												obj.del(), layer.close(e)
+											},
+											error: function(e) {
+												layer.msg('删除失败')
+												layer.msg(e);
+											}
 										})
+									}) : "edit" === obj.event && admin.popup({
+										title: "",
+										area: ['720px', '700px'],
+										id: "LAY-popup-content-edit",
+										success: function(t, layero) {
+											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
+												$.ajax({
+													url: commonSrc + "", //换成自己的url
+													type: "GET",
+													dataType: "json",
+													data: {
+														id: data.id
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-list", {
+															"id": obj.id,
+															"commonId": obj.commonId,
+															"overtimeCode": obj.overtimeCode,
+															"startTime": obj.startTime,
+															"applyType": obj.applyType,
+															"checkStatus": obj.checkStatus
+														});
+														//日期 年-月-日
+														$(".date").each(function() {
+															laydate.render({
+																elem: this,
+																trigger: 'click',
+															});
+														})
+														//年-月-日 时:分:秒
+														$(".datetime").each(function() {
+															laydate.render({
+																elem: this,
+																type: 'datetime',
+																trigger: 'click',
+															});
+														})
+													},
+													error: function(e) {
+														layer.msg(e);
+													}
+												})
+												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
+													function(
+														data) {
+														$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
+															data.field,
+															function(ev) {
+																layer.msg("修改成功", {
+																	time: 1000
+																}, function() {
+																	layui.table.reload("LAY-app-content-list"), layer.close(layero)
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													})
+											})
+										}
+									})
+								})
+
+
+							form.render(null, 'app-content-list');
+
+							//监听搜索
+							form.on('submit(LAY-app-contlist-search)', function(data) {
+								var field = data.field;
+								console.log(field);
+								//执行重载
+								table.reload('LAY-app-content-list', {
+									where: field
+								});
+							});
+
+							var active = {
+								batchdel: function() {
+										var checkStatus = table.checkStatus('LAY-app-content-list'),
+											checkData = checkStatus.data; //得到选中的数据
+
+										if (checkData.length === 0) {
+											return layer.msg('请选择数据');
+										}
+										let arr = [];
+										let brr = [];
+										for (var i in checkData) {
+											arr += checkData[i].id + ","
+										}
+										for (var i in checkData) {
+											brr += checkData[i].commonId + ","
+										}
+										layer.confirm('确定删除吗？', function(index) {
+											$.ajax({
+												type: "GET",
+												url: commonSrc + "",
+												contentType: "application/json; charset=utf-8",
+												dataType: "json",
+												data: {
+													id: arr,
+													applyId: brr
+
+												},
+												success: function(json) {
+													table.reload('LAY-app-content-list');
+													layer.msg('已删除');
+												}
+											});
+
+											//执行 Ajax 后重载
+											/*
+												
+											*/
+
+										});
+									}
+
+									//添加
+									,
+								add: function(othis) {
+									admin.popup({
+										title: '添加人员信息',
+										area: ['720px', '700px'],
+										id: 'LAY-popup-content-add',
+										success: function(layero, index) {
+											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
+												form.render(null, 'layuiadmin-app-form-list');
+
+												//日期
+												$(".date").each(function() {
+													laydate.render({
+														elem: this,
+														trigger: 'click',
+													});
+												})
+												//年-月-日 时:分:秒
+												$(".datetime").each(function() {
+													laydate.render({
+														elem: this,
+														type: 'datetime',
+														trigger: 'click',
+													});
+												})
+
+												//监听提交
+												form.on('submit(layuiadmin-app-form-submit)', function(data) {
+													var field = data.field; //获取提交的字段
+													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
+														data.field,
+														function(ev) {
+															layer.msg("新增成功", {
+																time: 1000
+															}, function() {
+																layer.close(index); //执行关闭 
+																layui.table.reload('LAY-app-content-list'); //重载表格
+															})
+														});
+													// false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+												});
+											});
+										}
 									});
-								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-							})
-						})
-					}
-				})
-			}) 
+								}
+							};
 
+							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+								var type = $(this).data('type');
+								active[type] ? active[type].call(this) : '';
+							});
 
-		form.render(null, 'app-content-list');
-
-		//监听搜索
-		 form.on('submit(LAY-app-contlist-search)', function(data) {
-			var field = data.field;
-			console.log(field);
-			//执行重载
-			table.reload('LAY-app-content-list', {
-				where: field
-			});
-		}); 
-
-		 var active = {
-			batchdel: function() {
-					var checkStatus = table.checkStatus('LAY-app-content-list'),
-						checkData = checkStatus.data; //得到选中的数据
-
-					if (checkData.length === 0) {
-						return layer.msg('请选择数据');
-					}
-					let arr = [];
-					let brr=[];
-					for(var i in checkData){
-						arr += checkData[i].id+","
-					}
-					for(var i in checkData){
-						brr += checkData[i].commonId+"," 
-					}
-					layer.confirm('确定删除吗？', function(index) {
-						$.ajax({
-							type: "GET",
-							url: commonSrc + "",
-							contentType: "application/json; charset=utf-8",
-							dataType: "json",
-							data: {
-								id: arr,
-								applyId:brr
-								
-							},
-							success: function(json) {
-								table.reload('LAY-app-content-list');
-								layer.msg('已删除');
-							}
-						});
-
-						//执行 Ajax 后重载
-						/*
-						
-						*/
-						
-					});
-				}
-
-				//添加
-				,
-			 add: function(othis) {
-				admin.popup({
-					title: '添加人员信息',
-					area: ['720px', '700px'],
-					id: 'LAY-popup-content-add',
-					success: function(layero, index) {
-						view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-							form.render(null, 'layuiadmin-app-form-list');
-						    
 							//日期
 							$(".date").each(function() {
 								laydate.render({
 									elem: this,
 									trigger: 'click',
 								});
-							})
-							//年-月-日 时:分:秒
-							$(".datetime").each(function() {
-								laydate.render({
-									elem: this,
-									type:'datetime',
-									trigger: 'click',
-								});
-							})
-							
-							//监听提交
-							form.on('submit(layuiadmin-app-form-submit)', function(data) {
-								var field = data.field; //获取提交的字段
-								$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-									data.field,
-									function(ev) {
-										layer.msg("新增成功", {
-											time: 1000
-										}, function() {
-											layer.close(index); //执行关闭 
-											layui.table.reload('LAY-app-content-list'); //重载表格
-										})
-									});
-								// false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-							});
-						});
-					}
-				});
-			} 
-		}; 
 
-	     $('.layui-btn.layuiadmin-btn-list').on('click', function() {
-			var type = $(this).data('type');
-			active[type] ? active[type].call(this) : '';
-		}); 
-	
-		//日期
-		 $(".date").each(function() {
-			laydate.render({
-				elem: this,
-				trigger: 'click',
-			});
-			
-	        }) 
-		})
-</script>
-    </div>
-	
-	
-	<!-- 课程导入 -->
-    <div class="layui-tab-item">	
-			<div class="layui-card-body">
-				<div style="padding-bottom: 10px;">
-					<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-					<button class="layui-btn layuiadmin-btn-list" data-type="addcoure">添加</button>
+							})
+
+							$("#targ").click(function() {
+								$(".tab").hide();
+								$("#show").show();
+							});
+							$(".daainfor").click(function() {
+								window.location.href = "addstaffbankapply.html";
+							})
+						})
+					</script>
 				</div>
-				
-				<table id="addcour" lay-filter="addcour"></table>
-				
-				<div class="layui-card-body">	
-				<script type="text/html" id="table-content-list">
-					<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-			        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-			    </script>
-				</div>
-            </div>
-			
-			<script>
-				layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-					var $ = layui.$,
-						admin = layui.admin,
-						view = layui.view,
-						table = layui.table,
-						laydate = layui.laydate,
-						form = layui.form;
-					
-					//表格渲染
-					table.render({
-							elem: '#addcour',
-							url: commonSrc + 'api/train/courseController/list',
-							request: {
-								pageName: 'pageNum' //页码的参数名称，默认：page
-									,
-								limitName: 'pageSize' //每页数据量的参数名，默认：limit
-							},
-							response: {
-								statusCode: 200 //规定成功的状态码，默认：0
-							},
-							parseData: function(res) { //res 即为原始返回的数据
-								return {
-									"code": res.code, //解析接口状态
-									"msg": res.desc, //解析提示文本
-									"count": res.total, //解析数据长度
-									"data": res.dataList //解析数据列表
-								};
-							},
-							cols: [
-								[{
-									type: 'checkbox',
-									fixed: "left"
-								}, {
-									field: 'id',
-									title: 'id',
-									hide: true,
-								}, {
-									field: 'arrivalDay',
-									title: '员工id',
-									hide: true,
-								}, {
-									field: 'attributeId',
-									title: '课程类型',
-									align: 'center'
-								}, {
-									field: 'cerLevel',
-									title: '等效课程名',
-									align: 'center'
-								}, {
-									field: 'comment',
-									title: '课时(H)',
-									align: 'center'
-								}, {
-									field: 'companyId',
-									title: '到岗X天培训',
-									align: 'center'
-								}, {
-									field: 'createBy',
-									title: '有效天数',
-									align: 'center'
-								}, {
-									field: 'fastCode',
-									title: '积分',
-									align: 'center'
-								}, {
-									field: 'gmtCreated',
-									title: '部门级',
-									align: 'center'
-								}, {
-									field: 'gmtUpdated',
-									title: '培训形式',
-									align: 'center'
-								}, {
-									field: 'hours',
-									title: '优先级',
-									align: 'center'
-								}, {
-									field: 'integral',
-									title: '启用',
-									align: 'center'
-								}, {
-									field: 'isUse',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'joinStatus',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'parentId',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'place',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'priority',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'teacherId',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'tenantCode',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'topic',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'traForm',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'typeId',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'updateBy',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									field: 'validDay',
-									title: '对应证书',
-									align: 'center'
-								}, {
-									fixed: 'right',
-									title: '操作',
-									toolbar: '#table-content-list',
-									minWidth: 150,
-								}]
-							],
-							page: !0,
-							limit: 10,
-							limits: [10, 15, 20, 25, 30],
-						}),
-						table.on("tool(addcour)", function(obj) {
-							var data = obj.data;
-							if ("wait" === obj.event) {
-								layer.confirm('请确认后选择', {
-									btn: ['通过', '不行'] //按钮
-								}, function(index) {
-									data.checkStatus = 1
-									$.post(commonSrc + "",
-										data,
-										function(ev) {
-											layer.msg("修改成功");
-											obj.update({
-												checkStatus: '1',
-											});
-										});
-								}, function(index) {
-									data.checkStatus = 3
-									$.post(commonSrc + "",
-										data,
-										function(ev) {
-											layer.msg("修改成功");
-											obj.update({
-												checkStatus: '3',
-											});
-										});
-								});
-							}
-							"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-								$.ajax({
-									url: commonSrc + "", //换成自己的url
-									type: "GET",
-									dataType: "json",
-									data: {
-										id: data.id,
-										applyId: data.commonId
+				<!-- 员工导入 end -->
+
+				<!-- 课程导入begin -->
+				<div class="layui-tab-item">
+					<div class="layui-card-body">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="adds">增加</button>
+						</div>
+
+						<table id="cuser" lay-filter="cuser"></table>
+
+						<script type="text/html" id="table-content-list">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+					            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+					        </script>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+							var $ = layui.$,
+								admin = layui.admin,
+								view = layui.view,
+								table = layui.table,
+								laydate = layui.laydate,
+								form = layui.form;
+							//表格渲染
+							table.render({
+									elem: '#cuser',
+									url: commonSrc + 'api/train/courseController/list',
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
 									},
-									success: function(b) {
-										layer.msg('删除成功');
-										obj.del(), layer.close(e)
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
 									},
-									error: function(e) {
-										layer.msg('删除失败')
-										layer.msg(e);
+									parseData: function(res) { //res 即为原始返回的数据
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									cols: [
+										[{
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'id',
+											title: 'id',
+											hide: true,
+										}, {
+											field: 'arrivalDay',
+											title: '课程属性ID',
+											hide: true,
+										}, {
+											field: 'cerLevel',
+											title: '证书等级',
+											align: 'center'
+										}, {
+											field: 'fastCode',
+											title: '快捷码',
+											align: 'center'
+										}, {
+											field: 'isDept',
+											title: '部门级',
+											align: 'center'
+										}, {
+											field: 'isUse',
+											title: '启动',
+											align: 'center'
+										}, {
+											field: 'priority',
+											title: '优先级别',
+											align: 'center'
+										}, {
+											field: 'teacherId',
+											title: '默认讲师ID',
+											hide: true,
+										}, {
+											field: 'tenantCode',
+											title: '租户编码',
+											align: 'center'
+										}, {
+											field: 'topic',
+											title: '等效课程',
+											align: 'center'
+										}, {
+											field: 'traForm',
+											title: '培训形式',
+											align: 'center'
+										}, {
+											field: 'typeId',
+											title: '课程类型ID',
+											hide: true,
+										}, {
+											fixed: 'right',
+											title: '操作',
+											toolbar: '#table-content-list',
+											minWidth: 150,
+										}]
+									],
+									page: !0,
+									limit: 10,
+									limits: [10, 15, 20, 25, 30],
+								}),
+								table.on("tool(cuser)", function(obj) {
+									var data = obj.data;
+									if ("wait" === obj.event) {
+										layer.confirm('请确认后选择', {
+											btn: ['通过', '不行'] //按钮
+										}, function(index) {
+											data.checkStatus = 1
+											$.post(commonSrc + "api/train/teacherController/updateTeacher",
+												data,
+												function(ev) {
+													layer.msg("修改成功");
+													obj.update({
+														checkStatus: '1',
+													});
+												});
+										}, function(index) {
+											data.checkStatus = 3
+											$.post(commonSrc + "",
+												data,
+												function(ev) {
+													layer.msg("修改成功");
+													obj.update({
+														checkStatus: '3',
+													});
+												});
+										});
 									}
-								})
-							}) : "edit" === obj.event && admin.popup({
-								title: "",
-								area: ['720px', '700px'],
-								id: "LAY-popup-content-edit",
-								success: function(t, layero) {
-									view(this.id).render("apply/leave/LeaveApplyForm", data).done(function() {
+									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 										$.ajax({
-											url: commonSrc + "api/hr/LeaveController/selectLeaveById", //换成自己的url
-											type: "GET",
+											url: commonSrc + "api/train/courseController/deleteCourseById", //换成自己的url
+											type: "POST",
 											dataType: "json",
 											data: {
 												id: data.id
 											},
-											success: function(e) {
-												//layer.msg(e.contractCheckVo);
-												let obj = e.data;
-												form.val("layuiadmin-app-form-list", {
-													"applyTime": obj.applyTime,
-													"checkStatus": obj.checkStatus,
-													"applyId": obj.applyId,
-													"applyType": obj.applyType,
-													"operateType": obj.operateType,
-													"remark": obj.remark,
-													"workPlace": obj.workPlace
-												});
-												layTime(); //时间渲染
+											success: function(b) {
+												layer.msg('删除成功');
+												obj.del(), layer.close(e)
 											},
 											error: function(e) {
+												layer.msg('删除失败')
 												layer.msg(e);
 											}
 										})
-										form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-											data) {
-											$.post(commonSrc + "api/hr/LeaveController/updateLeave",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("addcour"), layer.close(layero)
+									}) : "edit" === obj.event && admin.popup({
+										title: "编辑课程信息",
+										area: ['720px', '700px'],
+										id: "LAY-popup-content-edit",
+										success: function(t, layero) {
+											view(this.id).render("staff/courseInformation/LeaveApplyForm", data).done(function() {
+												$.ajax({
+													url: commonSrc + "api/train/courseController/selectCourseById", //换成自己的url
+													type: "POST",
+													dataType: "json",
+													data: {
+														id: data.id
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-list", obj);
+														layTime(); //时间渲染
+													},
+													error: function(e) {
+														layer.msg(e);
+													}
+												})
+												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
+													function(
+														data) {
+														$.post(commonSrc + "api/train/courseController/updateCourse",
+															data.field,
+															function(ev) {
+																layer.msg("修改成功", {
+																	time: 1000
+																}, function() {
+																	layui.table.reload("cuser"), layer.close(layero)
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-									})
-								}
-							})
-						})
-			
-			
-					form.render(null, 'app-content-list');
-			
-					//监听搜索
-					form.on('submit(LAY-app-contlist-search)', function(data) {
-						var field = data.field;
-						console.log(field);
-						//执行重载
-						table.reload('addcour', {
-							where: field
-						});
-					});
-			
-					var active = {
-						batchdel: function() {
-								var checkStatus = table.checkStatus('addcour'),
-									checkData = checkStatus.data; //得到选中的数据
-								if (checkData.length === 0) {
-									return layer.msg('请选择数据');
-								}
-								let arr = "";
-								let arrTwo = "";
-								for (var i in checkData) {
-									arr += checkData[i].id + ",";
-								}
-								for (var i in checkData) {
-									arrTwo += checkData[i].commonId + ",";
-								}
-								layer.confirm('确定删除吗？', function(index) {
-									$.ajax({
-										type: "GET",
-										url: commonSrc + "api/hr/LeaveController/deleteLeaveAll",
-										dataType: "json",
-										data: {
-											id: arr,
-											applyId: arrTwo
-										},
-										success: function(json) {
-											table.reload('addcour');
-											layer.msg('已删除');
+											})
 										}
-									});
-			
-									//执行 Ajax 后重载
-									/*
-									
-									*/
-								});
-							}
-			
-							//添加
-							,
-						addcoure: function(othis) {
-							admin.popup({
-								title: '添加课程信息',
-								area: ['720px', '700px'],
-								id: 'LAY-popup-content-add',
-								success: function(layero, index) {
-									view(this.id).render('staff/courseInformation/LeaveApplyForm').done(function() {
-										form.render(null, 'layuiadmin-app-form-list');
-										//监听提交
-										form.on('submit(layuiadmin-app-form-submit)', function(data) {
-											var field = data.field; //获取提交的字段
-											$.post(commonSrc + "api/hr/LeaveController/insertLeave",
-												data.field,
-												function(ev) {
-													layer.msg("新增成功", {
-														time: 1000
-													}, function() {
-														layer.close(index); //执行关闭 
-														layui.table.reload('addcour'); //重载表格
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										});
-									});
-								}
-							});
-						}
-					};
-			
-					$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-						var type = $(this).data('type');
-						active[type] ? active[type].call(this) : '';
-					});
-					//日期
-			        layTime();
-				});
-			</script>
-			
-    </div>
-	
-	<!-- 讲师导入 -->
-    <div class="layui-tab-item">
-		<div class="layui-card-body">
-		 	<div style="padding-bottom: 10px;">
-		 		<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-		 		<button class="layui-btn layuiadmin-btn-list" data-type="addlecture">添加</button>
-		 	</div>
-		 	
-		 	<table id="test" lay-filter="test"></table>
-		 	
-			<div class="layui-card-body">
-		 	<script type="text/html" id="barDemo">
-		 		<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-		 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-		 	</script>
-			</div>
-		</div> 
-		
-		<script>
-			layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-				var $ = layui.$,
-					admin = layui.admin,
-					view = layui.view,
-					table = layui.table,
-					laydate = layui.laydate,
-					form = layui.form;
-		
-				//表格渲染
-				table.render({
-					elem: '#test',
-					method: "GET",
-					url: commonSrc + 'api/train/teacherController/list', //数据接口
-					page: true, //开启分页
-					// toolbar: '#toolbarDemo',
-					response: {
-						statusCode: 200 //规定成功的状态码，默认：0
-					},
-					request: {
-						pageName: 'pageNum' //页码的参数名称，默认：page
-							,
-						limitName: 'pageSize' //每页数据量的参数名，默认：limit
-					},
-					parseData: function(res) { //res 即为原始返回的数据
-						// console.log(res);
-						return {
-							"code": res.code, //解析接口状态
-							"msg": res.desc, //解析提示文本
-							"count": res.total, //解析数据长度
-							"data": res.dataList //解析数据列表
-						};
-					},
-					//表头
-					cols: [
-						[{
-								type: 'checkbox',
-								fixed: "left"
-							}, {
-								field: 'id',
-								title: 'id',
-								hide: true,
-							}, {
-								field: 'attest',
-								title: '讲师类型',
-								align: 'center',
-				     		}, {
-								field: 'award',
-								title: '讲师姓名',
-								align: 'center'
-							}, {
-								field: 'companyId',
-								title: '职务',
-								align: 'center'
-							}, {
-								field: 'companyName',
-								title: '对应员工',
-								align: 'center'
-							}, {
-								field: 'createBy',
-								title: '内部',
-								align: 'center',
-							}, {
-								field: 'deptId',
-								title: '已认证',
-								align: 'center',
-							}, {
-								field: 'deptName',
-								title: '任初级日',
-								align: 'center'
-							}, {
-								field: 'employId',
-								title: '任中级日',
-								templet: "#status",
-								align: 'center'
-							}, {
-							 	field: 'gmtGreated',
-							 	title: '审核状态',
-							 	align: 'center'
-				            }, {
-								field: 'gmtUpdated',
-								title: '任高日',
-								align: 'center'
-							}, {
-								field: 'goldDay',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'inside',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'institution',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'introduction',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'name',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'position',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'remark',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'seniorDay',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'silverDay',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'tenantCode',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'tenantName',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'type',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'updateBy',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'userId',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'userName',
-								title: '备注',
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								fixed: 'right',
-								toolbar: '#barDemo',
-								width: 150,
-								align: 'center'
-							}
-						]
-					]
-				});
-		
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('test'),
-								checkData = checkStatus.data; //得到选中的数据
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = "";
-							let arrTwo = "";
-							for (var i in checkData) {
-								arr += checkData[i].id + ",";
-							}
-							for (var i in checkData) {
-								arrTwo += checkData[i].commonId + ",";
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/nightShiftController/deleteNightShiftAll",
-									dataType: "json",
-									data: {
-										id: arr,
-										comId: arrTwo
-									},
-									success: function(json) {
-										table.reload('test');
-										layer.msg('已删除');
-									}
-								})
-							});
-						}
-		
-						//添加
-						,
-					addlecture: function(othis) {
-						admin.popup({
-							title: '添加讲师信息',
-							area: ['720px', '600px'],
-							success: function(layero, index) {
-								view(this.id).render('staff/lecturer/NightShiftForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											trigger: 'click',
-										});
 									})
-									//监听提交
-									form.on('submit(form_submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/nightShiftController/insertNightShift",
-											data.field,
-											function(ev) {
-												if (ev.desc == 'success') {
-													layer.msg("新增成功", {
-														time: 1000
-													}, function() {
-														layer.close(index); //执行关闭 
-														layui.table.reload('test'); //重载表格
-													})
+								})
+
+
+							form.render(null, 'app-content-list');
+
+							//监听搜索
+							form.on('submit(LAY-app-contlist-search)', function(data) {
+								var field = data.field;
+								console.log(field);
+								//执行重载
+								table.reload('cuser', {
+									where: field
+								});
+							});
+
+							var active = {
+								batchdel: function() {
+										var checkStatus = table.checkStatus('cuser'),
+											checkData = checkStatus.data; //得到选中的数据
+										if (checkData.length === 0) {
+											return layer.msg('请选择数据');
+										}
+										let arr = "";
+										for (var i in checkData) {
+											arr += checkData[i].id + ",";
+										}
+										layer.confirm('确定删除吗？', function(index) {
+											$.ajax({
+												type: "POST",
+												url: commonSrc + "api/train/courseController/deleteCourseById",
+												dataType: "json",
+												data: {
+													id: arr
+												},
+												success: function(json) {
+													table.reload('cuser');
+													layer.msg('已删除');
 												}
 											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-		
-		
-				table.on("tool(test)", function(obj) {
-					var data = obj.data;
-					"del" === obj.event ? layer.confirm("确定删除此记录？", function(e) {
-						$.ajax({
-							url: commonSrc + "api/hr/nightShiftController/deleteNightShift", //换成自己的url
-							type: "GET",
-							dataType: "json",
-							data: {
-								id: data.id,
-								comId: data.comId
-							},
-							success: function(e) {
-								if (e.desc == 'success') {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								}
-							},
-							error: function(e) {
-								layer.msg('删除失败')
-								layer.msg(e);
-							}
-						})
-					}) : "edit" === obj.event && admin.popup({
-						title: "",
-						area: ['720px', '500px'],
-						id: "LAY-popup-content-edit",
-						success: function(t, layero) {
-							view(this.id).render("apply/nightshift/NightShiftForm").done(function() {
-								$.ajax({
-									url: commonSrc + "api/hr/nightShiftController/selectNightShiftById", //换成自己的url
-									type: "GET",
-									dataType: "json",
-									data: {
-										id: data.id
-									},
-									success: function(e) {
-										let obj = e.data;
-										console.log(obj)
-										form.val("layuiadmin-app-form-list", {
-											"id": obj.id,
-											"comId": obj.comId,
-											"applyName": obj.applyName,
-											"nightType": obj.nightType,
-											"applyType": obj.applyType,
-											"applyTime": obj.applyTime,
-											"startTime": obj.startTime,
-											"endTime": obj.endTime,
-											"salaryMonth": obj.salaryMonth,
-											"status": obj.status,
-											"remark": obj.remark
+
+											//执行 Ajax 后重载
+											/*
+												
+											*/
 										});
-										//日期
-										$(".date").each(function() {
-											laydate.render({
-												elem: this,
-												trigger: 'click',
+									}
+
+									//添加
+									,
+								adds: function(othis) {
+									admin.popup({
+										title: '添加课程信息',
+										area: ['720px', '700px'],
+										id: 'LAY-popup-content-add',
+										success: function(layero, index) {
+											view(this.id).render('staff/courseInformation/LeaveApplyForm').done(function() {
+												form.render(null, 'layuiadmin-app-form-list');
+												//监听提交
+												form.on('submit(layuiadmin-app-form-submit)', function(data) {
+													var field = data.field; //获取提交的字段
+													$.post(commonSrc + "api/train/courseController/insertCourse",
+														data.field,
+														function(ev) {
+															layer.msg("新增成功", {
+																time: 1000
+															}, function() {
+																layer.close(index); //执行关闭 
+																layui.table.reload('cuser'); //重载表格
+															})
+														});
+													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+												});
 											});
+										}
+									});
+								}
+							};
+
+							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+								var type = $(this).data('type');
+								active[type] ? active[type].call(this) : '';
+							});
+						})
+					</script>
+				</div>
+				<!-- 课程导入end -->
+
+				<!-- 讲师导入begin -->
+				<div class="layui-tab-item">
+					<div class="layui-card-body">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="addwag">添加</button>
+						</div>
+
+						<table id="test" lay-filter="test"></table>
+
+						<script type="text/html" id="buttonTpl">
+							{{#  if(d.attest==1){ }}
+								    <button class="layui-btn layui-btn-xs">是</button>
+								    {{#  } else {  }}
+								    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
+								    {{#  } }}
+								</script>
+						<script type="text/html" id="buttonTplr">
+							{{#  if(d.inside==1){ }}
+								    <button class="layui-btn layui-btn-xs">是</button>
+								    {{#  } else {  }}
+								    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
+								    {{#  } }}
+								</script>
+						<script type="text/html" id="barDemo">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+							</script>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+							var $ = layui.$,
+								admin = layui.admin,
+								view = layui.view,
+								table = layui.table,
+								laydate = layui.laydate,
+								form = layui.form;
+
+							//表格渲染
+							table.render({
+									elem: '#test',
+									method: "GET",
+									url: commonSrc + 'api/train/teacherController/list', //数据接口
+									page: true, //开启分页
+									// toolbar: '#toolbarDemo',
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
+									},
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
+									},
+									parseData: function(res) { //res 即为原始返回的数据
+										// console.log(res);
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									//表头
+									cols: [
+										[{
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'id',
+											title: 'id',
+											hide: true,
+										}, {
+											field: 'tenant_code',
+											title: '租户id',
+											hide: true,
+										}, {
+											field: 'attest',
+											templet: "#buttonTpl",
+											title: '认证讲师',
+											align: 'center',
+										}, {
+											field: 'inside',
+											templet: "#buttonTplr",
+											title: '内部讲师',
+											align: 'center'
+										}, {
+											field: 'institution',
+											title: '培训机构',
+											align: 'center'
+										}, {
+											field: 'name',
+											title: '讲师姓名',
+											align: 'center'
+										}, {
+											field: 'tenantCode',
+											title: '租户ID',
+											align: 'center'
+										}, {
+											field: 'type',
+											title: '讲师类型',
+											align: 'center'
+										}, {
+											fixed: 'right',
+											title: '操作',
+											fixed: 'right',
+											toolbar: '#barDemo',
+											width: 150,
+											align: 'center'
+										}]
+									],
+									page: !0,
+									limit: 10,
+									limits: [10, 15, 20, 25, 30],
+								}),
+
+								table.on("tool(test)", function(obj) {
+									var data = obj.data;
+									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+										$.ajax({
+											url: commonSrc + "api/train/teacherController/deleteTeacherById", //换成自己的url
+											type: "POST",
+											dataType: "json",
+											data: {
+												id: data.id
+											},
+											success: function(b) {
+												layer.msg('删除成功');
+												obj.del(), layer.close(e)
+											},
+											error: function(e) {
+												layer.msg('删除失败')
+												layer.msg(e);
+											}
 										})
-									},
-									error: function(e) {
-										layer.msg(e);
-									}
-								})
-								form.render(null, "layuiadmin-app-form-list"), form.on("submit(form_submit)", function(
-									data) {
-									console.log(data.field)
-									$.post(commonSrc + "api/hr/nightShiftController/updateNightShift",
-										data.field,
-										function(ev) {
-											layer.msg("修改成功", {
-												time: 1000
-											}, function() {
-												layui.table.reload("test"), layer.close(layero)
+									}) : "edit" === obj.event && admin.popup({
+										title: "编辑讲师信息",
+										area: ['720px', '700px'],
+										id: "LAY-popup-content-edit",
+										success: function(t, layero) {
+											view(this.id).render("staff/lecturer/NightShiftForm").done(function() {
+												$.ajax({
+													url: commonSrc + "api/train/teacherController/selectTeacherTypeById", //换成自己的url
+													type: "GET",
+													dataType: "json",
+													data: {
+														id: data.id,
+
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-list", {
+															"id": obj.id,
+															"tenant_code": obj.tenant_code,
+															"attest": obj.attest,
+															"inside": obj.inside,
+															"institution": obj.institution,
+															"name": obj.name,
+															"tenantCode": obj.tenantCode,
+															"startTime": obj.startTime,
+															"type": obj.type
+														});
+														//日期
+														$(".date").each(function() {
+															laydate.render({
+																elem: this,
+																trigger: 'click',
+															});
+														})
+													},
+													error: function(e) {
+														layer.msg(e);
+													}
+												})
+												form.render(null, "layuiadmin-app-form-list"),
+													form.on("submit(form_submit)", function(
+														data) { //sub添加提交
+														$.post(commonSrc + "api/train/teacherController/updateTeacher",
+															data.field,
+															function(ev) {
+																layer.msg("修改成功", {
+																	time: 1000
+																}, function() {
+																	layui.table.reload("test"), layer.close(layero)
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													})
 											})
-										});
-									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-								})
-							})
-						}
-					})
-				})
-		
-		
-				form.render(null, 'app-content-list');
-		
-				//监听搜索
-				form.on('submit(search)', function(data) {
-					var field = data.field;
-					//执行重载
-					table.reload('test', {
-						where: field
-					});
-				});
-		
-				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-					var type = $(this).data('type');
-					active[type] ? active[type].call(this) : '';
-				});
-			});
-		</script>
-		
-	</div>
-	
-	<!-- 记录导入 -->
-    <div class="layui-tab-item">
-		<div class="layui-card-body">
-			<div style="padding-bottom: 10px;">
-				<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-				<button class="layui-btn layuiadmin-btn-list" data-type="addrecord">添加</button>
-			</div>
-			
-			<table id="record" lay-filter="record"></table>
-			
-			<div class="layui-card-body">	
-			<script type="text/html" id="table-content-list">
-				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-		        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-		    </script>
-			</div>
-		</div>
-		<script>
-			layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-				var $ = layui.$,
-					admin = layui.admin,
-					view = layui.view,
-					table = layui.table,
-					laydate = layui.laydate,
-					form = layui.form;
-				
-				//表格渲染
-				table.render({
-						elem: '#record',
-						url: commonSrc + 'api/train/courseController/list',
-						request: {
-							pageName: 'pageNum' //页码的参数名称，默认：page
-								,
-							limitName: 'pageSize' //每页数据量的参数名，默认：limit
-						},
-						response: {
-							statusCode: 200 //规定成功的状态码，默认：0
-						},
-						parseData: function(res) { //res 即为原始返回的数据
-							return {
-								"code": res.code, //解析接口状态
-								"msg": res.desc, //解析提示文本
-								"count": res.total, //解析数据长度
-								"data": res.dataList //解析数据列表
-							};
-						},
-						cols: [
-							[{
-								type: 'checkbox',
-								fixed: "left"
-							}, {
-								field: 'id',
-								title: 'id',
-								hide: true,
-							}, {
-								field: 'arrivalDay',
-								title: '员工id',
-								hide: true,
-							}, {
-								field: 'attributeId',
-								title: '更新状态',
-								align: 'center'
-							}, {
-								field: 'cerLevel',
-								title: '等效课程名名称',
-								align: 'center'
-							}, {
-								field: 'comment',
-								title: '课程别名',
-								align: 'center'
-							}, {
-								field: 'companyId',
-								title: '开始日期',
-								align: 'center'
-							}, {
-								field: 'createBy',
-								title: '结束日期',
-								align: 'center'
-							}, {
-								field: 'fastCode',
-								title: '课时(H)',
-								align: 'center'
-							}, {
-								field: 'gmtUpdated',
-								title: '培训形式',
-								align: 'center'
-							}, {
-								field: 'hours',
-								title: '讲师',
-								align: 'center'
-							}, {
-								field: 'integral',
-								title: '错误提示',
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
-							}]
-						],
-						page: !0,
-						limit: 10,
-						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(record)", function(obj) {
-						var data = obj.data;
-						if ("wait" === obj.event) {
-							layer.confirm('请确认后选择', {
-								btn: ['通过', '不行'] //按钮
-							}, function(index) {
-								data.checkStatus = 1
-								$.post(commonSrc + "",
-									data,
-									function(ev) {
-										layer.msg("修改成功");
-										obj.update({
-											checkStatus: '1',
-										});
-									});
-							}, function(index) {
-								data.checkStatus = 3
-								$.post(commonSrc + "",
-									data,
-									function(ev) {
-										layer.msg("修改成功");
-										obj.update({
-											checkStatus: '3',
-										});
-									});
-							});
-						}
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/leave/LeaveApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/LeaveController/selectLeaveById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"applyTime": obj.applyTime,
-												"checkStatus": obj.checkStatus,
-												"applyId": obj.applyId,
-												"applyType": obj.applyType,
-												"operateType": obj.operateType,
-												"remark": obj.remark,
-												"workPlace": obj.workPlace
-											});
-											layTime(); //时间渲染
-										},
-										error: function(e) {
-											layer.msg(e);
 										}
 									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-										data) {
-										$.post(commonSrc + "api/hr/LeaveController/updateLeave",
-											data.field,
-											function(ev) {
-												layer.msg("修改成功", {
-													time: 1000
-												}, function() {
-													layui.table.reload("record"), layer.close(layero)
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									})
 								})
-							}
-						})
-					})
-		
-		
-				form.render(null, 'app-content-list');
-		
-				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
-					var field = data.field;
-					console.log(field);
-					//执行重载
-					table.reload('record', {
-						where: field
-					});
-				});
-		
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('record'),
-								checkData = checkStatus.data; //得到选中的数据
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = "";
-							let arrTwo = "";
-							for (var i in checkData) {
-								arr += checkData[i].id + ",";
-							}
-							for (var i in checkData) {
-								arrTwo += checkData[i].commonId + ",";
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/LeaveController/deleteLeaveAll",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: arrTwo
-									},
-									success: function(json) {
-										table.reload('record');
-										layer.msg('已删除');
-									}
+
+							form.render(null, 'app-content-list');
+
+							//监听搜索
+							form.on('submit(LAY-app-contlist-search)', function(data) {
+								var field = data.field;
+								console.log(field);
+								//执行重载
+								table.reload('test', {
+									where: field
 								});
-		
-								//执行 Ajax 后重载
-								/*
-								
-								*/
 							});
-						}
-		
-						//添加
-						,
-					addrecord: function(othis) {
-						admin.popup({
-							title: '添加课程信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/courseInformation/LeaveApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/LeaveController/insertLeave",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('record'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-		
-				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-					var type = $(this).data('type');
-					active[type] ? active[type].call(this) : '';
-				});
-				//日期
-		        layTime();
-			});
-		</script>
-		
-	</div>
-	
-	<!-- 批量免除 -->
-    <div class="layui-tab-item">
-		<div class="layui-card-body">
-		   	<div style="padding-bottom: 10px;">
-		   		<button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
-		   		<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
-		   	</div>
-		   	
-		   		<table id="Exempt" lay-filter="Exempt"></table>
-		           
-		   	<div class="layui-card-body">
-		   	    <script type="text/html" id="table-content-list">
-		   	    	<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-		   	        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-		   	    </script>
-		    </div>
-		</div>
-	    
-		<script>
-			layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-				var $ = layui.$,
-					admin = layui.admin,
-					view = layui.view,
-					table = layui.table,
-					laydate = layui.laydate,
-					form = layui.form;
-		
-				//表格渲染
-				table.render({
-						elem: '#Exempt',
-						url: commonSrc + '',
-						request: {
-							pageName: 'pageNum' //页码的参数名称，默认：page
-								,
-							limitName: 'pageSize' //每页数据量的参数名，默认：limit
-						},
-						response: {
-							statusCode: 200 //规定成功的状态码，默认：0
-						},
-						parseData: function(res) { //res 即为原始返回的数据
-							return {
-								"code": res.code, //解析接口状态
-								"msg": res.desc, //解析提示文本
-								"count": res.total, //解析数据长度
-								"data": res.dataList //解析数据列表
-							};
-						},
-						cols: [
-							[{
-								type: 'checkbox',
-								fixed: "left"
-							}, {
-								field: 'id',
-								title: 'id',
-								hide:true,
-							}, {
-								field: 'commonId',
-								title: '申请公共id',
-								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-							    field: 'startTime',
-							    title: '员工号',
-							    align: 'center'
-							}, {
-								field: 'startTime',
-								title: '等效姓名',
-								align: 'center'
-							}, {
-								field: 'endTime',
-								title: '免除原因',
-								align: 'center'
-							}, {
-								field: 'overtimeType',
-								title: '免除日期',
-								align: 'center'
-							}, {
-								field: 'overtimeHours',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'changeRest',
-								title: '错误提示',
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
-							}]
-						],
-						page: !0,
-						limit: 10,
-						limits: [10, 15, 20, 25, 30],
-					}), 
-					 table.on("tool(Exempt)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId:data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type:'datetime',
-													trigger: 'click',
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
+
+							//多条删除
+							var active = {
+								batchdelwag: function() {
+										var checkStatus = table.checkStatus('test'),
+											checkData = checkStatus.data; //得到选中的数据
+										if (checkData.length === 0) {
+											return layer.msg('请选择数据');
 										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-										data) {
-										$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("修改成功", {
-													time: 1000
-												}, function() {
-													layui.table.reload("Exempt"), layer.close(layero)
-												})
+										let arr = "";
+										let arrTwo = "";
+										for (var i in checkData) {
+											arr += checkData[i].id + ",";
+										}
+										for (var i in checkData) {
+											arrTwo += checkData[i].commonId + ",";
+										}
+										layer.confirm('确定删除吗？', function(index) {
+											$.ajax({
+												type: "POST",
+												url: commonSrc + "api/train/teacherController/deleteTeacherById",
+												dataType: "json",
+												data: {
+													id: arr,
+													traId: arrTwo
+												},
+												success: function(json) {
+													table.reload('test');
+													layer.msg('已删除');
+												}
 											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									})
-								})
-							}
-						})
-					}) 
-		
-		
-				form.render(null, 'app-content-list');
-		
-				//监听搜索
-				 form.on('submit(LAY-app-contlist-search)', function(data) {
-					var field = data.field;
-					console.log(field);
-					//执行重载
-					table.reload('Exempt', {
-						where: field
-					});
-				}); 
-		
-				 var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('Exempt'),
-								checkData = checkStatus.data; //得到选中的数据
-		
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr=[];
-							for(var i in checkData){
-								arr += checkData[i].id+","
-							}
-							for(var i in checkData){
-								brr += checkData[i].commonId+"," 
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId:brr
-										
-									},
-									success: function(json) {
-										table.reload('Exempt');
-										layer.msg('已删除');
+
+											//执行 Ajax 后重载
+											/*
+											
+											*/
+										});
 									}
-								});
-		
-								//执行 Ajax 后重载
-								/*
-								
-								*/
-								
-							});
-						}
-		
-						//添加
-						,
-					 add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-								    
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											trigger: 'click',
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type:'datetime',
-											trigger: 'click',
-										});
-									})
-									
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('Exempt'); //重载表格
+
+									//添加
+									,
+								addwag: function(othis) {
+									admin.popup({
+										title: '添加讲师信息',
+										area: ['720px', '700px'],
+										id: 'LAY-popup-content-add',
+										success: function(layero, index) {
+											view(this.id).render('staff/lecturer/NightShiftForm').done(function() { //跳转
+												form.render(null, 'layuiadmin-app-form-list');
+												//日期
+												$(".date").each(function() {
+													laydate.render({
+														elem: this,
+														trigger: 'click',
+													});
 												})
+												//监听提交
+												form.on('submit(form_submit)', function(data) {
+													var field = data.field; //获取提交的字段
+													$.post(commonSrc + "api/train/teacherController/insertTeacher",
+														data.field,
+														function(ev) {
+															layer.msg("新增成功", {
+																time: 1000
+															}, function() {
+																layer.close(index); //执行关闭 
+																layui.table.reload('test'); //重载表格
+															})
+														});
+													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+												});
 											});
-										// false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+										}
 									});
+								}
+							};
+
+
+							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+								var type = $(this).data('type');
+								active[type] ? active[type].call(this) : '';
+							});
+
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									trigger: 'click',
 								});
-							}
+							})
 						});
-					} 
-				}; 
-		
-			     $('.layui-btn.layuiadmin-btn-list').on('click', function() {
-					var type = $(this).data('type');
-					active[type] ? active[type].call(this) : '';
-				}); 
-			
-				//日期
-				 $(".date").each(function() {
-					laydate.render({
-						elem: this,
-						trigger: 'click',
-					});
-					
-			        }) 
-				})
-		</script>	
-	
+					</script>
+
+				</div>
+				<!-- 讲师导入end -->
+				<div class="layui-tab-item">内容4</div>
+				<div class="layui-tab-item">内容5</div>
+			</div>
+		</div>
 	</div>
-  </div>
 </div>
-                
-			    
-                

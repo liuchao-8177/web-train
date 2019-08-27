@@ -2,16 +2,16 @@
    style="padding: 20px 30px 0 0;">
 	
 	<div class="layui-form-item">
-		<label class="layui-form-label"></label>
+		<label class="layui-form-label">创建人</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+				<input type="text" name="createBy" lay-verify="title" autocomplete="off" placeholder="创建人" class="layui-input">
         </script>
 		</div>
-		<label class="layui-form-label">年度</label>
+		<label class="layui-form-label">部门组</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="" lay-verify="name" autocomplete="off" placeholder="年度" class="layui-input">
+				<input type="text" name="deptGruop" lay-verify="name" autocomplete="off" placeholder="部门组" class="layui-input">
 	        </script>
 		</div>
 	</div>
@@ -20,54 +20,58 @@
 		<label class="layui-form-label">计划描述</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="" lay-verify="text" autocomplete="off" placeholder="计划描述" class="layui-input">
+				<input type="text" name="describle" lay-verify="text" autocomplete="off" placeholder="计划描述" class="layui-input">
         </script>
 		</div>
-		<label class="layui-form-label">部门组</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="部门组" class="layui-input">
-	    </script>
-		</div>
-	</div>
-	
-	<div class="layui-form-item">
-	    <label class="layui-form-label">新增人</label>
-	    <div class="layui-input-inline">
-	        <script type="text/html" template>
-	            <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="添加性别"
-	                   class="layui-input">
-	        </script>
-	    </div>
-	    <label class="layui-form-label">新增日期</label>
-	    <div class="layui-input-inline">
-	        <script type="text/html" template>
-	           <input type="text" name="startTime" lay-verify="title"  autocomplete="off" placeholder="新增日期"
-	                  class="layui-input date">
-	        </script>
-	    </div>
-	</div>
-	
-	<div class="layui-form-item">
-		<label class="layui-form-label">修改人</label>
+		<label class="layui-form-label">创建时间</label>
 		<div class="layui-input-inline">
 		    <script type="text/html" template>
-		        <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="修改人"
-		               class="layui-input">
-		    </script>
-		</div>
-		<label class="layui-form-label">修改日期</label>
-		<div class="layui-input-inline">
-		    <script type="text/html" template>
-		       <input type="text" name="startTime" lay-verify="title"  autocomplete="off" placeholder="修改日期"
+		       <input type="text" name="gmtCreated" lay-verify="title"  autocomplete="off" placeholder="创建时间"
 		              class="layui-input date">
 		    </script>
 		</div>
+		
 	</div>
-
+	
+	<div class="layui-form-item">	
+		<label class="layui-form-label">最后修改时间</label>
+		<div class="layui-input-inline">
+		    <script type="text/html" template>
+		       <input type="text" name="gmtUpdated" lay-verify="title"  autocomplete="off" placeholder="最后修改时间"
+		              class="layui-input date">
+		    </script>
+		</div>
+		<label class="layui-form-label">租户编码</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="tenantCode" lay-verify="text" autocomplete="off" placeholder="租户编码" class="layui-input">
+		</script>
+		</div>
+	</div>
+	
 	<div class="layui-form-item">
-	    <label class="layui-form-label"></label>
-	    <div class="layui-input-inline">
-	        <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
-	    </div>
+		<label class="layui-form-label">最后修改人</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="updateBy" lay-verify="text" autocomplete="off" placeholder="最后修改时间" class="layui-input">
+	    </script>
+		</div>
+		<label class="layui-form-label">计划年度</label>
+		<div class="layui-input-inline">
+		    <script type="text/html" template>
+		       <input type="text" name="year" lay-verify="title"  autocomplete="off" placeholder="计划年度"
+		              class="layui-input">
+		    </script>
+		</div>
+		
+	</div>
+	
+   <input type="hidden" name="id" />
+	
+	<div class="layui-form-item my-form-item">
+		<label class="layui-form-label layui-icon"></label>
+		<div class="layui-input-inline">
+			<input type="button" value="提交" lay-submit lay-filter="form_submit" class="layui-btn">
+		</div>
+	</div>
 	</div>

@@ -1,0 +1,4039 @@
+<title>需求统计</title>
+<div class="layui-fluid">
+	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
+			<ul class="layui-tab-title">
+				<li data-status="" class="layui-this">未培训</li>
+				<li data-status="1">按部门</li>
+				<li data-status="2">按职位类型</li>
+				<li data-status="3">按职位级别</li>
+				<li data-status="4">按课程类型</li>
+				<li data-status="5">按等效课程</li>
+				<li data-status="6">按优先级</li>
+				<li data-status="7">按课程属性</li>
+				<li data-status="8">按职位</li>
+				<li data-status="9">按工龄</li>
+				<li data-status="10">按员工</li>
+			</ul>
+
+			<div class="layui-tab-content">
+
+				<!-- 未培训查询，默认开始 -->
+				<div class="layui-tab-item layui-show">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息1</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="no-training"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form,
+							element=layui.element;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#no-training',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(no-training)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('no-training');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("no-training"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('no-training', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('no-training'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('no-training');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('no-training'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按部门查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息2</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="department"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#department',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(department)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('department');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("department"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('department', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('department'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('department');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('department'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按职位类型查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息3</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="position-type"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#position-type',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(position-type)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('position-type');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("position-type"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('position-type', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('position-type'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('position-type');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('position-type'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按职位级别查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息4</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="position-level"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#position-level',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(position-level)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('position-level');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("position-level"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('position-level', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('position-level'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('position-level');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('position-level'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按课程类型查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息5</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="type-of-course"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#type-of-course',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(type-of-course)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('type-of-course');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("type-of-course"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('type-of-course', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('type-of-course'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('type-of-course');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('type-of-course'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按等效课程查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息6</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="equivalent-courses"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#equivalent-courses',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(equivalent-courses)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('equivalent-courses');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("equivalent-courses"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('equivalent-courses', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('equivalent-courses'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('equivalent-courses');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('equivalent-courses'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按优先级查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息7</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="priority"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#priority',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(priority)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('priority');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("priority"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('priority', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('priority'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('priority');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('priority'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按课程属性查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息8</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="attribute-of-curriculum"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#attribute-of-curriculum',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(attribute-of-curriculum)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('attribute-of-curriculum');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("attribute-of-curriculum"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('attribute-of-curriculum', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('attribute-of-curriculum'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('attribute-of-curriculum');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('attribute-of-curriculum'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按职位查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息9</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="position"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#position',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(position)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('position');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("position"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('position', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('position'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('position');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('position'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按工龄查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息10</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="length-of-service"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+				        var $ = layui.$,
+				            admin = layui.admin,
+				            view = layui.view,
+				            table = layui.table,
+				            laydate = layui.laydate,
+				            form = layui.form;
+				
+				        //表格渲染
+				        table.render({
+				            elem: '#length-of-service',
+				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            request: {
+				                pageName: 'pageNum' //页码的参数名称，默认：page
+				                ,
+				                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				            },
+				            response: {
+				                statusCode: 200 //规定成功的状态码，默认：0
+				            },
+				            parseData: function (res) { //res 即为原始返回的数据
+				                return {
+				                    "code": res.code, //解析接口状态
+				                    "msg": res.desc, //解析提示文本
+				                    "count": res.total, //解析数据长度
+				                    "data": res.dataList //解析数据列表
+				                };
+				            },
+				            cols: [[
+				                {type: 'checkbox', fixed: "left"},
+				                {field: 'id', title: 'id', hide: true},
+				                {field: 'commonId', title: '申请公共id', hide: true},
+				                {field: 'applyId', title: '申请人id', hide: true},
+				                {field: 'applyName', title: '申请人姓名', align: 'center'},
+				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
+				                {field: 'linkTel', title: '联系电话', align: 'center'},
+				                {field: 'startTime', title: '请假开始日期', align: 'center'},
+				                {field: 'endTime', title: '请假结束日期', align: 'center'},
+				                {field: 'proxyName', title: '临时代理人', align: 'center'},
+				                {field: 'extension', title: '代理人电话', align: 'center'},
+				                {field: 'reason', title: '申请理由', align: 'center'},
+				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
+				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				            ]],
+				            page: !0,
+				            limit: 10,
+				            limits: [10, 15, 20, 25, 30],
+				        }),
+				            table.on("tool(length-of-service)", function (obj) {
+				                var data = obj.data;
+				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
+				                    $.ajax({
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+				                        type: "GET",
+				                        dataType: "json",
+				                        data: {
+				                            id: data.id,
+				                        },
+				                        success: function (b) {
+				                            table.reload('length-of-service');
+				                            layer.msg('删除成功');
+				                            obj.del(), layer.close(e)
+				                        },
+				                        error: function (e) {
+				                            layer.msg('删除失败')
+				                            layer.msg(e);
+				                        }
+				                    })
+				                }) : "edit" === obj.event && admin.popup({
+				                    title: "编辑休假申请",
+				                    area: ['720px', '700px'],
+				                    id: "LAY-popup-content-edit",
+				                    success: function (t, layero) {
+				                        view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function () {
+				                            $.ajax({
+				                                url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+				                                type: "GET",
+				                                dataType: "json",
+				                                data: {
+				                                    id: data.id
+				                                },
+				                                success: function (e) {
+				                                    //layer.msg(e.contractCheckVo);
+				                                    let obj = e.data;
+				                                    form.val("layuiadmin-app-form-list", {
+				                                        "id": obj.id,
+				                                        "commonId": obj.commonId,
+				                                        "name": obj.name,
+				                                        "code": obj.code,
+				                                        "applyTime": obj.applyTime,
+				                                        "checkStatus": obj.checkStatus,
+				                                        "updatedBy": obj.updatedBy,
+				                                        "gmtUpdated": obj.gmtUpdated,
+				                                        "applyName": obj.applyName,
+				                                        "applyId": obj.applyId,
+				                                        "startTime": obj.startTime,
+				                                        "endTime": obj.endTime,
+				                                        "countDay": obj.countDay,
+				                                        "countHour": obj.countHour,
+				                                        "proxyName": obj.proxyName,
+				                                        "extension": obj.extension,
+				                                        "type": obj.type,
+				                                        "linkTel": obj.linkTel,
+				                                        "reason": obj.reason,
+				                                        "remark": obj.remark,
+				                                    });
+				                                    //日期
+				                                    $(".date").each(function () {
+				                                        laydate.render({
+				                                            elem: this,
+				                                            trigger: 'click',
+				                                        });
+				                                    })
+				                                },
+				                                error: function (e) {
+				                                    layer.msg(e);
+				                                }
+				                            })
+				                            form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function (
+				                                data) {
+				                                $.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("修改成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layui.table.reload("length-of-service"), layer.close(layero)
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            })
+				                        })
+				                    }
+				                })
+				            })
+				
+				
+				        form.render(null, 'app-content-list');
+				
+				        //监听搜索
+				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				            var field = data.field;
+				            console.log(field);
+				            //执行重载
+				            table.reload('length-of-service', {
+				                where: field
+				            });
+				        });
+				
+				        var active = {
+				            batchdel: function () {
+				                var checkStatus = table.checkStatus('length-of-service'),
+				                    checkData = checkStatus.data; //得到选中的数据
+				                if (checkData.length === 0) {
+				                    return layer.msg('请选择数据');
+				                }
+				                let arr = "";
+				                for (var i in checkData) {
+				                    arr += checkData[i].id + "-";
+				                }
+				                layer.confirm('确定删除吗？', function (index) {
+				                    $.ajax({
+				                        type: "GET",
+				                        url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+				                        dataType: "json",
+				                        data: {ids: arr},
+				                        success: function (json) {
+				                            table.reload('length-of-service');
+				                            layer.msg('已删除');
+				
+				                        }
+				                    });
+				                    //执行 Ajax 后重载
+				
+				
+				                });
+				            }
+				
+				            //添加
+				            ,
+				            add: function (othis) {
+				                admin.popup({
+				                    title: '添加休假申请',
+				                    area: ['720px', '700px'],
+				                    id: 'LAY-popup-content-add',
+				                    success: function (layero, index) {
+				                        view(this.id).render('apply/holidayapply/holidayapplyform').done(function () {
+				                            form.render(null, 'layuiadmin-app-form-list');
+				                            //日期
+				                            $(".date").each(function () {
+				                                laydate.render({
+				                                    elem: this,
+				                                    trigger: 'click',
+				                                });
+				                            })
+				                            //监听提交
+				                            form.on('submit(layuiadmin-app-form-submit)', function (data) {
+				                                var field = data.field; //获取提交的字段
+				                                $.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+				                                    data.field,
+				                                    function (ev) {
+				                                        layer.msg("新增成功", {
+				                                            time: 1000
+				                                        }, function () {
+				                                            layer.close(index); //执行关闭
+				                                            layui.table.reload('length-of-service'); //重载表格
+				                                        })
+				                                    });
+				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				                            });
+				                        });
+				                    }
+				                });
+				            }
+				        };
+				
+				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				            var type = $(this).data('type');
+				            active[type] ? active[type].call(this) : '';
+				        });
+				        //日期
+				        $(".date").each(function () {
+				            laydate.render({
+				                elem: this,
+				                trigger: 'click',
+				            });
+				        })
+				
+				    });
+				</script>
+				</div>
+				<!--按员工查询-->
+				<div class="layui-tab-item">
+
+					<div class="layui-form-item">
+						<!-- 搜索按钮 -->
+						<div class="layui-input-inline">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息11</i>
+							</button>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工龄</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">自定义</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">操作证</option>
+									<option value="2">供应链管理</option>
+									<option value="3">管理</option>
+									<option value="4">基础</option>
+									<option value="5">品质管理</option>
+									<option value="6">其他</option>
+									<option value="7">人力资源</option>
+									<option value="8">入职培训</option>
+									<option value="9">生产</option>
+									<option value="10">市场销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程属性</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">课程类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">员工姓名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">等效课程</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="staff-employee"></table>
+					</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+							var $ = layui.$,
+								admin = layui.admin,
+								view = layui.view,
+								table = layui.table,
+								laydate = layui.laydate,
+								form = layui.form;
+
+							//表格渲染
+							table.render({
+									elem: '#staff-employee',
+									url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
+									},
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
+									},
+									parseData: function(res) { //res 即为原始返回的数据
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									cols: [
+										[{
+												type: 'checkbox',
+												fixed: "left"
+											},
+											{
+												field: 'id',
+												title: 'id',
+												hide: true
+											},
+											{
+												field: 'commonId',
+												title: '申请公共id',
+												hide: true
+											},
+											{
+												field: 'applyId',
+												title: '申请人id',
+												hide: true
+											},
+											{
+												field: 'applyName',
+												title: '申请人姓名',
+												align: 'center'
+											},
+											{
+												field: 'type',
+												title: '休假类型',
+												templet: "#type",
+												align: 'center'
+											},
+											{
+												field: 'linkTel',
+												title: '联系电话',
+												align: 'center'
+											},
+											{
+												field: 'startTime',
+												title: '请假开始日期',
+												align: 'center'
+											},
+											{
+												field: 'endTime',
+												title: '请假结束日期',
+												align: 'center'
+											},
+											{
+												field: 'proxyName',
+												title: '临时代理人',
+												align: 'center'
+											},
+											{
+												field: 'extension',
+												title: '代理人电话',
+												align: 'center'
+											},
+											{
+												field: 'reason',
+												title: '申请理由',
+												align: 'center'
+											},
+											{
+												field: 'checkStatus',
+												title: '申请状态',
+												templet: "#buttonTpl",
+												minWidth: 80,
+												align: 'center'
+											},
+											{
+												fixed: 'right',
+												title: '操作',
+												toolbar: '#table-content-list',
+												minWidth: 150
+											}
+										]
+									],
+									page: !0,
+									limit: 10,
+									limits: [10, 15, 20, 25, 30],
+								}),
+								table.on("tool(staff-employee)", function(obj) {
+									var data = obj.data;
+									"del" === obj.event ? layer.confirm("确定删除申请？", function(e) {
+										$.ajax({
+											url: commonSrc + "api/hr/holidayApplyController/deleteHolidayApply", //换成自己的url
+											type: "GET",
+											dataType: "json",
+											data: {
+												id: data.id,
+											},
+											success: function(b) {
+												table.reload('staff-employee');
+												layer.msg('删除成功');
+												obj.del(), layer.close(e)
+											},
+											error: function(e) {
+												layer.msg('删除失败')
+												layer.msg(e);
+											}
+										})
+									}) : "edit" === obj.event && admin.popup({
+										title: "编辑休假申请",
+										area: ['720px', '700px'],
+										id: "LAY-popup-content-edit",
+										success: function(t, layero) {
+											view(this.id).render("apply/holidayapply/holidayapplyform", data).done(function() {
+												$.ajax({
+													url: commonSrc + "api/hr/holidayApplyController/selectHolidayApply", //换成自己的url
+													type: "GET",
+													dataType: "json",
+													data: {
+														id: data.id
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-list", {
+															"id": obj.id,
+															"commonId": obj.commonId,
+															"name": obj.name,
+															"code": obj.code,
+															"applyTime": obj.applyTime,
+															"checkStatus": obj.checkStatus,
+															"updatedBy": obj.updatedBy,
+															"gmtUpdated": obj.gmtUpdated,
+															"applyName": obj.applyName,
+															"applyId": obj.applyId,
+															"startTime": obj.startTime,
+															"endTime": obj.endTime,
+															"countDay": obj.countDay,
+															"countHour": obj.countHour,
+															"proxyName": obj.proxyName,
+															"extension": obj.extension,
+															"type": obj.type,
+															"linkTel": obj.linkTel,
+															"reason": obj.reason,
+															"remark": obj.remark,
+														});
+														//日期
+														$(".date").each(function() {
+															laydate.render({
+																elem: this,
+																trigger: 'click',
+															});
+														})
+													},
+													error: function(e) {
+														layer.msg(e);
+													}
+												})
+												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
+													function(
+														data) {
+														$.post(commonSrc + "api/hr/holidayApplyController/updateHolidayApply",
+															data.field,
+															function(ev) {
+																layer.msg("修改成功", {
+																	time: 1000
+																}, function() {
+																	layui.table.reload("staff-employee"), layer.close(layero)
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													})
+											})
+										}
+									})
+								})
+
+
+							form.render(null, 'app-content-list');
+
+							//监听搜索
+							form.on('submit(LAY-app-contlist-search)', function(data) {
+								var field = data.field;
+								console.log(field);
+								//执行重载
+								table.reload('staff-employee', {
+									where: field
+								});
+							});
+
+							var active = {
+								batchdel: function() {
+										var checkStatus = table.checkStatus('staff-employee'),
+											checkData = checkStatus.data; //得到选中的数据
+										if (checkData.length === 0) {
+											return layer.msg('请选择数据');
+										}
+										let arr = "";
+										for (var i in checkData) {
+											arr += checkData[i].id + "-";
+										}
+										layer.confirm('确定删除吗？', function(index) {
+											$.ajax({
+												type: "GET",
+												url: commonSrc + "api/hr/holidayApplyController/deleteMultipleHolidayApply",
+												dataType: "json",
+												data: {
+													ids: arr
+												},
+												success: function(json) {
+													table.reload('staff-employee');
+													layer.msg('已删除');
+
+												}
+											});
+											//执行 Ajax 后重载
+
+
+										});
+									}
+
+									//添加
+									,
+								add: function(othis) {
+									admin.popup({
+										title: '添加休假申请',
+										area: ['720px', '700px'],
+										id: 'LAY-popup-content-add',
+										success: function(layero, index) {
+											view(this.id).render('apply/holidayapply/holidayapplyform').done(function() {
+												form.render(null, 'layuiadmin-app-form-list');
+												//日期
+												$(".date").each(function() {
+													laydate.render({
+														elem: this,
+														trigger: 'click',
+													});
+												})
+												//监听提交
+												form.on('submit(layuiadmin-app-form-submit)', function(data) {
+													var field = data.field; //获取提交的字段
+													$.post(commonSrc + "api/hr/holidayApplyController/insertHolidayApply",
+														data.field,
+														function(ev) {
+															layer.msg("新增成功", {
+																time: 1000
+															}, function() {
+																layer.close(index); //执行关闭
+																layui.table.reload('staff-employee'); //重载表格
+															})
+														});
+													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+												});
+											});
+										}
+									});
+								}
+							};
+
+							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+								var type = $(this).data('type');
+								active[type] ? active[type].call(this) : '';
+							});
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									trigger: 'click',
+								});
+							})
+
+						});
+					</script>
+				</div>
+
+			</div>
+		</div>
+	</div>

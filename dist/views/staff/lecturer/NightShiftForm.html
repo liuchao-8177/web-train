@@ -1,102 +1,69 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
 	<div class="layui-form-item">
-		<label class="layui-form-label">讲师类型</label>
+		<label class="layui-form-label">认证讲师</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-			<select name="status">
+			<select name="attest">
 				<option value="">--请选择--</option>
-				<option value="1">领导</option>
-				<option value="2">内部讲师</option>
-				<option value="3">外部讲师</option>
+				<option value="1">是</option>
+				<option value="2">否</option>
 			</select>
 			</script>
 		</div>	
-		<label class="layui-form-label">讲师姓名</label>
+		<label class="layui-form-label">内部讲师</label>
 		<div class="layui-input-inline">
 		    <script type="text/html" template>
-		        <input type="text" name="applyName" lay-verify="title" autocomplete="off" placeholder="讲师姓名"
-		               class="layui-input">
+		    <select name="inside">
+		    	<option value="">--请选择--</option>
+		    	<option value="1">是</option>
+		    	<option value="2">否</option>
+		    </select>
 		    </script> 
 		</div>
 	</div>
 	
 	<div class="layui-form-item">
-		<label class="layui-form-label">职务</label>
+		<label class="layui-form-label">培训机构</label>
 		<div class="layui-input-inline">
 		    <script type="text/html" template>
-		        <input type="reason" name="" lay-verify="title" autocomplete="off" placeholder="职务"
+		        <input type="reason" name="institution" lay-verify="title" autocomplete="off" placeholder="培训机构"
 		               class="layui-input">
 		    </script>
 		</div>
-		<label class="layui-form-label">对应员工</label>
+		<label class="layui-form-label">讲师姓名</label>
 		<div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="reason" name="applyName" lay-verify="title" autocomplete="off" placeholder="对应员工"
+                <input type="reason" name="name" lay-verify="title" autocomplete="off" placeholder="讲师姓名"
                        class="layui-input">
             </script>
 		</div>
 	</div>
 	
 	<div class="layui-form-item">
-		<label class="layui-form-label">内部</label>
+		<label class="layui-form-label">租户ID</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="" lay-verify="" placeholder="内部" autocomplete="off" class="layui-input">
+				<input type="text" name="tenantCode" lay-verify="" placeholder="租户ID" autocomplete="off" class="layui-input">
 			</script>
 		</div>
-		<label class="layui-form-label">已认证</label>
+		<label class="layui-form-label">讲师类型</label>
 		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="" lay-verify="" placeholder="已认证" autocomplete="off" class="layui-input">
-			</script>
+		    <script type="text/html" template>
+		    <select name="type">
+		    	<option value="">--请选择--</option>
+		    	<option value="1">领导</option>
+		    	<option value="2">内部讲师</option>
+				<option value="3">外部讲师</option>
+		    </select>
+		    </script> 
 		</div>
 	</div>
-	
-	<div class="layui-form-item">
-		<label class="layui-form-label">任初级日</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name=""  lay-verify="title" autocomplete="off" placeholder="任初级日" class="layui-input">
-		</script>
-		</div>
-		<label class="layui-form-label">任中级日</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name=""  lay-verify="title" autocomplete="off" placeholder="任中级日" class="layui-input">
-		</script>
-		</div>
-	</div>
-	
-	<div class="layui-form-item">
-		<label class="layui-form-label">审核状态</label>
-		<div class="layui-input-inline">
-            <script type="text/html" template>
-				<input type="text" name=""  lay-verify="title" autocomplete="off" placeholder="核审状态" class="layui-input">
-			</script>
-		</div>
-		<label class="layui-form-label">任高级日</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name=""  lay-verify="title" autocomplete="off" placeholder="任高日" class="layui-input">
-		</script>
-		</div>	
-	</div>
-	
-	<div class="layui-form-item">
-		<label class="layui-form-label">备注</label>
-		<div class="layui-input-block">
-			<script type="text/html" template>
-				<textarea placeholder="备注" name="" class="layui-textarea"></textarea>
-			</script>
-		</div>	
-	</div>
-	 
-	
+	<input type="hidden" name="id" />
 	
 	<div class="layui-form-item my-form-item">
 		<label class="layui-form-label layui-icon"></label>
 		<div class="layui-input-inline">
-			<input type="submit" value="提交" lay-submit="" lay-filter="form_submit" class="layui-btn">
+			<input type="button" value="提交" lay-submit lay-filter="form_submit" class="layui-btn">
 		</div>
 	</div>
 </div>

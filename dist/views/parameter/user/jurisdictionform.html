@@ -1,0 +1,30 @@
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"
+     style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">序号</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+        <label class="layui-form-label">附件类型</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="" lay-verify="title" autocomplete="off"  class="layui-input">
+            </script>
+        </div>
+    </div>
+    
+
+    <script type="text/html" template>
+        <input type="hidden" name="id" value="">
+        <input type="hidden" name="applyId" value="">
+        <input type="hidden" name="commonId" value="">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
