@@ -3,7 +3,7 @@
 <div class="layui-fluid">
 	<div class="layui-card">
 		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
-
+			<!--其他报表-->
 			<div class="layui-form-item">
 				<!-- 搜索按钮 -->
 				<div class="layui-inline">
@@ -59,7 +59,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">截至日期</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
 			</div>
@@ -70,7 +70,7 @@
 			<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 			<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 		</div>
-		<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+		<table id="LAY-report-statement-else" lay-filter="LAY-report-statement-else"></table>
 	</div>
 </div>
 
@@ -85,7 +85,7 @@
 
 		//表格渲染
 		table.render({
-				elem: '#LAY-app-content-list',
+				elem: '#LAY-report-statement-else',
 				url: commonSrc + '',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
@@ -145,31 +145,7 @@
 						field: 'linkTel',
 						title: '联系电话',
 						align: 'center'
-					}, {
-						field: 'name',
-						title: '申请单名称',
-						align: 'center'
-					}, {
-						field: 'proxyName',
-						title: '临时工作代理人',
-						align: 'center'
-					}, {
-						field: 'reason',
-						title: '休假申请理由',
-						align: 'center'
-					}, {
-						field: 'remark',
-						title: '备注',
-						align: 'center'
-					}, {
-						field: 'startTime',
-						title: '请假开始日期',
-						align: 'center'
-					}, {
-						field: 'type',
-						title: '休假类型',
-						align: 'center'
-					}, {
+					},{
 						fixed: 'right',
 						title: '操作',
 						toolbar: '#table-content-list',
@@ -180,7 +156,7 @@
 				limit: 10,
 				limits: [10, 15, 20, 25, 30],
 			}),
-			table.on("tool(LAY-app-content-list)", function(obj) {
+			table.on("tool(LAY-report-statement-else)", function(obj) {
 				var data = obj.data;
 				"del" === obj.event ? layer.confirm("确定删除申请？", function(e) {
 						$.ajax({
@@ -191,7 +167,7 @@
 								id: data.id,
 							},
 							success: function(b) {
-								table.reload('LAY-app-content-list');
+								table.reload('LAY-report-statement-else');
 								layer.msg('删除成功');
 								obj.del(), layer.close(e)
 							},
@@ -254,7 +230,7 @@
 											layer.msg("修改成功", {
 												time: 1000
 											}, function() {
-												layui.table.reload("LAY-app-content-list"), layer.close(layero)
+												layui.table.reload("LAY-report-statement-else"), layer.close(layero)
 											})
 										});
 									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -272,14 +248,14 @@
 			var field = data.field;
 			console.log(field);
 			//执行重载
-			table.reload('LAY-app-content-list', {
+			table.reload('LAY-report-statement-else', {
 				where: field
 			});
 		});
 
 		var active = {
 			batchdel: function() {
-					var checkStatus = table.checkStatus('LAY-app-content-list'),
+					var checkStatus = table.checkStatus('LAY-report-statement-else'),
 						checkData = checkStatus.data; //得到选中的数据
 					if (checkData.length === 0) {
 						return layer.msg('请选择数据');
@@ -301,7 +277,7 @@
 								ids: arr,
 							},
 							success: function(json) {
-								table.reload('LAY-app-content-list');
+								table.reload('LAY-report-statement-else');
 								layer.msg('已删除');
 							}
 						});
@@ -340,7 +316,7 @@
 											time: 1000
 										}, function() {
 											layer.close(index); //执行关闭 
-											layui.table.reload('LAY-app-content-list'); //重载表格
+											layui.table.reload('LAY-report-statement-else'); //重载表格
 										})
 									});
 								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

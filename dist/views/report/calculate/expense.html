@@ -2,7 +2,7 @@
 
 <div class="layui-fluid">
 	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-allowclose="true" lay-allowclose="true">
+		<div class="layui-tab layui-tab-card" lay-allowclose="true">
 			<ul class="layui-tab-title">
 				<li class="layui-this">按部门</li>
 				<li>按职位类型</li>
@@ -40,14 +40,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -65,7 +65,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list1" lay-filter="LAY-app-content-list1"></table>
+						<table id="LAY-report-expense-department" lay-filter="LAY-report-expense-department"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -79,8 +79,9 @@
 
 							//表格渲染
 							table.render({
-									elem: '#LAY-app-content-list1',
+									elem: '#LAY-report-expense-department',
 									url: commonSrc + '',
+									toolbar: '#toolbarDemo',
 									request: {
 										pageName: 'pageNum' //页码的参数名称，默认：page
 											,
@@ -138,7 +139,7 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-app-content-list1)", function(obj) {
+								table.on("tool(LAY-report-expense-department)", function(obj) {
 									var data = obj.data;
 									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 										$.ajax({
@@ -232,7 +233,7 @@
 																layer.msg("修改成功", {
 																	time: 1000
 																}, function() {
-																	layui.table.reload("LAY-app-content-list1"), layer.close(layero)
+																	layui.table.reload("LAY-report-expense-department"), layer.close(layero)
 																})
 															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -250,14 +251,14 @@
 								var field = data.field;
 								console.log(field);
 								//执行重载
-								table.reload('LAY-app-content-list1', {
+								table.reload('LAY-report-expense-department', {
 									where: field
 								});
 							});
 
 							var active = {
 								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-app-content-list1'),
+										var checkStatus = table.checkStatus('LAY-report-expense-department'),
 											checkData = checkStatus.data; //得到选中的数据
 
 										if (checkData.length === 0) {
@@ -283,7 +284,7 @@
 
 												},
 												success: function(json) {
-													table.reload('LAY-app-content-list1');
+													table.reload('LAY-report-expense-department');
 													layer.msg('已删除');
 												}
 											});
@@ -344,7 +345,7 @@
 																time: 1000
 															}, function() {
 																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-app-content-list1'); //重载表格
+																layui.table.reload('LAY-report-expense-department'); //重载表格
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -394,14 +395,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -419,7 +420,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list2" lay-filter="LAY-app-content-list2"></table>
+						<table id="LAY-report-expense-type" lay-filter="LAY-report-expense-type"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -433,8 +434,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list2',
+						elem: '#LAY-report-expense-type',
 						url: commonSrc + '',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -492,7 +494,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list2)", function(obj) {
+					table.on("tool(LAY-report-expense-type)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -586,7 +588,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list2"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-type"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -604,14 +606,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list2', {
+					table.reload('LAY-report-expense-type', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list2'),
+							var checkStatus = table.checkStatus('LAY-report-expense-type'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -637,7 +639,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list2');
+										table.reload('LAY-report-expense-type');
 										layer.msg('已删除');
 									}
 								});
@@ -698,7 +700,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list3'); //重载表格
+													layui.table.reload('LAY-report-expense-rank'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -751,14 +753,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -776,7 +778,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list3" lay-filter="LAY-app-content-list3"></table>
+						<table id="LAY-report-expense-rank" lay-filter="LAY-report-expense-rank"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -790,8 +792,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list3',
+						elem: '#LAY-report-expense-rank',
 						url: commonSrc + '',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -849,7 +852,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list3)", function(obj) {
+					table.on("tool(LAY-report-expense-rank)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -943,7 +946,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list3"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-rank"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -961,14 +964,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list3', {
+					table.reload('LAY-report-expense-rank', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list3'),
+							var checkStatus = table.checkStatus('LAY-report-expense-rank'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -994,7 +997,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list3');
+										table.reload('LAY-report-expense-rank');
 										layer.msg('已删除');
 									}
 								});
@@ -1055,7 +1058,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list3'); //重载表格
+													layui.table.reload('LAY-report-expense-rank'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1100,20 +1103,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<input type="text" name="courseTypeId" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1131,7 +1134,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list4" lay-filter="LAY-app-content-list4"></table>
+						<table id="LAY-report-expense-subject" lay-filter="LAY-report-expense-subject"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -1145,8 +1148,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list4',
+						elem: '#LAY-report-expense-subject',
 						url: commonSrc + 'api/train/costExpenseController/listByType',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -1194,7 +1198,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list4)", function(obj) {
+					table.on("tool(LAY-report-expense-subject)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -1288,7 +1292,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list4"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-subject"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1306,14 +1310,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list4', {
+					table.reload('LAY-report-expense-subject', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list4'),
+							var checkStatus = table.checkStatus('LAY-report-expense-subject'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -1339,7 +1343,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list4');
+										table.reload('LAY-report-expense-subject');
 										layer.msg('已删除');
 									}
 								});
@@ -1400,7 +1404,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list4'); //重载表格
+													layui.table.reload('LAY-report-expense-subject'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1445,20 +1449,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1476,7 +1480,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list5" lay-filter="LAY-app-content-list5"></table>
+						<table id="LAY-report-expense-equivalent" lay-filter="LAY-report-expense-equivalent"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -1490,8 +1494,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list5',
+						elem: '#LAY-report-expense-equivalent',
 						url: commonSrc + 'api/train/costExpenseController/listByCourse',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -1543,7 +1548,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list5)", function(obj) {
+					table.on("tool(LAY-report-expense-equivalent)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -1626,7 +1631,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list5"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-equivalent"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1644,14 +1649,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list5', {
+					table.reload('LAY-report-expense-equivalent', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list5'),
+							var checkStatus = table.checkStatus('LAY-report-expense-equivalent'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -1677,7 +1682,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list5');
+										table.reload('LAY-report-expense-equivalent');
 										layer.msg('已删除');
 									}
 								});
@@ -1738,7 +1743,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list5'); //重载表格
+													layui.table.reload('LAY-report-expense-equivalent'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1783,20 +1788,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
+								<input type="text" name="priority" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1814,7 +1819,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list6" lay-filter="LAY-app-content-list6"></table>
+						<table id="LAY-report-expense-precedence" lay-filter="LAY-report-expense-precedence"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -1828,8 +1833,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list6',
+						elem: '#LAY-report-expense-precedence',
 						url: commonSrc + 'api/train/costExpenseController/listByPri',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -1873,7 +1879,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list6)", function(obj) {
+					table.on("tool(LAY-report-expense-precedence)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -1967,7 +1973,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list6"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-precedence"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1985,14 +1991,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list6', {
+					table.reload('LAY-report-expense-precedence', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list6'),
+							var checkStatus = table.checkStatus('LAY-report-expense-precedence'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -2018,7 +2024,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list6');
+										table.reload('LAY-report-expense-precedence');
 										layer.msg('已删除');
 									}
 								});
@@ -2079,7 +2085,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list6'); //重载表格
+													layui.table.reload('LAY-report-expense-precedence'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2124,20 +2130,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="courseAttrId" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2155,7 +2161,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list7" lay-filter="LAY-app-content-list7"></table>
+						<table id="LAY-report-expense-genera" lay-filter="LAY-report-expense-genera"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -2169,8 +2175,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list7',
+						elem: '#LAY-report-expense-genera',
 						url: commonSrc + 'api/train/costExpenseController/listByAttr',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -2218,7 +2225,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list7)", function(obj) {
+					table.on("tool(LAY-report-expense-genera)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -2300,7 +2307,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list7"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-genera"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2318,14 +2325,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list7', {
+					table.reload('LAY-report-expense-genera', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list7'),
+							var checkStatus = table.checkStatus('LAY-report-expense-genera'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -2351,7 +2358,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list7');
+										table.reload('LAY-report-expense-genera');
 										layer.msg('已删除');
 									}
 								});
@@ -2412,7 +2419,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list7'); //重载表格
+													layui.table.reload('LAY-report-expense-genera'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2462,14 +2469,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2487,7 +2494,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list8" lay-filter="LAY-app-content-list8"></table>
+						<table id="LAY-report-expense-position" lay-filter="LAY-report-expense-position"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -2501,8 +2508,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list8',
+						elem: '#LAY-report-expense-position',
 						url: commonSrc + '',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -2560,7 +2568,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list8)", function(obj) {
+					table.on("tool(LAY-report-expense-position)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -2654,7 +2662,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list8"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-position"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2672,14 +2680,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list8', {
+					table.reload('LAY-report-expense-position', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list8'),
+							var checkStatus = table.checkStatus('LAY-report-expense-position'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -2705,7 +2713,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list8');
+										table.reload('LAY-report-expense-position');
 										layer.msg('已删除');
 									}
 								});
@@ -2766,7 +2774,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list8'); //重载表格
+													layui.table.reload('LAY-report-expense-position'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2817,14 +2825,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2842,7 +2850,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list9" lay-filter="LAY-app-content-list9"></table>
+						<table id="LAY-report-expense-definition" lay-filter="LAY-report-expense-definition"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -2856,8 +2864,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list9',
+						elem: '#LAY-report-expense-definition',
 						url: commonSrc + '',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -2915,7 +2924,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list9)", function(obj) {
+					table.on("tool(LAY-report-expense-definition)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -3009,7 +3018,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list9"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-definition"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3027,14 +3036,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list9', {
+					table.reload('LAY-report-expense-definition', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list9'),
+							var checkStatus = table.checkStatus('LAY-report-expense-definition'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -3060,7 +3069,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list9');
+										table.reload('LAY-report-expense-definition');
 										layer.msg('已删除');
 									}
 								});
@@ -3121,7 +3130,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list9'); //重载表格
+													layui.table.reload('LAY-report-expense-definition'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3171,14 +3180,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -3196,7 +3205,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list10" lay-filter="LAY-app-content-list10"></table>
+						<table id="LAY-report-expense-length" lay-filter="LAY-report-expense-length"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -3210,8 +3219,9 @@
 	
 				//表格渲染
 				table.render({
-						elem: '#LAY-app-content-list10',
+						elem: '#LAY-report-expense-length',
 						url: commonSrc + '',
+						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
 								,
@@ -3269,7 +3279,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-app-content-list10)", function(obj) {
+					table.on("tool(LAY-report-expense-length)", function(obj) {
 						var data = obj.data;
 						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 							$.ajax({
@@ -3363,7 +3373,7 @@
 													layer.msg("修改成功", {
 														time: 1000
 													}, function() {
-														layui.table.reload("LAY-app-content-list10"), layer.close(layero)
+														layui.table.reload("LAY-report-expense-length"), layer.close(layero)
 													})
 												});
 											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3381,14 +3391,14 @@
 					var field = data.field;
 					console.log(field);
 					//执行重载
-					table.reload('LAY-app-content-list10', {
+					table.reload('LAY-report-expense-length', {
 						where: field
 					});
 				});
 	
 				var active = {
 					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-app-content-list10'),
+							var checkStatus = table.checkStatus('LAY-report-expense-length'),
 								checkData = checkStatus.data; //得到选中的数据
 	
 							if (checkData.length === 0) {
@@ -3414,7 +3424,7 @@
 	
 									},
 									success: function(json) {
-										table.reload('LAY-app-content-list10');
+										table.reload('LAY-report-expense-length');
 										layer.msg('已删除');
 									}
 								});
@@ -3475,7 +3485,7 @@
 													time: 1000
 												}, function() {
 													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-app-content-list10'); //重载表格
+													layui.table.reload('LAY-report-expense-length'); //重载表格
 												})
 											});
 										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3520,20 +3530,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -3551,7 +3561,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="LAY-app-content-list11" lay-filter="LAY-app-content-list11"></table>
+						<table id="LAY-report-expense-staff" lay-filter="LAY-report-expense-staff"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -3565,8 +3575,9 @@
 
 							//表格渲染
 							table.render({
-									elem: '#LAY-app-content-list11',
+									elem: '#LAY-report-expense-staff',
 									url: commonSrc + 'api/train/costExpenseController/listByEmp',
+									toolbar: '#toolbarDemo',
 									request: {
 										pageName: 'pageNum' //页码的参数名称，默认：page
 											,
@@ -3614,7 +3625,7 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-app-content-list11)", function(obj) {
+								table.on("tool(LAY-report-expense-staff)", function(obj) {
 									var data = obj.data;
 									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 										$.ajax({
@@ -3708,7 +3719,7 @@
 																layer.msg("修改成功", {
 																	time: 1000
 																}, function() {
-																	layui.table.reload("LAY-app-content-list11"), layer.close(layero)
+																	layui.table.reload("LAY-report-expense-staff"), layer.close(layero)
 																})
 															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3726,14 +3737,14 @@
 								var field = data.field;
 								console.log(field);
 								//执行重载
-								table.reload('LAY-app-content-list11', {
+								table.reload('LAY-report-expense-staff', {
 									where: field
 								});
 							});
 
 							var active = {
 								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-app-content-list11'),
+										var checkStatus = table.checkStatus('LAY-report-expense-staff'),
 											checkData = checkStatus.data; //得到选中的数据
 
 										if (checkData.length === 0) {
@@ -3759,7 +3770,7 @@
 
 												},
 												success: function(json) {
-													table.reload('LAY-app-content-list11');
+													table.reload('LAY-report-expense-staff');
 													layer.msg('已删除');
 												}
 											});
@@ -3820,7 +3831,7 @@
 																time: 1000
 															}, function() {
 																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-app-content-list11'); //重载表格
+																layui.table.reload('LAY-report-expense-staff'); //重载表格
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
