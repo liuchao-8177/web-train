@@ -24,7 +24,7 @@
 					<label class="layui-form-label">联系人</label>
 					<div class="layui-input-inline">
 						<input type="text" name="" lay-verify="" placeholder="联系人" autocomplete="off" class="layui-input date">
-					</div>
+					</div> 
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">电话</label>
@@ -50,13 +50,13 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">每月记薪天数</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="--天数--" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="number" placeholder="--天数--" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">每天工资小时</label>
 					<div class="layui-input-inline">
-						<input type="text" name="" lay-verify="" placeholder="--时间--" autocomplete="off" class="layui-input date">
+						<input type="text" name="" lay-verify="date" placeholder="--时间--" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -136,7 +136,7 @@
 						    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
 						            class="layui-icon layui-icon-delete"></i>删除</a>
 						</script>
-						<table id="LAY-app-content-list1" lay-filter="LAY-app-content-list1"></table>
+						<table id="LAY-parameter-system-accessory" lay-filter="LAY-parameter-system-accessory"></table>
 					</div>
 				
 
@@ -153,7 +153,7 @@
 
 						//表格渲染
 						table.render({
-								elem: '#LAY-app-content-list1',
+								elem: '#LAY-parameter-system-accessory',
 								url: commonSrc + '',
 								request: {
 									pageName: 'pageNum' //页码的参数名称，默认：page
@@ -210,7 +210,7 @@
 								limits: [10, 15, 20, 25, 30],
 							}),
 
-							table.on("tool(LAY-app-content-list1)", function(obj) {
+							table.on("tool(LAY-parameter-system-accessory)", function(obj) {
 								var data = obj.data;
 								"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 									$.ajax({
@@ -304,7 +304,7 @@
 															layer.msg("修改成功", {
 																time: 1000
 															}, function() {
-																layui.table.reload("LAY-app-content-list1"), layer.close(layero)
+																layui.table.reload("LAY-parameter-system-accessory"), layer.close(layero)
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -322,14 +322,14 @@
 							var field = data.field;
 							console.log(field);
 							//执行重载
-							table.reload('LAY-app-content-list1', {
+							table.reload('LAY-parameter-system-accessory', {
 								where: field
 							});
 						});
 
 						var active = {
 							batchdel: function() {
-									var checkStatus = table.checkStatus('LAY-app-content-list1'),
+									var checkStatus = table.checkStatus('LAY-parameter-system-accessory'),
 										checkData = checkStatus.data; //得到选中的数据
 
 									if (checkData.length === 0) {
@@ -355,7 +355,7 @@
 
 											},
 											success: function(json) {
-												table.reload('LAY-app-content-list1');
+												table.reload('LAY-parameter-system-accessory');
 												layer.msg('已删除');
 											}
 										});
@@ -376,7 +376,7 @@
 									area: ['720px', '700px'],
 									id: 'LAY-popup-content-add',
 									success: function(layero, index) {
-										view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
+										view(this.id).render('parrameter/system/accessoryForm').done(function() {
 											form.render(null, 'layuiadmin-app-form-list');
 											//日期
 											$(".date").each(function() {
@@ -416,7 +416,7 @@
 															time: 1000
 														}, function() {
 															layer.close(index); //执行关闭 
-															layui.table.reload('LAY-app-content-list1'); //重载表格
+															layui.table.reload('LAY-parameter-system-accessory'); //重载表格
 														})
 													});
 												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -457,7 +457,7 @@
 						    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
 						            class="layui-icon layui-icon-delete"></i>删除</a>
 						</script>
-						<table id="LAY-app-content-list2" lay-filter="LAY-app-content-list2"></table>
+						<table id="LAY-parameter-system-family" lay-filter="LAY-parameter-system-family"></table>
 					</div>
 				
 			
@@ -474,7 +474,7 @@
 			
 						//表格渲染
 						table.render({
-								elem: '#LAY-app-content-list2',
+								elem: '#LAY-parameter-system-family',
 								url: commonSrc + '',
 								request: {
 									pageName: 'pageNum' //页码的参数名称，默认：page
@@ -531,7 +531,7 @@
 								limits: [10, 15, 20, 25, 30],
 							}),
 			
-							table.on("tool(LAY-app-content-list2)", function(obj) {
+							table.on("tool(LAY-parameter-system-family)", function(obj) {
 								var data = obj.data;
 								"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 									$.ajax({
@@ -625,7 +625,7 @@
 															layer.msg("修改成功", {
 																time: 1000
 															}, function() {
-																layui.table.reload("LAY-app-content-list2"), layer.close(layero)
+																layui.table.reload("LAY-parameter-system-family"), layer.close(layero)
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -643,14 +643,14 @@
 							var field = data.field;
 							console.log(field);
 							//执行重载
-							table.reload('LAY-app-content-list2', {
+							table.reload('LAY-parameter-system-family', {
 								where: field
 							});
 						});
 			
 						var active = {
 							batchdel: function() {
-									var checkStatus = table.checkStatus('LAY-app-content-list2'),
+									var checkStatus = table.checkStatus('LAY-parameter-system-family'),
 										checkData = checkStatus.data; //得到选中的数据
 			
 									if (checkData.length === 0) {
@@ -676,7 +676,7 @@
 			
 											},
 											success: function(json) {
-												table.reload('LAY-app-content-list2');
+												table.reload('LAY-parameter-system-family');
 												layer.msg('已删除');
 											}
 										});
@@ -697,7 +697,7 @@
 									area: ['720px', '700px'],
 									id: 'LAY-popup-content-add',
 									success: function(layero, index) {
-										view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
+										view(this.id).render('parrameter/system/familyForm').done(function() {
 											form.render(null, 'layuiadmin-app-form-list');
 											//日期
 											$(".date").each(function() {
@@ -737,7 +737,7 @@
 															time: 1000
 														}, function() {
 															layer.close(index); //执行关闭 
-															layui.table.reload('LAY-app-content-list2'); //重载表格
+															layui.table.reload('LAY-parameter-system-family'); //重载表格
 														})
 													});
 												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -778,7 +778,7 @@
 						    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
 						            class="layui-icon layui-icon-delete"></i>删除</a>
 						</script>
-						<table id="LAY-app-content-list3" lay-filter="LAY-app-content-list3"></table>
+						<table id="LAY-parameter-system-assess" lay-filter="LAY-parameter-system-assess"></table>
 					</div>
 				
 			
@@ -795,7 +795,7 @@
 			
 						//表格渲染
 						table.render({
-								elem: '#LAY-app-content-list3',
+								elem: '#LAY-parameter-system-assess',
 								url: commonSrc + '',
 								request: {
 									pageName: 'pageNum' //页码的参数名称，默认：page
@@ -852,7 +852,7 @@
 								limits: [10, 15, 20, 25, 30],
 							}),
 			
-							table.on("tool(LAY-app-content-list3)", function(obj) {
+							table.on("tool(LAY-parameter-system-assess)", function(obj) {
 								var data = obj.data;
 								"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 									$.ajax({
@@ -946,7 +946,7 @@
 															layer.msg("修改成功", {
 																time: 1000
 															}, function() {
-																layui.table.reload("LAY-app-content-list3"), layer.close(layero)
+																layui.table.reload("LAY-parameter-system-assess"), layer.close(layero)
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -964,14 +964,14 @@
 							var field = data.field;
 							console.log(field);
 							//执行重载
-							table.reload('LAY-app-content-list3', {
+							table.reload('LAY-parameter-system-assess', {
 								where: field
 							});
 						});
 			
 						var active = {
 							batchdel: function() {
-									var checkStatus = table.checkStatus('LAY-app-content-list3'),
+									var checkStatus = table.checkStatus('LAY-parameter-system-assess'),
 										checkData = checkStatus.data; //得到选中的数据
 			
 									if (checkData.length === 0) {
@@ -997,7 +997,7 @@
 			
 											},
 											success: function(json) {
-												table.reload('LAY-app-content-list3');
+												table.reload('LAY-parameter-system-assess');
 												layer.msg('已删除');
 											}
 										});
@@ -1018,7 +1018,7 @@
 									area: ['720px', '700px'],
 									id: 'LAY-popup-content-add',
 									success: function(layero, index) {
-										view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
+										view(this.id).render('parrameter/system/assessForm').done(function() {
 											form.render(null, 'layuiadmin-app-form-list');
 											//日期
 											$(".date").each(function() {
@@ -1058,7 +1058,7 @@
 															time: 1000
 														}, function() {
 															layer.close(index); //执行关闭 
-															layui.table.reload('LAY-app-content-list3'); //重载表格
+															layui.table.reload('LAY-parameter-system-assess'); //重载表格
 														})
 													});
 												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
