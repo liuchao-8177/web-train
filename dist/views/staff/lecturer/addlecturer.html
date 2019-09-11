@@ -129,6 +129,7 @@
 									table.render({
 											elem: '#situation', //指定原始表格元素选择器（推荐id选择器）
 											url: commonSrc + 'api/hr/transferController/list', //设置异步接口
+											toolbar: '#toolbarDemo',
 											request: { //用于对分页请求的参数：page、limit重新设定名称
 												pageName: 'pageNum' //页码的参数名称，默认：page
 													,
@@ -658,10 +659,10 @@
 			});
 		})
 
-		// $("#targ").click(function() {
-		// 	$(".tab").hide();
-		// 	$("#show").show();
-		// });
-
+	    $("#targ").click(function() {
+		 	$(".tab").hide();
+		 	$("#show").show();
+	    });
+ 
 	});
 </script>
