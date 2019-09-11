@@ -1,6 +1,6 @@
 <title>需求统计</title>
 <div class="layui-fluid">
-	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">未培训</li>
@@ -161,6 +161,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-havenot',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -380,6 +381,7 @@
 				    });
 				</script>
 				</div>
+				
 				<!--按部门查询-->
 				<div class="layui-tab-item">
 
@@ -520,6 +522,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-department',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -739,6 +742,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位类型查询-->
 				<div class="layui-tab-item">
 
@@ -879,6 +883,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-type',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1098,6 +1103,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位级别查询-->
 				<div class="layui-tab-item">
 
@@ -1238,6 +1244,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-rank',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1457,6 +1464,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按课程类型查询-->
 				<div class="layui-tab-item">
 
@@ -1534,7 +1542,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">操作证</option>
 									<option value="2">供应链管理</option>
@@ -1552,7 +1560,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="courseAttrId" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1568,13 +1576,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 					</div>
@@ -1596,7 +1604,8 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-subject',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourseType',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1613,22 +1622,61 @@
 				                    "data": res.dataList //解析数据列表
 				                };
 				            },
-				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
-				            ]],
+				            cols: [
+								[{
+									type: 'checkbox',
+									fixed: "left",
+								},{
+									field: 'avgDemandHours', 
+									title: '人均需求小时', 
+									align: 'center',
+								},{
+									field: 'avgDynamicHours', 
+									title: '人均动态需求小时',
+									align: 'center',
+								},{
+									field: 'avgFinishHours', 
+									title: '人均完成需求小时', 
+									align: 'center',
+								},{
+									field: 'courseTypeName', 
+									title: '课程类型', 
+									align: 'center',
+								},{
+									field: 'demandNum', 
+									title: '需求人数', 
+									align: 'center',
+								},{
+									field: 'developDemandNum', 
+									title: '发展需求人次', 
+									align: 'center',
+								},{
+									field: 'dynamicNum', 
+									title: '动态需求人次',
+									align: 'center',
+								},{
+									field: 'exemptNum', 
+									title: '免除培训人次', 
+									align: 'center',
+								},{
+									field: 'finishRate', 
+									title: '需求完成率',
+									 align: 'center',
+								},{
+									field: 'staticDemandNum', 
+									title: '静态需求人次', 
+									align: 'center',
+								},{
+									field: 'trainedNum', 
+									title: '已培训人次', 
+									align: 'center',
+								},{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}]
+									],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
@@ -1816,6 +1864,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按等效课程查询-->
 				<div class="layui-tab-item">
 
@@ -1955,7 +2004,8 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-equivalent',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourse',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1973,20 +2023,59 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'topic', 
+				                	title: '等效课程', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -2175,6 +2264,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按优先级查询-->
 				<div class="layui-tab-item">
 
@@ -2314,7 +2404,8 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-precedence',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByPriority',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -2332,20 +2423,59 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'priority', 
+				                	title: '优先级', 
+				                	align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -2534,6 +2664,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按课程属性查询-->
 				<div class="layui-tab-item">
 
@@ -2673,7 +2804,8 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-genera',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourseAttr',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -2691,20 +2823,59 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'courseAttrName', 
+				                	title: '课程属性', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -2893,6 +3064,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位查询-->
 				<div class="layui-tab-item">
 
@@ -3033,6 +3205,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-position',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -3252,6 +3425,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按工龄查询-->
 				<div class="layui-tab-item">
 
@@ -3392,6 +3566,7 @@
 				        table.render({
 				            elem: '#LAY-report-statistics-length',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -3611,6 +3786,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按员工查询-->
 				<div class="layui-tab-item">
 
@@ -3750,7 +3926,8 @@
 							//表格渲染
 							table.render({
 									elem: '#LAY-report-statistics-staff',
-									url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+									url: commonSrc + 'api/train/demandStatisticsController/listByEmploy',
+									toolbar: '#toolbarDemo',
 									request: {
 										pageName: 'pageNum' //页码的参数名称，默认：page
 											,
@@ -3769,79 +3946,58 @@
 									},
 									cols: [
 										[{
-												type: 'checkbox',
-												fixed: "left"
-											},
-											{
-												field: 'id',
-												title: 'id',
-												hide: true
-											},
-											{
-												field: 'commonId',
-												title: '申请公共id',
-												hide: true
-											},
-											{
-												field: 'applyId',
-												title: '申请人id',
-												hide: true
-											},
-											{
-												field: 'applyName',
-												title: '申请人姓名',
-												align: 'center'
-											},
-											{
-												field: 'type',
-												title: '休假类型',
-												templet: "#type",
-												align: 'center'
-											},
-											{
-												field: 'linkTel',
-												title: '联系电话',
-												align: 'center'
-											},
-											{
-												field: 'startTime',
-												title: '请假开始日期',
-												align: 'center'
-											},
-											{
-												field: 'endTime',
-												title: '请假结束日期',
-												align: 'center'
-											},
-											{
-												field: 'proxyName',
-												title: '临时代理人',
-												align: 'center'
-											},
-											{
-												field: 'extension',
-												title: '代理人电话',
-												align: 'center'
-											},
-											{
-												field: 'reason',
-												title: '申请理由',
-												align: 'center'
-											},
-											{
-												field: 'checkStatus',
-												title: '申请状态',
-												templet: "#buttonTpl",
-												minWidth: 80,
-												align: 'center'
-											},
-											{
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150
-											}
-										]
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'avgDemandHours',
+											title: '人均需求小时',
+											align: 'center',
+										}, {
+											field: 'avgDynamicHours',
+											title: '人均动态需求小时',
+											align: 'center',
+										}, {
+											field: 'avgFinishHours',
+											title: '人均完成需求小时',
+											align: 'center',
+										}, {
+											field: 'demandNum',
+											title: '需求人数',
+											align: 'center',
+										}, {
+											field: 'developDemandNum',
+											title: '发展需求人次',
+											align: 'center',
+										}, {
+											field: 'dynamicNum',
+											title: '动态需求人次',
+											align: 'center',
+										},{
+											field: 'employId',
+											title: '员工',
+											align: 'center',
+										},{
+											field: 'exemptNum',
+											title: '免除培训人次',
+											align: 'center',
+										}, {
+											field: 'finishRate',
+											title: '需求完成率',
+											align: 'center',
+										}, {
+											field: 'staticDemandNum',
+											title: '静态需求人次',
+											align: 'center',
+										}, {
+											field: 'trainedNum',
+											title: '已培训人次',
+											align: 'center',
+										}, {
+											fixed: 'right',
+											title: '操作',
+											toolbar: '#table-content-list',
+											minWidth: 150
+										}]
 									],
 									page: !0,
 									limit: 10,

@@ -1,7 +1,7 @@
 <title>费用统计</title>
 
 <div class="layui-fluid">
-	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layui-form layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-allowclose="true">
 			<ul class="layui-tab-title">
 				<li class="layui-this">按部门</li>
@@ -20,6 +20,7 @@
 
 				<!-- 按部门查询，默认开始 -->
 				<div class="layui-tab-item layui-show">
+
 
 					<div class="layui-form-item ">
 						<!-- 搜索按钮 -->
@@ -103,26 +104,82 @@
 											type: 'checkbox',
 											fixed: "left"
 										}, {
-											field: 'id',
-											title: 'id',
-											hide: true,
-										}, {
-											field: 'commonId',
-											title: '申请公共id',
-											hide: true,
-										}, {
-											field: 'overtimeCode',
-											title: '申请编号',
-											hide: true,
-										}, {
-											field: 'applyType',
-											title: '是否离职',
-											align: 'center'
-										}, {
-											field: 'applyType',
-											title: '备注',
-											align: 'center'
-										}, {
+								field: 'courseTypeId',
+								title: '课程类型ID',
+								hide: true,
+							},{
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
+								field: 'endTime',
+								title: '培训日期 止',
+								hide: true,
+							},{
+								field: 'startTime',
+								title: '培训日期 起',
+								hide: true,
+							}, {
+								field: 'tenantCode',
+								title: '租户编码',
+								hide: true,
+							}, {
 											field: 'checkStatus',
 											title: '离职日期',
 											templet: "#buttonTpl",
@@ -373,6 +430,7 @@
 						})
 					</script>
 				</div>
+
 				<!-- 按职位类型查询 -->
 				<div class="layui-tab-item">
 
@@ -728,8 +786,6 @@
 			})
 		</script>
 				</div>
-
-
 
 				<!-- 按职位级别查询 -->
 				<div class="layui-tab-item">
@@ -1109,7 +1165,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
@@ -1145,7 +1201,15 @@
 					laydate = layui.laydate,
 					form = layui.form,
 					element = layui.element;
-	
+					
+					$.ajax({
+						url: commonSrc + 'api/train/costExpenseController/listByType?pageNum=1&pageSize=10',
+						type:'get',
+						dataType:'JSON',
+						success:(res)=>{
+							console.log(res)
+						}
+					})
 				//表格渲染
 				table.render({
 						elem: '#LAY-report-expense-subject',
@@ -1176,17 +1240,77 @@
 								title: '课程类型ID',
 								hide: true,
 							},{
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
 								field: 'endTime',
 								title: '培训日期 止',
-								align: 'center'
-							}, {
+								hide: true,
+							},{
 								field: 'startTime',
 								title: '培训日期 起',
-								align: 'center'
+								hide: true,
 							}, {
 								field: 'tenantCode',
 								title: '租户编码',
-								align: 'center'
+								hide: true,
 							}, {
 								fixed: 'right',
 								title: '操作',
@@ -1518,25 +1642,81 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
-								field: 'courseId',
-								title: '课程ID',
-								hide: true,
-							}, {
 								field: 'courseTypeId',
 								title: '课程类型ID',
 								hide: true,
-							},  {
+							},{
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
 								field: 'endTime',
 								title: '培训日期 止',
-								align: 'center'
-							}, {
+								hide: true,
+							},{
 								field: 'startTime',
 								title: '培训日期 起',
-								align: 'center'
+								hide: true,
 							}, {
 								field: 'tenantCode',
 								title: '租户编码',
-								align: 'center'
+								hide: true,
 							}, {
 								fixed: 'right',
 								title: '操作',
@@ -1857,17 +2037,81 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
+								field: 'courseTypeId',
+								title: '课程类型ID',
+								hide: true,
+							},{
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
 								field: 'endTime',
 								title: '培训日期 止',
-								align: 'center'
-							}, {
+								hide: true,
+							},{
 								field: 'startTime',
 								title: '培训日期 起',
-								align: 'center'
+								hide: true,
 							}, {
 								field: 'tenantCode',
 								title: '租户编码',
-								align: 'center'
+								hide: true,
 							}, {
 								fixed: 'right',
 								title: '操作',
@@ -2198,22 +2442,82 @@
 							[{
 								type: 'checkbox',
 								fixed: "left"
-							}, {
-								field: 'courseAttrId',
-								title: '课程属性ID',
+							},{
+								field: 'courseTypeId',
+								title: '课程类型ID',
 								hide: true,
-							}, {
+							},{
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
 								field: 'endTime',
 								title: '培训日期 止',
-								align: 'center'
-							}, {
+								hide: true,
+							},{
 								field: 'startTime',
 								title: '培训日期 起',
-								align: 'center'
+								hide: true,
 							}, {
 								field: 'tenantCode',
 								title: '租户编码',
-								align: 'center'
+								hide: true,
 							}, {
 								fixed: 'right',
 								title: '操作',
@@ -2447,6 +2751,7 @@
 			})
 		</script>
 				</div>
+
 				<!-- 按职位查询 -->
 				<div class="layui-tab-item">
 
@@ -3158,6 +3463,7 @@
 			})
 		</script>
 				</div>
+
 				<!-- 按工龄查询 -->
 				<div class="layui-tab-item">
 
@@ -3596,30 +3902,91 @@
 									},
 									cols: [
 										[{
-											type: 'checkbox',
-											fixed: "left"
-										}, {
-											field: 'employId',
-											title: '员工ID',
-											hide: true,
-										}, {
-											field: 'endTime',
-											title: '培训日期 止',
-											align: 'center'
-										}, {
-											field: 'startTime',
-											title: '培训日期 起',
-											align: 'center'
-										}, {
-											field: 'tenantCode',
-											title: '租户编码',
-											align: 'center'
-										}, {
-											fixed: 'right',
-											title: '操作',
-											toolbar: '#table-content-list',
-											minWidth: 150,
-										}]
+												type: 'checkbox',
+												fixed: "left"
+											}, {
+												field: 'courseTypeId',
+												title: '课程类型ID',
+												hide: true,
+											}, {
+												field: 'avgTrainTime',
+												title: '人均培训小时',
+												align: 'center'
+											}, {
+												field: 'classOnJob',
+												title: '职位类型',
+												align: 'center'
+											}, {
+												field: 'companyPay',
+												title: '公司支付',
+												align: 'center'
+											}, {
+												field: 'courseTypeName',
+												title: '课程类型',
+												align: 'center'
+											}, {
+												field: 'other',
+												title: '其他',
+												hide: true,
+											}, {
+												field: 'penetrationOnJob',
+												title: '在职培训',
+												hide: true,
+											}, {
+												field: 'personNumOnJob',
+												title: '在职人数',
+												hide: true,
+											}, {
+												field: 'planClass',
+												title: '计划',
+												hide: true,
+											}, {
+												field: 'selfPay',
+												title: '个人支付',
+												align: 'center'
+											}, {
+												field: 'trainNum',
+												title: '普及率',
+												align: 'center'
+											},
+											{
+												field: 'trainPercentage',
+												title: '培训百分比',
+												align: 'center'
+											},
+											{
+												field: 'trainPersonNumOnJob',
+												title: '在职培训员工编号',
+												hide: true,
+											},
+											{
+												field: 'travel',
+												title: '差旅',
+												align: 'center'
+											},
+											{
+												field: 'tuition',
+												title: '学费',
+												align: 'center'
+											}, {
+												field: 'endTime',
+												title: '培训日期 止',
+												hide: true,
+											}, {
+												field: 'startTime',
+												title: '培训日期 起',
+												hide: true,
+											}, {
+												field: 'tenantCode',
+												title: '租户编码',
+												hide: true,
+											}, {
+												fixed: 'right',
+												title: '操作',
+												toolbar: '#table-content-list',
+												minWidth: 150,
+											}
+										]
 									],
 									page: !0,
 									limit: 10,
