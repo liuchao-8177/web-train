@@ -1,6 +1,6 @@
 <title>需求统计</title>
 <div class="layui-fluid">
-	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">未培训</li>
@@ -145,7 +145,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="no-training"></table>
+						<table id="LAY-report-statistics-havenot" lay-filter="LAY-report-statistics-havenot"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function () {
@@ -159,8 +159,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#no-training',
+				            elem: '#LAY-report-statistics-havenot',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -197,7 +198,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(no-training)", function (obj) {
+				            table.on("tool(LAY-report-statistics-havenot)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -208,7 +209,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('no-training');
+				                            table.reload('LAY-report-statistics-havenot');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -275,7 +276,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("no-training"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-havenot"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -293,14 +294,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('no-training', {
+				            table.reload('LAY-report-statistics-havenot', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('no-training'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-havenot'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -316,7 +317,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('no-training');
+				                            table.reload('LAY-report-statistics-havenot');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -354,7 +355,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('no-training'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-havenot'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -380,6 +381,7 @@
 				    });
 				</script>
 				</div>
+				
 				<!--按部门查询-->
 				<div class="layui-tab-item">
 
@@ -505,7 +507,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="department"></table>
+						<table id="LAY-report-statistics-department" lay-filter="LAY-report-statistics-department"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -518,8 +520,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#department',
+				            elem: '#LAY-report-statistics-department',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -556,7 +559,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(department)", function (obj) {
+				            table.on("tool(LAY-report-statistics-department)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -567,7 +570,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('department');
+				                            table.reload('LAY-report-statistics-department');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -634,7 +637,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("department"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-department"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -652,14 +655,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('department', {
+				            table.reload('LAY-report-statistics-department', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('department'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-department'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -675,7 +678,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('department');
+				                            table.reload('LAY-report-statistics-department');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -713,7 +716,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('department'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-department'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -739,6 +742,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位类型查询-->
 				<div class="layui-tab-item">
 
@@ -864,7 +868,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="position-type"></table>
+						<table id="LAY-report-statistics-type" lay-filter="LAY-report-statistics-type"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -877,8 +881,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#position-type',
+				            elem: '#LAY-report-statistics-type',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -915,7 +920,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(position-type)", function (obj) {
+				            table.on("tool(LAY-report-statistics-type)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -926,7 +931,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('position-type');
+				                            table.reload('LAY-report-statistics-type');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -993,7 +998,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("position-type"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-type"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1011,14 +1016,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('position-type', {
+				            table.reload('LAY-report-statistics-type', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('position-type'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-type'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -1034,7 +1039,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('position-type');
+				                            table.reload('LAY-report-statistics-type');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -1072,7 +1077,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('position-type'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-type'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1098,6 +1103,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位级别查询-->
 				<div class="layui-tab-item">
 
@@ -1223,7 +1229,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="position-level"></table>
+						<table id="LAY-report-statistics-rank" lay-filter="LAY-report-statistics-rank"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -1236,8 +1242,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#position-level',
+				            elem: '#LAY-report-statistics-rank',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1274,7 +1281,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(position-level)", function (obj) {
+				            table.on("tool(LAY-report-statistics-rank)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -1285,7 +1292,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('position-level');
+				                            table.reload('LAY-report-statistics-rank');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -1352,7 +1359,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("position-level"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-rank"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1370,14 +1377,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('position-level', {
+				            table.reload('LAY-report-statistics-rank', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('position-level'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-rank'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -1393,7 +1400,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('position-level');
+				                            table.reload('LAY-report-statistics-rank');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -1431,7 +1438,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('position-level'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-rank'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1457,6 +1464,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按课程类型查询-->
 				<div class="layui-tab-item">
 
@@ -1534,7 +1542,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">操作证</option>
 									<option value="2">供应链管理</option>
@@ -1552,7 +1560,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="courseAttrId" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1568,13 +1576,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 					</div>
@@ -1582,7 +1590,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="type-of-course"></table>
+						<table id="LAY-report-statistics-subject" lay-filter="LAY-report-statistics-subject"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -1595,8 +1603,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#type-of-course',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            elem: '#LAY-report-statistics-subject',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourseType',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1613,27 +1622,66 @@
 				                    "data": res.dataList //解析数据列表
 				                };
 				            },
-				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
-				            ]],
+				            cols: [
+								[{
+									type: 'checkbox',
+									fixed: "left",
+								},{
+									field: 'avgDemandHours', 
+									title: '人均需求小时', 
+									align: 'center',
+								},{
+									field: 'avgDynamicHours', 
+									title: '人均动态需求小时',
+									align: 'center',
+								},{
+									field: 'avgFinishHours', 
+									title: '人均完成需求小时', 
+									align: 'center',
+								},{
+									field: 'courseTypeName', 
+									title: '课程类型', 
+									align: 'center',
+								},{
+									field: 'demandNum', 
+									title: '需求人数', 
+									align: 'center',
+								},{
+									field: 'developDemandNum', 
+									title: '发展需求人次', 
+									align: 'center',
+								},{
+									field: 'dynamicNum', 
+									title: '动态需求人次',
+									align: 'center',
+								},{
+									field: 'exemptNum', 
+									title: '免除培训人次', 
+									align: 'center',
+								},{
+									field: 'finishRate', 
+									title: '需求完成率',
+									 align: 'center',
+								},{
+									field: 'staticDemandNum', 
+									title: '静态需求人次', 
+									align: 'center',
+								},{
+									field: 'trainedNum', 
+									title: '已培训人次', 
+									align: 'center',
+								},{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}]
+									],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(type-of-course)", function (obj) {
+				            table.on("tool(LAY-report-statistics-subject)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -1644,7 +1692,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('type-of-course');
+				                            table.reload('LAY-report-statistics-subject');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -1711,7 +1759,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("type-of-course"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-subject"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1729,14 +1777,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('type-of-course', {
+				            table.reload('LAY-report-statistics-subject', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('type-of-course'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-subject'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -1752,7 +1800,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('type-of-course');
+				                            table.reload('LAY-report-statistics-subject');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -1790,7 +1838,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('type-of-course'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-subject'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -1816,6 +1864,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按等效课程查询-->
 				<div class="layui-tab-item">
 
@@ -1941,7 +1990,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="equivalent-courses"></table>
+						<table id="LAY-report-statistics-equivalent" lay-filter="LAY-report-statistics-equivalent"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -1954,8 +2003,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#equivalent-courses',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            elem: '#LAY-report-statistics-equivalent',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourse',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -1973,26 +2023,65 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'topic', 
+				                	title: '等效课程', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(equivalent-courses)", function (obj) {
+				            table.on("tool(LAY-report-statistics-equivalent)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -2003,7 +2092,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('equivalent-courses');
+				                            table.reload('LAY-report-statistics-equivalent');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -2070,7 +2159,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("equivalent-courses"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-equivalent"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2088,14 +2177,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('equivalent-courses', {
+				            table.reload('LAY-report-statistics-equivalent', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('equivalent-courses'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-equivalent'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -2111,7 +2200,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('equivalent-courses');
+				                            table.reload('LAY-report-statistics-equivalent');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -2149,7 +2238,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('equivalent-courses'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-equivalent'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2175,6 +2264,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按优先级查询-->
 				<div class="layui-tab-item">
 
@@ -2300,7 +2390,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="priority"></table>
+						<table id="LAY-report-statistics-precedence" lay-filter="LAY-report-statistics-precedence"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -2313,8 +2403,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#priority',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            elem: '#LAY-report-statistics-precedence',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByPriority',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -2332,26 +2423,65 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'priority', 
+				                	title: '优先级', 
+				                	align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(priority)", function (obj) {
+				            table.on("tool(LAY-report-statistics-precedence)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -2362,7 +2492,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('priority');
+				                            table.reload('LAY-report-statistics-precedence');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -2429,7 +2559,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("priority"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-precedence"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2447,14 +2577,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('priority', {
+				            table.reload('LAY-report-statistics-precedence', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('priority'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-precedence'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -2470,7 +2600,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('priority');
+				                            table.reload('LAY-report-statistics-precedence');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -2508,7 +2638,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('priority'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-precedence'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2534,6 +2664,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按课程属性查询-->
 				<div class="layui-tab-item">
 
@@ -2659,7 +2790,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="attribute-of-curriculum"></table>
+						<table id="LAY-report-statistics-genera" lay-filter="LAY-report-statistics-genera"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -2672,8 +2803,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#attribute-of-curriculum',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            elem: '#LAY-report-statistics-genera',
+				            url: commonSrc + 'api/train/demandStatisticsController/listByCourseAttr',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -2691,26 +2823,65 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+									type: 'checkbox', 
+									fixed: "left",
+								},{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'courseAttrName', 
+				                	title: '课程属性', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次', 
+				                	align: 'center',
+				                },{
+									fixed: 'right', 
+									title: '操作', 
+									toolbar: '#table-content-list', 
+									minWidth: 150,
+									}
 				            ]],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(attribute-of-curriculum)", function (obj) {
+				            table.on("tool(LAY-report-statistics-genera)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -2721,7 +2892,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('attribute-of-curriculum');
+				                            table.reload('LAY-report-statistics-genera');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -2788,7 +2959,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("attribute-of-curriculum"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-genera"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2806,14 +2977,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('attribute-of-curriculum', {
+				            table.reload('LAY-report-statistics-genera', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('attribute-of-curriculum'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-genera'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -2829,7 +3000,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('attribute-of-curriculum');
+				                            table.reload('LAY-report-statistics-genera');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -2867,7 +3038,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('attribute-of-curriculum'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-genera'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -2893,6 +3064,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按职位查询-->
 				<div class="layui-tab-item">
 
@@ -3018,7 +3190,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="position"></table>
+						<table id="LAY-report-statistics-LAY-report-statistics-position" lay-filter="LAY-report-statistics-LAY-report-statistics-position"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -3031,8 +3203,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#position',
+				            elem: '#LAY-report-statistics-position',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -3069,7 +3242,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(position)", function (obj) {
+				            table.on("tool(LAY-report-statistics-position)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -3080,7 +3253,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('position');
+				                            table.reload('LAY-report-statistics-position');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -3147,7 +3320,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("position"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-position"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3165,14 +3338,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('position', {
+				            table.reload('LAY-report-statistics-position', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('position'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-position'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -3188,7 +3361,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('position');
+				                            table.reload('LAY-report-statistics-position');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -3226,7 +3399,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('position'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-position'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3252,6 +3425,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按工龄查询-->
 				<div class="layui-tab-item">
 
@@ -3377,7 +3551,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="length-of-service"></table>
+						<table id="LAY-report-statistics-length" lay-filter="LAY-report-statistics-length"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
@@ -3390,8 +3564,9 @@
 				
 				        //表格渲染
 				        table.render({
-				            elem: '#length-of-service',
+				            elem: '#LAY-report-statistics-length',
 				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
 				                ,
@@ -3428,7 +3603,7 @@
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
 				        }),
-				            table.on("tool(length-of-service)", function (obj) {
+				            table.on("tool(LAY-report-statistics-length)", function (obj) {
 				                var data = obj.data;
 				                "del" === obj.event ? layer.confirm("确定删除申请？", function (e) {
 				                    $.ajax({
@@ -3439,7 +3614,7 @@
 				                            id: data.id,
 				                        },
 				                        success: function (b) {
-				                            table.reload('length-of-service');
+				                            table.reload('LAY-report-statistics-length');
 				                            layer.msg('删除成功');
 				                            obj.del(), layer.close(e)
 				                        },
@@ -3506,7 +3681,7 @@
 				                                        layer.msg("修改成功", {
 				                                            time: 1000
 				                                        }, function () {
-				                                            layui.table.reload("length-of-service"), layer.close(layero)
+				                                            layui.table.reload("LAY-report-statistics-length"), layer.close(layero)
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3524,14 +3699,14 @@
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
-				            table.reload('length-of-service', {
+				            table.reload('LAY-report-statistics-length', {
 				                where: field
 				            });
 				        });
 				
 				        var active = {
 				            batchdel: function () {
-				                var checkStatus = table.checkStatus('length-of-service'),
+				                var checkStatus = table.checkStatus('LAY-report-statistics-length'),
 				                    checkData = checkStatus.data; //得到选中的数据
 				                if (checkData.length === 0) {
 				                    return layer.msg('请选择数据');
@@ -3547,7 +3722,7 @@
 				                        dataType: "json",
 				                        data: {ids: arr},
 				                        success: function (json) {
-				                            table.reload('length-of-service');
+				                            table.reload('LAY-report-statistics-length');
 				                            layer.msg('已删除');
 				
 				                        }
@@ -3585,7 +3760,7 @@
 				                                            time: 1000
 				                                        }, function () {
 				                                            layer.close(index); //执行关闭
-				                                            layui.table.reload('length-of-service'); //重载表格
+				                                            layui.table.reload('LAY-report-statistics-length'); //重载表格
 				                                        })
 				                                    });
 				                                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3611,6 +3786,7 @@
 				    });
 				</script>
 				</div>
+
 				<!--按员工查询-->
 				<div class="layui-tab-item">
 
@@ -3736,7 +3912,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 						</div>
-						<table class="layui-hide" id="staff-employee"></table>
+						<table id="LAY-report-statistics-staff" lay-filter="LAY-report-statistics-staff"></table>
 					</div>
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
@@ -3749,8 +3925,9 @@
 
 							//表格渲染
 							table.render({
-									elem: '#staff-employee',
-									url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+									elem: '#LAY-report-statistics-staff',
+									url: commonSrc + 'api/train/demandStatisticsController/listByEmploy',
+									toolbar: '#toolbarDemo',
 									request: {
 										pageName: 'pageNum' //页码的参数名称，默认：page
 											,
@@ -3769,85 +3946,64 @@
 									},
 									cols: [
 										[{
-												type: 'checkbox',
-												fixed: "left"
-											},
-											{
-												field: 'id',
-												title: 'id',
-												hide: true
-											},
-											{
-												field: 'commonId',
-												title: '申请公共id',
-												hide: true
-											},
-											{
-												field: 'applyId',
-												title: '申请人id',
-												hide: true
-											},
-											{
-												field: 'applyName',
-												title: '申请人姓名',
-												align: 'center'
-											},
-											{
-												field: 'type',
-												title: '休假类型',
-												templet: "#type",
-												align: 'center'
-											},
-											{
-												field: 'linkTel',
-												title: '联系电话',
-												align: 'center'
-											},
-											{
-												field: 'startTime',
-												title: '请假开始日期',
-												align: 'center'
-											},
-											{
-												field: 'endTime',
-												title: '请假结束日期',
-												align: 'center'
-											},
-											{
-												field: 'proxyName',
-												title: '临时代理人',
-												align: 'center'
-											},
-											{
-												field: 'extension',
-												title: '代理人电话',
-												align: 'center'
-											},
-											{
-												field: 'reason',
-												title: '申请理由',
-												align: 'center'
-											},
-											{
-												field: 'checkStatus',
-												title: '申请状态',
-												templet: "#buttonTpl",
-												minWidth: 80,
-												align: 'center'
-											},
-											{
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150
-											}
-										]
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'avgDemandHours',
+											title: '人均需求小时',
+											align: 'center',
+										}, {
+											field: 'avgDynamicHours',
+											title: '人均动态需求小时',
+											align: 'center',
+										}, {
+											field: 'avgFinishHours',
+											title: '人均完成需求小时',
+											align: 'center',
+										}, {
+											field: 'demandNum',
+											title: '需求人数',
+											align: 'center',
+										}, {
+											field: 'developDemandNum',
+											title: '发展需求人次',
+											align: 'center',
+										}, {
+											field: 'dynamicNum',
+											title: '动态需求人次',
+											align: 'center',
+										},{
+											field: 'employId',
+											title: '员工',
+											align: 'center',
+										},{
+											field: 'exemptNum',
+											title: '免除培训人次',
+											align: 'center',
+										}, {
+											field: 'finishRate',
+											title: '需求完成率',
+											align: 'center',
+										}, {
+											field: 'staticDemandNum',
+											title: '静态需求人次',
+											align: 'center',
+										}, {
+											field: 'trainedNum',
+											title: '已培训人次',
+											align: 'center',
+										}, {
+											fixed: 'right',
+											title: '操作',
+											toolbar: '#table-content-list',
+											minWidth: 150
+										}]
 									],
 									page: !0,
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(staff-employee)", function(obj) {
+								table.on("tool(LAY-report-statistics-staff)", function(obj) {
 									var data = obj.data;
 									"del" === obj.event ? layer.confirm("确定删除申请？", function(e) {
 										$.ajax({
@@ -3858,7 +4014,7 @@
 												id: data.id,
 											},
 											success: function(b) {
-												table.reload('staff-employee');
+												table.reload('LAY-report-statistics-staff');
 												layer.msg('删除成功');
 												obj.del(), layer.close(e)
 											},
@@ -3926,7 +4082,7 @@
 																layer.msg("修改成功", {
 																	time: 1000
 																}, function() {
-																	layui.table.reload("staff-employee"), layer.close(layero)
+																	layui.table.reload("LAY-report-statistics-staff"), layer.close(layero)
 																})
 															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -3944,14 +4100,14 @@
 								var field = data.field;
 								console.log(field);
 								//执行重载
-								table.reload('staff-employee', {
+								table.reload('LAY-report-statistics-staff', {
 									where: field
 								});
 							});
 
 							var active = {
 								batchdel: function() {
-										var checkStatus = table.checkStatus('staff-employee'),
+										var checkStatus = table.checkStatus('LAY-report-statistics-staff'),
 											checkData = checkStatus.data; //得到选中的数据
 										if (checkData.length === 0) {
 											return layer.msg('请选择数据');
@@ -3969,7 +4125,7 @@
 													ids: arr
 												},
 												success: function(json) {
-													table.reload('staff-employee');
+													table.reload('LAY-report-statistics-staff');
 													layer.msg('已删除');
 
 												}
@@ -4007,7 +4163,7 @@
 																time: 1000
 															}, function() {
 																layer.close(index); //执行关闭
-																layui.table.reload('staff-employee'); //重载表格
+																layui.table.reload('LAY-report-statistics-staff'); //重载表格
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

@@ -1,7 +1,7 @@
 <title>记录一览表</title>
 <div class="layui-fluid">
-	<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-filter="tab-all" lay-allowclose="true">
+	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
+		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">培训记录</li>
 				<li data-status="1">讲师相关</li>
@@ -23,13 +23,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<input type="text" name="courseType" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="courseAttribute" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -67,37 +67,37 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="date" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">讲师姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="讲师姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="date" placeholder="讲师姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">入职日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-card-body">
@@ -123,24 +123,25 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="training-record" lay-filter="training-record"></table>
+						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
 					</div>
 				</div>
 
-				<script>
-					layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
-		var $ = layui.$,
+<script>
+layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+ var $ = layui.$,
 			admin = layui.admin,
 			view = layui.view,
 			table = layui.table,
 			laydate = layui.laydate,
-			form = layui.form,
-			element = layui.element;
+			form = layui.form;
 
 		//表格渲染
 		table.render({
-				elem: '#training-record',
-				url: commonSrc + 'api/train/recordInController/trainRecord',
+				elem: '#LAY-report-general-train',
+				method: "GET",
+				url: commonSrc + "api/train/recordInController/trainRecord",
+				toolbar: '#toolbarDemo',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
 						,
@@ -208,9 +209,9 @@
 				limit: 10,
 				limits: [10, 15, 20, 25, 30],
 			}),
-			table.on("tool(training-record)", function(obj) {
+			table.on("tool(LAY-report-general-train)", function(obj) {
 				var data = obj.data;
-				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+				"del" === obj.event ? layer.confirm("确定删除此行數據？", function(e) {
 					$.ajax({
 						url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
 						type: "GET",
@@ -301,7 +302,7 @@
 										layer.msg("修改成功", {
 											time: 1000
 										}, function() {
-											layui.table.reload("training-record"), layer.close(layero)
+											layui.table.reload("LAY-report-general-train"), layer.close(layero)
 										})
 									});
 								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -319,14 +320,14 @@
 			var field = data.field;
 			console.log(field);
 			//执行重载
-			table.reload('training-record', {
+			table.reload('LAY-report-general-train', {
 				where: field
 			});
 		});
 
 		var active = {
 			batchdel: function() {
-					var checkStatus = table.checkStatus('training-record'),
+					var checkStatus = table.checkStatus('LAY-report-general-train'),
 						checkData = checkStatus.data; //得到选中的数据
 
 					if (checkData.length === 0) {
@@ -352,7 +353,7 @@
 
 							},
 							success: function(json) {
-								table.reload('training-record');
+								table.reload('LAY-report-general-train');
 								layer.msg('已删除');
 							}
 						});
@@ -364,6 +365,7 @@
 
 					});
 				}
+
 
 				//添加
 				,
@@ -413,7 +415,7 @@
 											time: 1000
 										}, function() {
 											layer.close(index); //执行关闭 
-											layui.table.reload('training-record'); //重载表格
+											layui.table.reload('LAY-report-general-train'); //重载表格
 										})
 									});
 								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -456,13 +458,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<input type="text" name="courseType" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="courseAttribute" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -500,13 +502,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -524,13 +526,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">入职日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -568,7 +570,7 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
 						</div>
-						<table id="lecturer-related" lay-filter="lecturer-related"></table>
+						<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
 					</div>
 				</div>
 
@@ -584,7 +586,8 @@
 
 						//表格渲染
 						table.render({
-								elem: '#lecturer-related',
+								elem: '#LAY-report-general-lecturer',
+								method: "GET",
 								url: commonSrc + 'api/train/recordInController/teacherRelated',
 								request: {
 									pageName: 'pageNum' //页码的参数名称，默认：page
@@ -635,10 +638,6 @@
 										title: '培训日期 终',
 										align: 'center'
 									}, {
-										field: 'tenantCode ',
-										title: '租户编码',
-										align: 'center'
-									}, {
 										field: 'trainForm',
 										title: '培训形式',
 										align: 'center'
@@ -657,7 +656,7 @@
 								limit: 10,
 								limits: [10, 15, 20, 25, 30],
 							}),
-							table.on("tool(lecturer-related)", function(obj) {
+							table.on("tool(LAY-report-general-lecturer)", function(obj) {
 								var data = obj.data;
 								"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 									$.ajax({
@@ -751,7 +750,7 @@
 															layer.msg("修改成功", {
 																time: 1000
 															}, function() {
-																layui.table.reload("lecturer-related"), layer.close(layero)
+																layui.table.reload("LAY-report-general-lecturer"), layer.close(layero)
 															})
 														});
 													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -769,14 +768,14 @@
 							var field = data.field;
 							console.log(field);
 							//执行重载
-							table.reload('lecturer-related', {
+							table.reload('LAY-report-general-lecturer', {
 								where: field
 							});
 						});
 
 						var active = {
 							batchdel: function() {
-									var checkStatus = table.checkStatus('lecturer-related'),
+									var checkStatus = table.checkStatus('LAY-report-general-lecturer'),
 										checkData = checkStatus.data; //得到选中的数据
 
 									if (checkData.length === 0) {
@@ -802,7 +801,7 @@
 
 											},
 											success: function(json) {
-												table.reload('lecturer-related');
+												table.reload('LAY-report-general-lecturer');
 												layer.msg('已删除');
 											}
 										});
@@ -863,7 +862,7 @@
 															time: 1000
 														}, function() {
 															layer.close(index); //执行关闭 
-															layui.table.reload('lecturer-related'); //重载表格
+															layui.table.reload('LAY-report-general-lecturer'); //重载表格
 														})
 													});
 												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

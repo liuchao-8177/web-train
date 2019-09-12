@@ -101,9 +101,10 @@
 			    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
 			            class="layui-icon layui-icon-delete"></i>删除</a>
 			</script>
-			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+			<table id="LAY-parameter-user-jurisdiction" lay-filter="LAY-parameter-user-jurisdiction"></table>
 		</div>
 	</div>
+	
 
 	<script>
 		layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
@@ -116,8 +117,9 @@
 
 			//表格渲染
 			table.render({
-					elem: '#LAY-app-content-list',
+					elem: '#LAY-parameter-user-jurisdiction',
 					url: commonSrc + '',
+					toolbar: '#toolbarDemo',
 					request: {
 						pageName: 'pageNum' //页码的参数名称，默认：page
 							,
@@ -219,7 +221,7 @@
 					limit: 10,
 					limits: [10, 15, 20, 25, 30],
 				}),
-				table.on("tool(LAY-app-content-list)", function(obj) {
+				table.on("tool(LAY-parameter-user-jurisdiction)", function(obj) {
 					var data = obj.data;
 					"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 						$.ajax({
@@ -312,7 +314,7 @@
 											layer.msg("修改成功", {
 												time: 1000
 											}, function() {
-												layui.table.reload("LAY-app-content-list"), layer.close(layero)
+												layui.table.reload("LAY-parameter-user-jurisdiction"), layer.close(layero)
 											})
 										});
 									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -330,14 +332,14 @@
 				var field = data.field;
 				console.log(field);
 				//执行重载
-				table.reload('LAY-app-content-list', {
+				table.reload('LAY-parameter-user-jurisdiction', {
 					where: field
 				});
 			});
 
 			var active = {
 				batchdel: function() {
-						var checkStatus = table.checkStatus('LAY-app-content-list'),
+						var checkStatus = table.checkStatus('LAY-parameter-user-jurisdiction'),
 							checkData = checkStatus.data; //得到选中的数据
 
 						if (checkData.length === 0) {
@@ -363,7 +365,7 @@
 
 								},
 								success: function(json) {
-									table.reload('LAY-app-content-list');
+									table.reload('LAY-parameter-user-jurisdiction');
 									layer.msg('已删除');
 								}
 							});
@@ -424,7 +426,7 @@
 												time: 1000
 											}, function() {
 												layer.close(index); //执行关闭 
-												layui.table.reload('LAY-app-content-list'); //重载表格
+												layui.table.reload('LAY-parameter-user-jurisdiction'); //重载表格
 											})
 										});
 									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
