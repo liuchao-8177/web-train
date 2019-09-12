@@ -18,110 +18,34 @@
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息1</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
 							</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">部门名称</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职位级别</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务类型</label>
-							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务名称</label>
-							<div class="layui-input-inline">
-								<select name="modules" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">工龄</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">自定义</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">市场营销的</option>
+									<option value="2">互功</option>
+									<option value="3">测试</option>
+									<option value="4">金融</option>
+									<option value="5">打法</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">入职时间</label>
-							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -133,19 +57,19 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -154,15 +78,15 @@
 								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
-					</div>
-					<div class="layui-inline">
-						<label class="layui-form-label">单选</label>
-						<div class="layui-input-inline">
-							<select name="buttonTpl" lay-verify="" lay-search="">
-								<option value="">--全部--</option>
-								<option value="1">在职</option>
-								<option value="2">离职</option>
-							</select>
+						<div class="layui-inline">
+							<label class="layui-form-label">优先级</label>
+							<div class="layui-input-inline">
+								<select name="priority" lay-verify="" lay-search="">
+									<option value="">--所有的--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
@@ -215,10 +139,10 @@
 											}, {
 												field: 'employId',
 												title: '员工id',
-												hide: true,
+												align: 'center'
 											}, {
 												field: 'planClass',
-												title: '课程类型',
+												title: '课时',
 												align: 'center'
 											}, {
 												field: 'priority',
@@ -228,11 +152,6 @@
 												field: 'topic',
 												title: '等效课程',
 												align: 'center'
-											}, {
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150,
 											}
 										]
 									],
@@ -240,109 +159,6 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-report-inquire-already)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-					
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-					
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-					
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-													data) {
-													$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("修改成功", {
-																time: 1000
-															}, function() {
-																layui.table.reload("LAY-report-inquire-already"), layer.close(layero)
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												})
-											})
-										}
-									})
-								})
-					
 					
 							form.render(null, 'app-content-list');
 					
@@ -355,106 +171,6 @@
 									where: field
 								});
 							});
-					
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-inquire-already'),
-											checkData = checkStatus.data; //得到选中的数据
-					
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-					
-												},
-												success: function(json) {
-													table.reload('LAY-report-inquire-already');
-													layer.msg('已删除');
-												}
-											});
-					
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-					
-										});
-									}
-					
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-					
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-inquire-already'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
 					
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
@@ -481,166 +197,94 @@
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息2</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
 							</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">部门名称</label>
+							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="agency" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">职位级别</label>
+							<label class="layui-form-label">培训形式</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务类型</label>
-							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="trainForm" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">内部培训</option>
+									<option value="2">外部公开班</option>
+									<option value="3">外聘培训</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务名称</label>
-							<div class="layui-input-inline">
-								<select name="modules" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">工龄</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">自定义</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">市场营销的</option>
+									<option value="2">互功</option>
+									<option value="3">测试</option>
+									<option value="4">金融</option>
+									<option value="5">打法</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">入职时间</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">优先级</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">培训机构</label>
+							<label class="layui-form-label">课程别名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
+								<input type="text" name="otherName" lay-verify="" placeholder="课程别名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">培训形式</label>
+							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="培训形式" autocomplete="off" class="layui-input">
+								<select name="priority" lay-verify="" lay-search="">
+									<option value="">--所有的--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
 							</div>
 						</div>
 					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">在职状态</label>
-						<div class="layui-input-inline">
-							<select name="modules" lay-verify="" lay-search="">
-								<option value="">--全部--</option>
-								<option value="1">在职</option>
-								<option value="2">离职</option>
-							</select>
-						</div>
-					</div>
-
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
@@ -649,6 +293,7 @@
 						</div>
 						<table id="LAY-report-inquire-havenot" lay-filter="LAY-report-inquire-havenot"></table>
 					</div>
+
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
@@ -687,22 +332,22 @@
 											}, {
 												field: 'employId',
 												title: '员工id',
-												hide: true,
+												align: 'center'
 											}, {
 												field: 'endTime',
-												title: '结束日期',
+												title: '培训结束日期',
 												align: 'center'
 											},{
 												field: 'planClass',
-												title: '课程类型',
+												title: '课时',
 												align: 'center'
 											}, {
 												field: 'startTime',
-												title: '开始日期',
+												title: '培训开始日期',
 												align: 'center'
 											}, {
 												field: 'teacherName',
-												title: '讲师姓名·',
+												title: '讲师·',
 												align: 'center'
 											},{
 												field: 'topic',
@@ -712,11 +357,6 @@
 												field: 'trainForm',
 												title: '培训形式',
 												align: 'center'
-											},{
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150,
 											}
 										]
 									],
@@ -724,110 +364,7 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-report-inquire-havenot)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-					
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-					
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-					
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-													data) {
-													$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("修改成功", {
-																time: 1000
-															}, function() {
-																layui.table.reload("LAY-report-inquire-havenot"), layer.close(layero)
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												})
-											})
-										}
-									})
-								})
-					
-					
+
 							form.render(null, 'app-content-list');
 					
 							//监听搜索
@@ -839,107 +376,7 @@
 									where: field
 								});
 							});
-					
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-inquire-havenot'),
-											checkData = checkStatus.data; //得到选中的数据
-					
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-					
-												},
-												success: function(json) {
-													table.reload('LAY-report-inquire-havenot');
-													layer.msg('已删除');
-												}
-											});
-					
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-					
-										});
-									}
-					
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-					
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-inquire-havenot'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
-					
+
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
 								active[type] ? active[type].call(this) : '';
@@ -965,151 +402,69 @@
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息3</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
 							</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">部门名称</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职位级别</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务类型</label>
-							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务名称</label>
-							<div class="layui-input-inline">
-								<select name="modules" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">工龄</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">自定义</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">市场营销的</option>
+									<option value="2">互功</option>
+									<option value="3">测试</option>
+									<option value="4">金融</option>
+									<option value="5">打法</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">入职时间</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">优先级</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
-					</div>
-					<div class="layui-inline">
-						<label class="layui-form-label">单选</label>
-						<div class="layui-input-inline">
-							<select name="buttonTpl" lay-verify="" lay-search="">
-								<option value="">--全部--</option>
-								<option value="1">在职</option>
-								<option value="2">离职</option>
-							</select>
+						<div class="layui-inline">
+							<label class="layui-form-label">优先级</label>
+							<div class="layui-input-inline">
+								<select name="priority" lay-verify="" lay-search="">
+									<option value="">--所有的--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
@@ -1117,8 +472,42 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<button class="layui-btn layuiadmin-btn-list" data-type="">查询</button>
-
 						</div>
+						<script type="text/html" id="typeName">
+							{{#  if(d.typeName==1){ }}
+						    <span>市场营销的</span>
+						    {{#  } else if(d.typeName==2) { }}
+						    <span>互功</span>
+						    {{#  } else if(d.typeName==3) { }}
+						    <span>测试</span>
+						    {{#  } else if(d.typeName==4) { }}
+						    <span>金融</span>
+						    {{#  } else if(d.typeName==5) { }}
+						    <span>打法</span>
+						    {{#  } else { }}
+						    <span></span>
+						    {{#  } }}
+						</script>
+						<script type="text/html" id="attrName">
+							{{#  if(d.attrName==1){ }}
+						    <span>单词</span>
+						    {{#  } else if(d.attrName==2) { }}
+						    <span>测试属性</span>
+						    {{#  } else if(d.attrName==3) { }}
+						    <span>防身</span>
+						    {{#  } else { }}
+						    <span></span>
+						    {{#  } }}
+						</script>
+						<script type="text/html" id="priority">
+							{{#  if(d.priority==1){ }}
+						    <span>必修</span>
+						    {{#  } else if(d.priority==2) { }}
+						    <span>选修</span>
+						    {{#  } else { }}
+						    <span></span>
+						    {{#  } }}
+						</script>
 						<table id="LAY-report-inquire-exemptt" lay-filter="LAY-report-inquire-exemptt"></table>
 					</div>
 					<script>
@@ -1158,28 +547,23 @@
 											}, {
 												field: 'employId',
 												title: '员工id',
-												hide: true,
+												align: 'center'
 											}, {
 												field: 'hours',
 												title: '课时',
 												align: 'center'
 											}, {
 												field: 'reason',
-												title: '原因',
+												title: '免除原因',
 												align: 'center'
 											}, {
 												field: 'removeTime',
-												title: '删除时间·',
+												title: '免除日期·',
 												align: 'center'
 											}, {
 												field: 'topic',
 												title: '等效课程',
 												align: 'center'
-											}, {
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150,
 											}
 										]
 									],
@@ -1187,110 +571,7 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-report-inquire-exemptt)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-					
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-					
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-					
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-													data) {
-													$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("修改成功", {
-																time: 1000
-															}, function() {
-																layui.table.reload("LAY-report-inquire-exemptt"), layer.close(layero)
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												})
-											})
-										}
-									})
-								})
-					
-					
+													
 							form.render(null, 'app-content-list');
 					
 							//监听搜索
@@ -1302,111 +583,12 @@
 									where: field
 								});
 							});
-					
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-inquire-exemptt'),
-											checkData = checkStatus.data; //得到选中的数据
-					
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-					
-												},
-												success: function(json) {
-													table.reload('LAY-report-inquire-exemptt');
-													layer.msg('已删除');
-												}
-											});
-					
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-					
-										});
-									}
-					
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-					
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-inquire-exemptt'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
-					
+
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
 								active[type] ? active[type].call(this) : '';
 							});
+							
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -1421,6 +603,7 @@
 					</script>
 				</div>
 
+
 				<!-- 需求矩阵 -->
 				<div class="layui-tab-item">
 
@@ -1428,183 +611,86 @@
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息4</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
 							</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">部门名称</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职位级别</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务类型</label>
-							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">职务名称</label>
-							<div class="layui-input-inline">
-								<select name="modules" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">工龄</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">自定义</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">市场营销的</option>
+									<option value="2">互功</option>
+									<option value="3">测试</option>
+									<option value="4">金融</option>
+									<option value="5">打法</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">入职时间</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">优先级</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">至</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">等效课程</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="endDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求来源</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="demandType" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">公司级别</option>
+									<option value="2">职位类型</option>
+									<option value="3">职位级别</option>
+									<option value="4">个人发展</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训状态</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="trainType" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">已培训</option>
+									<option value="2">已免除</option>
+									<option value="3">未培训</option>
 								</select>
 							</div>
 						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">在职状态</label>
-						<div class="layui-input-inline">
-							<select name="modules" lay-verify="" lay-search="">
-								<option value="">--全部--</option>
-								<option value="1">在职</option>
-								<option value="2">离职</option>
-							</select>
+						<div class="layui-inline">
+							<label class="layui-form-label">优先级</label>
+							<div class="layui-input-inline">
+								<select name="priority" lay-verify="" lay-search="">
+									<option value="">--所有--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
@@ -1654,15 +740,15 @@
 											},
 											{
 												field: 'demandTime',
-												title: '需求时间',
+												title: '需求日期',
 												align: 'center'
 											}, {
 												field: 'employId',
-												title: '等效课程ID',
-												hide: true,
+												title: '员工ID',
+												align: 'center'
 											}, {
 												field: 'planClass',
-												title: '课程类型',
+												title: '课时',
 												align: 'center'
 											}, {
 												field: 'recentPlan',
@@ -1670,17 +756,12 @@
 												align: 'center'
 											}, {
 												field: 'status',
-												title: '状态',												
+												title: '状态',
 												align: 'center'
 											}, {
 												field: 'topic',
 												title: '等效课程',
 												align: 'center'
-											}, {
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150,
 											}
 										]
 									],
@@ -1688,110 +769,6 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-report-inquire-matrix)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-													function(
-														data) {
-														$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-															data.field,
-															function(ev) {
-																layer.msg("修改成功", {
-																	time: 1000
-																}, function() {
-																	layui.table.reload("LAY-report-inquire-matrix"), layer.close(layero)
-																})
-															});
-														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-													})
-											})
-										}
-									})
-								})
-
 
 							form.render(null, 'app-content-list');
 
@@ -1804,107 +781,7 @@
 									where: field
 								});
 							});
-
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-inquire-matrix'),
-											checkData = checkStatus.data; //得到选中的数据
-
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-
-												},
-												success: function(json) {
-													table.reload('LAY-report-inquire-matrix');
-													layer.msg('已删除');
-												}
-											});
-
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-
-										});
-									}
-
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-inquire-matrix'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
-
+							
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
 								active[type] ? active[type].call(this) : '';
@@ -1925,3 +802,4 @@
 			</div>
 		</div>
 	</div>
+</div>
