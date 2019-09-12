@@ -11,32 +11,80 @@
 	<div class="layui-card">
 		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
 			<div class="layui-form-item">
-				<div class="layui-inline">
-					<label class="layui-form-label">课程类型</label>
+				<!-- <div class="layui-inline">
+					<label class="layui-form-label">课程内容</label>
 					<div class="layui-input-inline">
 						<select name="typeId" lay-verify="" id="addoption" lay-search="">
-							
+
 						</select>
+					</div>
+				</div> -->
+                <div class="layui-inline">
+                	<label class="layui-form-label">课程类型</label>
+                	<div class="layui-input-inline">
+                		<input name="" lay-verify="" placeholder="请输入课程类型" autocomplete="off" class="layui-input">
+                </div>
+                </div>
+				<div class="layui-inline">
+					<label class="layui-form-label">课程属性</label>
+					<div class="layui-input-inline">
+						<input name="" lay-verify="" placeholder="请输入课程属性" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">等效课程</label>
 					<div class="layui-input-inline">
-						<input name="topic" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+						<input name="topic" lay-verify="" placeholder="请输入等效课程" autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<!-- <div class="layui-inline">
+				<div class="layui-inline">
 					<label class="layui-form-label">培训形式</label>
 					<div class="layui-input-inline">
-						<select name="traForm"  lay-search="">
+						<select name="traForm" lay-verify="" lay-search="">
 							<option value=""></option>
-							<option value="1">外部公开班</option>
+							<option value="1">外部公开课</option>
 							<option value="2">外聘内训</option>
 							<option value="3">内部培训</option>
 						</select>
 					</div>
-				</div> -->
-
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">证书等级</label>
+					<div class="layui-input-inline">
+						<input name="cerLevel" lay-verify="" placeholder="请输入证书等级" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">部门级</label>
+					<div class="layui-input-inline">
+						<select name="isDept" lay-verify="" lay-search="">
+							<option value=""></option>
+							<option value="1">是</option>
+							<option value="2">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">启用</label>
+					<div class="layui-input-inline">
+						<select name="isUse" lay-verify="" lay-search="">
+							<option value=""></option>
+							<option value="1">是</option>
+							<option value="2">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">优先级别</label>
+					<div class="layui-input-inline">
+						<select name="priority" lay-verify="" lay-search="">
+							<option value=""></option>
+							<option value="1">必修</option>
+							<option value="2">选修</option>
+						</select>
+					</div>
+				</div>
+				
 				<!-- 搜索按钮 -->
 				<div class="layui-inline">
 					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
@@ -52,8 +100,8 @@
 				<button class="layui-btn layuiadmin-btn-list" data-type="adds">添加</button>
 			</div>
 
-				<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-			
+			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+
 			<script type="text/html" id="buttonTpl">
 				{{#  if(d.isDept==1){ }}
 			    <button class="layui-btn layui-btn-xs">是</button>
@@ -97,17 +145,17 @@
 					statusCode: 200 //规定成功的状态码，默认：0
 				},
 				parseData: function(res) { //res 即为原始返回的数据
-				
-			     	let listcomment=[];
-				     for(var i=0;i<res.dataList.length;i++){
-				      listcomment.push(res.dataList[i].comment)
-				     }
-					 let listtypeId=[];
-					  for(var i=0;i<res.dataList.length;i++){
-					   listtypeId.push(res.dataList[i].typeId)
-					  }
-				     localStorage.setItem('comment',JSON.stringify(listcomment))
-					 localStorage.setItem('typeId',JSON.stringify(listtypeId))
+
+					let listcomment = [];
+					for (var i = 0; i < res.dataList.length; i++) {
+						listcomment.push(res.dataList[i].comment)
+					}
+					let listtypeId = [];
+					for (var i = 0; i < res.dataList.length; i++) {
+						listtypeId.push(res.dataList[i].typeId)
+					}
+					localStorage.setItem('comment', JSON.stringify(listcomment))
+					localStorage.setItem('typeId', JSON.stringify(listtypeId))
 					return {
 						"code": res.code, //解析接口状态
 						"msg": res.desc, //解析提示文本
@@ -143,12 +191,12 @@
 						field: 'isDept',
 						toolbar: '#buttonTpl',
 						title: '部门级',
-						toolbar: '#buttonTpl',	
+						toolbar: '#buttonTpl',
 						align: 'center'
 					}, {
 						field: 'isUse',
-						title: '启动',
-						toolbar: '#buttons',	
+						title: '启用',
+						toolbar: '#buttons',
 						align: 'center'
 					}, {
 						field: 'priority',
@@ -245,7 +293,7 @@
 								success: function(e) {
 									//layer.msg(e.contractCheckVo);
 									let obj = e.data;
-									form.val("layuiadmin-app-form-list",obj);
+									form.val("layuiadmin-app-form-list", obj);
 									layTime(); //时间渲染
 								},
 								error: function(e) {
@@ -352,21 +400,21 @@
 		});
 	})
 </script>
-<script type="text/javascript">
-	layui.use("form",function(){
-	  var $=layui.jquery;
-	  let addId=JSON.parse(localStorage.getItem('typeId')) ;
-	  let strs="";
-	  let addcomment=JSON.parse(localStorage.getItem('comment'));
-	  strs+=`<option>请选择</option>`
-	  for(i=0;i<addId.length;i++){
-	   strs+=`<option value="${addId[i]}">`
-	   for(y=i;y<addcomment.length;y++){
-	    strs+=`${addcomment[y]}</option>`
-	   }
-	  }
-	  console.log(strs);
-	  console.log($('#addoption'))
-	  $('#addoption').html(strs)
-	 });
-</script>
+<!-- <script type="text/javascript">
+	layui.use("form", function() {
+		var $ = layui.jquery;
+		let addId = JSON.parse(localStorage.getItem('typeId'));
+		let strs = "";
+		let addcomment = JSON.parse(localStorage.getItem('comment'));
+		strs += `<option value="">请选择</option>`
+		for (i = 0; i < addId.length; i++) {
+			strs += `<option value="${addId[i]}">`
+			for (y = i; y < addcomment.length; y++) {
+				strs += `${addcomment[y]}</option>`
+			}
+		}
+		console.log(strs);
+		console.log($('#addoption'))
+		$('#addoption').html(strs)
+	});
+</script> -->

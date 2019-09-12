@@ -31,8 +31,12 @@
 		<label class="layui-form-label">启动</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="isUse"  lay-verify="title" autocomplete="off" placeholder="启动" class="layui-input">
-        </script>
+				<select name="isUse">
+				<option value="">--请选择--</option>
+				<option value="1">1:是</option>
+				<option value="2">2:否</option>
+			</select>
+			</script>
 		</div>
 		<label class="layui-form-label">优先级别</label>
 		<div class="layui-input-inline">
@@ -69,7 +73,7 @@
 				<option value="">--请选择--</option>
 				<option value="1">1:外部公开班</option>
 				<option value="2">2:外聘培训</option>
-				<option value="1">3:内部培训</option>
+				<option value="3">3:内部培训</option>
 			</select>
 			</script>
 		</div>
@@ -96,13 +100,18 @@
 				<li>子课程</li>
 			</ul>
 			<div class="layui-tab-content">
-				<!-- 相关课件begin -->
+				<!--相关课件bengin  -->
+				<div class="layui-tab-item layui-show">
+                   
+				</div>
+				<!--相关课件end  -->
 				
-				<!-- 相关课件end -->
-
-				<!-- 子课程begin -->
-				
-				<!-- 子课程end -->
+				<!--子课件bengin  -->
+				<div class="layui-tab-item">
+					
+					
+				</div>
+				<!--子课件end  -->
 			</div>
 		</div>
 	</div>
