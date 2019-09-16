@@ -1,0 +1,47 @@
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list"
+     style="padding: 20px 30px 0 0;">
+    <form action="" class="layui-form" method="post">
+	<div class="layui-form-item">
+        <label class="layui-form-label">等效课程</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="topic" lay-verify="required" autocomplete="off" placeholder="等效课程"
+                    class="layui-input">
+            </script>
+        </div>
+        <label class="layui-form-label">计划描述</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="describle" lay-verify="required" autocomplete="off" placeholder="计划描述"
+                       class="layui-input">
+            </script>
+        </div>  
+    </div>
+    
+	<div class="layui-form-item">
+        <label class="layui-form-label">部门组 </label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+               <input type="text" name="deptGruop" lay-verify="required"  autocomplete="off" placeholder="部门组"
+                      class="layui-input">
+            </script>
+        </div>
+		
+		
+    </div>
+	
+  
+		
+	
+    <input type="hidden" name="tenantCode"  />
+	<input type="hidden" name="id" />
+	
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-block" style="text-align: left;">
+        		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
+        		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+        </div>
+    </div>
+	</form>
+</div>

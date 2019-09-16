@@ -1,0 +1,386 @@
+<title>培训预算</title>
+<div class="layui-card layadmin-header ">
+	<div class="layui-breadcrumb " lay-filter="breadcrumb">
+			<a lay-href="">培训运作</a>
+			<a><cite>培训预算</cite></a>
+		
+	</div>
+</div>
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+			<!-- 搜索条件开始 -->
+			
+			<form action="" class="layui-form" method="post">
+				
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">课程类型:</label>
+						<div class="layui-input-inline">
+							<input type="text" name="courseTypeId" autocomplete="off" class="layui-input" placeholder="课程类型">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">优先级:</label>
+						<div class="layui-input-inline">
+							<select name="proprity" lay-filter="proprity " id="proprity " lay-search="">
+								<option value="0">请选择级别</option>
+								<option value="1">必修</option>
+								<option value="2">选修</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item" style="text-align: right;">
+					<div class="layui-input-block">
+						<button type="button" class="layui-btn layuiadmin-btn-list" id="doSearch">搜索</button>
+						<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+					</div>
+				</div>
+			</form>
+
+			<!-- 搜索条件结束 -->
+
+		</div>
+		<div class="layui-card-body">
+			
+
+			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+
+			<div id="userBar" style="display: none;">
+				<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			</div>
+			<!-- 数据表格结束 -->
+
+			<!-- 添加和修改的弹出层开始 -->
+
+		</div>
+		<!-- 添加和修改的弹出层结束 -->
+	</div>
+</div>
+
+<script type="text/javascript">
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
+
+
+		//绑定时间选择器
+		laydate.render({
+			elem: '#startTime'
+		});
+		laydate.render({
+			elem: '#endTime'
+		})
+		//表格渲染
+		table.render({
+				elem: '#LAY-app-content-list',
+				url: 'http://119.3.77.206:8004/api/train/trainBudgetController/list',
+				/* request: {
+					pageName: 'pageNum' //页码的参数名称，默认：page
+						,
+					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}, */
+				response: {
+					statusCode: 200 //规定成功的状态码，默认：0
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						
+						"code": res.code, //解析接口状态
+						"msg": res.desc, //解析提示文本
+						"count": res.total, //解析数据长度
+						"data": res.dataList //解析数据列表
+					};
+				},
+				cols: [
+					[ //列表数据
+						 {
+							field: 'id',
+							title: 'id',
+							hide: true
+						}, {
+							field: 'courseId',
+							title: '课程属性',
+							align: 'center'
+						}, {
+							field: 'courseTypeName',
+							title: '课程类型名称',
+							align: 'center'
+							
+						}, {
+							field: 'addPersonNum',
+							title: '预计增加人次',
+							align: 'center'
+							
+						}, {
+							field: 'sumCount',
+							title: '需求总人次',
+							align: 'center'
+							
+						},{
+							field: 'completeCount',
+							title: '需求已完成',
+							align: 'center',
+							id:'priority'
+						},{
+							field: 'unCompeleteCount',
+							title: '需求未完成',
+							align: 'center'
+							
+						}]
+				],
+				page: !0,
+				limit: 10,
+				limits: [10, 15, 20, 25, 30],
+			}),
+			table.on("tool(LAY-app-content-list)", function(obj) {
+				var data = obj.data;
+				if("look" === obj.event){
+					admin.popup({
+						title: "查看员工信息",
+						area: ['80%', '100%'],
+						id: "LAY-popup-content-view",
+						success: function(t, layero) {
+							view(this.id).render("train/budget/").done(function() {
+								$.ajax({
+									 url: './json/adminManagement/asset.json', //换成自己的url
+									// stype: "POST",
+									dataType: "json",
+									data: {
+										id: data.id
+									},
+									success: function(e) {
+										//layer.msg(e.contractCheckVo);
+										let obj = e;
+										form.val("layuiadmin-app-form-list", {
+											"id": obj.id,
+											"name": obj.name,
+											"sex": obj.sex,
+											"code": obj.code,
+											"phone": obj.phone,
+											"homeAddress": obj.homeAddress
+											
+										});
+									
+									},
+								})
+								form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+									data) {
+								})
+							})
+						}
+					}) 
+				}
+				"del" === obj.event ? layer.confirm("确定删除此条记录？", function(e) {
+					$.ajax({
+						url: './json/adminManagement/asset.json', //换成自己的url
+						//type: "POST",
+						dataType: "json",
+						data: {
+							id: data.id
+						},
+						success: function(b) {
+							layer.msg('删除成功');
+							obj.del(), layer.close(e)
+						},
+						error: function(e) {
+							layer.msg('删除失败')
+							layer.msg(e);
+						}
+					})
+				}) : "edit" === obj.event && admin.popup({
+					title: "编辑工作计划表",
+					area: ['80%', '100%'],
+					id: "LAY-popup-content-edit",
+					success: function(t, layero) {
+						view(this.id).render("TargetManagement/MyWorkTaskForm").done(function() {
+							$.ajax({
+								url: './json/adminManagement/asset.json', //换成自己的url
+								/* type: "POST", */
+								dataType: "json",
+								data: {
+									id: data.id
+								},
+								success: function(e) {
+									//layer.msg(e.contractCheckVo);
+									let obj = e;
+									form.val("layuiadmin-app-form-list", {
+										"id": obj.id,
+										"teskname": obj.teskname,
+										"founder": obj.founder,
+										"executor": obj.executor,
+										"startTime": obj.startTime,
+										"predict": obj.predict,
+										"actual": obj.actual
+										
+									});
+									//日期
+									$(".date").each(function() {
+										laydate.render({
+											elem: this,
+											trigger: 'click',
+											// min: -5000,
+											// max: 0,
+											format: 'yyyy-MM-dd',
+											done: function(value, date, endDate) {
+												var startTime = new Date($('#startTime').val()).getTime();
+												var endTime = new Date($('#endTime').val()).getTime();
+												if (endTime < startTime) {
+													layer.msg('结束时间不能小于开始时间');
+													$('#startTime').val($('#endTime').val());
+												}
+											}
+
+										});
+									})
+								},
+								error: function(e) {
+									layer.msg(e);
+								}
+							})
+							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+								data) {
+								$.post('./json/adminManagement/asset.json',
+									data.field,
+									function(ev) {
+										layer.msg("修改成功", {
+											time: 1000
+										}, function() {
+											layui.table.reload("LAY-app-content-list"), layer.close(layero)
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							})
+
+						})
+					}
+				})
+			})
+		form.render(null, 'app-content-list');
+
+		//监听搜索
+		form.on('submit(LAY-app-contlist-search)', function(data) {
+			var field = data.field;
+			console.log(field);
+			//执行重载
+			table.reload('LAY-app-content-list', {
+				where: field
+			});
+		});
+		var active = {
+			batchdel: function() {
+				var checkStatus = table.checkStatus('LAY-app-content-list'),
+					checkData = checkStatus.data; //得到选中的数据
+				if (checkData.length === 0) {
+					return layer.msg('请选择数据');
+				}
+				let arr = "";
+				let arrTwo = "";
+				for (var i in checkData) {
+					arr += checkData[i].id + ",";
+				}
+				for (var i in checkData) {
+					arrTwo += checkData[i].commonId + ",";
+				}
+				layer.confirm('确定删除吗？', function(index) {
+					$.ajax({
+						//type: "POST",
+						url: './json/adminManagement/asset.json',
+						dataType: "json",
+						data: {
+							id: arr,
+							commonId: arrTwo
+						},
+						success: function(json) {
+							table.reload('LAY-app-content-list');
+							layer.msg('已删除');
+						}
+					})
+				});
+			},
+			//添加
+
+
+			add: function(othis) {
+				admin.popup({
+					title: '制定工作计划表',
+					area: ['80%', '100%'],
+					id: 'LAY-popup-content-add',
+					success: function(layero, index) {
+						view(this.id).render('adminManagement/asset/listForm').done(function() {
+							form.render(null, 'layuiadmin-app-form-list');
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									trigger: 'click',
+									// min: -5000,
+									// max: 0,
+									format: 'yyyy-MM-dd',
+									done: function(value, date, endDate) {
+										var startTime = new Date($('#startTime').val()).getTime();
+										var endTime = new Date($('#endTime').val()).getTime();
+										if (endTime < startTime) {
+											layer.msg('结束时间不能小于开始时间');
+											$('#startTime').val($('#endTime').val());
+										}
+									}
+								});
+							})
+							//监听提交
+							form.on('submit(layuiadmin-app-form-submit)', function(data) {
+								var field = data.field; //获取提交的字段
+								$.post('./json/adminManagement/asset.json',
+									data.field,
+									function(ev) {
+										layer.msg("新增成功", {
+											time: 1000
+										}, function() {
+											layer.close(index); //执行关闭 
+											layui.table.reload('LAY-app-content-list'); //重载表格
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						});
+					}
+				});
+			}
+		};
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+		//日期
+		$(".date").each(function() {
+			laydate.render({
+
+				elem: this,
+				trigger: 'click'
+				
+				// ,
+				// min: -5000,
+				// max: 0
+				
+			});
+		})
+	});
+</script>
+			<script type="text/html" id="state">
+				{{# if(d.state==1){ }}
+			       <button class="layui-btn layui-btn-xs">正常</button>
+			    {{#  } else if(d.state==2) { }}
+			       <button class="layui-btn layui-btn-danger layui-btn-xs">维修</button>
+			    {{#  } else if(d.state==3) { }}
+			        <button class="layui-btn  layui-btn-disabled layui-btn-xs">报废</button>
+			    {{#  } else { }}
+			       <button class="layui-btn layui-btn-primary layui-btn-xs">其他</button>
+			    {{#  } }}
+			  </script>

@@ -51,7 +51,9 @@
 									elem: '#test',
 									method: "GET",
 									url: commonSrc + 'api/train/demandController/list', //数据接口
-									page: true, //开启分页
+									// page: !0,
+									// limit: 10,
+									// limits: [10, 15, 20, 25, 30],//开启分页
 									// toolbar: '#toolbarDemo',
 									response: {
 										statusCode: 200 //规定成功的状态码，默认：0
@@ -80,33 +82,26 @@
 											title: 'id',
 											hide: true,
 										}, {
+											field: 'userName',
+											title: '名字',
+											align: 'center'
+										}, {
+											field: 'type',
+											title: '需求类别',
+											id:'type',
+											align: 'center'
+										},{
 											field: 'applyTime',
-											title: '时间',
+											title: '申请时间',
 											align: 'center',
 										}, {
 											field: 'companyId',
 											title: '公司id',
 											hide: true,
-										}, {
-											field: 'gmtCreated',
-											title: '培训机构',
-											align: 'center'
-										}, {
-											field: 'gmtUpdated',
-											title: '讲师姓名',
-											align: 'center'
-										}, {
+										},  {
 											field: 'tenantCode',
 											title: '租户id',
 											hide: true,
-										}, {
-											field: 'type',
-											title: '需求类别',
-											align: 'center'
-										}, {
-											field: 'userName',
-											title: '名字',
-											align: 'center'
 										}, {
 											fixed: 'right',
 											title: '操作',
@@ -145,7 +140,7 @@
 										area: ['720px', '700px'],
 										id: "LAY-popup-content-edit",
 										success: function(t, layero) {
-											view(this.id).render("train/demand/editmand").done(function() {
+											view(this.id).render("train/Demand/DemandForm").done(function() {
 												$.ajax({
 													url: commonSrc + "api/train/demandController/selectDemandById", //换成自己的url
 													type: "GET",
@@ -247,7 +242,7 @@
 										area: ['720px', '700px'],
 										id: 'LAY-popup-content-add',
 										success: function(layero, index) {
-											view(this.id).render('train/demand/editmand').done(function() { //跳转
+											view(this.id).render('train/Demand/DemandForm').done(function() { //跳转
 												form.render(null, 'layuiadmin-app-form-list');
 												//日期
 												$(".date").each(function() {
@@ -296,7 +291,7 @@
 				</div>
 				<!-- one end -->
 
-				<div class="layui-tab-item">无内容</div>
+				
 			</div>
 		</div>
 
