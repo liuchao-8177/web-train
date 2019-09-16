@@ -13,9 +13,7 @@
 					<div class="layui-form-item">
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -121,20 +119,24 @@
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+							</button>
 						</div>
 						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
 					</div>
 				</div>
 
 				<script>
-					layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+					layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 						var $ = layui.$,
 						admin = layui.admin,
 						view = layui.view,
 						table = layui.table,
 						laydate = layui.laydate,
-						form = layui.form;
+						form = layui.form,
+						element = layui.element;
+						
 
 		//表格渲染
 		table.render({
@@ -162,9 +164,9 @@
 					[{
 						type: 'checkbox',
 						fixed: "left"
-					}, {
+					},{
 						field: 'courseGrade',
-						title: '满意度：对课程的评估',
+						title: '满意度：对课程评估',
 						hide: true,
 					}, {
 						field: 'courseName',
@@ -247,25 +249,49 @@
 				page: !0,
 				limit: 10,
 				limits: [10, 15, 20, 25, 30],
+				// id:"testRload"
 				}),
 			
 				form.render(null, 'app-content-list');
+				
+				// 监听搜索
+				 active = {
+				    reload: function(){
+				      // var demoReload = $('#demoReload');
+				      
+				      //执行重载
+				      table.reload('LAY-report-general-train', {
+				        page: {
+				          curr: 1 //重新从第 1 页开始
+				        }
+				        ,where: {
+				          key: {
+				            // teacherId:1
+							 startTime: "2019-09-05",
+							  endTime: "2019-09-06",
+				          }
+				        }
+				      }, 'data');
+				    }
+				  };
 
-					//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
-					var field = data.field;
-					console.log(field);
-					//执行重载
-					table.reload('LAY-report-general-train', {
-						where: field
-					});
-				});
+				//监听搜索
+				// form.on('submit(LAY-app-contlist-search)', function(data) {
+				// 	var field = data.field;
+				// 	console.log(field);
+				// 	
+				// 	//执行重载
+				// 	table.reload('LAY-report-general-train', {
+				// 		where: field,
+				// 	});
+				// });
 
 
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
 				});
+				
 				//日期
 				$(".date").each(function() {
 					laydate.render({
@@ -273,6 +299,7 @@
 						trigger: 'click',
 					});
 					})
+					
 				/*$(".add").click(function() {
 					$("table").hide();
 				});*/
@@ -284,9 +311,7 @@
 					<div class="layui-form-item">
 						<!-- 搜索按钮 -->
 						<div class="layui-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -399,7 +424,9 @@
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+							</button>
 						</div>
 						<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
 					</div>
@@ -420,6 +447,7 @@
 								elem: '#LAY-report-general-lecturer',
 								method: "GET",
 								url: commonSrc + 'api/train/recordInController/teacherRelated',
+								toolbar: '#toolbarDemo',
 								request: {
 									pageName: 'pageNum' //页码的参数名称，默认：page
 										,
@@ -467,7 +495,7 @@
 									}, {
 										field: 'remark',
 										title: '备注',
-										align: 'center'
+										hide: true,
 									}, {
 										field: 'startTime',
 										title: '开始日期',
@@ -500,10 +528,10 @@
 						});
 
 
-						$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-							var type = $(this).data('type');
-							active[type] ? active[type].call(this) : '';
-						});
+						// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+						// 	var type = $(this).data('type');
+						// 	active[type] ? active[type].call(this) : '';
+						// });
 						//日期
 						$(".date").each(function() {
 							laydate.render({
