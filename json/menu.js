@@ -1,4 +1,4 @@
-﻿{
+{
 	"code": 0,
 	"msg": "0",
 	"data": [{
@@ -29,19 +29,19 @@
 		"list": [{
 			"name": "createpaper",
 			"title": "需求设置",
-			"jump": "train/demand/addmand"
+			"jump": "train/demand/Demand"
 		}, {
 			"name": "createpaperquickly",
 			"title": "培训预算",
-			"jump": "train/eudget/addeuget"
+			"jump": "train/budget/Budget"
 		}, {
 			"name": "managerpaper",
 			"title": "计划报名",
-			"jump": "train/plan/addplan"
+			"jump": "train/plan/Plan"
 		},{
 			"name": "paperclassification",
 			"title": "记录评估",
-			"jump": "train/record/addrecord"
+			"jump": "train/record/Record"
 		},{
 			"name": "paperclassification",
 			"title": "OJT记录",
