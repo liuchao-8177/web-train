@@ -1,6 +1,12 @@
 <title>费用统计</title>
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">报表中心</a>
+		<a><cite>费用统计</cite></a>
+	</div>
+</div>
 
-<div class="layui-fluid">
+<div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-allowclose="true">
 			<ul class="layui-tab-title">
@@ -23,11 +29,8 @@
 
 
 					<div class="layui-form-item ">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -46,7 +49,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -64,7 +67,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-department" lay-filter="LAY-report-expense-department"></table>
 					</div>
@@ -435,19 +441,26 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">职位类型</label>
+							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位类型" autocomplete="off" class="layui-input">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -458,7 +471,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -476,7 +489,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-type" lay-filter="LAY-report-expense-type"></table>
 					</div>
@@ -791,32 +807,39 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">职位级别</label>
+							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位级别" autocomplete="off" class="layui-input">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -832,7 +855,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-rank" lay-filter="LAY-report-expense-rank"></table>
 					</div>
@@ -1147,11 +1173,8 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -1159,7 +1182,21 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseTypeId" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">USB</option>
+									<option value="2">操作证1</option>
+									<option value="3">供应链管理</option>
+									<option value="4">管理</option>
+									<option value="5">基础</option>
+									<option value="6">计算机</option>
+									<option value="7">品质管理</option>
+									<option value="8">其他</option>
+									<option value="9">人力资源</option>
+									<option value="10">入职培训</option>
+									<option value="11">生产</option>
+									<option value="12">市场营销</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1170,7 +1207,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -1188,7 +1225,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-subject" lay-filter="LAY-report-expense-subject"></table>
 					</div>
@@ -1235,87 +1275,64 @@
 							[{
 								type: 'checkbox',
 								fixed: "left"
-							}, {
-								field: 'courseTypeId',
-								title: '课程类型ID',
-								hide: true,
 							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'classOnJob',
-								title: '职位类型',
+								title: '课时（在职）',
 								align: 'center'
 							},{
 								field: 'companyPay',
 								title: '公司支付',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'courseTypeName',
 								title: '课程类型',
 								align: 'center'
 							},{
 								field: 'other',
-								title: '其他',
-								hide: true,
+								title: '其他费用',
+								align: 'center'
 							},{
 								field: 'penetrationOnJob',
-								title: '在职培训',
-								hide: true,
+								title: '普及率（在职）',
+								align: 'center'
 							},{
 								field: 'personNumOnJob',
-								title: '在职人数',
-								hide: true,
+								title: '人数（在职）',
+								align: 'center'
 							},{
 								field: 'planClass',
-								title: '计划',
-								hide: true,
+								title: '课时（已培训人所有人总课时',
+								align: 'center'
 							},{
 								field: 'selfPay',
 								title: '个人支付',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'trainNum',
-								title: '普及率',
-								align: 'center'
-							},
-							{
+								title: '受训人次',
+								hide: true,
+							},{
 								field: 'trainPercentage',
 								title: '培训百分比',
 								align: 'center'
-							},
-							{
+							},{
 								field: 'trainPersonNumOnJob',
-								title: '在职培训员工编号',
-								hide: true,
+								title: '受训人数',
+								align: 'center'
 							},
 							{
 								field: 'travel',
-								title: '差旅',
+								title: '差旅费',
 								align: 'center'
 							},
 							{
 								field: 'tuition',
 								title: '学费',
 								align: 'center'
-							},{
-								field: 'endTime',
-								title: '培训日期 止',
-								hide: true,
-							},{
-								field: 'startTime',
-								title: '培训日期 起',
-								hide: true,
-							}, {
-								field: 'tenantCode',
-								title: '租户编码',
-								hide: true,
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -1561,11 +1578,8 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -1584,7 +1598,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -1602,7 +1616,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-equivalent" lay-filter="LAY-report-expense-equivalent"></table>
 					</div>
@@ -1641,87 +1658,60 @@
 							[{
 								type: 'checkbox',
 								fixed: "left"
-							}, {
-								field: 'courseTypeId',
-								title: '课程类型ID',
-								hide: true,
 							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'classOnJob',
-								title: '职位类型',
+								title: '课时（在职）',
 								align: 'center'
 							},{
 								field: 'companyPay',
 								title: '公司支付',
-								align: 'center'
-							},{
-								field: 'courseTypeName',
-								title: '课程类型',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'other',
-								title: '其他',
-								hide: true,
+								title: '其他费用',
+								align: 'center'
 							},{
 								field: 'penetrationOnJob',
-								title: '在职培训',
-								hide: true,
+								title: '普及率（在职）',
+								align: 'center'
 							},{
 								field: 'personNumOnJob',
-								title: '在职人数',
-								hide: true,
+								title: '人数（在职）',
+								align: 'center'
 							},{
 								field: 'planClass',
-								title: '计划',
-								hide: true,
+								title: '课时（已培训人所有人总课时',
+								align: 'center'
 							},{
 								field: 'selfPay',
 								title: '个人支付',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'trainNum',
-								title: '普及率',
-								align: 'center'
-							},
-							{
+								title: '受训人次',
+								hide: true,
+							},{
 								field: 'trainPercentage',
 								title: '培训百分比',
 								align: 'center'
-							},
-							{
+							},{
 								field: 'trainPersonNumOnJob',
-								title: '在职培训员工编号',
-								hide: true,
+								title: '受训人数',
+								align: 'center'
 							},
 							{
 								field: 'travel',
-								title: '差旅',
+								title: '差旅费',
 								align: 'center'
 							},
 							{
 								field: 'tuition',
 								title: '学费',
 								align: 'center'
-							},{
-								field: 'endTime',
-								title: '培训日期 止',
-								hide: true,
-							},{
-								field: 'startTime',
-								title: '培训日期 起',
-								hide: true,
-							}, {
-								field: 'tenantCode',
-								title: '租户编码',
-								hide: true,
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -1956,11 +1946,8 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -1968,7 +1955,11 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<input type="text" name="priority" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">必修</option>
+									<option value="2">选修</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1979,7 +1970,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -1997,7 +1988,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-precedence" lay-filter="LAY-report-expense-precedence"></table>
 					</div>
@@ -2036,87 +2030,64 @@
 							[{
 								type: 'checkbox',
 								fixed: "left"
-							}, {
-								field: 'courseTypeId',
-								title: '课程类型ID',
-								hide: true,
 							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'classOnJob',
-								title: '职位类型',
+								title: '课时（在职）',
 								align: 'center'
 							},{
 								field: 'companyPay',
 								title: '公司支付',
-								align: 'center'
-							},{
-								field: 'courseTypeName',
-								title: '课程类型',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'other',
-								title: '其他',
-								hide: true,
+								title: '其他费用',
+								align: 'center'
 							},{
 								field: 'penetrationOnJob',
-								title: '在职培训',
-								hide: true,
+								title: '普及率（在职）',
+								align: 'center'
 							},{
 								field: 'personNumOnJob',
-								title: '在职人数',
-								hide: true,
+								title: '人数（在职）',
+								align: 'center'
 							},{
 								field: 'planClass',
-								title: '计划',
-								hide: true,
+								title: '课时（已培训人所有人总课时',
+								align: 'center'
+							},{
+								field: 'priority',
+								title: '优先级',
+								align: 'center'
 							},{
 								field: 'selfPay',
 								title: '个人支付',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'trainNum',
-								title: '普及率',
-								align: 'center'
-							},
-							{
+								title: '受训人次',
+								hide: true,
+							},{
 								field: 'trainPercentage',
 								title: '培训百分比',
 								align: 'center'
-							},
-							{
+							},{
 								field: 'trainPersonNumOnJob',
-								title: '在职培训员工编号',
-								hide: true,
+								title: '受训人数',
+								align: 'center'
 							},
 							{
 								field: 'travel',
-								title: '差旅',
+								title: '差旅费',
 								align: 'center'
 							},
 							{
 								field: 'tuition',
 								title: '学费',
 								align: 'center'
-							},{
-								field: 'endTime',
-								title: '培训日期 止',
-								hide: true,
-							},{
-								field: 'startTime',
-								title: '培训日期 起',
-								hide: true,
-							}, {
-								field: 'tenantCode',
-								title: '租户编码',
-								hide: true,
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -2362,11 +2333,8 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -2374,7 +2342,12 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseAttrId" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<select name="courseAttrId" lay-verify="" lay-search="">
+									<option value="">--所有--</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2385,7 +2358,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -2403,7 +2376,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-genera" lay-filter="LAY-report-expense-genera"></table>
 					</div>
@@ -2443,86 +2419,59 @@
 								type: 'checkbox',
 								fixed: "left"
 							},{
-								field: 'courseTypeId',
-								title: '课程类型ID',
-								hide: true,
-							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
-								align: 'center'
+								hide: true,
 							},{
 								field: 'classOnJob',
-								title: '职位类型',
+								title: '课时（在职）',
 								align: 'center'
 							},{
 								field: 'companyPay',
 								title: '公司支付',
-								align: 'center'
+								hide: true,
 							},{
-								field: 'courseTypeName',
-								title: '课程类型',
+								field: 'courseAttrName',
+								title: '课程属性',
 								align: 'center'
 							},{
 								field: 'other',
-								title: '其他',
-								hide: true,
+								title: '其他费用',
+								align: 'center'
 							},{
 								field: 'penetrationOnJob',
-								title: '在职培训',
-								hide: true,
+								title: '普及率（在职）',
+								align: 'center'
 							},{
 								field: 'personNumOnJob',
-								title: '在职人数',
-								hide: true,
+								title: '人数（在职）',
+								align: 'center'
 							},{
 								field: 'planClass',
-								title: '计划',
-								hide: true,
-							},{
-								field: 'selfPay',
-								title: '个人支付',
+								title: '课时（已培训人所有人总课时',
 								align: 'center'
 							},{
 								field: 'trainNum',
-								title: '普及率',
-								align: 'center'
-							},
-							{
+								title: '受训人次',
+								hide: true,
+							},{
 								field: 'trainPercentage',
 								title: '培训百分比',
 								align: 'center'
-							},
-							{
+							},{
 								field: 'trainPersonNumOnJob',
-								title: '在职培训员工编号',
-								hide: true,
+								title: '受训人数',
+								align: 'center'
 							},
 							{
 								field: 'travel',
-								title: '差旅',
+								title: '差旅费',
 								align: 'center'
 							},
 							{
 								field: 'tuition',
 								title: '学费',
 								align: 'center'
-							},{
-								field: 'endTime',
-								title: '培训日期 止',
-								hide: true,
-							},{
-								field: 'startTime',
-								title: '培训日期 起',
-								hide: true,
-							}, {
-								field: 'tenantCode',
-								title: '租户编码',
-								hide: true,
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -2752,23 +2701,25 @@
 		</script>
 				</div>
 
-				<!-- 按职位查询 -->
+				<!-- 按职务名称查询 -->
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">职位</label>
+							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="职位" autocomplete="off" class="layui-input">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2779,7 +2730,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -2797,7 +2748,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-position" lay-filter="LAY-report-expense-position"></table>
 					</div>
@@ -3108,371 +3062,12 @@
 		</script>
 				</div>
 
-				<!-- 按自定义查询 -->
-				<div class="layui-tab-item">
-
-					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
-						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
-						</div>
-					</div>
-
-					<div class="layui-form-item">
-						<div class="layui-inline">
-							<label class="layui-form-label">自定义</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="自定义" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">培训日期</label>
-							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">性别</label>
-							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="layui-card-body">
-						<div class="layui-form-item">
-							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
-						</div>
-						<table id="LAY-report-expense-definition" lay-filter="LAY-report-expense-definition"></table>
-					</div>
-					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
-				var $ = layui.$,
-					admin = layui.admin,
-					view = layui.view,
-					table = layui.table,
-					laydate = layui.laydate,
-					form = layui.form,
-					element = layui.element;
-	
-				//表格渲染
-				table.render({
-						elem: '#LAY-report-expense-definition',
-						url: commonSrc + '',
-						toolbar: '#toolbarDemo',
-						request: {
-							pageName: 'pageNum' //页码的参数名称，默认：page
-								,
-							limitName: 'pageSize' //每页数据量的参数名，默认：limit
-						},
-						response: {
-							statusCode: 200 //规定成功的状态码，默认：0
-						},
-						parseData: function(res) { //res 即为原始返回的数据
-							return {
-								"code": res.code, //解析接口状态
-								"msg": res.desc, //解析提示文本
-								"count": res.total, //解析数据长度
-								"data": res.dataList //解析数据列表
-							};
-						},
-						cols: [
-							[{
-								type: 'checkbox',
-								fixed: "left"
-							}, {
-								field: 'id',
-								title: 'id',
-								hide: true,
-							}, {
-								field: 'commonId',
-								title: '申请公共id',
-								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-								field: 'applyType',
-								title: '是否离职',
-								align: 'center'
-							}, {
-								field: 'applyType',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'checkStatus',
-								title: '离职日期',
-								templet: "#buttonTpl",
-								minWidth: 80,
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
-							}]
-						],
-						page: !0,
-						limit: 10,
-						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(LAY-report-expense-definition)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-definition"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
-					})
-	
-	
-				form.render(null, 'app-content-list');
-	
-				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
-					var field = data.field;
-					console.log(field);
-					//执行重载
-					table.reload('LAY-report-expense-definition', {
-						where: field
-					});
-				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-definition'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-definition');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-definition'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-	
-				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-					var type = $(this).data('type');
-					active[type] ? active[type].call(this) : '';
-				});
-				//日期
-				$(".date").each(function() {
-					laydate.render({
-						elem: this,
-						trigger: 'click',
-					});
-				})
-				/*$(".add").click(function() {
-					$("table").hide();
-				});*/
-			})
-		</script>
-				</div>
-
 				<!-- 按工龄查询 -->
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -3491,7 +3086,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -3509,7 +3104,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-length" lay-filter="LAY-report-expense-length"></table>
 					</div>
@@ -3824,11 +3422,8 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-input-inline">
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询信息</i>
-							</button>
+							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
@@ -3847,7 +3442,7 @@
 						</div>
 
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -3865,7 +3460,10 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<button class="layui-btn layuiadmin-btn-list " data-type="">查询</button>
+							<!-- 搜索按钮 -->
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+							</button>
 						</div>
 						<table id="LAY-report-expense-staff" lay-filter="LAY-report-expense-staff"></table>
 					</div>
@@ -3905,86 +3503,63 @@
 												type: 'checkbox',
 												fixed: "left"
 											}, {
-												field: 'courseTypeId',
-												title: '课程类型ID',
-												hide: true,
-											}, {
 												field: 'avgTrainTime',
 												title: '人均培训小时',
-												align: 'center'
+												hide: true,
 											}, {
 												field: 'classOnJob',
-												title: '职位类型',
+												title: '课时（在职）',
 												align: 'center'
 											}, {
 												field: 'companyPay',
 												title: '公司支付',
-												align: 'center'
+												hide: true,
 											}, {
-												field: 'courseTypeName',
-												title: '课程类型',
+												field: 'employId',
+												title: '员工ID',
 												align: 'center'
 											}, {
 												field: 'other',
-												title: '其他',
-												hide: true,
+												title: '其他费用',
+												align: 'center'
 											}, {
 												field: 'penetrationOnJob',
-												title: '在职培训',
-												hide: true,
+												title: '普及率（在职）',
+												align: 'center'
 											}, {
 												field: 'personNumOnJob',
-												title: '在职人数',
-												hide: true,
+												title: '人数（在职）',
+												align: 'center'
 											}, {
 												field: 'planClass',
-												title: '计划',
-												hide: true,
+												title: '课时（已培训人所有人总课时',
+												align: 'center'
 											}, {
 												field: 'selfPay',
 												title: '个人支付',
-												align: 'center'
+												hide: true,
 											}, {
 												field: 'trainNum',
-												title: '普及率',
-												align: 'center'
-											},
-											{
+												title: '受训人次',
+												hide: true,
+											}, {
 												field: 'trainPercentage',
 												title: '培训百分比',
 												align: 'center'
-											},
-											{
+											}, {
 												field: 'trainPersonNumOnJob',
-												title: '在职培训员工编号',
-												hide: true,
+												title: '受训人数',
+												align: 'center'
 											},
 											{
 												field: 'travel',
-												title: '差旅',
+												title: '差旅费',
 												align: 'center'
 											},
 											{
 												field: 'tuition',
 												title: '学费',
 												align: 'center'
-											}, {
-												field: 'endTime',
-												title: '培训日期 止',
-												hide: true,
-											}, {
-												field: 'startTime',
-												title: '培训日期 起',
-												hide: true,
-											}, {
-												field: 'tenantCode',
-												title: '租户编码',
-												hide: true,
-											}, {
-												fixed: 'right',
-												title: '操作',
-												toolbar: '#table-content-list',
-												minWidth: 150,
 											}
 										]
 									],

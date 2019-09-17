@@ -1,5 +1,12 @@
 <title>记录一览表</title>
-<div class="layui-fluid">
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">报表中心</a>
+		<a><cite>记录一览表</cite></a>
+	</div>
+</div>
+
+<div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
 			<ul class="layui-tab-title">
@@ -11,7 +18,6 @@
 				<div class="layui-tab-item layui-show">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
@@ -27,7 +33,12 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseAttribute" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<select name="courseAttrId" lay-verify="" lay-search="">
+									<option value="">--所有--</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -35,14 +46,9 @@
 							<div class="layui-input-inline">
 								<select name="trainForm" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">内部培训</option>
+									<option value="2">外部公开班</option>
+									<option value="3">外聘内训</option>
 								</select>
 							</div>
 						</div>
@@ -51,27 +57,10 @@
 							<div class="layui-input-inline">
 								<select name="" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">强思企业管理</option>
+									<option value="2">广州盛炬智能科技有限公司</option>
+									<option value="3">若干</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">需求日期</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -87,40 +76,65 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">培训日期</label>
+							<label class="layui-form-label">培训开始</label>
 							<div class="layui-input-inline">
 								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">培训结束</label>
 							<div class="layui-input-inline">
 								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-card-body">
-							<script type="text/html" id="buttonTpl">
-								{{#  if(d.checkStatus==1){ }}
-		                        <button>保存</button>
-								{{#  } else if(d.checkStatus==2) { }}
-								<button>审核中</button>
-								{{#  } else if(d.checkStatus==3) { }}
-								<button>审核通过</button>
-								{{#  } else if(d.checkStatus==4) { }}
-								<button>审核失败</button>
-								{{#  } else { }}
-								<button>废弃</button>
-								{{#  } }}
-		            </script>
-
+							<!--课程类型-->
+							<script type="text/html" id="courseTypeName">
+								{{#  if(d.courseTypeName==1){ }}
+		                    <button>USB</button>
+							{{#  } else if(d.courseTypeName==2) { }}
+							<button>操作证1</button>
+							{{#  } else if(d.courseTypeName==3) { }}
+							<button>供应链管理</button>
+							{{#  } else if(d.courseTypeName==4) { }}
+							<button>管理</button>
+							{{#  } else if(d.courseTypeName==5) { }}
+							<button>基础</button>
+							{{#  } else if(d.courseTypeName==6) { }}
+							<button>计算机</button>
+							{{#  } else if(d.courseTypeName==7) { }}
+							<button>品质管理</button>
+							{{#  } else if(d.courseTypeName==8) { }}
+							<button>其他</button>
+							{{#  } else if(d.courseTypeName==9) { }}
+							<button>人力资源</button>
+							{{#  } else if(d.courseTypeName==10) { }}
+							<button>入职培训</button>
+							{{#  } else if(d.courseTypeName==11) { }}
+							<button>生产</button>
+							{{#  } else if(d.courseTypeName==12) { }}
+							<button>市场营销</button>
+							{{#  } else { }}
+		                    </script>
+							<!--课程属性-->
+							<script type="text/html" id="courseAttrId">
+								{{#  if(d.courseAttrId==1){ }}
+					        <button>单词</button>
+							{{#  } else if(d.courseAttrId==2) { }}
+							<button>测试属性</button>
+							{{#  } else if(d.courseAttrId==3) { }}
+							<button>防身</button>
+							{{#  } else { }}
+							</script>
 						</div>
 					</div>
 
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
 						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
@@ -267,8 +281,8 @@
 				        ,where: {
 				          key: {
 				            // teacherId:1
-							 startTime: "2019-09-05",
-							  endTime: "2019-09-06",
+							 // startTime: "2019-09-05",
+							  // endTime: "2019-09-06",
 				          }
 				        }
 				      }, 'data');
@@ -300,16 +314,13 @@
 					});
 					})
 					
-				/*$(".add").click(function() {
-					$("table").hide();
-				});*/
+				
 				})
 				</script>
 				<!--讲师相关-->
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
@@ -325,7 +336,12 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseAttribute" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<select name="courseAttrId" lay-verify="" lay-search="">
+									<option value="">--所有--</option>
+									<option value="1">单词</option>
+									<option value="2">测试属性</option>
+									<option value="3">防身</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -333,43 +349,21 @@
 							<div class="layui-input-inline">
 								<select name="trainForm" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">内部培训</option>
+									<option value="2">外部公开班</option>
+									<option value="3">外聘内训</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<select name="agency" lay-verify="" lay-search="">
+								<select name="" lay-verify="" lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">草稿</option>
-									<option value="2">审批中</option>
-									<option value="3">撤回</option>
-									<option value="4">拒绝</option>
-									<option value="5">要求更多</option>
-									<option value="6">审批中</option>
-									<option value="7">审批通过</option>
-									<option value="8">中止</option>
+									<option value="1">强思企业管理</option>
+									<option value="2">广州盛炬智能科技有限公司</option>
+									<option value="3">若干</option>
 								</select>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">需求日期</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
-							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -387,25 +381,23 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">入职日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">离职日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
-						<div class="layui-form-item">
-							<div class="layui-inline">
-								<label class="layui-form-label">讲师类别</label>
-								<div class="layui-input-inline">
-									<select name="inside" lay-verify="">
-										<option value="">--全部--</option>
-										<option value="1">内部</option>
-										<option value="2">外部</option>
-									</select>
-								</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">讲师类别</label>
+							<div class="layui-input-inline">
+								<select name="inside" lay-verify="">
+									<option value="">--全部--</option>
+									<option value="1">内部</option>
+									<option value="2">外部</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-card-body">
@@ -424,8 +416,9 @@
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
 						<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>

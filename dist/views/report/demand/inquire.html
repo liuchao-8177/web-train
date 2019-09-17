@@ -1,6 +1,12 @@
 <title>需求查询</title>
+<div class="layui-card layadmin-header" >
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">报表中心</a>
+		<a><cite>需求查询</cite></a>
+	</div>
+</div>
 
-<div class="layui-fluid">
+<div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
 			<ul class="layui-tab-title">
@@ -15,13 +21,62 @@
 				<div class="layui-tab-item layui-show">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
@@ -47,12 +102,6 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">优先级</label>
-							<div class="layui-input-inline">
-								<input type="text" name="priority" lay-verify="" placeholder="优先级" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
 								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
@@ -65,7 +114,7 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -91,8 +140,9 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 
 						</div>
@@ -194,13 +244,62 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
@@ -255,7 +354,7 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="endTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -286,8 +385,9 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
 						<table id="LAY-report-inquire-havenot" lay-filter="LAY-report-inquire-havenot"></table>
@@ -398,13 +498,62 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
@@ -442,7 +591,7 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="endRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -468,8 +617,9 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
 						<script type="text/html" id="typeName">
@@ -608,13 +758,62 @@
 				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
-						<!-- 搜索按钮 -->
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">部门名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">职务级别</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">主任</option>
+									<option value="2">经理</option>
+									<option value="3">工人</option>
+									<option value="4">科员</option>
+									<option value="5">总监</option>
+									<option value="6">文员</option>
+									<option value="7">主管</option>
+									<option value="8">互动专员</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务类型</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">IT</option>
+									<option value="2">保险产品</option>
+									<option value="3">财务</option>
+									<option value="4">采购</option>
+									<option value="5">客服</option>
+									<option value="6">人力资源</option>
+									<option value="7">市场</option>
+									<option value="8">销售</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">职务名称</label>
+							<div class="layui-input-inline">
+								<select name="buttonTpl" lay-verify="" lay-search="">
+									<option value="">--请选择--</option>
+									<option value="1">人事专员</option>
+									<option value="2">人事专员</option>
+									<option value="3">项目经理</option>
+								</select>
+							</div>
+						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
@@ -652,7 +851,7 @@
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">至</label>
+							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
 								<input type="text" name="endDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
@@ -695,8 +894,9 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn">查询</i>
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 
 						</div>
