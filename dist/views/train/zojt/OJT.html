@@ -1,3 +1,4 @@
+
 <title>培训运作</title>
 
 <div class="layui-card layadmin-header">
@@ -20,17 +21,18 @@
 				</div>
 
 				<div class="layui-inline">
-					<label class="layui-form-label">课程姓名</label>
+					<label class="layui-form-label">课程名称</label>
 					<div class="layui-input-inline">
-						<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="OTJ课程" class="layui-input">
+						<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称" class="layui-input">
 					</div>
 				</div>
 
 				<!-- 搜索按钮 -->
-				<div class="layui-inline">
-					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-						<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-					</button>
+				<div class="layui-form-item" style="text-align: right;">
+					<div class="layui-input-block">
+						<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
+						<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -38,7 +40,7 @@
 		<div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
 				<button class="layui-btn layuiadmin-btn-list add" data-type="adds">添加</button>
-				<button class="layui-btn layuiadmin-btn-list" id="targ">增加</button>
+				<button class="layui-btn layuiadmin-btn-list" lay-href="train/zojt/OJTAdd">增加</button>
 			</div>
             
 			<div class="tab">
@@ -86,8 +88,9 @@
 						</script>
 						
 						<script type="text/html" id="barDemo">
+							<!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
 							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-									<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 								</script>
 					</div>
 					
@@ -164,14 +167,15 @@
 					 				}, {
 					 					field: 'isThrough',
 					 					title: '是否通过',
+										templet:'#isThrough',
+					 					align: 'center'
+					 				},  {
+					 					field: 'startTime',
+					 					title: '大于培训开始日期',
 					 					align: 'center'
 					 				}, {
 					 					field: 'endTime',
 					 					title: '大于培训结束日期',
-					 					align: 'center'
-					 				}, {
-					 					field: 'startTime',
-					 					title: '大于培训开始日期',
 					 					align: 'center'
 					 				}, {
 					 					field: 'place',
@@ -185,12 +189,13 @@
 					 					field: 'trainerId',
 					 					title: '培训者ID',
 					 					hide: true,
-					 				}, {
+					 				}, 
+									{
 					 					fixed: 'right',
 					 					title: '操作',
 					 					fixed: 'right',
 					 					toolbar: '#barDemo',
-					 					width: 150,
+					 					width: 200,
 					 					align: 'center'
 					 				}]
 					 			]
@@ -235,7 +240,7 @@
 					 					title: '添加OTJ参训学员',
 					 					area: ['720px', '600px'],
 					 					success: function(layero, index) {
-					 						view(this.id).render('train/zojt/addrecode').done(function() {
+					 						view(this.id).render('train/zojt/OJTForm').done(function() {
 					 							form.render(null, 'layuiadmin-app-form-list');
 					 							//日期
 					 							$(".date").each(function() {
@@ -248,7 +253,7 @@
 					 							//监听提交
 					 							form.on('submit(form_submit)', function(data) {
 					 								var field = data.field; //获取提交的字段
-					 								$.post(commonSrc + "api/train/OJTParticipateController/insertParticipate",
+					 								$.post(commonSrc + "api/train/OJTCourseController/insertOJTCourse",
 					 									data.field,
 					 									function(ev) {
 					 										if (ev.desc == 'success') {
@@ -269,10 +274,55 @@
 					 		};
 					 
 					 		table.on("tool(tab)", function(obj) {
-					 			var data = obj.data;
+								var data = obj.data;
+								if ("details" === obj.event){
+									admin.popup({
+										title: "查看申请信息",
+										area: ['80%', '100%'],
+										id: "LAY-popup-content-view",
+										success: function(t, layero) {
+											view(this.id).render("thehumanresources/recruitmentconfiguration/checkEntry").done(function() {
+												$.ajax({
+													url: 'http://119.3.77.206:8005/api/oa/HrEntryController/selectHrEntry', //换成自己的url
+													type: "GET",
+													dataType: "json",
+													data: {
+														id: data.id
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-list", obj/* {
+															"id": obj.id,
+															"name": obj.name,
+															"entryPerson": obj.entryPerson,
+															"entryPost": obj.entryPost,
+															"checkStatus": obj.checkStatus
+															
+														} */);
+								
+													},
+												})
+												
+												//日期
+												$(".date").each(function() {
+													laydate.render({
+												
+														elem: this,
+														trigger: 'click',
+														min: -5000,
+														max: 0
+													});
+												})
+												
+											})
+										}
+									})
+								}
+					 			
 					 			"del" === obj.event ? layer.confirm("确定删除此记录？", function(e) {
 					 				$.ajax({
-					 					url: commonSrc + "api/train/OJTParticipateController/deleteParticipateById", //换成自己的url
+					 					url: commonSrc + "api/train/OJTCourseController/deleteOJTCourseById", //换成自己的url
 					 					type: "POST",
 					 					dataType: "json",
 					 					data: {
@@ -282,7 +332,8 @@
 					 					success: function(e) {
 					 						if (e.desc == 'success') {
 					 							layer.msg('删除成功');
-					 							obj.del(), layer.close(e)
+					 							obj.del(), layer.close(e),
+					 							layui.table.reload('LAY-app-content-list'); //重载表格
 					 						}
 					 					},
 					 					error: function(e) {
@@ -295,9 +346,9 @@
 					 				area: ['720px', '500px'],
 					 				id: "LAY-popup-content-edit",
 					 				success: function(t, layero) {
-					 					view(this.id).render("train/zojt/addrecode").done(function() {
+					 					view(this.id).render("train/zojt/OJTForm").done(function() {
 					 						$.ajax({
-					 							url: commonSrc + "api/train/OJTParticipateController/selectParticipateById", //换成自己的url
+					 							url: commonSrc + "api/train/OJTCourseController/list", //换成自己的url
 					 							type: "GET",
 					 							dataType: "json",
 					 							data: {
@@ -322,7 +373,7 @@
 					 						form.render(null, "layuiadmin-app-form-list"), form.on("submit(form_submit)", function(
 					 							data) {
 					 							console.log(data.field)
-					 							$.post(commonSrc + "api/train/OJTParticipateController/updateParticipate",
+					 							$.post(commonSrc + "api/train/OJTCourseController/updateOJTCourse",
 					 								data.field,
 					 								function(ev) {
 					 									layer.msg("修改成功", {
@@ -353,10 +404,10 @@
 					 			var type = $(this).data('type');
 					 			active[type] ? active[type].call(this) : '';
 					 		});
-							$("#targ").click(function() {
-								$(".tab").hide();
-								$("#show").show();
-							});
+							// $("#targ").click(function() {
+							// 	$(".tab").hide();
+							// 	$("#show").show();
+							// });
 					 	});
 					 </script>
 				</div>
@@ -425,15 +476,11 @@
 						align: 'center'
 					}, {
 						field: 'name',
-						title: '课程姓名',
+						title: '课程名称',
 						align: 'center'
 					}, {
 						field: 'remark',
 						title: '备注',
-						align: 'center'
-					}, {
-						field: 'tenantCode',
-						title: '租户ID',
 						align: 'center'
 					}, {
 						fixed: 'right',
@@ -459,7 +506,8 @@
 						},
 						success: function(b) {
 							layer.msg('删除成功');
-							obj.del(), layer.close(e)
+							obj.del(), layer.close(e),
+							layui.table.reload('LAY-app-content-list'); //重载表格
 						},
 						error: function(e) {
 							layer.msg('删除失败')
@@ -471,7 +519,7 @@
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
-						view(this.id).render("train/zojt/editrecord", data).done(function() {
+						view(this.id).render("train/zojt/OJTForm", data).done(function() {
 							$.ajax({
 								url: commonSrc + "api/train/OJTCourseController/selectOJTCourseById", //换成自己的url
 								type: "GET",
@@ -583,7 +631,7 @@
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						view(this.id).render('train/zojt/editrecord').done(function() {
+						view(this.id).render('train/zojt/OJTForm').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
 							//日期
 							$(".date").each(function() {

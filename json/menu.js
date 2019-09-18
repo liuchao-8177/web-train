@@ -45,7 +45,7 @@
 		},{
 			"name": "paperclassification",
 			"title": "OJT记录",
-			"jump": "train/zojt/addojt"
+			"jump": "train/zojt/OJT"
 		}]
 	}, {
 		"name": "selfTesting",

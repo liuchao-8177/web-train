@@ -1,0 +1,84 @@
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+	<div class="layui-form-item">
+		<label class="layui-form-label">课程别名</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="reason" name="alias" lay-verify="title" autocomplete="off" placeholder="课程别名"
+			               class="layui-input">
+			    </script>
+		</div>
+		<label class="layui-form-label">创建人</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="reason" name="createBy" lay-verify="title" autocomplete="off" placeholder="创建人"
+		               class="layui-input">
+		    </script>
+		</div>
+	</div>
+
+	<div class="layui-form-item">
+		<label class="layui-form-label">快捷码</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="reason" name="fastCode" lay-verify="title" autocomplete="off" placeholder="快捷码"
+		               class="layui-input">
+		    </script>
+		</div>
+		<label class="layui-form-label">是否启用</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="isUse">
+		    	<option value="">--请选择--</option>
+		    	<option value="1">否</option>
+		    	<option value="2">是</option>
+		    </select>
+		    </script>
+		</div>
+	</div>
+
+	<div class="layui-form-item">
+		<label class="layui-form-label">课程名称</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="reason" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称"
+		           class="layui-input">
+		</script>
+		</div>
+		<label class="layui-form-label">备注</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="reason" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+		           class="layui-input">
+		</script>
+		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">创建时间</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="reason" name="gmtCreated" lay-verify="title" autocomplete="off" placeholder="创建时间"
+			           class="layui-input">
+			</script>
+			</div>
+			</div>
+		<input type="hidden" name="id" />
+		<input type="hidden" name="courseId" />
+		<input type="hidden" name="employId" />
+		<input type="hidden" name="checkerId" />
+		<input type="hidden" name="courseId" />
+		<input type="hidden" name="trainerId" />
+		
+	
+	
+	
+	
+	
+	<div class="layui-form-item">
+	    <label class="layui-form-label"></label>
+	    <div class="layui-input-block" style="text-align: left;">
+	    		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
+	    		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+	    </div>
+	</div>
+</div>
+
