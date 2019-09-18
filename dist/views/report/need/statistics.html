@@ -8,7 +8,7 @@
 
 <div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
+		<div class="layui-tab layui-tab-card" lay-filter="">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">未培训</li>
 				<li data-status="1">按部门</li>
@@ -914,7 +914,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">USB</option>
 									<option value="2">操作证1</option>
@@ -945,7 +945,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="priority" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">必修</option>
 									<option value="2">选修</option>
@@ -969,7 +969,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseTypeId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1063,7 +1063,7 @@
 				        form.render(null, 'app-content-list');
 				
 				        //监听搜索
-				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				        form.on('submit(LAY-app-contlist-search-courseTypeId)', function (data) {
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
@@ -1156,7 +1156,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">USB</option>
 									<option value="2">操作证1</option>
@@ -1187,7 +1187,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="priority" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">必修</option>
 									<option value="2">选修</option>
@@ -1203,7 +1203,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 					</div>
@@ -1211,7 +1211,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1305,7 +1305,7 @@
 				        form.render(null, 'app-content-list');
 				
 				        //监听搜索
-				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				        form.on('submit(LAY-app-contlist-search-courseId)', function (data) {
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
@@ -1398,7 +1398,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">USB</option>
 									<option value="2">操作证1</option>
@@ -1429,7 +1429,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="priority" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">必修</option>
 									<option value="2">选修</option>
@@ -1439,13 +1439,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 					</div>
@@ -1453,7 +1453,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-priority">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1547,7 +1547,7 @@
 				        form.render(null, 'app-content-list');
 				
 				        //监听搜索
-				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				        form.on('submit(LAY-app-contlist-search-priority)', function (data) {
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
@@ -1640,38 +1640,23 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify=""  lay-search="">
 									<option value="">--所有--</option>
-									<option value="1">单词</option>
-									<option value="2">测试属性</option>
-									<option value="3">防身</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="priority" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">必修</option>
 									<option value="2">选修</option>
@@ -1695,7 +1680,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseAttrId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1785,7 +1770,7 @@
 				        form.render(null, 'app-content-list');
 				
 				        //监听搜索
-				        form.on('submit(LAY-app-contlist-search)', function (data) {
+				        form.on('submit(LAY-app-contlist-search-courseAttrId)', function (data) {
 				            var field = data.field;
 				            console.log(field);
 				            //执行重载
@@ -1793,7 +1778,6 @@
 				                where: field
 				            });
 				        });
-
 				
 				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
 				            var type = $(this).data('type');
@@ -2336,7 +2320,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2350,7 +2334,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-employId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -2445,7 +2429,7 @@
 							form.render(null, 'app-content-list');
 
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-employId)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载

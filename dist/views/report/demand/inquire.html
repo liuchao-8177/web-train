@@ -8,7 +8,7 @@
 
 <div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
+		<div class="layui-tab layui-tab-card" lay-filter="">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">未培训</li>
 				<li data-status="1">已培训</li>
@@ -141,7 +141,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-notraining">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 
@@ -213,7 +213,7 @@
 							form.render(null, 'app-content-list');
 					
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-notraining)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载
@@ -386,7 +386,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-training">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -467,7 +467,7 @@
 							form.render(null, 'app-content-list');
 					
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-training)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载
@@ -618,7 +618,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-exempt">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -725,7 +725,7 @@
 							form.render(null, 'app-content-list');
 					
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-exempt)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载
@@ -895,7 +895,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-matrix">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 
@@ -973,7 +973,7 @@
 							form.render(null, 'app-content-list');
 
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-matrix)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载

@@ -8,7 +8,7 @@
 
 <div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-filter="" lay-allowclose="true">
+		<div class="layui-tab layui-tab-card" lay-filter="">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">培训记录</li>
 				<li data-status="1">讲师相关</li>
@@ -27,7 +27,9 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseType" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+									<option value="">--所有--</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -288,6 +290,33 @@
 				      }, 'data');
 				    }
 				  };
+				  ajax_courseType();
+				  function ajax_courseType() {
+				  			// 清空原有select内的数据  只保留第一项
+				  			$("#courseType").find("option:not(:first)").remove();
+				  			form.render('select', 'courseType');//渲染表单
+				  			$.ajax({
+				  				url: commonSrc + "/api/train/courseTypeController/list",
+				  				type: "get",
+				  				dataType: "json",
+				  				success: function (res) {
+				  					var data = res.dataList;
+				  					$.each(data, function (i, v) {
+				  						var id = v.id;
+				  						var text = v.typeName;
+				  						// alert(id + text);
+				  						$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+				  					});
+				  					//渲染select 表单  filter 是 重新渲染对象
+				  					form.render('select', 'app-content-list');
+				  				},
+				  				error: function () {
+				  					// alert(errorThrown);
+				  				}
+				  			});
+				  		}
+				  
+				  
 
 				//监听搜索
 				// form.on('submit(LAY-app-contlist-search)', function(data) {

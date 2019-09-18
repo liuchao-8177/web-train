@@ -8,7 +8,7 @@
 
 <div class="layui-fluid" style="background-color: #fff!important;">
 	<div class="layui-form layuiadmin-card-header-auto" lay-filter="app-content-list">
-		<div class="layui-tab layui-tab-card" lay-allowclose="true">
+		<div class="layui-tab layui-tab-card">
 			<ul class="layui-tab-title">
 				<li class="layui-this">按部门</li>
 				<li>按职位类型</li>
@@ -202,110 +202,6 @@
 									limit: 10,
 									limits: [10, 15, 20, 25, 30],
 								}),
-								table.on("tool(LAY-report-expense-department)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-													function(
-														data) {
-														$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-															data.field,
-															function(ev) {
-																layer.msg("修改成功", {
-																	time: 1000
-																}, function() {
-																	layui.table.reload("LAY-report-expense-department"), layer.close(layero)
-																})
-															});
-														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-													})
-											})
-										}
-									})
-								})
-
 
 							form.render(null, 'app-content-list');
 
@@ -319,106 +215,6 @@
 								});
 							});
 
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-expense-department'),
-											checkData = checkStatus.data; //得到选中的数据
-
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-
-												},
-												success: function(json) {
-													table.reload('LAY-report-expense-department');
-													layer.msg('已删除');
-												}
-											});
-
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-
-										});
-									}
-
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-expense-department'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
-
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
 								active[type] ? active[type].call(this) : '';
@@ -430,9 +226,6 @@
 									trigger: 'click',
 								});
 							})
-							/*$(".add").click(function() {
-								$("table").hide();
-							});*/
 						})
 					</script>
 				</div>
@@ -568,111 +361,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-report-expense-type)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-type"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
-					})
-	
-	
+
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
@@ -685,106 +374,7 @@
 					});
 				});
 	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-type'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-type');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-rank'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-	
+
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
@@ -934,111 +524,7 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-report-expense-rank)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-rank"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
-					})
-	
-	
+
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
@@ -1050,106 +536,6 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-rank'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-rank');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-rank'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
 	
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
@@ -1182,20 +568,8 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="courseTypeId"  lay-search="" id="courseTypeId" lay-fifter="courseTypeId">
 									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
 								</select>
 							</div>
 						</div>
@@ -1226,7 +600,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseTypeId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1339,115 +713,11 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-report-expense-subject)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-subject"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
-					})
-	
 	
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
+				form.on('submit(LAY-app-contlist-search-courseTypeId)', function(data) {
 					var field = data.field;
 					console.log(field);
 					//执行重载
@@ -1455,107 +725,29 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-subject'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-subject');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
+				
+				ajax_courseType();
+				function ajax_courseAttribute() {
+							$("#courseTypeId").find("option:not(:first)").remove();
+							form.render('select', 'courseTypeId');
+							$.ajax({
+								url: commonSrc + "/api/train/courseTypeController/list", 
+								type: "get",		
+								dataType: "json",		
+								success: function (res) {
+									var data = res.dataList;			
+									$.each(data, function (i, v) {
+										var id = v.id;
+										var text = v.attrName;
+										$("#courseTypeId").append("<option value='" + id + "'>" + text + "</option>");
+									});
+									form.render('select', 'app-content-list');
+								},
+								error: function () {
+								}
 							});
 						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-subject'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-	
+
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
@@ -1567,9 +759,7 @@
 						trigger: 'click',
 					});
 				})
-				/*$(".add").click(function() {
-					$("table").hide();
-				});*/
+			
 			})
 		</script>
 				</div>
@@ -1617,7 +807,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -1718,104 +908,11 @@
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
 					}),
-					table.on("tool(LAY-report-expense-equivalent)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"courseId": obj.courseId,
-												"courseTypeId": obj.courseTypeId,
-												"endTime": obj.endTime,
-												"startTime": obj.startTime,
-												"tenantCode": obj.tenantCode
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-equivalent"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
-					})
-	
-	
+
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
+				form.on('submit(LAY-app-contlist-search-courseId)', function(data) {
 					var field = data.field;
 					console.log(field);
 					//执行重载
@@ -1823,106 +920,7 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-equivalent'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-equivalent');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-equivalent'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
+
 	
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
@@ -1955,7 +953,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
+								<select name="priority" lay-verify="" lay-search="">
 									<option value="">--请选择--</option>
 									<option value="1">必修</option>
 									<option value="2">选修</option>
@@ -1989,7 +987,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-priority">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -2093,116 +1091,12 @@
 						page: !0,
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(LAY-report-expense-precedence)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-precedence"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
 					})
-	
 	
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
+				form.on('submit(LAY-app-contlist-search-priority)', function(data) {
 					var field = data.field;
 					console.log(field);
 					//执行重载
@@ -2210,106 +1104,6 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-precedence'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-precedence');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-precedence'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
 	
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
@@ -2342,11 +1136,8 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-verify="" lay-search="">
+								<select name="courseAttrId" lay-verify="" lay-search=""  id="courseAttrId" lay-filter="courseAttrId">
 									<option value="">--所有--</option>
-									<option value="1">单词</option>
-									<option value="2">测试属性</option>
-									<option value="3">防身</option>
 								</select>
 							</div>
 						</div>
@@ -2377,7 +1168,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-courseAttrId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -2477,104 +1268,12 @@
 						page: !0,
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(LAY-report-expense-genera)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"courseAttrId": obj.courseAttrId,
-												"endTime": obj.endTime,
-												"startTime": obj.startTime,
-												"tenantCode": obj.tenantCode
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-genera"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
 					})
-	
-	
+					
 				form.render(null, 'app-content-list');
 	
 				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
+				form.on('submit(LAY-app-contlist-search-courseAttrId)', function(data) {
 					var field = data.field;
 					console.log(field);
 					//执行重载
@@ -2582,107 +1281,29 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-genera'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-genera');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
+				
+				ajax_courseAttribute();
+				function ajax_courseAttribute() {
+							$("#courseAttrId").find("option:not(:first)").remove();
+							form.render('select', 'courseAttrId');
+							$.ajax({
+								url: commonSrc + "/api/train/courseAttributeController/list", 
+								type: "get",		
+								dataType: "json",		
+								success: function (res) {
+									var data = res.dataList;			
+									$.each(data, function (i, v) {
+										var id = v.id;
+										var text = v.attrName;
+										$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+									});
+									form.render('select', 'app-content-list');
+								},
+								error: function () {
+								}
 							});
 						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-genera'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-	
+					
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
@@ -2694,9 +1315,6 @@
 						trigger: 'click',
 					});
 				})
-				/*$(".add").click(function() {
-					$("table").hide();
-				});*/
 			})
 		</script>
 				</div>
@@ -2826,111 +1444,7 @@
 						page: !0,
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(LAY-report-expense-position)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-position"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
 					})
-	
 	
 				form.render(null, 'app-content-list');
 	
@@ -2943,106 +1457,6 @@
 						where: field
 					});
 				});
-	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-position'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-position');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-position'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
 	
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
@@ -3182,111 +1596,7 @@
 						page: !0,
 						limit: 10,
 						limits: [10, 15, 20, 25, 30],
-					}),
-					table.on("tool(LAY-report-expense-length)", function(obj) {
-						var data = obj.data;
-						"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-							$.ajax({
-								url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-								type: "GET",
-								dataType: "json",
-								data: {
-									id: data.id,
-									applyId: data.commonId
-								},
-								success: function(b) {
-									layer.msg('删除成功');
-									obj.del(), layer.close(e)
-								},
-								error: function(e) {
-									layer.msg('删除失败')
-									layer.msg(e);
-								}
-							})
-						}) : "edit" === obj.event && admin.popup({
-							title: "",
-							area: ['720px', '700px'],
-							id: "LAY-popup-content-edit",
-							success: function(t, layero) {
-								view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-									$.ajax({
-										url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-										type: "GET",
-										dataType: "json",
-										data: {
-											id: data.id
-										},
-										success: function(e) {
-											//layer.msg(e.contractCheckVo);
-											let obj = e.data;
-											form.val("layuiadmin-app-form-list", {
-												"id": obj.id,
-												"commonId": obj.commonId,
-												"overtimeCode": obj.overtimeCode,
-												"startTime": obj.startTime,
-												"endTime": obj.endTime,
-												"overtimeType": obj.overtimeType,
-												"overtimeHours": obj.overtimeHours,
-												"changeRest": obj.changeRest,
-												"place": obj.place,
-												"reason": obj.reason,
-												"remark": obj.remark,
-												"detials": obj.detials,
-												"applyId": obj.commonId,
-												"applyTime": obj.applyTime,
-												"applyType": obj.applyType,
-												"checkStatus": obj.checkStatus
-											});
-											//日期 年-月-日
-											$(".date").each(function() {
-												laydate.render({
-													elem: this,
-	
-													trigger: 'click',
-												});
-											})
-											//年-月-日 时:分:秒
-											$(".datetime").each(function() {
-												laydate.render({
-													elem: this,
-													type: 'datetime',
-	
-													trigger: 'click',
-													done: function(value, date, endDate) {
-														var startTime = new Date($('#qBeginTime').val()).getTime();
-														var endTime = new Date($('#qEndTime').val()).getTime();
-														if (endTime < startTime) {
-															layer.msg('结束时间不能小于开始时间');
-															$('#qBeginTime').val($('#qEndTime').val());
-														}
-	
-													}
-												});
-											})
-										},
-										error: function(e) {
-											layer.msg(e);
-										}
-									})
-									form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-										function(
-											data) {
-											$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-												data.field,
-												function(ev) {
-													layer.msg("修改成功", {
-														time: 1000
-													}, function() {
-														layui.table.reload("LAY-report-expense-length"), layer.close(layero)
-													})
-												});
-											return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-										})
-								})
-							}
-						})
 					})
-	
 	
 				form.render(null, 'app-content-list');
 	
@@ -3300,106 +1610,6 @@
 					});
 				});
 	
-				var active = {
-					batchdel: function() {
-							var checkStatus = table.checkStatus('LAY-report-expense-length'),
-								checkData = checkStatus.data; //得到选中的数据
-	
-							if (checkData.length === 0) {
-								return layer.msg('请选择数据');
-							}
-							let arr = [];
-							let brr = [];
-							for (var i in checkData) {
-								arr += checkData[i].id + ","
-							}
-							for (var i in checkData) {
-								brr += checkData[i].commonId + ","
-							}
-							layer.confirm('确定删除吗？', function(index) {
-								$.ajax({
-									type: "GET",
-									url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-									contentType: "application/json; charset=utf-8",
-									dataType: "json",
-									data: {
-										id: arr,
-										applyId: brr
-	
-									},
-									success: function(json) {
-										table.reload('LAY-report-expense-length');
-										layer.msg('已删除');
-									}
-								});
-	
-								//执行 Ajax 后重载
-								/*
-										
-													*/
-	
-							});
-						}
-	
-						//添加
-						,
-					add: function(othis) {
-						admin.popup({
-							title: '添加人员信息',
-							area: ['720px', '700px'],
-							id: 'LAY-popup-content-add',
-							success: function(layero, index) {
-								view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-									form.render(null, 'layuiadmin-app-form-list');
-									//日期
-									$(".date").each(function() {
-										laydate.render({
-											elem: this,
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-											done: function(value, date, endDate) {
-												var startTime = new Date($('#qBeginTime').val()).getTime();
-												var endTime = new Date($('#qEndTime').val()).getTime();
-												if (endTime < startTime) {
-													layer.msg('结束时间不能小于开始时间');
-													$('#qBeginTime').val($('#qEndTime').val());
-												}
-	
-											}
-										});
-									})
-									//年-月-日 时:分:秒
-									$(".datetime").each(function() {
-										laydate.render({
-											elem: this,
-											type: 'datetime',
-											min: -7, //7天前
-											max: 0, //7天后
-											trigger: 'click',
-										});
-									})
-									//监听提交
-									form.on('submit(layuiadmin-app-form-submit)', function(data) {
-										var field = data.field; //获取提交的字段
-										$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-											data.field,
-											function(ev) {
-												layer.msg("新增成功", {
-													time: 1000
-												}, function() {
-													layer.close(index); //执行关闭 
-													layui.table.reload('LAY-report-expense-length'); //重载表格
-												})
-											});
-										return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-									});
-								});
-							}
-						});
-					}
-				};
-	
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
@@ -3411,9 +1621,6 @@
 						trigger: 'click',
 					});
 				})
-				/*$(".add").click(function() {
-					$("table").hide();
-				});*/
 			})
 		</script>
 				</div>
@@ -3461,7 +1668,7 @@
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
 							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-employId">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
 						</div>
@@ -3479,203 +1686,100 @@
 
 							//表格渲染
 							table.render({
-									elem: '#LAY-report-expense-staff',
-									url: commonSrc + 'api/train/costExpenseController/listByEmp',
-									toolbar: '#toolbarDemo',
-									request: {
-										pageName: 'pageNum' //页码的参数名称，默认：page
-											,
-										limitName: 'pageSize' //每页数据量的参数名，默认：limit
-									},
-									response: {
-										statusCode: 200 //规定成功的状态码，默认：0
-									},
-									parseData: function(res) { //res 即为原始返回的数据
-										return {
-											"code": res.code, //解析接口状态
-											"msg": res.desc, //解析提示文本
-											"count": res.total, //解析数据长度
-											"data": res.dataList //解析数据列表
-										};
-									},
-									cols: [
-										[{
-												type: 'checkbox',
-												fixed: "left"
-											}, {
-												field: 'avgTrainTime',
-												title: '人均培训小时',
-												hide: true,
-											}, {
-												field: 'classOnJob',
-												title: '课时（在职）',
-												align: 'center'
-											}, {
-												field: 'companyPay',
-												title: '公司支付',
-												hide: true,
-											}, {
-												field: 'employId',
-												title: '员工ID',
-												align: 'center'
-											}, {
-												field: 'other',
-												title: '其他费用',
-												align: 'center'
-											}, {
-												field: 'penetrationOnJob',
-												title: '普及率（在职）',
-												align: 'center'
-											}, {
-												field: 'personNumOnJob',
-												title: '人数（在职）',
-												align: 'center'
-											}, {
-												field: 'planClass',
-												title: '课时（已培训人所有人总课时',
-												align: 'center'
-											}, {
-												field: 'selfPay',
-												title: '个人支付',
-												hide: true,
-											}, {
-												field: 'trainNum',
-												title: '受训人次',
-												hide: true,
-											}, {
-												field: 'trainPercentage',
-												title: '培训百分比',
-												align: 'center'
-											}, {
-												field: 'trainPersonNumOnJob',
-												title: '受训人数',
-												align: 'center'
-											},
-											{
-												field: 'travel',
-												title: '差旅费',
-												align: 'center'
-											},
-											{
-												field: 'tuition',
-												title: '学费',
-												align: 'center'
-											}
-										]
-									],
-									page: !0,
-									limit: 10,
-									limits: [10, 15, 20, 25, 30],
-								}),
-								table.on("tool(LAY-report-expense-staff)", function(obj) {
-									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
-										$.ajax({
-											url: commonSrc + "api/hr/sysOvertimeController/deleteOvertime", //换成自己的url
-											type: "GET",
-											dataType: "json",
-											data: {
-												id: data.id,
-												applyId: data.commonId
-											},
-											success: function(b) {
-												layer.msg('删除成功');
-												obj.del(), layer.close(e)
-											},
-											error: function(e) {
-												layer.msg('删除失败')
-												layer.msg(e);
-											}
-										})
-									}) : "edit" === obj.event && admin.popup({
-										title: "",
-										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
-										success: function(t, layero) {
-											view(this.id).render("apply/overtime/OvertimeApplyForm", data).done(function() {
-												$.ajax({
-													url: commonSrc + "api/hr/sysOvertimeController/selectOvertimeById", //换成自己的url
-													type: "GET",
-													dataType: "json",
-													data: {
-														id: data.id
-													},
-													success: function(e) {
-														//layer.msg(e.contractCheckVo);
-														let obj = e.data;
-														form.val("layuiadmin-app-form-list", {
-															"id": obj.id,
-															"commonId": obj.commonId,
-															"overtimeCode": obj.overtimeCode,
-															"startTime": obj.startTime,
-															"endTime": obj.endTime,
-															"overtimeType": obj.overtimeType,
-															"overtimeHours": obj.overtimeHours,
-															"changeRest": obj.changeRest,
-															"place": obj.place,
-															"reason": obj.reason,
-															"remark": obj.remark,
-															"detials": obj.detials,
-															"applyId": obj.commonId,
-															"applyTime": obj.applyTime,
-															"applyType": obj.applyType,
-															"checkStatus": obj.checkStatus
-														});
-														//日期 年-月-日
-														$(".date").each(function() {
-															laydate.render({
-																elem: this,
-
-																trigger: 'click',
-															});
-														})
-														//年-月-日 时:分:秒
-														$(".datetime").each(function() {
-															laydate.render({
-																elem: this,
-																type: 'datetime',
-
-																trigger: 'click',
-																done: function(value, date, endDate) {
-																	var startTime = new Date($('#qBeginTime').val()).getTime();
-																	var endTime = new Date($('#qEndTime').val()).getTime();
-																	if (endTime < startTime) {
-																		layer.msg('结束时间不能小于开始时间');
-																		$('#qBeginTime').val($('#qEndTime').val());
-																	}
-
-																}
-															});
-														})
-													},
-													error: function(e) {
-														layer.msg(e);
-													}
-												})
-												form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)",
-													function(
-														data) {
-														$.post(commonSrc + "api/hr/sysOvertimeController/updateOvertime",
-															data.field,
-															function(ev) {
-																layer.msg("修改成功", {
-																	time: 1000
-																}, function() {
-																	layui.table.reload("LAY-report-expense-staff"), layer.close(layero)
-																})
-															});
-														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-													})
-											})
+								elem: '#LAY-report-expense-staff',
+								url: commonSrc + 'api/train/costExpenseController/listByEmp',
+								toolbar: '#toolbarDemo',
+								request: {
+									pageName: 'pageNum' //页码的参数名称，默认：page
+										,
+									limitName: 'pageSize' //每页数据量的参数名，默认：limit
+								},
+								response: {
+									statusCode: 200 //规定成功的状态码，默认：0
+								},
+								parseData: function(res) { //res 即为原始返回的数据
+									return {
+										"code": res.code, //解析接口状态
+										"msg": res.desc, //解析提示文本
+										"count": res.total, //解析数据长度
+										"data": res.dataList //解析数据列表
+									};
+								},
+								cols: [
+									[{
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'avgTrainTime',
+											title: '人均培训小时',
+											hide: true,
+										}, {
+											field: 'classOnJob',
+											title: '课时（在职）',
+											align: 'center'
+										}, {
+											field: 'companyPay',
+											title: '公司支付',
+											hide: true,
+										}, {
+											field: 'employId',
+											title: '员工ID',
+											align: 'center'
+										}, {
+											field: 'other',
+											title: '其他费用',
+											align: 'center'
+										}, {
+											field: 'penetrationOnJob',
+											title: '普及率（在职）',
+											align: 'center'
+										}, {
+											field: 'personNumOnJob',
+											title: '人数（在职）',
+											align: 'center'
+										}, {
+											field: 'planClass',
+											title: '课时（已培训人所有人总课时',
+											align: 'center'
+										}, {
+											field: 'selfPay',
+											title: '个人支付',
+											hide: true,
+										}, {
+											field: 'trainNum',
+											title: '受训人次',
+											hide: true,
+										}, {
+											field: 'trainPercentage',
+											title: '培训百分比',
+											align: 'center'
+										}, {
+											field: 'trainPersonNumOnJob',
+											title: '受训人数',
+											align: 'center'
+										},
+										{
+											field: 'travel',
+											title: '差旅费',
+											align: 'center'
+										},
+										{
+											field: 'tuition',
+											title: '学费',
+											align: 'center'
 										}
-									})
-								})
+									]
+								],
+								page: !0,
+								limit: 10,
+								limits: [10, 15, 20, 25, 30],
+							})
 
 
 							form.render(null, 'app-content-list');
 
 							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
+							form.on('submit(LAY-app-contlist-search-employId)', function(data) {
 								var field = data.field;
 								console.log(field);
 								//执行重载
@@ -3683,106 +1787,6 @@
 									where: field
 								});
 							});
-
-							var active = {
-								batchdel: function() {
-										var checkStatus = table.checkStatus('LAY-report-expense-staff'),
-											checkData = checkStatus.data; //得到选中的数据
-
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = [];
-										let brr = [];
-										for (var i in checkData) {
-											arr += checkData[i].id + ","
-										}
-										for (var i in checkData) {
-											brr += checkData[i].commonId + ","
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "GET",
-												url: commonSrc + "api/hr/sysOvertimeController/deleteAllOvertime",
-												contentType: "application/json; charset=utf-8",
-												dataType: "json",
-												data: {
-													id: arr,
-													applyId: brr
-
-												},
-												success: function(json) {
-													table.reload('LAY-report-expense-staff');
-													layer.msg('已删除');
-												}
-											});
-
-											//执行 Ajax 后重载
-											/*
-													
-																*/
-
-										});
-									}
-
-									//添加
-									,
-								add: function(othis) {
-									admin.popup({
-										title: '添加人员信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('staff/addstaff/OvertimeApplyForm').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-														done: function(value, date, endDate) {
-															var startTime = new Date($('#qBeginTime').val()).getTime();
-															var endTime = new Date($('#qEndTime').val()).getTime();
-															if (endTime < startTime) {
-																layer.msg('结束时间不能小于开始时间');
-																$('#qBeginTime').val($('#qEndTime').val());
-															}
-
-														}
-													});
-												})
-												//年-月-日 时:分:秒
-												$(".datetime").each(function() {
-													laydate.render({
-														elem: this,
-														type: 'datetime',
-														min: -7, //7天前
-														max: 0, //7天后
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(layuiadmin-app-form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/hr/sysOvertimeController/insertOvertime",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('LAY-report-expense-staff'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
 
 							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 								var type = $(this).data('type');
