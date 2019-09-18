@@ -1,0 +1,342 @@
+  		<div class="layui-fluid">
+  		  	<div class="layui-card">
+  		  		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+			<!-- 搜索条件开始 -->
+  			
+  			<form action="" class="layui-form" method="post">
+  				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">培训者姓名:</label>
+						<div class="layui-input-inline">
+							<input type="text" name="trainer" autocomplete="off" placeholder="培训者姓名" class="layui-input">
+						</div>
+					</div>
+  					<div class="layui-inline">
+  						<label class="layui-form-label">培训地点:</label>
+  						<div class="layui-input-inline">
+  							<input type="text" name="place" autocomplete="off" placeholder="培训地点" class="layui-input">
+  						</div>
+  					</div>
+  					<div class="layui-inline">
+  						<label class="layui-form-label">参考号:</label>
+  						<div class="layui-input-inline">
+  							<input type="text" name="referNum" autocomplete="off" placeholder="参考号" class="layui-input">
+  						</div>
+  					</div>					
+			</div>
+			<div class="layui-form-item" style="text-align: right;">
+				<div class="layui-input-block">
+					<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
+					<button type="button" class="layui-btn layui-btn-normal" lay-href="train/zojt/OJT">返回</button>
+				</div>
+			</div>			
+</form>
+<div class="layui-card">
+        
+        <div class="layui-card-body">
+          <div class="layui-tab">
+            <ul class="layui-tab-title">
+              <li class="layui-this">参训学员OJT</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div style="padding-bottom: 10px;">
+                	   <button type="button" class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+                	<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
+                </div>
+				<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+				<script type="text/html" id="table-content-list">
+					<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+					<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+				</script>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+<script>
+  	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+  		var $ = layui.$,
+  			admin = layui.admin,
+  			view = layui.view,
+  			table = layui.table,
+  			laydate = layui.laydate,
+  			form = layui.form;
+  
+  		//表格渲染
+  		table.render({
+  				elem: '#LAY-app-content-list',
+  				type: "GET",
+  				url: commonSrc + 'api/train/OJTParticipateController/list', //数据接口
+  				// toolbar: '#toolbarDemo',
+  				response: {
+  					statusCode: 200 //规定成功的状态码，默认：0
+  				},
+  				request: {
+  					pageName: 'pageNum' //页码的参数名称，默认：page
+  						,
+  					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+  				},
+  				parseData: function(res) { //res 即为原始返回的数据
+  					// console.log(res);
+  					return {
+  						"code": res.code, //解析接口状态
+  						"msg": res.desc, //解析提示文本
+  						"count": res.total, //解析数据长度
+  						"data": res.dataList //解析数据列表
+  					};
+  				},
+  				//表头
+  				cols: [
+  					[{
+  						type: 'checkbox',
+  						fixed: "left"
+  					}, {
+  						field: 'id',
+  						title: 'id',
+  						hide: true,
+  					}, {
+  						field: 'courseId',
+  						title: 'OJT课程ID',
+  						hide: true,
+  					}, {
+  						field: 'employId',
+  						title: '学员ID',
+  						hide: true,
+  					}, {
+  						field: 'employName',
+  						title: '学员名字',
+  						align: 'center'
+  					}, {
+  						field: 'trainer',
+  						title: '培训者名字',
+  						align: 'center'
+  					}, {
+  						field: 'checker',
+  						title: '考核人姓名',
+  						align: 'center'
+  					}, {
+  						field: 'checkerId',
+  						title: '考核人ID',
+  						hide: true,
+  					}, {
+  						field: 'courseId',
+  						title: 'OJT课程ID',
+  						hide: true,
+  					}, {
+  						field: 'isThrough',
+  						title: '是否通过',
+  						templet:'#isThrough',
+  						align: 'center'
+  					},  {
+  						field: 'startTime',
+  						title: '大于培训开始日期',
+  						align: 'center'
+  					}, {
+  						field: 'endTime',
+  						title: '大于培训结束日期',
+  						align: 'center'
+  					}, {
+  						field: 'place',
+  						title: '培训地点',
+  						align: 'center'
+  					}, {
+  						field: 'referNum',
+  						title: '参考号',
+  						align: 'center'
+  					}, {
+  						field: 'trainerId',
+  						title: '培训者ID',
+  						hide: true,
+  					}, 
+  					{
+  						fixed: 'right',
+  						title: '操作',
+  						fixed: 'right',
+  						toolbar: '#table-content-list',
+  						width: 200,
+  						align: 'center'
+  					}]
+  				],
+  				  page: !0,
+  				  limit: 10,
+  				  limits: [10, 15, 20, 25, 30],
+  			}),
+  
+  			table.on("tool(LAY-app-content-list)", function(obj) {
+  				var data = obj.data;
+  				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+  					$.ajax({
+  						url: commonSrc + "api/train/OJTParticipateController/deleteParticipateById", //换成自己的url
+  						type: "POST",
+  						dataType: "json",
+  						data: {
+  							id: data.id
+  						},
+  						success: function(b) {
+  							layer.msg('删除成功');
+  							obj.del(), layer.close(e),
+  							layui.table.reload('LAY-app-content-list'); //重载表格
+  							
+  						},
+  						error: function(e) {
+  							layer.msg('删除失败')
+  							layer.msg(e);
+  						}
+  					})
+  				}) : "edits" === obj.event && admin.popup({
+  					title: "编辑计划信息",
+  					area: ['720px', '700px'],
+  					id: "LAY-popup-content-edit",
+  					success: function(t, layero) {
+  						view(this.id).render("train/zojt/OJTAddForm").done(function() {
+  							$.ajax({
+  								url: commonSrc + "api/train/OJTParticipateController/selectParticipateById", //换成自己的url
+  								type: "GET",
+  								dataType: "json",
+  								data: {
+  									id: data.id
+  
+  								},
+  								success: function(e) {
+  									//layer.msg(e.contractCheckVo);
+  									let obj = e.data;
+  									form.val("layuiadmin-app-form-list",obj);
+  									//日期
+  									$(".date").each(function() {
+  										laydate.render({
+  											elem: this,
+  											trigger: 'click',
+  										});
+  									})
+  								},
+  								error: function(e) {
+  									layer.msg(e);
+  								}
+  							})
+  							form.render(null, "layuiadmin-app-form-list"),
+  								form.on("submit(layuiadmin-app-form-submit)", function(
+  									data) { //sub添加提交
+  									$.post(commonSrc + "api/train/OJTParticipateController/updateParticipate",
+  										data.field,
+  										function(ev) {
+  											layer.msg("修改成功", {
+  												time: 1000
+  											}, function() {
+  												layui.table.reload("LAY-app-content-list"), layer.close(layero)
+  											})
+  										});
+  									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+  								})
+  						})
+  					}
+  				})
+  			})
+  
+  		form.render(null, 'app-content-list');
+  
+  		//监听搜索
+  		form.on('submit(LAY-app-contlist-search)', function(data) {
+  			var field = data.field;
+  			console.log(field);
+  			//执行重载
+  			table.reload('LAY-app-content-list', {
+  				where: field
+  			});
+  		});
+  
+  		//多条删除
+  		var active = {
+  			batchdelwag: function() {
+  					var checkStatus = table.checkStatus('LAY-app-content-list'),
+  						checkData = checkStatus.data; //得到选中的数据
+  					if (checkData.length === 0) {
+  						return layer.msg('请选择数据');
+  					}
+  					let arr = "";
+  					let arrTwo = "";
+  					for (var i in checkData) {
+  						arr += checkData[i].id + ",";
+  					}
+  					for (var i in checkData) {
+  						arrTwo += checkData[i].commonId + ",";
+  					}
+  					layer.confirm('确定删除吗？', function(index) {
+  						$.ajax({
+  							type: "POST",
+  							url: commonSrc + "api/train/planController/deletePlanById",
+  							dataType: "json",
+  							data: {
+  								id: arr,
+  								traId: arrTwo
+  							},
+  							success: function(json) {
+  								table.reload('LAY-app-content-list');
+  								layer.msg('已删除');
+  							}
+  						});
+  
+  						//执行 Ajax 后重载
+  						/*
+  						
+  						*/
+  					});
+  				}
+  
+  				//添加
+  				,
+  			add: function(othis) {
+  				admin.popup({
+  					title: '添加计划信息',
+  					area: ['800px', '800px'],
+  					id: 'LAY-popup-content-add',
+  					success: function(layero, index) {
+  						view(this.id).render('train/zojt/OJTAddForm').done(function() { //跳转
+  							form.render(null, 'layuiadmin-app-form-list');
+  							//日期
+  							$(".date").each(function() {
+  								laydate.render({
+  									elem: this,
+  									trigger: 'click',
+  								});
+  							})
+  							//监听提交
+  							form.on('submit(layuiadmin-app-form-submit)', function(data) {
+  								var field = data.field; //获取提交的字段
+  								$.post(commonSrc + "api/train/OJTParticipateController/insertParticipate",
+  									data.field,
+  									function(ev) {
+  										layer.msg("新增成功", {
+  											time: 1000
+  										}, function() {
+  											layer.close(index); //执行关闭 
+  											layui.table.reload('LAY-app-content-list'); //重载表格
+  										})
+  									});
+  								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+  							});
+  						});
+  					}
+  				});
+  			}
+  		};
+  
+  
+  		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+  			var type = $(this).data('type');
+  			active[type] ? active[type].call(this) : '';
+  		});
+  
+  		$(".date").each(function() {
+  			laydate.render({
+  				elem: this,
+  				trigger: 'click',
+  			});
+  		})
+  
+  	});
+  </script>
