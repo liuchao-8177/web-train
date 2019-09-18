@@ -76,10 +76,7 @@
   			<!-- 搜索条件结束 -->
   
   		</div>
-  		   <div style="padding-bottom: 10px;">
-			   <button type="button" class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
-  			<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
-  		</div>
+  		   
   			  <div class="layui-card-body">
   			    <div class="layui-tab">
   			      <ul class="layui-tab-title">
@@ -89,16 +86,55 @@
   			        <li>备注</li>
   			        <li>子课程</li>
   			      </ul>
-  			     </div>
+  			   
+				 <div class="layui-tab-content">
+				   <div class="layui-tab-item layui-show">
+					    <div style="padding-bottom: 10px;">
+					   	   <button type="button" class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+					   	<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
+					   </div>
+					   <table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+					    
+					   <script type="text/html" id="table-content-list">
+					   	<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+					   	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+					   </script>
+				   </div>
+				   <div class="layui-tab-item">
+					             <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
+					             
+					             <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                                 <div style="padding-bottom: 10px;">
+                                 	   <button type="button" class="layui-btn layuiadmin-btn-list" data-type="">添加</button>
+                                 	<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
+                                 </div>
+					             </script>
+					             <script type="text/html" id="test-table-toolbar-barDemo">
+					               <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+					               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					             </script>
+					         
+                       <div class="layui-tab-item">
+					       <table class="layui-hide" id="test-table-toolbar-two" lay-filter="test-table-toolbar-two"></table>
+					       
+					       <script type="text/html" id="test-table-toolbar-toolbarDemo-two">
+					       <div style="padding-bottom: 10px;">
+					       	   <button type="button" class="layui-btn layuiadmin-btn-list" data-type="">添加</button>
+					       	<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
+					       </div>
+					       </script>
+					       <script type="text/html" id="test-table-toolbar-barDemo-two">
+					         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+					         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					       </script>
+					
+				   <div class="layui-tab-item">4</div>
+				   <div class="layui-tab-item">5</div>
+				 </div>
   			   </div>
   			
-           
-  			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-  
-  			<script type="text/html" id="table-content-list">
-  				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-  				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-  			</script>
+           </div>
+  			
   			<!-- 数据表格结束 -->
   			<!-- 添加和修改的弹出层开始 -->
   		</div>
@@ -344,3 +380,210 @@
   	});
   </script>
   
+  
+  
+  
+  <script>
+  layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+  	var $ = layui.$,
+  		admin = layui.admin,
+  		view = layui.view,
+  		table = layui.table,
+  		laydate = layui.laydate,
+  		form = layui.form;
+  
+    table.render({
+      elem: '#test-table-toolbar'
+      ,url:commonSrc + 'api/train/evaluationStudentController/selectEvaStudentList'
+      ,toolbar: '#test-table-toolbar-toolbarDemo'
+      ,title: '用户数据表',
+	  response: {
+	  	statusCode: 200 //规定成功的状态码，默认：0
+	  },
+	  request: {
+	  	pageName: 'pageNum' //页码的参数名称，默认：page
+	  		,
+	  	limitName: 'pageSize' //每页数据量的参数名，默认：limit
+	  },
+	  parseData: function(res) { //res 即为原始返回的数据
+	  	// console.log(res);
+	  	return {
+	  		"code": res.code, //解析接口状态
+	  		"msg": res.desc, //解析提示文本
+	  		"count": res.total, //解析数据长度
+	  		"data": res.dataList //解析数据列表
+	  	};
+	  }
+      ,cols: [[
+                                     {	field: 'id',
+  						                   title: 'id',
+  						                   hide: true,
+  									}, {
+  										field: 'teacherId',
+  										title: '讲师',
+  										align: 'center'
+  									}, {
+  										field: 'planClass',
+  										title: '课时',
+  										align: 'center'
+  									}, {
+  										field: 'teacherGrade',
+  										title: '评估分(对讲师的)',
+  										align: 'center'
+  									},  {
+  										fixed: 'right',
+  										title: '操作',
+  										toolbar: '#table-content-list',
+  										align:'center',
+  										minWidth: 150,
+  									}
+      ]]
+      ,           page: !0,
+  				  limit: 10,
+  				  limits: [10, 15, 20, 25, 30],
+    });
+    
+    //头工具栏事件
+    table.on('toolbar(test-table-toolbar)', function(obj){
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch(obj.event){
+        case 'getCheckData':
+          var data = checkStatus.data;
+          layer.alert(JSON.stringify(data));
+        break;
+        case 'getCheckLength':
+          var data = checkStatus.data;
+          layer.msg('选中了：'+ data.length + ' 个');
+        break;
+        case 'isAll':
+          layer.msg(checkStatus.isAll ? '全选': '未全选');
+        break;
+      };
+    });
+    
+    //监听行工具事件
+    table.on('tool(test-table-toolbar)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'del'){
+        layer.confirm('真的删除行么', function(index){
+          obj.del();
+          layer.close(index);
+        });
+      } else if(obj.event === 'edit'){
+        layer.prompt({
+          formType: 2
+          ,value: data.email
+        }, function(value, index){
+          obj.update({
+            email: value
+          });
+          layer.close(index);
+        });
+      }
+    });
+  
+  });
+  </script>
+  
+  
+  <script>
+  layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+  	var $ = layui.$,
+  		admin = layui.admin,
+  		view = layui.view,
+  		table = layui.table,
+  		laydate = layui.laydate,
+  		form = layui.form;
+	 
+    table.render({
+      elem: '#test-table-toolbar-two'
+      ,url:commonSrc + 'api/train/evaluationStudentController/selectEvaStudentList'
+      ,toolbar: '#test-table-toolbar-toolbarDemo-two'
+      ,title: '用户数据表',
+  	  response: {
+  	  	statusCode: 200 //规定成功的状态码，默认：0
+  	  },
+  	  request: {
+  	  	pageName: 'pageNum' //页码的参数名称，默认：page
+  	  		,
+  	  	limitName: 'pageSize' //每页数据量的参数名，默认：limit
+  	  },
+  	  parseData: function(res) { //res 即为原始返回的数据
+  	  	// console.log(res);
+  	  	return {
+  	  		"code": res.code, //解析接口状态
+  	  		"msg": res.desc, //解析提示文本
+  	  		"count": res.total, //解析数据长度
+  	  		"data": res.dataList //解析数据列表
+  	  	};
+  	  }
+      ,cols: [[
+                                    {	   field: 'id',
+  						                   title: 'id',
+  						                   hide: true,
+  									},  {
+  										field: 'planFileBos[0].type',
+  										title: '附件类型',
+  										align: 'center'
+  									}, {
+  										field: 'planClass',
+  										title: '课时',
+  										align: 'center'
+  									}, {
+  										field: 'teacherGrade',
+  										title: '评估分(对讲师的)',
+  										align: 'center'
+  									},  {
+  										fixed: 'right',
+  										title: '操作',
+  										toolbar: '#test-table-toolbar-barDemo-two',
+  										align:'center',
+  										minWidth: 150,
+  									}
+      ]]
+      ,           page: !0,
+  				  limit: 10,
+  				  limits: [10, 15, 20, 25, 30],
+    });
+    
+    //头工具栏事件
+    table.on('toolbar(test-table-toolbar-two)', function(obj){
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch(obj.event){
+        case 'getCheckData':
+          var data = checkStatus.data;
+          layer.alert(JSON.stringify(data));
+        break;
+        case 'getCheckLength':
+          var data = checkStatus.data;
+          layer.msg('选中了：'+ data.length + ' 个');
+        break;
+        case 'isAll':
+          layer.msg(checkStatus.isAll ? '全选': '未全选');
+        break;
+      };
+    });
+    
+    //监听行工具事件
+    table.on('tool(test-table-toolbar-two)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'del'){
+        layer.confirm('真的删除行么', function(index){
+          obj.del();
+          layer.close(index);
+        });
+      } else if(obj.event === 'edit'){
+        layer.prompt({
+          formType: 2
+          ,value: data.email
+        }, function(value, index){
+          obj.update({
+            email: value
+          });
+          layer.close(index);
+        });
+      }
+    });
+  
+  });
+  </script>
