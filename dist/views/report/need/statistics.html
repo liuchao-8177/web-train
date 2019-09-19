@@ -164,7 +164,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-havenot',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
@@ -373,7 +373,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-department',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
@@ -576,7 +576,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-type',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
@@ -779,7 +779,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-rank',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
@@ -914,20 +914,9 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseTypeId" lay-verify="" lay-search="">
+								<select name="courseTypeId"  lay-search="" id="courseTypeId" lay-fifter="courseTypeId">
 									<option value="">--请选择--</option>
 									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
 								</select>
 							</div>
 						</div>
@@ -1071,11 +1060,34 @@
 				                where: field
 				            });
 				        });
+						
+						ajax_courseTypeId();
+						function ajax_courseTypeId(){
+									$("#courseTypeId").find("option:not(:first)").remove();
+									form.render('select', 'courseTypeId');
+									$.ajax({
+										url: commonSrc + "/api/train/courseTypeController/list", 
+										type: "get",		
+										dataType: "json",		
+										success: function (res) {
+											var data = res.dataList;
+											$.each(data, function (i, v) {
+												var id = v.id;
+												var text = v.typeName;
+												$("#courseTypeId").append("<option value='" + id + "'>" + text + "</option>");
+											});
+											form.render('select', 'app-content-list');
+										},
+										error: function () {
+										}
+									});
+								}
 				
 				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
 				            var type = $(this).data('type');
 				            active[type] ? active[type].call(this) : '';
 				        });
+						
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -1648,7 +1660,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-verify=""  lay-search="">
+								<select name="courseAttrId"   lay-search="" id="courseAttrId"  lay-filter="courseAttrId">
 									<option value="">--所有--</option>
 								</select>
 							</div>
@@ -1778,7 +1790,28 @@
 				                where: field
 				            });
 				        });
-				
+							
+					ajax_courseAttribute();
+					function ajax_courseAttribute() {
+								$("#courseAttrId").find("option:not(:first)").remove();
+								form.render('select', 'courseAttrId');
+								$.ajax({
+									url: commonSrc + "/api/train/courseAttributeController/list", 
+									type: "get",		
+									dataType: "json",		
+									success: function (res) {
+										var data = res.dataList;			
+										$.each(data, function (i, v) {
+											var id = v.id;
+											var text = v.attrName;
+											$("#courseAttrId").append("<Option value='" + id + "'>" + text + "</Option>");
+										});
+										form.render('select', 'app-content-list');
+									},
+									error: function () {
+									}
+								});
+							}
 				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
 				            var type = $(this).data('type');
 				            active[type] ? active[type].call(this) : '';
@@ -1936,7 +1969,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-position',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
@@ -2144,7 +2177,7 @@
 				        //表格渲染
 				        table.render({
 				            elem: '#LAY-report-statistics-length',
-				            url: commonSrc + 'api/hr/holidayApplyController/selectHolidayApplyList',
+				            url: commonSrc + '',
 							toolbar: '#toolbarDemo',
 				            request: {
 				                pageName: 'pageNum' //页码的参数名称，默认：page
