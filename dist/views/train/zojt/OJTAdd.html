@@ -2,13 +2,13 @@
   		  	<div class="layui-card">
   		  		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
 			<!-- 搜索条件开始 -->
-  			
+
   			<form action="" class="layui-form" method="post">
   				<div class="layui-form-item">
 					<div class="layui-inline">
-						<label class="layui-form-label">培训者姓名:</label>
+						<label class="layui-form-label">培训者名字:</label>
 						<div class="layui-input-inline">
-							<input type="text" name="trainer" autocomplete="off" placeholder="培训者姓名" class="layui-input">
+							<input type="text" name="trainer" autocomplete="off" placeholder="培训者名字" class="layui-input">
 						</div>
 					</div>
   					<div class="layui-inline">
@@ -27,11 +27,12 @@
 			<div class="layui-form-item" style="text-align: right;">
 				<div class="layui-input-block">
 					<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
+					<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
 					<button type="button" class="layui-btn layui-btn-normal" lay-href="train/zojt/OJT">返回</button>
 				</div>
 			</div>			
 </form>
-<div class="layui-card">
+     <div class="layui-card">
         
         <div class="layui-card-body">
           <div class="layui-tab">
@@ -45,7 +46,15 @@
                 	<!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
                 </div>
 				<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+				<script type="text/html" id="isThrough">
+					{{#  if(d.isDept==1){ }}
+				    <button class="layui-btn layui-btn-xs">否</button>
+				    {{#  } else {  }}
+				    <button class="layui-btn layui-btn-danger layui-btn-xs">是</button>
+				    {{#  } }}
+				</script>
 				<script type="text/html" id="table-content-list">
+					<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
 					<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
 					<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 				</script>
@@ -134,11 +143,11 @@
   						align: 'center'
   					},  {
   						field: 'startTime',
-  						title: '大于培训开始日期',
+  						title: '培训开始日期',
   						align: 'center'
   					}, {
   						field: 'endTime',
-  						title: '大于培训结束日期',
+  						title: '培训结束日期',
   						align: 'center'
   					}, {
   						field: 'place',
@@ -169,6 +178,52 @@
   
   			table.on("tool(LAY-app-content-list)", function(obj) {
   				var data = obj.data;
+				if ("look" === obj.event) {
+					admin.popup({
+						title: "查看OJT参训学员信息",
+						area: ['50%', '80%'],
+						id: "LAY-popup-content-view",
+						success: function(t, layero) {
+							view(this.id).render("train/zojt/Look").done(function() {
+								form.render(null,"layuiadmin-app-form-list");
+								 //日期
+								$(".date").each(function() {
+									laydate.render({
+								
+										elem: this,
+										trigger: 'click',
+										min: -5000,
+										max: 0
+									});
+								})
+								$.ajax({
+									url: commonSrc +'api/train/OJTParticipateController/selectParticipateById', //换成自己的url
+									stype: "GET",
+									dataType: "json",
+									data: {
+										id: data.id
+									},
+									success: function(e) {
+										//layer.msg(e.contractCheckVo);
+										let obj = e.data;
+										form.val("layuiadmin-app-form-list",obj/* {
+											"id": obj.id,
+											"name": obj.name,
+											"sex": obj.sex,
+											"code": obj.code,
+											"phone": obj.phone,
+											"homeAddress": obj.homeAddress
+				
+										} */);
+				
+									},
+								})
+								form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+									data) {})
+							})
+						}
+					})
+				}
   				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
   					$.ajax({
   						url: commonSrc + "api/train/OJTParticipateController/deleteParticipateById", //换成自己的url

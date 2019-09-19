@@ -29,7 +29,7 @@
 		<label class="layui-form-label">是否通过</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="isThrough" id="isDept">
+				<select name="isThrough">
 		    	<option value="">--请选择--</option>
 		    	<option value="1">否</option>
 		    	<option value="2">是</option>
@@ -69,7 +69,7 @@
 			           class="layui-input">
 			</script>
 			</div>
-			
+
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">培训开始日期</label>
@@ -133,15 +133,125 @@
 		<input type="hidden" name="trainerId" />
 
 	
-	<div class="layui-form-item">
-	    <label class="layui-form-label"></label>
-	    <div class="layui-input-block" style="text-align: left;">
-	    		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
-	    		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
-	    </div>
-	</div>
+	
 	</form>
 	
 </div>
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'layedit', 'laydate', 'layer', 'jquery', 'element', 'util'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			contlist = layui.contlist,
+			table = layui.table,
+			layedit = layui.layedit,
+			laydate = layui.laydate,
+			layer = layui.layer,
+			jquery = layui.jquery,
+			element = layui.element,
+			util = layui.util,
+			form = layui.form;
+		//常规用法
+		laydate.render({
+			elem: '#date-of-employment',
+			trigger: 'click' //采用click弹出
+				,
+			isInitValue: false
+
+		});
+		laydate.render({
+			elem: '#date-of-birth',
+			trigger: 'click' //采用click弹出
+				,
+			isInitValue: false
+		});
+		laydate.render({
+			elem: '#valid-date-of-passport',
+			trigger: 'click' //采用click弹出
+				,
+			isInitValue: false
+		});
+		laydate.render({
+			elem: '#the-party-date',
+			trigger: 'click' //采用click弹出
+				,
+			isInitValue: false
+		});
+		laydate.render({
+			elem: '#check-in-date',
+			trigger: 'click' //采用click弹出
+				,
+			isInitValue: false
+		});
+		//创建一个编辑器
+		layedit.build('LAY_demo_editor', function(data) {
+			height: 180 //设置编辑器高度
+		});
+
+		//监听radio的改变事件
+		// form.on('radio(Category)', function(data) {
+		// 	input = data.value;
+		// 	$("#input").attr("value", input);
+		// });
+
+		//监听评审人选择事件
+
+		// 手动赋值
+		$('select[name="简化多选+搜索+大小写敏感"]').val(['sing1', 'movie2']);
+		form.render();
+
+		form.on('select(multi)', function(data) {
+			console.log(data.elem); //得到select原始DOM对象
+			console.log(data.value); //得到被选中的值
+			console.log(data.othis); //得到美化后的DOM对象
+			console.log(data.current_value); //当前操作的值
+		})
+
+		// 提交事件
+		form.on("submit(*)", function(data) {
+			$('#result').html(syntaxHighlight(data.field));
+			layer.open({
+				type: 1,
+				title: '提交信息',
+				shadeClose: true,
+				content: $('#result')
+			});
+			return false;
+		});
+
+		// json 格式化+高亮
+		function syntaxHighlight(json) {
+			if (typeof json != 'string') {
+				json = JSON.stringify(json, undefined, 2);
+			}
+			json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+			return json.replace(
+				/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+				function(match) {
+					var cls = 'number';
+					if (/^"/.test(match)) {
+						if (/:$/.test(match)) {
+							cls = 'key';
+						} else {
+							cls = 'string';
+						}
+					} else if (/true|false/.test(match)) {
+						cls = 'boolean';
+					} else if (/null/.test(match)) {
+						cls = 'null';
+					}
+					return '<span class="' + cls + '">' + match + '</span>';
+				});
+		}
+
+		//绑定原始文件域
+		//  upload.render({
+		// elem: '#test20'
+		// ,url: '/upload/'
+		// ,done: function(res){
+		//   console.log(res)
+		// }
+		//  });
+	});
+</script>
 
 
