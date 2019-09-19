@@ -568,7 +568,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseTypeId"  lay-search="" id="courseTypeId" lay-fifter="courseTypeId">
+								<select name="courseTypeId" lay-search="" id="courseTypeId" lay-fifter="courseTypeId">
 									<option value="">--请选择--</option>
 								</select>
 							</div>
@@ -616,18 +616,10 @@
 					form = layui.form,
 					element = layui.element;
 					
-					$.ajax({
-						url: commonSrc + 'api/train/costExpenseController/listByType?pageNum=1&pageSize=10',
-						type:'get',
-						dataType:'JSON',
-						success:(res)=>{
-							console.log(res)
-						}
-					})
 				//表格渲染
 				table.render({
 						elem: '#LAY-report-expense-subject',
-						url: commonSrc + 'api/train/costExpenseController/listByType',
+						url: commonSrc + '/api/train/costExpenseController/listByType',
 						toolbar: '#toolbarDemo',
 						request: {
 							pageName: 'pageNum' //页码的参数名称，默认：page
@@ -727,7 +719,7 @@
 				});
 				
 				ajax_courseType();
-				function ajax_courseAttribute() {
+				function ajax_courseType(){
 							$("#courseTypeId").find("option:not(:first)").remove();
 							form.render('select', 'courseTypeId');
 							$.ajax({
@@ -752,6 +744,7 @@
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
 				});
+				
 				//日期
 				$(".date").each(function() {
 					laydate.render({
@@ -926,6 +919,7 @@
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
 				});
+				
 				//日期
 				$(".date").each(function() {
 					laydate.render({
@@ -1136,7 +1130,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-verify="" lay-search=""  id="courseAttrId" lay-filter="courseAttrId">
+								<select name="courseAttrId" lay-verify="" lay-search="" id="courseAttrId" lay-filter="courseAttrId">
 									<option value="">--所有--</option>
 								</select>
 							</div>
