@@ -3,16 +3,16 @@
 		<label class="layui-form-label">课程别名</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="reason" name="alias" lay-verify="title" autocomplete="off" placeholder="课程别名"
+				<input type="text" name="alias" lay-verify="title" autocomplete="off" placeholder="课程别名"
 			               class="layui-input">
 			    </script>
 		</div>
-		<label class="layui-form-label">创建人</label>
+		<label class="layui-form-label">创建时间</label>
 		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="reason" name="createBy" lay-verify="title" autocomplete="off" placeholder="创建人"
-		               class="layui-input">
-		    </script>
+		<script type="text/html" template>
+			<input type="text" name="gmtCreated" lay-verify="title" autocomplete="off" placeholder="创建时间"
+		           class="layui-input date">
+		</script>
 		</div>
 	</div>
 
@@ -20,7 +20,7 @@
 		<label class="layui-form-label">快捷码</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="reason" name="fastCode" lay-verify="title" autocomplete="off" placeholder="快捷码"
+				<input type="text" name="fastCode" lay-verify="title" autocomplete="off" placeholder="快捷码"
 		               class="layui-input">
 		    </script>
 		</div>
@@ -40,33 +40,25 @@
 		<label class="layui-form-label">课程名称</label>
 		<div class="layui-input-inline">
 		<script type="text/html" template>
-			<input type="reason" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称"
+			<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称"
 		           class="layui-input">
 		</script>
 		</div>
 		<label class="layui-form-label">备注</label>
 		<div class="layui-input-inline">
 		<script type="text/html" template>
-			<input type="reason" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+			<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
 		           class="layui-input">
 		</script>
 		</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">创建时间</label>
-			<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="reason" name="gmtCreated" lay-verify="title" autocomplete="off" placeholder="创建时间"
-			           class="layui-input">
-			</script>
-			</div>
-			</div>
-		<input type="hidden" name="id" />
+		
+		<!-- <input type="hidden" name="id" />
 		<input type="hidden" name="courseId" />
 		<input type="hidden" name="employId" />
 		<input type="hidden" name="checkerId" />
 		<input type="hidden" name="courseId" />
-		<input type="hidden" name="trainerId" />
+		<input type="hidden" name="trainerId" /> -->
 		
 	
 	

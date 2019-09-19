@@ -730,7 +730,7 @@
 									var data = res.dataList;			
 									$.each(data, function (i, v) {
 										var id = v.id;
-										var text = v.attrName;
+										var text = v.typeName;
 										$("#courseTypeId").append("<option value='" + id + "'>" + text + "</option>");
 									});
 									form.render('select', 'app-content-list');

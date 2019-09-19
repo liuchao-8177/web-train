@@ -14,9 +14,9 @@
 				<li data-status="1">讲师相关</li>
 			</ul>
 			<div class="layui-tab-content">
+
 				<!--培训记录-->
 				<div class="layui-tab-item layui-show">
-
 					<div class="layui-form-item">
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
@@ -92,44 +92,31 @@
 						<div class="layui-card-body">
 							<!--课程类型-->
 							<script type="text/html" id="courseTypeName">
-								{{#  if(d.courseTypeName==1){ }}
-		                    <button>USB</button>
-							{{#  } else if(d.courseTypeName==2) { }}
-							<button>操作证1</button>
-							{{#  } else if(d.courseTypeName==3) { }}
-							<button>供应链管理</button>
-							{{#  } else if(d.courseTypeName==4) { }}
-							<button>管理</button>
-							{{#  } else if(d.courseTypeName==5) { }}
-							<button>基础</button>
-							{{#  } else if(d.courseTypeName==6) { }}
-							<button>计算机</button>
-							{{#  } else if(d.courseTypeName==7) { }}
-							<button>品质管理</button>
-							{{#  } else if(d.courseTypeName==8) { }}
-							<button>其他</button>
-							{{#  } else if(d.courseTypeName==9) { }}
-							<button>人力资源</button>
-							{{#  } else if(d.courseTypeName==10) { }}
-							<button>入职培训</button>
-							{{#  } else if(d.courseTypeName==11) { }}
-							<button>生产</button>
-							{{#  } else if(d.courseTypeName==12) { }}
-							<button>市场营销</button>
-							{{#  } else { }}
+								{{#  
+								if(d.courseTypeName==1){ }}USB{{#  } else 
+								if(d.courseTypeName==6) { }}操作证{{#  } else 
+								if(d.courseTypeName==10) { }}供应链管理{{#  } else 
+								if(d.courseTypeName==11) { }}管理{{#  } else 
+								if(d.courseTypeName==28) { }}基础{{#  } else 
+								if(d.courseTypeName==30) { }}计算机{{#  } else 
+								if(d.courseTypeName==51) { }}品质管理{{#  } else 
+								{ }}
+								{{#  } }}
 		                    </script>
 							<!--课程属性-->
 							<script type="text/html" id="courseAttrId">
 								{{#  if(d.courseAttrId==1){ }}
-					        <button>单词</button>
+					        单词
 							{{#  } else if(d.courseAttrId==2) { }}
-							<button>测试属性</button>
+							测试属性
 							{{#  } else if(d.courseAttrId==3) { }}
-							<button>防身</button>
+							防身
 							{{#  } else { }}
+							{{#  } }}
 							</script>
 						</div>
 					</div>
+
 
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
@@ -141,10 +128,10 @@
 						</div>
 						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
 					</div>
-				</div>
 
-				<script>
-					layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
+
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 						var $ = layui.$,
 						admin = layui.admin,
 						view = layui.view,
@@ -154,29 +141,29 @@
 						element = layui.element;
 						
 
-		//表格渲染
-		table.render({
-				elem: '#LAY-report-general-train',
-				method: "GET",
-				url: commonSrc + "api/train/recordInController/trainRecord",
-				toolbar: '#toolbarDemo',
-				request: {
-					pageName: 'pageNum' //页码的参数名称，默认：page
-						,
-					limitName: 'pageSize' //每页数据量的参数名，默认：limit
-				},
-				response: {
-					statusCode: 200 //规定成功的状态码，默认：0
-				},
-				parseData: function(res) { //res 即为原始返回的数据
-					return {
+				//表格渲染
+				table.render({
+						elem: '#LAY-report-general-train',
+						method: "GET",
+						url: commonSrc + "api/train/recordInController/trainRecord",
+						toolbar: '#toolbarDemo',
+						request: {
+							pageName: 'pageNum' //页码的参数名称，默认：page
+								,
+							limitName: 'pageSize' //每页数据量的参数名，默认：limit
+						},
+						response: {
+							statusCode: 200 //规定成功的状态码，默认：0
+						},
+						parseData: function(res) { //res 即为原始返回的数据
+							return {
 						"code": res.code, //解析接口状态
 						"msg": res.desc, //解析提示文本
 						"count": res.total, //解析数据长度
 						"data": res.dataList //解析数据列表
-					};
-				},
-				cols: [
+						};
+					},
+					cols: [
 					[{
 						type: 'checkbox',
 						fixed: "left"
@@ -191,6 +178,7 @@
 					}, {
 						field: 'courseTypeName',
 						title: '课程类型',
+						toolbar: '#courseTypeName',
 						align: 'center'
 					}, {
 						field: 'endTime',
@@ -342,10 +330,10 @@
 						trigger: 'click',
 					});
 					})
-					
 				
 				})
 				</script>
+				</div>
 				<!--讲师相关-->
 				<div class="layui-tab-item">
 
@@ -404,7 +392,11 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">讲师姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="teacherId" lay-verify="" placeholder="讲师姓名" autocomplete="off" class="layui-input">
+								<select name="teacherId" lay-search=""  id="teacherId" lay-filter="teacherId">
+									<option value="">--全部--</option>
+									<option value="1">内部</option>
+									<option value="2">外部</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -438,134 +430,163 @@
 								{{#  } else if(d.checkStatus==3) { }}
 								<button>审核通过</button>
 								{{#  } }}
-							</script>
+							    </script>
+						</div>
+
+
+						<div class="layui-card-body">
+							<div style="padding-bottom: 10px;">
+								<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+								<!-- 搜索按钮 -->
+								<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+									<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
+								</button>
+							</div>
+							<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
 						</div>
 					</div>
 
-					<div class="layui-card-body">
-						<div style="padding-bottom: 10px;">
-							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
-						</div>
-						<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
-					</div>
-				</div>
+					<script>
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
+							var $ = layui.$,
+								admin = layui.admin,
+								view = layui.view,
+								table = layui.table,
+								laydate = layui.laydate,
+								form = layui.form,
+								element = layui.element;
 
-				<script>
-					layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
-						var $ = layui.$,
-							admin = layui.admin,
-							view = layui.view,
-							table = layui.table,
-							laydate = layui.laydate,
-							form = layui.form,
-							element = layui.element;
+							//表格渲染
+							table.render({
+									elem: '#LAY-report-general-lecturer',
+									method: "GET",
+									url: commonSrc + 'api/train/recordInController/teacherRelated',
+									toolbar: '#toolbarDemo',
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
+									},
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
+									},
+									parseData: function(res) { //res 即为原始返回的数据
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									cols: [
+										[{
+											type: 'checkbox',
+											fixed: "left"
+										}, {
+											field: 'courseComment',
+											title: '学员反馈：对课程的评语',
+											hide: true,
+										}, {
+											field: 'courseName',
+											title: '等效课程',
+											align: 'center'
+										}, {
+											field: 'endTime',
+											title: '结束日期',
+											align: 'center'
+										}, {
+											field: 'otherName',
+											title: '课程别名',
+											align: 'center'
+										}, {
+											field: 'place',
+											title: '培训地点',
+											align: 'center'
+										}, {
+											field: 'planClass',
+											title: '课时',
+											align: 'center'
+										}, {
+											field: 'remark',
+											title: '备注',
+											hide: true,
+										}, {
+											field: 'startTime',
+											title: '开始日期',
+											align: 'center'
+										}, {
+											field: 'teacherGrade',
+											title: '满意度：对老师的评分',
+											hide: true,
+										 }, 
+										 {
+											field: 'teacherName',
+											title: '讲师',
+											align: 'center'
+										}
+										]
+									],
+									page: !0,
+									limit: 10,
+									limits: [10, 15, 20, 25, 30],
+								}),
 
-						//表格渲染
-						table.render({
-								elem: '#LAY-report-general-lecturer',
-								method: "GET",
-								url: commonSrc + 'api/train/recordInController/teacherRelated',
-								toolbar: '#toolbarDemo',
-								request: {
-									pageName: 'pageNum' //页码的参数名称，默认：page
-										,
-									limitName: 'pageSize' //每页数据量的参数名，默认：limit
-								},
-								response: {
-									statusCode: 200 //规定成功的状态码，默认：0
-								},
-								parseData: function(res) { //res 即为原始返回的数据
-									return {
-										"code": res.code, //解析接口状态
-										"msg": res.desc, //解析提示文本
-										"count": res.total, //解析数据长度
-										"data": res.dataList //解析数据列表
-									};
-								},
-								cols: [
-									[{
-										type: 'checkbox',
-										fixed: "left"
-									}, {
-										field: 'courseComment',
-										title: '学员反馈：对课程的评语',
-										hide: true,
-									}, {
-										field: 'courseName',
-										title: '等效课程',
-										align: 'center'
-									}, {
-										field: 'endTime',
-										title: '结束日期',
-										align: 'center'
-									}, {
-										field: 'otherName',
-										title: '课程别名',
-										align: 'center'
-									}, {
-										field: 'place',
-										title: '培训地点',
-										align: 'center'
-									}, {
-										field: 'planClass',
-										title: '课时',
-										align: 'center'
-									}, {
-										field: 'remark',
-										title: '备注',
-										hide: true,
-									}, {
-										field: 'startTime',
-										title: '开始日期',
-										align: 'center'
-									}, {
-										field: 'teacherGrade',
-										title: '满意度：对老师的评分',
-										hide: true,
-									}, {
-										fixed: 'teacherName',
-										title: '讲师',
-										align: 'center'
-									}]
-								],
-								page: !0,
-								limit: 10,
-								limits: [10, 15, 20, 25, 30],
-							}),
+								form.render(null, 'app-content-list');
 
-							form.render(null, 'app-content-list');
-
-						//监听搜索
-						form.on('submit(LAY-app-contlist-search)', function(data) {
-							var field = data.field;
-							console.log(field);
-							//执行重载
-							table.reload('LAY-report-general-lecturer', {
-								where: field
+							//监听搜索
+							form.on('submit(LAY-app-contlist-search)', function(data) {
+								var field = data.field;
+								console.log(field);
+								//执行重载
+								table.reload('LAY-report-general-lecturer', {
+									where: field
+								});
 							});
-						});
+							
+							ajax_teacher();
+							function ajax_teacher() {
+										// 清空原有select内的数据  只保留第一项
+										$("#teacherId").find("option:not(:first)").remove();
+										form.render('select', 'teacherId');//渲染表单
+										$.ajax({
+											url: commonSrc + "/api/train/teacherController/selectTeacherTypeById",
+											type: "get",
+											dataType: "json",
+											success: function (res) {
+												var data = res.dataList;
+												$.each(data, function (i, v) {
+													var id = v.id;
+													var text = v.name;
+													// alert(id + text);
+													$("#teacherId").append("<option value='" + id + "'>" + text + "</option>");
+												});
+												//渲染select 表单  filter 是 重新渲染对象
+												form.render('select', 'app-content-list');
+											},
+											error: function () {
+												// alert(errorThrown);
+											}
+										});
+									}
 
 
-						// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
-						// 	var type = $(this).data('type');
-						// 	active[type] ? active[type].call(this) : '';
-						// });
-						//日期
-						$(".date").each(function() {
-							laydate.render({
-								elem: this,
-								trigger: 'click',
-							});
+							// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+							// 	var type = $(this).data('type');
+							// 	active[type] ? active[type].call(this) : '';
+							// });
+							//日期
+							$(".date").each(function() {
+								laydate.render({
+									elem: this,
+									trigger: 'click',
+								});
+							})
+							/*$(".add").click(function() {
+								$("table").hide();
+							});*/
 						})
-						/*$(".add").click(function() {
-							$("table").hide();
-						});*/
-					})
-				</script>
+					</script>
+				</div>
 			</div>
 		</div>
 	</div>

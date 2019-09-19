@@ -136,6 +136,14 @@
 							</div>
 						</div>
 					</div>
+					<!--课程优先级-->
+					<script type="text/html" id="priority">
+					    {{#  if(d.priority==1){ }}
+					           必修
+					       {{#  } else {  }}
+					           选修
+					       {{#  } }}
+					   </script>
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
@@ -197,6 +205,7 @@
 											}, {
 												field: 'priority',
 												title: '优先级',
+												toolbar: '#priority',
 												align: 'center'
 											}, {
 												field: 'topic',
