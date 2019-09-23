@@ -1,5 +1,4 @@
 <title>计划报名</title>
-
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
 		<a lay-href="">培训运作</a>
@@ -11,24 +10,21 @@
 		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
 			<form action="" class="layui-form" method="post">
 			<div class="layui-form-item">
-				<div class="layui-inline">
-					<label class="layui-form-label">计划年度</label>
-					<div class="layui-input-inline">
-						<input type="text" name="year" lay-verify="title" placeholder="计划年度" autocomplete="off" class="layui-input">
-					</div>
+				<label class="layui-form-label">课程别名</label>
+				<div class="layui-input-inline">
+					<script type="text/html" template>
+						<input type="text" name="otherName" lay-verify="title" autocomplete="off" placeholder="课程别名"
+					               class="layui-input">
+					    </script>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">计划描述</label>
-					<div class="layui-input-inline">
-						<input type="text" name="describle" lay-verify="title" placeholder="计划描述" autocomplete="off" class="layui-input">
-					</div>
+				<label class="layui-form-label">培训地点</label>
+				<div class="layui-input-inline">
+					<script type="text/html" template>
+						<input type="text" name="place" lay-verify="title" autocomplete="off" placeholder="培训地点"
+				               class="layui-input">
+				    </script>
 				</div>
-				<!-- <div class="layui-inline">
-					<label class="layui-form-label">部门组</label>
-					<div class="layui-input-inline">
-						<input type="text" name="deptGruop" lay-verify="deptGruop" placeholder="部门组" autocomplete="off" class="layui-input">
-					</div>
-				</div> -->
+			</div>
 
 				<!-- 搜索按钮 -->
 				
@@ -36,6 +32,8 @@
 				<div class="layui-input-block">
 					<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
 					<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+					<button type="button" class="layui-btn layui-btn-normal" lay-href="train/plan/PlanDetails">返回</button>
+					
 				</div>
 			</div>
 			</form>
@@ -45,23 +43,45 @@
 
 		<div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
-				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
-				
+				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>	
 			</div>
 
 
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-
+              <script type="text/html" id="absence">
+                 {{#  if(d.absence==1){ }}
+              	<button class="layui-btn layui-btn-xs">旷工</button>
+				{{#  } else if(d.absence==2) { }}
+				<button class="layui-btn layui-btn-danger layui-btn-xs">事假</button>
+				{{#  } else if(d.absence==3) { }}
+				<button class="layui-btn layui-btn-danger layui-btn-xs">病假</button>
+				{{#  } else if(d.absence==4) { }}
+				<button class="layui-btn layui-btn-danger layui-btn-xs">出差</button>
+              	{{#  } else {  }}
+              	<button class="layui-btn layui-btn-danger layui-btn-xs">无理由</button>
+              	{{#  } }}
+              </script>
+		    <script type="text/html" id="isTrain">
+		     {{#  if(d.isTrain==1){ }}
+		  	<button class="layui-btn layui-btn-xs">否</button>
+		  	{{#  } else {  }}
+		  	<button class="layui-btn layui-btn-danger layui-btn-xs">是</button>
+		  	{{#  } }}
+		  </script>
 
 			<script type="text/html" id="table-content-list">
-			 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="addTwo"><i class="layui-icon layui-icon-add"></i>添加</a>
+			
+				
 				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
 				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 			</script>
 		</div>
 	</div>
+
 </div>
-</div>
+
+	
+
 <script>
 	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
 		var $ = layui.$,
@@ -70,12 +90,13 @@
 			table = layui.table,
 			laydate = layui.laydate,
 			form = layui.form;
-
+     
+		var apply=localStorage.getItem("applyid");
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
 				type: "GET",
-				url: commonSrc + 'api/train/planController/list', //数据接口
+				url: commonSrc + 'api/train/planSignController/selectPlanSignList?id='+apply, //数据接口
 		        // page: !0,
 		        // limit: 10,
 		        // limits: [10, 15, 20, 25, 30],//开启分页
@@ -88,7 +109,7 @@
 						,
 					limitName: 'pageSize' //每页数据量的参数名，默认：limit
 				},
-				parseData: function(res) { //res 即为原始返回的数据
+				parseData: function(res){ //res 即为原始返回的数据
 					// console.log(res);
 					return {
 						"code": res.code, //解析接口状态
@@ -99,23 +120,29 @@
 				},
 				//表头
 				cols: [
-					               [{
+									[{
 										field: 'id',
 										title: 'id',
 										hide: true,
+									},{
+										field: 'remark',
+										title: '备注',
+									 	align: 'center'
+									},{
+										field: 'absence',
+										title: '缺席原因',
+										toolbar:'#absence',
+									 	align: 'center'
 									}, {
-										field: 'year',
-										title: '计划年度',
-										align: 'center'
-									}, {
-										field: 'describle',
-										title: '计划描述',
-										align: 'center'
-									}, {
-										field: 'deptGruop',
-										title: '部门组',
-										align: 'center'
-									},  {
+										field: 'isTrain',
+										title: '是否已培训',
+										templet:'#isTrain',
+									 	align: 'center'
+									},{
+										field: 'signGroup',
+										title: '组',
+									 	align: 'center'
+									},{
 										fixed: 'right',
 										title: '操作',
 										toolbar: '#table-content-list',
@@ -130,15 +157,59 @@
 
 			table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
-				// localStorage.setItem("id",data.id);
-
-				if(obj.event == "addTwo"){
-					localStorage.setItem("selfPlanId", data.id);
-					location.href = "#/train/plan/PlanDetails";
-				}
+				
+				// var planId = localStorage.getItem("id");
+				// 
+				
+				// if ("look" === obj.event) {
+				// 	admin.popup({
+				// 		title: "查看计划details信息",
+				// 		area: ['50%', '80%'],
+				// 		id: "LAY-popup-content-view",
+				// 		success: function(t, layero) {
+				// 			view(this.id).render("train/plan/PlanDetailsForm").done(function() {
+				// 				form.render(null,"layuiadmin-app-form-list");
+				// 				 //日期
+				// 				$(".date").each(function() {
+				// 					laydate.render({
+				// 				
+				// 						elem: this,
+				// 						trigger: 'click',
+				// 						min: -5000,
+				// 						max: 0
+				// 					});
+				// 				})
+				// 				$.ajax({
+				// 					url: commonSrc +'api/train/planDetailController/selectUnEvaPlanList', //换成自己的url
+				// 					type: "GET",
+				// 					dataType: "json",
+				// 					data: {
+				// 						id: data.id
+				// 					},
+				// 					success: function(e) {
+				// 						//layer.msg(e.contractCheckVo);
+				// 						let obj = e.data;
+				// 						form.val("layuiadmin-app-form-list",obj/* {
+				// 							"id": obj.id,
+				// 							"name": obj.name,
+				// 							"sex": obj.sex,
+				// 							"code": obj.code,
+				// 							"phone": obj.phone,
+				// 							"homeAddress": obj.homeAddress
+				// 
+				// 						} */);
+				// 
+				// 					},
+				// 				})
+				// 				form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
+				// 					data) {})
+				// 			})
+				// 		}
+				// 	})
+				// }
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
-						url: commonSrc + "api/train/planController/deletePlanById", //换成自己的url
+						url: commonSrc + "api/train/planSignController/deletePlanSignById", //换成自己的url
 						type: "POST",
 						dataType: "json",
 						data: {
@@ -156,13 +227,13 @@
 						}
 					})
 				}) : "edits" === obj.event && admin.popup({
-					title: "编辑计划信息",
+					title: "编辑计划详情信息",
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
-						view(this.id).render("train/plan/PlanForm").done(function() {
+						view(this.id).render("train/plan/PlanSignForm").done(function() {
 							$.ajax({
-								url: commonSrc + "api/train/planController/selectPlanById", //换成自己的url
+								url: commonSrc + "api/train/planSignController/selectPlanSignList", //换成自己的url
 								type: "GET",
 								dataType: "json",
 								data: {
@@ -188,7 +259,7 @@
 							form.render(null, "layuiadmin-app-form-list"),
 								form.on("submit(layuiadmin-app-form-submit)", function(
 									data) { //sub添加提交
-									$.post(commonSrc + "api/train/planController/updatePlan",
+									$.post(commonSrc + "api/train/planSignController/updatePlanSign",
 										data.field,
 										function(ev) {
 											layer.msg("修改成功", {
@@ -258,11 +329,11 @@
 				,
 			add: function(othis) {
 				admin.popup({
-					title: '添加计划信息',
+					title: '添加报名详情信息',
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						view(this.id).render('train/plan/PlanForm').done(function() { //跳转
+						view(this.id).render('train/plan/PlanSignForm').done(function() { //跳转
 							form.render(null, 'layuiadmin-app-form-list');
 							//日期
 							$(".date").each(function() {
@@ -274,7 +345,7 @@
 							//监听提交
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
-								$.post(commonSrc + "api/train/planController/insertPlan",
+								$.post(commonSrc + "api/train/planDetailController/insertPlanSign",
 									data.field,
 									function(ev) {
 										layer.msg("新增成功", {
@@ -307,3 +378,4 @@
 
 	});
 </script>
+

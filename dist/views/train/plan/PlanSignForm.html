@@ -1,0 +1,86 @@
+
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+	<form action="" class="layui-form" method="post">
+
+	<div class="layui-form-item">
+		<label class="layui-form-label">备注</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+		           class="layui-input">
+		</script>
+		</div>
+		<label class="layui-form-label">组</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="text" name="signGroup" lay-verify="title" autocomplete="off" placeholder="组"
+		           class="layui-input">
+		</script>
+		</div>
+	</div>
+
+		<div class="layui-form-item">
+		<label class="layui-form-label">缺席原因</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="absence" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">旷工</option>
+		    	<option value="2">事假</option>
+				<option value="3">病假</option>
+				<option value="3">出差</option>
+		    </select>
+		    </script>
+		</div>
+		<label class="layui-form-label">是否已培训</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="isTrain" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">否</option>
+		    	<option value="2">是</option>
+		    </select>
+		    </script>
+		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">等效课程</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="topic" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">否</option>
+		    	<option value="2">是</option>
+			</script>
+			</div>
+			<label class="layui-form-label">组</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="signGroup" lay-verify="title" autocomplete="off" placeholder="组"
+			           class="layui-input">
+			</script>
+			</div>
+		</div>
+		
+		
+		
+		<input type="hidden" name="id" />
+		<input type="hidden" name="courseId" />
+		<input type="hidden" name="employId" />
+		<input type="hidden" name="checkerId" />
+		<input type="hidden" name="trainerId" />
+
+	
+	<div class="layui-form-item">
+	    <label class="layui-form-label"></label>
+	    <div class="layui-input-block" style="text-align: left;">
+	    		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
+	    		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+	    </div>
+	</div>
+	</form>
+	
+</div>
+
+
+

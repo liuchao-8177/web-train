@@ -31,25 +31,26 @@
 						<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
 					</div>
 				</div>
+				<input type="hidden" name="courseAttributeId" />
+				<input type="hidden" name="courseId"/>
 			</form>
-
+</div>
 			<!-- 搜索条件结束 -->
-
-		</div>
 		<div class="layui-card-body">
 			
 
 			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
 
-			<div id="userBar" style="display: none;">
+			<!-- <div id="userBar" style="display: none;">
 				<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
 				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-			</div>
+			</div> -->
 			<!-- 数据表格结束 -->
 
 			<!-- 添加和修改的弹出层开始 -->
-
+			
+        
 		</div>
 		<!-- 添加和修改的弹出层结束 -->
 	</div>
@@ -95,45 +96,43 @@
 				cols: [
 					[ //列表数据
 						 {
-							field: 'id',
-							title: 'id',
-							hide: true
-						}, {
+							field: 'courseAttributeId',
+							title: '课程属性id',
+							align: 'center',
+							hide:'true'
+						} ,{
 							field: 'courseId',
-							title: '课程属性',
-							align: 'center'
+							title: '等效课程id(课程id)',
+							align: 'center',
+							hide:'true'
 						}, {
 							field: 'priority',
 							title: '优先级别',
+							templet:'priority',
 							align: 'center'
 							
 						}, {
-							field: 'addPersonNum',
-							title: '预计增加人次',
+							field: 'courseTypeId',
+							title: '课程类型id',
 							align: 'center'
 							
 						}, {
-							field: 'sumCount',
-							title: '需求总人次',
+							field: 'employId',
+							title: '员工id',
 							align: 'center'
 							
 						},{
-							field: 'completeCount',
-							title: '需求已完成',
+							field: 'tenantCode',
+							title: '租户编码',
 							align: 'center',
 							id:'priority'
-						},{
-							field: 'unCompeleteCount',
-							title: '需求未完成',
-							align: 'center'
-							
 						}]
 				],
 				// page: !0,
 				// limit: 5,
 				// limits: [5,10, 15, 20, 25, 30],
 			}),
-			table.on("tool(LAY-app-content-list)", function(obj) {
+			table.on("tool(LAY-app-content-list)", function(obj){
 				var data = obj.data;
 				if("look" === obj.event){
 					admin.popup({

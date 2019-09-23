@@ -43,22 +43,22 @@
 		<div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
 				<button class="layui-btn layuiadmin-btn-list add" data-type="adds">添加</button>
-				<button class="layui-btn layuiadmin-btn-list" lay-href="train/zojt/OJTAdd">增加</button>
+				
 			</div>
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
     
-			<script type="text/html" id="buttonTpl">
-				{{#  if(d.isUse==1){ }}
-			    <button class="layui-btn layui-btn-xs">否</button>
-			    {{#  } else {  }}
-			    <button class="layui-btn layui-btn-danger layui-btn-xs">是</button>
-			    {{#  } }}
+			<script type="text/html" id="isUse">
+			   {{#  if(d.isUse==1){ }}
+				<button class="layui-btn layui-btn-xs">否</button>
+				{{#  } else {  }}
+				<button class="layui-btn layui-btn-danger layui-btn-xs">是</button>
+				{{#  } }}
 			</script>
 
-			<script type="text/html" id="table-content-list">
-				
-				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+			<script type="text/html" id="table-content-list">	
+		   <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="addTwo"><i class="layui-icon layui-icon-add"></i>添加</a>
+		   <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+           <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
         </script>
 		</div>
 	</div>
@@ -116,7 +116,7 @@
 					}, {
 						field: 'isUse',
 						title: '是否启动',
-						templet: "#buttonTpl",
+						templet: '#isUse',
 						align: 'center'
 					}, {
 						field: 'name',
@@ -139,7 +139,13 @@
 			}),
 			table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
-				
+				// JSON.stringify(data.id);
+				// localStorage.setItem("id",data.id);
+				// localStorage.getItem("id");
+				// console.log(data.id);
+				if(obj.event == "addTwo"){
+					location.href = "#/train/zojt/OJTAdd";
+				}
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
 						url: commonSrc + "api/train/OJTCourseController/deleteOJTCourseById", //换成自己的url
@@ -164,7 +170,7 @@
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
-						view(this.id).render("train/zojt/OJTForm", data).done(function() {
+						view(this.id).render("train/zojt/OJTForm").done(function() {
 							$.ajax({
 								url: commonSrc + "api/train/OJTCourseController/selectOJTCourseById", //换成自己的url
 								type: "GET",
@@ -267,10 +273,53 @@
 
 					});
 				}
-
+                  ,
 				//添加
-				,
+				addTwo: function(othis) {
+					console.log("ok")
+					// admin.popup({
+					// 	title: '',
+					// 	area: ['720px', '700px'],
+					// 	id: 'LAY-popup-content-add',
+					// 	success: function(layero, index) {
+					// 		view(this.id).render('train/zojt/OJTAdd').done(function() {
+					// 			form.render(null, 'layuiadmin-app-form-list');
+					// 			//日期
+					// 			$(".date").each(function() {
+					// 				laydate.render({
+					// 					elem: this,
+					// 					trigger: 'click',
+					// 				});
+					// 			})
+					// 			//年-月-日 时:分:秒
+					// 			$(".datetime").each(function() {
+					// 				laydate.render({
+					// 					elem: this,
+					// 					type: 'datetime',
+					// 					trigger: 'click',
+					// 				});
+					// 			})
+					// 			//监听提交
+					// 			form.on('submit(layuiadmin-app-form-submit)', function(data) {
+					// 				var field = data.field; //获取提交的字段
+					// 				$.post(commonSrc + "api/train/OJTParticipateController/selectParticipateById",
+					// 					data.field,
+					// 					function(ev) {
+					// 						layer.msg("新增成功", {
+					// 							time: 1000
+					// 						}, function() {
+					// 							layer.close(index); //执行关闭 
+					// 							layui.table.reload('LAY-app-content-list'); //重载表格
+					// 						})
+					// 					});
+					// 				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+					// 			});
+					// 		});
+					// 	}
+					// });
+				},
 			adds: function(othis) {
+				console.log(othis)
 				admin.popup({
 					title: '添加OTJ信息',
 					area: ['720px', '700px'],

@@ -1,0 +1,209 @@
+
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+	<form action="" class="layui-form" method="post">
+	<div class="layui-form-item">
+		<label class="layui-form-label">培训机构</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="agency" lay-verify="title" autocomplete="off" placeholder="培训机构"
+			               class="layui-input">
+			</script>
+		</div>
+		<label class="layui-form-label">容量</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="capacity" lay-verify="title" autocomplete="off" placeholder="容量"
+		               class="layui-input">
+		    </script>
+		</div>
+	</div>
+
+	<div class="layui-form-item">
+		<label class="layui-form-label">课程别名</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="otherName" lay-verify="title" autocomplete="off" placeholder="课程别名"
+		               class="layui-input">
+		    </script>
+		</div>
+		
+		<label class="layui-form-label">是否启用</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="isUse" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">否</option>
+		    	<option value="2">是</option>
+		    </select>
+		    </script>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">其它一</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="text" name="otherOne" lay-verify="title" autocomplete="off" placeholder="其它一"
+		           class="layui-input">
+		</script>
+		</div>
+		<label class="layui-form-label">其它二</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="text" name="otherTwo" lay-verify="title" autocomplete="off" placeholder="其它二"
+		           class="layui-input">
+		</script>
+		</div>
+	</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">其它三</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="otherThree" lay-verify="title" autocomplete="off" placeholder="其它三"
+			           class="layui-input">
+			</script>
+			</div>
+			<label class="layui-form-label">培训地点</label>
+			<div class="layui-input-inline">	
+			<script type="text/html" template>
+				<input type="text" name="place" lay-verify="title" autocomplete="off" placeholder="培训地点"
+			           class="layui-input">
+			</script>
+			</div>
+			
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">培训开始日期</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="startTime" lay-verify="title" autocomplete="off" placeholder="培训开始日期"
+			           class="layui-input date">
+			</script>
+			</div>
+			<label class="layui-form-label">培训结束日期</label>
+			<div class="layui-input-inline">	
+			<script type="text/html" template>
+				<input type="text" name="endTime" lay-verify="title" autocomplete="off" placeholder="培训结束日期"
+			           class="layui-input date">
+			</script>
+			</div>
+			
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">课时</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="planClass" lay-verify="title" autocomplete="off" placeholder="课时"
+			           class="layui-input">
+			</script>
+			</div>
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-inline">	
+			<script type="text/html" template>
+				<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+			           class="layui-input">
+			</script>
+			</div>
+			
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">差旅费</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="travel" lay-verify="title" autocomplete="off" placeholder="差旅费"
+			           class="layui-input">
+			</script>
+			</div>
+			<label class="layui-form-label">学费</label>
+			<div class="layui-input-inline">	
+			<script type="text/html" template>
+				<input type="text" name="tuition" lay-verify="title" autocomplete="off" placeholder="学费"
+			           class="layui-input">
+			</script>
+			</div>
+		</div>
+		<div class="layui-form-item">
+		<label class="layui-form-label">培训形式</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+			<select name="trainForm" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">内部培训</option>
+		    	<option value="2">外部公开班</option>
+				<option value="3">外聘内训</option>
+		    </select>
+		    </script>
+		</div>
+		<label class="layui-form-label">等效课程</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+		<select name="courseId" id="sscourseId"  lay-filter="sscourseId" class="layui-form" >
+			<option value="">--请选择--</option>
+			<option value="1">内部培训</option>
+			<option value="2">外部公开班</option>
+			<option value="3">外聘内训</option>
+		</select>
+		</script>
+		</div>
+		</div>
+		
+		
+		
+		<input type="hidden" name="id" />
+		<input type="hidden" name="planId" />
+<!-- 		<input type="hidden" name="courseId" /> -->
+		<input type="hidden" name="employId" />
+		<input type="hidden" name="checkerId" />
+		<input type="hidden" name="trainerId" />
+
+	
+	<div class="layui-form-item">
+	    <label class="layui-form-label"></label>
+	    <div class="layui-input-block" style="text-align: left;">
+	    		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
+	    		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
+	    </div>
+	</div>
+	</form>
+	
+</div>
+<script type="text/javascript">
+	layui.use(['form'], function () {
+		var form = layui.form;//form模块
+		var $ = layui.$;//引入内置jquery
+
+		// $("#selfPlanId").val(localStorage.getItem(""))
+		ajax_courseType();
+	
+		//        课程类型
+		function ajax_courseType() {
+			// 清空原有select内的数据  只保留第一项
+			$("#sscourseId").find("option:not(:first)").remove();
+			console.log("dd");
+			form.render('select', 'sscourseId');//渲染表单
+			$.ajax({
+				url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
+				type: "GET",
+				dataType: "json",
+				success: function (res) {
+					var data = res.dataList;
+					$.each(data, function (i, v) {
+						var id = v.id;
+						var text = v.topic;
+						// alert(id + text);
+						$("#sscourseId").append("<option value='" + id + "'>" + text + "</option>");
+					});
+					//渲染select 表单  filter 是 重新渲染对象
+					form.render('select', 'layuiadmin-app-form-list');
+				},
+				error: function () {
+					// alert(errorThrown);
+				}
+			});
+		}
+	});
+		
+
+	
+</script>
+
+
