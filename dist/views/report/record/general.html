@@ -57,24 +57,22 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<select name="" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">强思企业管理</option>
-									<option value="2">广州盛炬智能科技有限公司</option>
-									<option value="3">若干</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
+								<input type="courseName" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">讲师姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="teacherId" lay-verify="" placeholder="讲师姓名" autocomplete="off" class="layui-input">
+								<select name="teacherId" lay-search="" id="teacherId" lay-filter="teacherId">
+									<option value="">--全部--</option>
+									<option value="1">产生错误了</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -303,6 +301,32 @@
 				  				}
 				  			});
 				  		}
+						<!--根据讲师id查询讲师姓名-->
+						ajax_teacher();
+						function ajax_teacher() {
+							// 清空原有select内的数据  只保留第一项
+							$("#teacherId").find("option:not(:first)").remove();
+							form.render('select', 'teacherId'); //渲染表单
+							$.ajax({
+								url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
+								type: "get",
+								dataType: "json",
+								success: function(res) {
+									var data = res.dataList;
+									$.each(data, function(i, v) {
+										var id = v.id;
+										var text = v.name;
+										// alert(id + text);
+										$("#teacherId").append("<option value='" + id + "'>" + text + "</option>");
+									});
+									//渲染select 表单  filter 是 重新渲染对象
+									form.render('select', 'app-content-list');
+								},
+								error: function() {
+									// alert(errorThrown);
+								}
+							});
+						}
 				  
 				  
 
@@ -334,6 +358,7 @@
 				})
 				</script>
 				</div>
+				
 				<!--讲师相关-->
 				<div class="layui-tab-item">
 
@@ -347,9 +372,12 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseType" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+									<option value="">--所有--</option>
+								</select>
 							</div>
 						</div>
+						
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
@@ -375,27 +403,21 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<select name="" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">强思企业管理</option>
-									<option value="2">广州盛炬智能科技有限公司</option>
-									<option value="3">若干</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
+								<input type="courseName" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">讲师姓名</label>
 							<div class="layui-input-inline">
-								<select name="teacherId" lay-search=""  id="teacherId" lay-filter="teacherId">
+								<select name="teacherId" lay-search="" id="teacherId" lay-filter="teacherId">
 									<option value="">--全部--</option>
-									<option value="1">内部</option>
-									<option value="2">外部</option>
+									<option value="1">产生错误了</option>
 								</select>
 							</div>
 						</div>
@@ -416,8 +438,9 @@
 							<div class="layui-input-inline">
 								<select name="inside" lay-verify="">
 									<option value="">--全部--</option>
-									<option value="1">内部</option>
-									<option value="2">外部</option>
+									<option value="1">领导</option>
+									<option value="2">内部讲师</option>
+									<option value="3">外部讲师</option>
 								</select>
 							</div>
 						</div>
@@ -480,50 +503,49 @@
 									},
 									cols: [
 										[{
-											type: 'checkbox',
-											fixed: "left"
-										}, {
-											field: 'courseComment',
-											title: '学员反馈：对课程的评语',
-											hide: true,
-										}, {
-											field: 'courseName',
-											title: '等效课程',
-											align: 'center'
-										}, {
-											field: 'endTime',
-											title: '结束日期',
-											align: 'center'
-										}, {
-											field: 'otherName',
-											title: '课程别名',
-											align: 'center'
-										}, {
-											field: 'place',
-											title: '培训地点',
-											align: 'center'
-										}, {
-											field: 'planClass',
-											title: '课时',
-											align: 'center'
-										}, {
-											field: 'remark',
-											title: '备注',
-											hide: true,
-										}, {
-											field: 'startTime',
-											title: '开始日期',
-											align: 'center'
-										}, {
-											field: 'teacherGrade',
-											title: '满意度：对老师的评分',
-											hide: true,
-										 }, 
-										 {
-											field: 'teacherName',
-											title: '讲师',
-											align: 'center'
-										}
+												type: 'checkbox',
+												fixed: "left"
+											}, {
+												field: 'courseComment',
+												title: '学员反馈：对课程的评语',
+												hide: true,
+											}, {
+												field: 'courseName',
+												title: '等效课程',
+												align: 'center'
+											}, {
+												field: 'teacherName',
+												title: '讲师',
+												align: 'center'
+											}, {
+												field: 'endTime',
+												title: '结束日期',
+												align: 'center'
+											}, {
+												field: 'otherName',
+												title: '课程别名',
+												align: 'center'
+											}, {
+												field: 'place',
+												title: '培训地点',
+												align: 'center'
+											}, {
+												field: 'planClass',
+												title: '课时',
+												align: 'center'
+											}, {
+												field: 'remark',
+												title: '备注',
+												hide: true,
+											}, {
+												field: 'startTime',
+												title: '开始日期',
+												align: 'center'
+											}, {
+												field: 'teacherGrade',
+												title: '满意度：对老师的评分',
+												hide: true,
+											}
 										]
 									],
 									page: !0,
@@ -542,23 +564,50 @@
 									where: field
 								});
 							});
-							
+
+                            <!--根据讲师id查询讲师姓名-->
 							ajax_teacher();
 							function ajax_teacher() {
-										// 清空原有select内的数据  只保留第一项
-										$("#teacherId").find("option:not(:first)").remove();
-										form.render('select', 'teacherId');//渲染表单
+								// 清空原有select内的数据  只保留第一项
+								$("#teacherId").find("option:not(:first)").remove();
+								form.render('select', 'teacherId'); //渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
+									type: "get",
+									dataType: "json",
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											var id = v.id;
+											var text = v.name;
+											// alert(id + text);
+											$("#teacherId").append("<option value='" + id + "'>" + text + "</option>");
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select', 'app-content-list');
+									},
+									error: function() {
+										// alert(errorThrown);
+									}
+								});
+							}
+							<!--根据课程类型id查询课程类型名称-->
+							ajax_courseType();
+							function ajax_courseType() {
+										// 清空原有select内的数据只保留第一项
+										$("#courseType").find("option:not(:first)").remove();
+										form.render('select', 'courseType');//渲染表单
 										$.ajax({
-											url: commonSrc + "/api/train/teacherController/selectTeacherTypeById",
+											url: commonSrc + "/api/train/courseTypeController/list",
 											type: "get",
 											dataType: "json",
 											success: function (res) {
 												var data = res.dataList;
 												$.each(data, function (i, v) {
 													var id = v.id;
-													var text = v.name;
+													var text = v.typeName;
 													// alert(id + text);
-													$("#teacherId").append("<option value='" + id + "'>" + text + "</option>");
+													$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
 												});
 												//渲染select 表单  filter 是 重新渲染对象
 												form.render('select', 'app-content-list');
