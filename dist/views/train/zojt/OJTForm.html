@@ -1,5 +1,12 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
 	<div class="layui-form-item">
+		<label class="layui-form-label">OJT课程</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称"
+					   class="layui-input">
+			</script>
+		</div>
 		<label class="layui-form-label">课程别名</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
@@ -7,13 +14,7 @@
 			               class="layui-input">
 			    </script>
 		</div>
-		<label class="layui-form-label">创建时间</label>
-		<div class="layui-input-inline">
-		<script type="text/html" template>
-			<input type="text" name="gmtCreated" lay-verify="title" autocomplete="off" placeholder="创建时间"
-		           class="layui-input date">
-		</script>
-		</div>
+
 	</div>
 
 	<div class="layui-form-item">
@@ -28,22 +29,14 @@
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="isUse">
-		    	<option value="">--请选择--</option>
 		    	<option value="1">否</option>
-		    	<option value="2">是</option>
+		    	<option value="2" selected="selected">是</option>
 		    </select>
 		    </script>
 		</div>
 	</div>
 
 	<div class="layui-form-item">
-		<label class="layui-form-label">课程名称</label>
-		<div class="layui-input-inline">
-		<script type="text/html" template>
-			<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="课程名称"
-		           class="layui-input">
-		</script>
-		</div>
 		<label class="layui-form-label">备注</label>
 		<div class="layui-input-inline">
 		<script type="text/html" template>

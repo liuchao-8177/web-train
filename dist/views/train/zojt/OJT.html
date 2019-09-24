@@ -102,31 +102,35 @@
 						title: 'id',
 						hide: true,
 					}, {
+						field: 'name',
+						title: 'OJT课程',
+						align: 'center'
+					}, {
 						field: 'alias',
 						title: '课程别名',
-						align: 'center'
-					},  {
-						field: 'fastCode',
-						title: '快捷码',
-						align: 'center'
-					}, {
-						field: 'gmtCreated',
-						title: '创建时间',
-						align: 'center'
-					}, {
-						field: 'isUse',
-						title: '是否启动',
-						templet: '#isUse',
-						align: 'center'
-					}, {
-						field: 'name',
-						title: '课程名称',
 						align: 'center'
 					}, {
 						field: 'remark',
 						title: '备注',
 						align: 'center'
 					}, {
+						field: 'fastCode',
+						title: '快捷码',
+						align: 'center'
+					}, {
+						field: 'isUse',
+						title: '是否启用',
+						templet: '#isUse',
+						align: 'center'
+					}, {
+						field: 'createBy',
+						title: '创建人',
+						align: 'center'
+					},{
+						field: 'gmtCreated',
+						title: '创建时间',
+						align: 'center'
+					},  {
 						fixed: 'right',
 						title: '操作',
 						toolbar: '#table-content-list',
@@ -144,7 +148,7 @@
 				// localStorage.getItem("id");
 				// console.log(data.id);
 				if(obj.event == "addTwo"){
-					location.href = "#/train/zojt/OJTAdd";
+					location.href = "#/train/zojt/OJTAdd/courseId=" + data.id;
 				}
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({

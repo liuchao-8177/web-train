@@ -75,12 +75,16 @@
   			table = layui.table,
   			laydate = layui.laydate,
   			form = layui.form;
-  
+
+		// var courseId = QueryUtils.GetQueryString("courseId");
+		var router = layui.router();
+		var courseId = router.search.courseId;
+		// alert(courseId);
   		//表格渲染
   		table.render({
   				elem: '#LAY-app-content-list',
   				type: "GET",
-  				url: commonSrc + 'api/train/OJTParticipateController/list', //数据接口
+  				url: commonSrc + 'api/train/OJTParticipateController/list?courseId=' + courseId, //数据接口
   				// toolbar: '#toolbarDemo',
   				response: {
   					statusCode: 200 //规定成功的状态码，默认：0
@@ -114,54 +118,56 @@
   						hide: true,
   					}, {
   						field: 'employId',
-  						title: '学员ID',
-  						hide: true,
+  						title: '员工ID',
+  						// hide: true,
+						align: 'center'
   					}, {
   						field: 'employName',
-  						title: '学员名字',
+  						title: '员工姓名',
   						align: 'center'
   					}, {
+						field: 'trainerId',
+						title: '培训者ID',
+						align: 'center'
+					}, {
   						field: 'trainer',
-  						title: '培训者名字',
+  						title: '培训者姓名',
   						align: 'center'
   					}, {
-  						field: 'checker',
-  						title: '考核人姓名',
-  						align: 'center'
-  					}, {
+						field: 'startTime',
+						title: '培训开始日期',
+						align: 'center'
+					}, {
+						field: 'endTime',
+						title: '培训结束日期',
+						align: 'center'
+					},  {
+						field: 'place',
+						title: '培训地点',
+						align: 'center'
+					}, {
+						field: 'isThrough',
+						title: '是否通过',
+						templet:'#isThrough',
+						align: 'center'
+					}, {
   						field: 'checkerId',
   						title: '考核人ID',
   						hide: true,
   					}, {
+						field: 'checker',
+						title: '考核人姓名',
+						hide: true,
+					},
+						{
   						field: 'courseId',
   						title: 'OJT课程ID',
   						hide: true,
   					}, {
-  						field: 'isThrough',
-  						title: '是否通过',
-  						templet:'#isThrough',
-  						align: 'center'
-  					},  {
-  						field: 'startTime',
-  						title: '培训开始日期',
-  						align: 'center'
-  					}, {
-  						field: 'endTime',
-  						title: '培训结束日期',
-  						align: 'center'
-  					}, {
-  						field: 'place',
-  						title: '培训地点',
-  						align: 'center'
-  					}, {
   						field: 'referNum',
   						title: '参考号',
   						align: 'center'
-  					}, {
-  						field: 'trainerId',
-  						title: '培训者ID',
-  						hide: true,
-  					}, 
+  					},
   					{
   						fixed: 'right',
   						title: '操作',
@@ -364,6 +370,8 @@
   							//监听提交
   							form.on('submit(layuiadmin-app-form-submit)', function(data) {
   								var field = data.field; //获取提交的字段
+								// console.log(field);
+								field.courseId = courseId;
   								$.post(commonSrc + "api/train/OJTParticipateController/insertParticipate",
   									data.field,
   									function(ev) {
