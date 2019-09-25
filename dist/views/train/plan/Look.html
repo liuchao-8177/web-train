@@ -134,12 +134,28 @@
 		    </select>
 		    </script>
 		</div>
+		<label class="layui-form-label">讲师</label>
+		<div class="layui-input-inline">	
+		<script type="text/html" template>
+			<input type="text" name="teacherId" lay-verify="title" autocomplete="off" placeholder="讲师"
+		           class="layui-input">
+		</script>
+		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">等效课程</label>
+			<div class="layui-input-inline">	
+			<script type="text/html" template>
+				<select name="courseId" >
+		    	<option value="">--请选择--</option>
+		    	
+			</script>
+			</div>
 		</div>
 		
 		
-		
 		<input type="hidden" name="id" />
-		<input type="hidden" name="courseId" />
+		<!-- <input type="hidden" name="courseId" /> -->
 		<input type="hidden" name="employId" />
 		<input type="hidden" name="checkerId" />
 		<input type="hidden" name="trainerId" />

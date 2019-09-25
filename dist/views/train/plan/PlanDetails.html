@@ -45,14 +45,20 @@
 			<div style="padding-bottom: 10px;">
 				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>	
 			</div>
-
-
+			
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+			 <script type="text/html" id="teacher">
+			 {{#  if( sessionStorage.getItem("teacher" + d.teacherId)==null){ }}
+					      
+		     {{#  } else {  }}
+		     <span>{{ sessionStorage.getItem("teacher" + d.teacherId) }}</span>
+		    {{#  } }}	 
+			 </script>
          <script type="text/html" id="course">
-			 {{#  if(localStorage.getItem(d.courseId)==null){ }}
+			 {{#  if(sessionStorage.getItem(d.courseId)==null){ }}
 			      
 			 {{#  } else {  }}
-			 <span>{{ localStorage.getItem(d.courseId) }}</span>
+			 <span>{{ sessionStorage.getItem(d.courseId) }}</span>
 			 {{#  } }}
 			 
           </script>
@@ -72,11 +78,18 @@
 			</script>
 		</div>
 	</div>
-
 </div>
-<!-- 传参的方法 -->
-<script>			  
-	 var $ = layui.$;
+
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
+
+
 	 $.ajax({
 	 	url: commonSrc +'api/train/courseController/list?pageNum=1&pageSize=99999', //换成自己的url
 	 	type: "GET",
@@ -86,23 +99,32 @@
 			$.each(data, function(i,v){
 				var id = v.id;
 				var topic = v.topic;
-			localStorage.setItem(id, topic);
+				sessionStorage.setItem(id, topic);
 			});
 
 	 	},
-	 })
-	
+	 });
+	 	$.ajax({
+	 	url: commonSrc +'api/train/teacherController/list?pageSize=99999&pageNum=1', //换成自己的url
+	 	type: "GET",
+	 	dataType: "json",
+	 	success: function(e){
+	 			var data = e.dataList
+				
+	 			$.each(data, function(i,v){
+	 				var id = v.id;
+	 				var name = v.name;
+	 				
+	 			sessionStorage.setItem("teacher" + id, name);
+	 			
+	 			});
 	 
-	
-</script>
-<script>
-	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-		var $ = layui.$,
-			admin = layui.admin,
-			view = layui.view,
-			table = layui.table,
-			laydate = layui.laydate,
-			form = layui.form;
+	 	}
+	 });
+	 
+
+
+
 
 		//表格渲染
 		table.render({
@@ -122,7 +144,7 @@
 					limitName: 'pageSize' //每页数据量的参数名，默认：limit
 				},
 				parseData: function(res){ //res 即为原始返回的数据
-					// console.log(res);
+				
 					return {
 						"code": res.code, //解析接口状态
 						"msg": res.desc, //解析提示文本
@@ -140,12 +162,16 @@
 										field: 'courseId',
 										title: '等效课程',
 										templet:'#course',
-										align: 'center',
-										
+										align: 'center'
 									}, {
 										field: 'otherName',
 										title: '课程别名',
 										align: 'center'
+									},{
+										field: 'teacherId',
+										title: '讲师',	
+										templet:'#teacher',								
+										align: 'center'						
 									}, {
 										field: 'capacity',
 										title: '容量',
@@ -164,7 +190,7 @@
 										title: '操作',
 										toolbar: '#table-content-list',
 										align:'center',
-										minWidth: 150,
+										minWidth: 150
 									}]
 								],
 				  page: !0,
@@ -175,10 +201,13 @@
 			table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
 				
+				
 				if(obj.event == "apply"){
-					location.href = "#/train/plan/PlanSign";
-					localStorage.setItem("applyid",data.id);
+					location.href = "#/train/plan/PlanSign/planDetailId=" + data.id;
+					
 				}
+				
+				
 				if ("look" === obj.event) {
 					admin.popup({
 						title: "查看计划details信息",
@@ -190,7 +219,6 @@
 								 //日期
 								$(".date").each(function() {
 									laydate.render({
-								
 										elem: this,
 										trigger: 'click',
 										min: -5000,
@@ -208,12 +236,7 @@
 										//layer.msg(e.contractCheckVo);
 										let obj = e.data;
 										form.val("layuiadmin-app-form-list",obj/* {
-											"id": obj.id,
-											"name": obj.name,
-											"sex": obj.sex,
-											"code": obj.code,
-											"phone": obj.phone,
-											"homeAddress": obj.homeAddress
+										
 				
 										} */);
 				
@@ -236,8 +259,7 @@
 						success: function(b) {
 							layer.msg('删除成功');
 							obj.del(), layer.close(e),
-							layui.table.reload('LAY-app-content-list'); //重载表格
-							
+							layui.table.reload('LAY-app-content-list'); //重载表格		
 						},
 						error: function(e) {
 							layer.msg('删除失败')
@@ -255,14 +277,74 @@
 								type: "GET",
 								dataType: "json",
 								data: {
-									id: data.id,
-
+									id: data.id
 								},
 								success: function(e) {
-									//layer.msg(e.contractCheckVo);
+									// //layer.msg(e.contractCheckVo);
 									let obj = e.data;
 									form.val("layuiadmin-app-form-list",obj);
-									//日期
+									// $("#selfPlanId").val(localStorage.getItem(""))
+									ajax_editPlanDetailTeacherId();
+									ajax_editPlanDetailCourseId();
+									function ajax_editPlanDetailCourseId() {
+										// 清空原有select内的数据  只保留第一项
+										$("#editPlanDetailCourseId").find("option:not(:first)").remove();
+										form.render('select', 'editPlanDetailCourseId');//渲染表单
+										$.ajax({
+											url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
+											type: "GET",
+											dataType: "json",
+											success: function (res) {
+												var data = res.dataList;
+												$.each(data, function (i, v) {
+													var id = v.id;
+													var text = v.topic;
+													if(id == obj.courseId){
+														$("#editPlanDetailCourseId").append("<option selected='selected' value='" + id + "'>" + text + "</option>");
+													}else{
+														$("#editPlanDetailCourseId").append("<option  value='" + id + "'>" + text + "</option>");
+													}
+													
+												});
+												//渲染select 表单  filter 是 重新渲染对象
+												form.render('select');
+											},
+											error: function () {
+												// alert(errorThrown);
+											}
+										});
+									}
+									function ajax_editPlanDetailTeacherId() {
+										// 清空原有select内的数据  只保留第一项
+										$("#teacherId").find("option:not(:first)").remove();
+										form.render('select', 'teacherId');//渲染表单
+										$.ajax({
+											url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
+											type: "GET",
+											dataType: "json",
+											success: function (res) {
+												var data = res.dataList;
+												$.each(data, function (i, v) {
+													var id = v.id;
+													var text = v.name;
+													if(id == obj.teacherId){
+														$("#teacherId").append("<option selected='selected' value='" + id + "'>" + text + "</option>");
+													}else{
+														$("#teacherId").append("<option  value='" + id + "'>" + text + "</option>");
+													}
+													
+												});
+												//渲染select 表单  filter 是 重新渲染对象
+												form.render('select');
+											},
+											error: function () {
+												// alert(errorThrown);
+											}
+										});
+									}
+									
+											
+									
 									$(".date").each(function() {
 										laydate.render({
 											elem: this,
@@ -277,9 +359,11 @@
 							form.render(null, "layuiadmin-app-form-list"),
 								form.on("submit(layuiadmin-app-form-submit)", function(
 									data) { //sub添加提交
+									console.log(data.field)
 									$.post(commonSrc + "api/train/planDetailController/updatePlanDetail",
 										data.field,
 										function(ev) {
+											console.log(ev);
 											layer.msg("修改成功", {
 												time: 1000
 											}, function() {
@@ -352,7 +436,58 @@
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
 						view(this.id).render('train/plan/PlanDetailsForm').done(function() { //跳转
-							form.render(null, 'layuiadmin-app-form-list');
+						    ajax_editPlanDetailCourseId();
+							ajax_editPlanDetailTeacherId();
+							function ajax_editPlanDetailCourseId() {
+								// 清空原有select内的数据  只保留第一项
+								$("#editPlanDetailCourseId").find("option:not(:first)").remove();
+								form.render('select', 'editPlanDetailCourseId');//渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
+									type: "GET",
+									dataType: "json",
+									success: function (res) {
+										var data = res.dataList;
+										$.each(data, function (i, v) {
+											var id = v.id;
+											var text = v.topic;
+											// alert(id + text);
+											$("#editPlanDetailCourseId").append("<option  value='" + id + "'>" + text + "</option>");
+											
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select');
+									},
+									error: function () {
+										// alert(errorThrown);
+									}
+								});
+							}
+							function ajax_editPlanDetailTeacherId() {
+								// 清空原有select内的数据  只保留第一项
+								$("#teacherId").find("option:not(:first)").remove();
+								form.render('select', 'teacherId');//渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
+									type: "GET",
+									dataType: "json",
+									success: function (res) {
+										var data = res.dataList;
+										$.each(data, function (i, v) {
+											var id = v.id;
+											var text = v.name;
+											// alert(id + text);
+				                      $("#teacherId").append("<option  value='" + id + "'>" + text + "</option>");
+											
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select');
+									},
+									error: function () {
+										// alert(errorThrown);
+									}
+								});
+							}
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -361,13 +496,17 @@
 								});
 							})
 							//监听提交
+							form.render(null, 'layuiadmin-app-form-list'),
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
+								
 								var field = data.field; //获取提交的字段
+								console.log(field);
 								field.planId = localStorage.getItem("selfPlanId");
 								$.post(commonSrc + "api/train/planDetailController/insertPlanSign",
 									data.field,
 									function(ev) {
 										layer.msg("新增成功", {
+											
 											time: 1000
 										}, function() {
 											layer.close(index); //执行关闭 

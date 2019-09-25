@@ -91,7 +91,7 @@
 			laydate = layui.laydate,
 			form = layui.form;
      
-		var apply=localStorage.getItem("applyid");
+		var apply=layui.router().search.planDetailId;
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
@@ -121,10 +121,6 @@
 				//表头
 				cols: [
 									[{
-										field: 'id',
-										title: 'id',
-										hide: true,
-									},{
 										field: 'remark',
 										title: '备注',
 									 	align: 'center'
@@ -157,56 +153,6 @@
 
 			table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
-				
-				// var planId = localStorage.getItem("id");
-				// 
-				
-				// if ("look" === obj.event) {
-				// 	admin.popup({
-				// 		title: "查看计划details信息",
-				// 		area: ['50%', '80%'],
-				// 		id: "LAY-popup-content-view",
-				// 		success: function(t, layero) {
-				// 			view(this.id).render("train/plan/PlanDetailsForm").done(function() {
-				// 				form.render(null,"layuiadmin-app-form-list");
-				// 				 //日期
-				// 				$(".date").each(function() {
-				// 					laydate.render({
-				// 				
-				// 						elem: this,
-				// 						trigger: 'click',
-				// 						min: -5000,
-				// 						max: 0
-				// 					});
-				// 				})
-				// 				$.ajax({
-				// 					url: commonSrc +'api/train/planDetailController/selectUnEvaPlanList', //换成自己的url
-				// 					type: "GET",
-				// 					dataType: "json",
-				// 					data: {
-				// 						id: data.id
-				// 					},
-				// 					success: function(e) {
-				// 						//layer.msg(e.contractCheckVo);
-				// 						let obj = e.data;
-				// 						form.val("layuiadmin-app-form-list",obj/* {
-				// 							"id": obj.id,
-				// 							"name": obj.name,
-				// 							"sex": obj.sex,
-				// 							"code": obj.code,
-				// 							"phone": obj.phone,
-				// 							"homeAddress": obj.homeAddress
-				// 
-				// 						} */);
-				// 
-				// 					},
-				// 				})
-				// 				form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-				// 					data) {})
-				// 			})
-				// 		}
-				// 	})
-				// }
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
 						url: commonSrc + "api/train/planSignController/deletePlanSignById", //换成自己的url
@@ -233,12 +179,11 @@
 					success: function(t, layero) {
 						view(this.id).render("train/plan/PlanSignForm").done(function() {
 							$.ajax({
-								url: commonSrc + "api/train/planSignController/selectPlanSignList", //换成自己的url
+								url: commonSrc + "api/train/planSignController/selectPlanSignList?pageSize=1&pageNum=5", //换成自己的url
 								type: "GET",
 								dataType: "json",
 								data: {
 									id: data.id,
-
 								},
 								success: function(e) {
 									//layer.msg(e.contractCheckVo);
@@ -257,8 +202,7 @@
 								}
 							})
 							form.render(null, "layuiadmin-app-form-list"),
-								form.on("submit(layuiadmin-app-form-submit)", function(
-									data) { //sub添加提交
+								form.on("submit(layuiadmin-app-form-submit)", function(data) { //sub添加提交
 									$.post(commonSrc + "api/train/planSignController/updatePlanSign",
 										data.field,
 										function(ev) {
@@ -329,12 +273,13 @@
 				,
 			add: function(othis) {
 				admin.popup({
-					title: '添加报名详情信息',
+					title: '添加报名',
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
 						view(this.id).render('train/plan/PlanSignForm').done(function() { //跳转
-							form.render(null, 'layuiadmin-app-form-list');
+							
+							
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -343,11 +288,15 @@
 								});
 							})
 							//监听提交
+							form.render(null, 'layuiadmin-app-form-list'),
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
+								field.detailId = apply;
+								console.log(data.field);
 								$.post(commonSrc + "api/train/planDetailController/insertPlanSign",
 									data.field,
 									function(ev) {
+										console.log(ev);
 										layer.msg("新增成功", {
 											time: 1000
 										}, function() {
