@@ -701,7 +701,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+								<select name="courseType" lay-search="" id="courseTypetype" lay-filter="courseTypetype" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -710,7 +710,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-search="" id="courseAttrId" lay-filter="courseAttrId" class="layui-form">
+								<select name="courseAttrId" lay-search="" id="courseAttrIdtype" lay-filter="courseAttrIdtype" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -729,7 +729,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="topic" lay-search="" id="topictype" lay-filter="topictype" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -850,11 +850,11 @@
 				        });
 						
 						<!--根据课程类型id查询课程类型名称-->
-						ajax_courseType();
-						function ajax_courseType() {
+						ajax_courseTypetype();
+						function ajax_courseTypetype() {
 									// 清空原有select内的数据  只保留第一项
-									$("#courseType").find("option:not(:first)").remove();
-									form.render('select', 'courseType');//渲染表单
+									$("#courseTypetype").find("option:not(:first)").remove();
+									form.render('select', 'courseTypetype');//渲染表单
 									$.ajax({
 										url: commonSrc + "/api/train/courseTypeController/list",
 										type: "get",
@@ -865,7 +865,7 @@
 												var id = v.id;
 												var text = v.typeName;
 												// alert(id + text);
-												$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+												$("#courseTypetype").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
 											form.render('select', 'app-content-list');
@@ -876,11 +876,11 @@
 									});
 								}
 								<!--根据课程属性id查询课程属性名称-->
-								ajax_courseAttrId();
-								function ajax_courseAttrId() {
+								ajax_courseAttrIdtype();
+								function ajax_courseAttrIdtype() {
 											// 清空原有select内的数据  只保留第一项
-											$("#courseAttrId").find("option:not(:first)").remove();
-											form.render('select', 'courseAttrId');//渲染表单
+											$("#courseAttrIdtype").find("option:not(:first)").remove();
+											form.render('select', 'courseAttrIdtype');//渲染表单
 											$.ajax({
 												url: commonSrc + "api/train/courseAttributeController/list",
 												type: "get",
@@ -891,7 +891,7 @@
 														var id = v.id;
 														var text = v.attrName;
 														// alert(id + text);
-														$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+														$("#courseAttrIdtype").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
 													form.render('select', 'app-content-list');
@@ -902,11 +902,11 @@
 											});
 										}
 										<!--根据等效课程id查询等效课程名称-->
-										ajax_topic();
-										function ajax_topic() {
+										ajax_topictype();
+										function ajax_topictype() {
 													// 清空原有select内的数据  只保留第一项
-													$("#topic").find("option:not(:first)").remove();
-													form.render('select', 'topic');//渲染表单
+													$("#topictype").find("option:not(:first)").remove();
+													form.render('select', 'topictype');//渲染表单
 													$.ajax({
 														url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
 														type: "get",
@@ -917,7 +917,7 @@
 																var id = v.id;
 																var text = v.topic;
 																// alert(id + text);
-																$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+																$("#topictype").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
 															form.render('select', 'app-content-list');
@@ -1013,7 +1013,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+								<select name="courseType" lay-search="" id="courseTypeequal" lay-filter="courseTypeequal" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1022,7 +1022,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-search="" id="courseAttrId" lay-filter="courseAttrId" class="layui-form">
+								<select name="courseAttrId" lay-search="" id="courseAttrIdequal" lay-filter="courseAttrIdequal" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1041,7 +1041,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="topic" lay-search="" id="topicequal" lay-filter="topicequal" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1162,11 +1162,11 @@
 				        });
 						
 						<!--根据课程类型id查询课程类型名称-->
-						ajax_courseType();
-						function ajax_courseType() {
+						ajax_courseTypeequal();
+						function ajax_courseTypeequal() {
 									// 清空原有select内的数据  只保留第一项
-									$("#courseType").find("option:not(:first)").remove();
-									form.render('select', 'courseType');//渲染表单
+									$("#courseTypeequal").find("option:not(:first)").remove();
+									form.render('select', 'courseTypeequal');//渲染表单
 									$.ajax({
 										url: commonSrc + "/api/train/courseTypeController/list",
 										type: "get",
@@ -1177,7 +1177,7 @@
 												var id = v.id;
 												var text = v.typeName;
 												// alert(id + text);
-												$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+												$("#courseTypeequal").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
 											form.render('select', 'app-content-list');
@@ -1188,11 +1188,11 @@
 									});
 								}
 								<!--根据课程属性id查询课程属性名称-->
-								ajax_courseAttrId();
-								function ajax_courseAttrId() {
+								ajax_courseAttrIdequal();
+								function ajax_courseAttrIdequal() {
 											// 清空原有select内的数据  只保留第一项
-											$("#courseAttrId").find("option:not(:first)").remove();
-											form.render('select', 'courseAttrId');//渲染表单
+											$("#courseAttrIdequal").find("option:not(:first)").remove();
+											form.render('select', 'courseAttrIdequal');//渲染表单
 											$.ajax({
 												url: commonSrc + "api/train/courseAttributeController/list",
 												type: "get",
@@ -1203,7 +1203,7 @@
 														var id = v.id;
 														var text = v.attrName;
 														// alert(id + text);
-														$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+														$("#courseAttrIdequal").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
 													form.render('select', 'app-content-list');
@@ -1214,11 +1214,11 @@
 											});
 										}
 										<!--根据等效课程id查询等效课程名称-->
-										ajax_topic();
-										function ajax_topic() {
+										ajax_topicequal();
+										function ajax_topicequal() {
 													// 清空原有select内的数据  只保留第一项
-													$("#topic").find("option:not(:first)").remove();
-													form.render('select', 'topic');//渲染表单
+													$("#topicequal").find("option:not(:first)").remove();
+													form.render('select', 'topicequal');//渲染表单
 													$.ajax({
 														url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
 														type: "get",
@@ -1229,7 +1229,7 @@
 																var id = v.id;
 																var text = v.topic;
 																// alert(id + text);
-																$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+																$("#topicequal").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
 															form.render('select', 'app-content-list');
@@ -1324,7 +1324,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+								<select name="courseType" lay-search="" id="courseTypeprecedence" lay-filter="courseTypeprecedence" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1333,7 +1333,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-search="" id="courseAttrId" lay-filter="courseAttrId" class="layui-form">
+								<select name="courseAttrId" lay-search="" id="courseAttrIdprecedence" lay-filter="courseAttrIdprecedence" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1352,7 +1352,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="topic" lay-search="" id="topicprecedence" lay-filter="topicprecedence" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1477,11 +1477,11 @@
 				        });
 						
 						<!--根据课程类型id查询课程类型名称-->
-						ajax_courseType();
-						function ajax_courseType() {
+						ajax_courseTypeprecedence();
+						function ajax_courseTypeprecedence() {
 									// 清空原有select内的数据  只保留第一项
-									$("#courseType").find("option:not(:first)").remove();
-									form.render('select', 'courseType');//渲染表单
+									$("#courseTypeprecedence").find("option:not(:first)").remove();
+									form.render('select', 'courseTypeprecedence');//渲染表单
 									$.ajax({
 										url: commonSrc + "/api/train/courseTypeController/list",
 										type: "get",
@@ -1492,7 +1492,7 @@
 												var id = v.id;
 												var text = v.typeName;
 												// alert(id + text);
-												$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+												$("#courseTypeprecedence").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
 											form.render('select', 'app-content-list');
@@ -1503,11 +1503,11 @@
 									});
 								}
 								<!--根据课程属性id查询课程属性名称-->
-								ajax_courseAttrId();
-								function ajax_courseAttrId() {
+								ajax_courseAttrIdprecedence();
+								function ajax_courseAttrIdprecedence() {
 											// 清空原有select内的数据  只保留第一项
-											$("#courseAttrId").find("option:not(:first)").remove();
-											form.render('select', 'courseAttrId');//渲染表单
+											$("#courseAttrIdprecedence").find("option:not(:first)").remove();
+											form.render('select', 'courseAttrIdprecedence');//渲染表单
 											$.ajax({
 												url: commonSrc + "api/train/courseAttributeController/list",
 												type: "get",
@@ -1518,7 +1518,7 @@
 														var id = v.id;
 														var text = v.attrName;
 														// alert(id + text);
-														$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+														$("#courseAttrIdprecedence").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
 													form.render('select', 'app-content-list');
@@ -1529,11 +1529,11 @@
 											});
 										}
 										<!--根据等效课程id查询等效课程名称-->
-										ajax_topic();
-										function ajax_topic() {
+										ajax_topicprecedence();
+										function ajax_topicprecedence() {
 													// 清空原有select内的数据  只保留第一项
-													$("#topic").find("option:not(:first)").remove();
-													form.render('select', 'topic');//渲染表单
+													$("#topicprecedence").find("option:not(:first)").remove();
+													form.render('select', 'topicprecedence');//渲染表单
 													$.ajax({
 														url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
 														type: "get",
@@ -1544,7 +1544,7 @@
 																var id = v.id;
 																var text = v.topic;
 																// alert(id + text);
-																$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+																$("#topicprecedence").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
 															form.render('select', 'app-content-list');
@@ -1639,7 +1639,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+								<select name="courseType" lay-search="" id="courseTypeproperty" lay-filter="courseTypeproperty" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1648,7 +1648,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-search="" id="courseAttrId" lay-filter="courseAttrId" class="layui-form">
+								<select name="courseAttrId" lay-search="" id="courseAttrIdproperty" lay-filter="courseAttrIdproperty" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1667,7 +1667,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="topic" lay-search="" id="topicproperty" lay-filter="topicproperty" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1784,11 +1784,11 @@
 				        });
 							
 					<!--根据课程类型id查询课程类型名称-->
-					ajax_courseType();
-					function ajax_courseType() {
+					ajax_courseTypeproperty();
+					function ajax_courseTypeproperty() {
 								// 清空原有select内的数据  只保留第一项
-								$("#courseType").find("option:not(:first)").remove();
-								form.render('select', 'courseType');//渲染表单
+								$("#courseTypeproperty").find("option:not(:first)").remove();
+								form.render('select', 'courseTypeproperty');//渲染表单
 								$.ajax({
 									url: commonSrc + "/api/train/courseTypeController/list",
 									type: "get",
@@ -1799,7 +1799,7 @@
 											var id = v.id;
 											var text = v.typeName;
 											// alert(id + text);
-											$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+											$("#courseTypeproperty").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
 										form.render('select', 'app-content-list');
@@ -1810,11 +1810,11 @@
 								});
 							}
 							<!--根据课程属性id查询课程属性名称-->
-							ajax_courseAttrId();
-							function ajax_courseAttrId() {
+							ajax_courseAttrIdproperty();
+							function ajax_courseAttrIdproperty() {
 										// 清空原有select内的数据  只保留第一项
-										$("#courseAttrId").find("option:not(:first)").remove();
-										form.render('select', 'courseAttrId');//渲染表单
+										$("#courseAttrIdproperty").find("option:not(:first)").remove();
+										form.render('select', 'courseAttrIdproperty');//渲染表单
 										$.ajax({
 											url: commonSrc + "api/train/courseAttributeController/list",
 											type: "get",
@@ -1825,7 +1825,7 @@
 													var id = v.id;
 													var text = v.attrName;
 													// alert(id + text);
-													$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+													$("#courseAttrIdproperty").append("<option value='" + id + "'>" + text + "</option>");
 												});
 												//渲染select 表单  filter 是 重新渲染对象
 												form.render('select', 'app-content-list');
@@ -1836,11 +1836,11 @@
 										});
 									}
 									<!--根据等效课程id查询等效课程名称-->
-									ajax_topic();
-									function ajax_topic() {
+									ajax_topicproperty();
+									function ajax_topicproperty() {
 												// 清空原有select内的数据  只保留第一项
-												$("#topic").find("option:not(:first)").remove();
-												form.render('select', 'topic');//渲染表单
+												$("#topicproperty").find("option:not(:first)").remove();
+												form.render('select', 'topicproperty');//渲染表单
 												$.ajax({
 													url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
 													type: "get",
@@ -1851,7 +1851,7 @@
 															var id = v.id;
 															var text = v.topic;
 															// alert(id + text);
-															$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+															$("#topicproperty").append("<option value='" + id + "'>" + text + "</option>");
 														});
 														//渲染select 表单  filter 是 重新渲染对象
 														form.render('select', 'app-content-list');
@@ -2362,7 +2362,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseType" lay-filter="courseType" class="layui-form">
+								<select name="courseType" lay-search="" id="courseTypestaff" lay-filter="courseTypestaff" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -2371,7 +2371,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-search="" id="courseAttrId" lay-filter="courseAttrId" class="layui-form">
+								<select name="courseAttrId" lay-search="" id="courseAttrIdstaff" lay-filter="courseAttrIdstaff" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -2390,7 +2390,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="topic" lay-search="" id="topicstaff" lay-filter="topicstaff" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -2512,12 +2512,12 @@
 							});
 
 							<!--根据课程类型id查询课程类型名称-->
-							ajax_courseType();
+							ajax_courseTypestaff();
 
-							function ajax_courseType() {
+							function ajax_courseTypestaff() {
 								// 清空原有select内的数据  只保留第一项
-								$("#courseType").find("option:not(:first)").remove();
-								form.render('select', 'courseType'); //渲染表单
+								$("#courseTypestaff").find("option:not(:first)").remove();
+								form.render('select', 'courseTypestaff'); //渲染表单
 								$.ajax({
 									url: commonSrc + "/api/train/courseTypeController/list",
 									type: "get",
@@ -2528,7 +2528,7 @@
 											var id = v.id;
 											var text = v.typeName;
 											// alert(id + text);
-											$("#courseType").append("<option value='" + id + "'>" + text + "</option>");
+											$("#courseTypestaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
 										form.render('select', 'app-content-list');
@@ -2539,12 +2539,12 @@
 								});
 							}
 							<!--根据课程属性id查询课程属性名称-->
-							ajax_courseAttrId();
+							ajax_courseAttrIdstaff();
 
-							function ajax_courseAttrId() {
+							function ajax_courseAttrIdstaff() {
 								// 清空原有select内的数据  只保留第一项
-								$("#courseAttrId").find("option:not(:first)").remove();
-								form.render('select', 'courseAttrId'); //渲染表单
+								$("#courseAttrIdstaff").find("option:not(:first)").remove();
+								form.render('select', 'courseAttrIdstaff'); //渲染表单
 								$.ajax({
 									url: commonSrc + "api/train/courseAttributeController/list",
 									type: "get",
@@ -2555,7 +2555,7 @@
 											var id = v.id;
 											var text = v.attrName;
 											// alert(id + text);
-											$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
+											$("#courseAttrIdstaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
 										form.render('select', 'app-content-list');
@@ -2566,12 +2566,12 @@
 								});
 							}
 							<!--根据等效课程id查询等效课程名称-->
-							ajax_topic();
+							ajax_topicstaff();
 
-							function ajax_topic() {
+							function ajax_topicstaff() {
 								// 清空原有select内的数据  只保留第一项
-								$("#topic").find("option:not(:first)").remove();
-								form.render('select', 'topic'); //渲染表单
+								$("#topicstaff").find("option:not(:first)").remove();
+								form.render('select', 'topicstaff'); //渲染表单
 								$.ajax({
 									url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
 									type: "get",
@@ -2582,7 +2582,7 @@
 											var id = v.id;
 											var text = v.topic;
 											// alert(id + text);
-											$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+											$("#topicstaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
 										form.render('select', 'app-content-list');

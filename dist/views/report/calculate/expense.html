@@ -770,7 +770,10 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="courseId" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+									<option value="">--所有--</option>
+									<option value="">产生错误了</option>
+								</select>
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -913,8 +916,36 @@
 						where: field
 					});
 				});
-
-	
+				
+				<!--根据等效课程id查询等效课程名称-->
+				ajax_topic();
+				
+				function ajax_topic() {
+					// 清空原有select内的数据  只保留第一项
+					$("#topic").find("option:not(:first)").remove();
+					form.render('select', 'topic'); //渲染表单
+					$.ajax({
+						url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
+						type: "get",
+						dataType: "json",
+						success: function(res) {
+							var data = res.dataList;
+							$.each(data, function(i, v) {
+								var id = v.id;
+								var text = v.topic;
+								// alert(id + text);
+								$("#topic").append("<option value='" + id + "'>" + text + "</option>");
+							});
+							//渲染select 表单  filter 是 重新渲染对象
+							form.render('select', 'app-content-list');
+						},
+						error: function() {
+							// alert(errorThrown);
+						}
+					});
+				}
+				
+				
 				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
 					var type = $(this).data('type');
 					active[type] ? active[type].call(this) : '';
