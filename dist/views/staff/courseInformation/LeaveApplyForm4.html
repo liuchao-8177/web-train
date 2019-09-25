@@ -1,0 +1,290 @@
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-contentTable-list">
+			<div class="layui-form-item">
+
+				<div class="layui-inline">
+					<label class="layui-form-label">课程属性</label>
+					<div class="layui-input-inline">
+						<input name="attrName" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<!-- 搜索按钮 -->
+				<div class="layui-inline">
+					<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+						<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-card-body">
+			<div style="padding-bottom: 10px;">
+				<!-- <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button> -->
+				<button class="layui-btn layuiadmin-btn-list" data-type="addcs">添加</button>
+				<button class="layui-btn">确认</button>
+			</div>
+
+			<table id="arrtname" lay-filter="arrtname" class="layui-table"></table>
+
+
+			<script type="text/html" id="tablelist">
+				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="editdes"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+		</div>
+	</div>
+</div>
+<script>
+	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+		var $ = layui.$,
+			admin = layui.admin,
+			view = layui.view,
+			table = layui.table,
+			laydate = layui.laydate,
+			form = layui.form;
+		//表格渲染
+		table.render({
+				elem: '#arrtname',
+				url: commonSrc + 'api/train/courseAttributeController/list',
+				request: {
+					pageName: 'pageNum' //页码的参数名称，默认：page
+						,
+					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				},
+				response: {
+					statusCode: 200 //规定成功的状态码，默认：0
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.desc, //解析提示文本
+						"count": res.total, //解析数据长度
+						"data": res.dataList //解析数据列表
+					};
+				},
+				cols: [
+					[{
+						type: 'checkbox',
+						fixed: "left"
+					}, {
+						field: 'id',
+						title: 'id',
+						hide: true,
+					}, {
+						field: 'attrName',
+						title: '课程属性',
+						align: 'center'
+					}, {
+						field: 'tenantCode',
+						title: '租户',
+						hide: true,
+					}, {
+						fixed: 'right',
+						title: '操作',
+						toolbar: '#tablelist',
+						minWidth: 150,
+					}]
+				],
+			}),
+			table.on("tool(arrtname)", function(obj) {
+				var data = obj.data;
+				if ("wait" === obj.event) {
+					layer.confirm('请确认后选择', {
+						btn: ['通过', '不行'] //按钮
+					}, function(index) {
+						data.checkStatus = 1
+						$.post(commonSrc + "",
+							data,
+							function(ev) {
+								layer.msg("修改成功");
+								obj.update({
+									checkStatus: '1',
+								});
+							});
+					}, function(index) {
+						data.checkStatus = 3
+						$.post(commonSrc + "",
+							data,
+							function(ev) {
+								layer.msg("修改成功");
+								obj.update({
+									checkStatus: '3',
+								});
+							});
+					});
+				}
+				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+					$.ajax({
+						url: commonSrc + "api/train/courseAttributeController/deleteCourseAttributeById", //换成自己的url
+						type: "POST",
+						dataType: "json",
+						data: {
+							id: data.id
+						},
+						success: function(b) {
+							layer.msg('删除成功');
+							obj.del(), layer.close(e)
+						},
+						error: function(e) {
+							layer.msg('删除失败')
+							layer.msg(e);
+						}
+					})
+				}) : "editdes" === obj.event && admin.popup({
+					title: "编辑课程信息",
+					area: ['400px', '200px'],
+					moveOut:'true',
+					id: "LAY-popup-contentTable-edit",
+					success: function(t, layero) {
+						view(this.id).render("staff/courseInformation/LeaveApplyForm5", data).done(function() {
+							$.ajax({
+								url: commonSrc + "api/train/courseAttributeController/selectCourseTypeById", //换成自己的url
+								type: "GET",
+								dataType: "json",
+								data: {
+									id: data.id
+								},
+								success: function(e) {
+									//layer.msg(e.contractCheckVo);
+									let obj = e.data;
+									form.val("layuiadmin-app-form-list", obj);
+									//layTime(); //时间渲染
+								},
+								error: function(e) {
+									layer.msg(e);
+								}
+							})
+							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submites)", function(
+								data) {
+								$.post(commonSrc + "api/train/courseAttributeController/updateCourseAttribute",
+									data.field,
+									function(ev) {
+										layer.msg("修改成功", {
+											time: 1000
+										}, function() {
+											layui.table.reload("arrtname"), layer.close(layero)
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							})
+						})
+					}
+				})
+			})
+
+
+		form.render(null, 'app-contentTable-list');
+
+		//监听搜索
+		form.on('submit(LAY-app-contlist-search)', function(data) {
+			var field = data.field;
+			console.log(field);
+			//执行重载
+			table.reload('arrtname', {
+				where: field
+			});
+		});
+
+		var active = {
+			batchdel: function() {
+					var checkStatus = table.checkStatus('arrtname'),
+						checkData = checkStatus.data; //得到选中的数据
+					if (checkData.length === 0) {
+						return layer.msg('请选择数据');
+					}
+					let arr = "";
+					for (var i in checkData) {
+						arr += checkData[i].id + ",";
+					}
+					layer.confirm('确定删除吗？', function(index) {
+						$.ajax({
+							type: "POST",
+							url: commonSrc + "api/train/courseController/deleteCourseById",
+							dataType: "json",
+							data: {
+								id: arr
+							},
+							success: function(json) {
+								table.reload('arrtname');
+								layer.msg('已删除');
+							}
+						});
+
+						//执行 Ajax 后重载
+						/*
+						
+								*/
+					});
+				}
+
+				//添加
+				,
+			addcs: function(othis) {
+				admin.popup({
+					title: '添加课程信息',
+					area: ['400px', '200px'],
+					id: 'LAY-popup-contentTable-add',
+					success: function(layero, index) {
+						view(this.id).render('staff/courseInformation/LeaveApplyForm5').done(function() {
+							form.render(null, 'layuiadmin-app-form-list');
+							$("#editCourseTypeId").click(function() {
+								admin.popup({
+									title: '添加课程信息',
+									area: ['400px', '350px'],
+									id: 'LAY-popup-contentTable-edit',
+									success: function(layero, index) {
+										view(this.id).render('staff/courseInformation/LeaveApplyForm2').done(function() {
+												form.render(null, 'layuiadmin-app-form-list');
+											}
+
+										)
+									},
+								})
+							})
+							// 监听课程类型点击事件
+							// form.on('select(editCourseTypeId)', function(data) {
+							// 	console.log("click")
+							// 	// var field = data.field; //获取提交的字段
+							// 	// $.post(commonSrc + "api/train/courseController/insertCourse",
+							// 	// 	data.field,
+							// 	// 	function(ev) {
+							// 	// 		layer.msg("新增成功", {
+							// 	// 			time: 1000
+							// 	// 		}, function() {
+							// 	// 			layer.close(index); //执行关闭 
+							// 	// 			layui.table.reload('arrtname'); //重载表格
+							// 	// 		})
+							// 	// 	});
+							// 	// return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							// });
+							//监听提交
+							form.on('submit(layuiadmin-app-form-submites)', function(data) {
+								var field = data.field; //获取提交的字段
+								$.post(commonSrc + "api/train/courseAttributeController/insertCourseAttribute",
+									data.field,
+									function(ev) {
+										layer.msg("新增成功", {
+											time: 1000
+										}, function() {
+											layer.close(index); //执行关闭 
+											layui.table.reload('arrtname'); //重载表格
+										})
+									});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						});
+					}
+				});
+			}
+		};
+
+		$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+	})
+</script>
+
+

@@ -36,37 +36,40 @@
 				<div class="layui-tab-item">
 					<div class="layui-upload">
 						<button class="layui-btn" id="importCourseExcel">导入课程文件</button>
+						<button class="layui-btn" id="add-db"><a href="#" style="color: white;">下载课程文件</a></button>
 						<div class="layui-upload-list">
-
 							<table class="layui-table " id="course" lay-filter="test"></table>
-
-							<script type="text/html" id="dept">
-								{{#  if(d.isDept==1){ }}
+						</div>
+						<script type="text/html" id="dept">
+							{{#  if(d.isDept==1){ }}
 							    <button class="layui-btn layui-btn-xs">是</button>
 							    {{#  } else {  }}
 							    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
 							    {{#  } }}
 							</script>
-							<script type="text/html" id="prior">
-								{{#  if(d.priority==1){ }}
+						<script type="text/html" id="prior">
+							{{#  if(d.priority==1){ }}
 							    必修
 							    {{#  } else {  }}
 							    选修
 							    {{#  } }}
 							</script>
-						</div>
-
-						<button type="button" class="layui-btn add-btn" lay-event="add">开始上传</button>
-
-					</div>
-					<script>
-						layui.use(["element","upload","table"], function() {
+				
+					<button type="button" class="layui-btn add-btn" lay-event="add">开始上传</button>
+				</div>
+				<script>
+					layui.use(["element","upload","table"], function() {
 					      var element = layui.element,
 					      	$ = layui.$,
 					      	upload = layui.upload,
 					      	table = layui.table;
 					      var tenantCode = 333333;
 					      var data;
+						$("#add-db").on("click",function(){
+							$("#add-db").find("a").attr("href",commonSrc + 'api/train/batchImport/courseTemplate')
+								 
+						  })
+						  
 						$(".add-btn").on("click",function(){
 						var postData = {importCourseBoList:data,tenantCode:tenantCode};
 						//alert(2);
@@ -171,20 +174,19 @@
 									  
 									});
 					</script>
-				</div>
-				<!-- 课程导入end -->
+			</div>
+			<!-- 课程导入end -->
 
-				<!-- 讲师导入begin -->
-				<div class="layui-tab-item">
+			<!-- 讲师导入begin -->
+			<div class="layui-tab-item">
 
-					<div class="layui-upload">
-						<button class="layui-btn" id="importTeacherExcel">导入讲师文件</button>
-						<div class="layui-upload-list">
-
-							<table class="layui-table " id="the-table"></table>
-
-							<script type="text/html" id="types">
-								{{#  if(d.type==1){ }}
+				<div class="layui-upload">
+					<button class="layui-btn" id="importTeacherExcel">导入讲师文件</button>
+					<div class="layui-upload-list">
+						<table class="layui-table " id="the-table"></table>
+					</div>
+					<script type="text/html" id="types">
+						{{#  if(d.type==1){ }}
 							        领导
 							    {{#  }else if(d.type==2){ }}
 							        内部讲师
@@ -193,25 +195,24 @@
 								{{#  } else {  }}
 							    {{#  } }}
 							</script>
-							<script type="text/html" id="buttonTpl">
-								{{#  if(d.attest==1){ }}
+					<script type="text/html" id="buttonTpl">
+						{{#  if(d.attest==1){ }}
 							    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
 							    {{#  } else {  }}
 							    <button class="layui-btn layui-btn-xs">是</button>
 							    {{#  } }}
 							</script>
-							<script type="text/html" id="buttonTplr">
-								{{#  if(d.inside==1){ }}
+					<script type="text/html" id="buttonTplr">
+						{{#  if(d.inside==1){ }}
 							    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
 							    {{#  } else {  }}
 							    <button class="layui-btn layui-btn-xs">是</button>
 							    {{#  } }}
 							</script>
-						</div>
-						<button type="button" class="layui-btn app-btn" lay-event="app">开始上传</button>
-					</div>
-					<script>
-						layui.use(['element', 'upload', "table"], function() {
+					<button type="button" class="layui-btn app-btn" lay-event="app">开始上传</button>
+				</div>
+				<script>
+					layui.use(['element', 'upload', "table"], function() {
 							var element = layui.element,
 								$ = layui.$,
 								upload = layui.upload,
@@ -328,28 +329,48 @@
 						});
 					</script>
 
-				</div>
-				<!-- 讲师导入end -->
+			</div>
+			<!-- 讲师导入end -->
 
-				<!-- 记录导入begin -->
-				<div class="layui-tab-item">
-					<div class="layui-upload">
-						<button class="layui-btn" id="importRecordExcel">记录导入</button>
-						<div class="layui-upload-list">
-
-							<table class="layui-table " id="record"></table>
-
-						</div>
-						<button type="button" class="layui-btn" id="testListAction">开始上传</button>
+			<!-- 记录导入begin -->
+			<div class="layui-tab-item">
+				<div class="layui-upload">
+					<button class="layui-btn" id="importRecordExcel">记录导入</button>
+					<div class="layui-upload-list">
+						<table class="layui-table " id="record" lay-filter="record"></table>
 					</div>
-					<script>
-						layui.use(["element", "upload", "table"], function() {
+					<button type="button" class="layui-btn recd-btn" lay-event="recd">开始上传</button>
+					<div class="layui-upload-list">
+						<table class="layui-table " id="detail" lay-filter="detail"></table>
+					</div>
+				</div>
+				<script>
+					layui.use(["element", "upload", "table"], function() {
 												var element = layui.element,
 													$ = layui.$,
 													upload = layui.upload,
 													table = layui.table;
 												var tenantCode = 333333;
 												var data;
+												$(".recd-btn").on("click",function(){
+												var postData = {importCourseBoList:data,tenantCode:tenantCode};
+												
+												console.log(postData);
+												console.log(JSON.stringify(postData))
+																			  $.ajax({
+																			      type: 'POST',
+																			  url: commonSrc + 'api/train/batchImport/conImportRecord'+ '?tenantCode=' + tenantCode,
+																			      dataType: 'json',
+																			      contentType: "application/json",
+																			      data: JSON.stringify(data),
+																			      success: function(data){
+																			          alert('上传数据成功');
+																			      },
+																			      error: function(xhr, type){
+																			          alert('上传数据失败');
+																			      }
+																			  });
+												})
 					
 												//指定允许上传的文件类型
 												upload.render({
@@ -366,10 +387,6 @@
 												function initrecord() {
 													table.render({
 														elem: '#record',
-														//     height: 312,
-														// 方案1 异步接口api返回数据，设置接口url即可
-														// url: '/demo/table/user/', //数据接口
-														// 方案2 直接把数据赋值data即可
 														data: data,
 														page: true, //开启分页
 														cols: [
@@ -383,11 +400,11 @@
 																title: '课程别名',
 																align: 'center'
 															}, {
-																field: 'endTime',
+																field: 'startTime',
 																title: '开始日期',
 																align: 'center'
 															}, {
-																field: 'startTime',
+																field: 'endTime',
 																title: '结束日期',
 																align: 'center'
 															}, {
@@ -403,110 +420,161 @@
 																title: '讲师',
 																align: 'center'
 															}]
-														]
+														],
+														page: !0,
+														limit: 10,
+														limits: [10, 15, 20, 25, 30],
 													});
+													//监听行单击事件（单击事件为：rowDouble）
+													  table.on('row(record)', function(obj){
+														  console.log(obj.data.studentRecordVos)
+														  var data = obj.data.studentRecordVos;
+														  table.render({
+														  	elem: '#detail',
+														  	data: data,
+														  	page: true, //开启分页
+														  	cols: [
+														  		//表头
+														  		[{
+														  			field: 'costCenter',
+														  			title: '成本中心',
+														  			align: 'center'
+														  		}, {
+														  			field: 'employId',
+														  			title: '工号',
+														  			align: 'center'
+														  		}, {
+														  			field: 'gradeOne',
+														  			title: '成绩1',
+														  			align: 'center'
+														  		}, {
+														  			field: 'gradeTwo',
+														  			title: '成绩2',
+														  			align: 'center'
+														  		}, {
+														  			field: 'remark',
+														  			title: '不错',
+														  			align: 'center'
+														  		}, {
+														  			field: 'travel',
+														  			title: '差旅',
+														  			align: 'center'
+														  		}, {
+														  			field: 'tuition',
+														  			title: '学费',
+														  			align: 'center'
+														  		}]
+														  	]
+														  });
+
+													    });
 												}
+												
 											});
 										</script>
-				</div>
-				<!-- 记录导入end -->
+			</div>
+			<!-- 记录导入end -->
 
-				<!--批量免除 begin-->
-				<div class="layui-tab-item">
-					<div class="layui-upload">
-						<button class="layui-btn" id="importPreventExcel">批量免除</button>
-						<div class="layui-upload-list">
+			<!--批量免除 begin-->
+			<div class="layui-tab-item">
+				<div class="layui-upload">
+					<button class="layui-btn" id="importPreventExcel">批量免除</button>
+					<div class="layui-upload-list">
 
-							<table class="layui-table " id="prevent"></table>
+						<table class="layui-table " id="prevent"></table>
 
-						</div>
-						<button type="button" class="layui-btn preve-btn" lay-event="preve">开始上传</button>
 					</div>
-					<script>
-						layui.use(["element", "upload", "table"], function() {
-							var element = layui.element,
-								$ = layui.$,
-								upload = layui.upload,
-								table = layui.table;
-							var tenantCode = 333333;
-							var removeBy=1;
-							var data;
-							$(".preve-btn").on("click",function(){
-								console.log(postData);
-								console.log(JSON.stringify(postData))
-								var postData ={importCourseBoList:data,tenantCode:tenantCode};
-								   $.ajax({
-									   type:'POST',
-									   url: commonSrc + 'api/train/batchImport/conImportExempt'+'?removeBy='+removeBy+'&'+'tenantCode=' + tenantCode,
-									   dataType:'json',
-									   contentType:"application/json",
-									   data:JSON.stringify(data),
-									   success:function(data){
-										   alert('上传数据成功');
-									   },
-									   error: function(xhr,type){
-										   alert('上传数据失败');
-									   }
-								   });
-								
-							})
-
-							//指定允许上传的文件类型
-							upload.render({
-								elem: '#importPreventExcel',
-								url: commonSrc + 'api/train/batchImport/importExempt' + '?tenantCode=' + tenantCode,
-								accept: 'file', //普通文件
-								multiple: false,
-								done: function(res, index, upload) {
-									data = res.dataList;
-									initcoures();
+					<button type="button" class="layui-btn preve-btn" lay-event="preve">开始上传</button>
+				</div>
+				<script>
+					layui.use(["element", "upload", "table"], function() {
+						var element = layui.element,
+							$ = layui.$,
+							upload = layui.upload,
+							table = layui.table;
+						var tenantCode = 333333;
+						var removeBy = 1;
+						var data;
+						$(".preve-btn").on("click", function() {
+							console.log(postData);
+							console.log(JSON.stringify(postData))
+							var postData = {
+								importCourseBoList: data,
+								tenantCode: tenantCode
+							};
+							$.ajax({
+								type: 'POST',
+								url: commonSrc + 'api/train/batchImport/conImportExempt' + '?removeBy=' + removeBy + '&' + 'tenantCode=' +
+									tenantCode,
+								dataType: 'json',
+								contentType: "application/json",
+								data: JSON.stringify(data),
+								success: function(data) {
+									alert('上传数据成功');
+								},
+								error: function(xhr, type) {
+									alert('上传数据失败');
 								}
 							});
 
-							function initcoures() {
-								table.render({
-									elem: '#prevent',
-									//     height: 312,
-									// 方案1 异步接口api返回数据，设置接口url即可
-									// url: '/demo/table/user/', //数据接口
-									// 方案2 直接把数据赋值data即可
-									data: data,
-									page: true, //开启分页
-									cols: [
-										//表头
-										[{
-											field: 'employId',
-											title: '员工号',
-											align: 'center'
-										}, {
-											field: 'topic',
-											title: '等效课程',
-											align: 'center'
-										}, {
-											field: 'reason',
-											title: '免除原因',
-											align: 'center'
-										}, {
-											field: 'remark',
-											title: '备注',
-											align: 'center'
-										}, {
-											field: 'removeTime',
-											title: '免除日期',
-											align: 'center'
-										}, {
-											field: 'errorMessage',
-											title: '错误提示',
-											align: 'center'
-										}]
-									]
-								});
+						})
+
+						//指定允许上传的文件类型
+						upload.render({
+							elem: '#importPreventExcel',
+							url: commonSrc + 'api/train/batchImport/importExempt' + '?tenantCode=' + tenantCode,
+							accept: 'file', //普通文件
+							multiple: false,
+							done: function(res, index, upload) {
+								data = res.dataList;
+								initcoures();
 							}
 						});
-					</script>
-				</div>
-				<!--批量免除 end-->
+
+						function initcoures() {
+							table.render({
+								elem: '#prevent',
+								//     height: 312,
+								// 方案1 异步接口api返回数据，设置接口url即可
+								// url: '/demo/table/user/', //数据接口
+								// 方案2 直接把数据赋值data即可
+								data: data,
+								page: true, //开启分页
+								cols: [
+									//表头
+									[{
+										field: 'employId',
+										title: '员工号',
+										align: 'center'
+									}, {
+										field: 'topic',
+										title: '等效课程',
+										align: 'center'
+									}, {
+										field: 'reason',
+										title: '免除原因',
+										align: 'center'
+									}, {
+										field: 'remark',
+										title: '备注',
+										align: 'center'
+									}, {
+										field: 'removeTime',
+										title: '免除日期',
+										align: 'center'
+									}, {
+										field: 'errorMessage',
+										title: '错误提示',
+										align: 'center'
+									}]
+								]
+							});
+						}
+					});
+				</script>
 			</div>
+			<!--批量免除 end-->
 		</div>
 	</div>
+</div>
 </div>

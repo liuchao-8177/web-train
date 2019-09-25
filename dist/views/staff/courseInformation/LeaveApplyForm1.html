@@ -2,19 +2,14 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">课程类型</label>
 		<div class="layui-input-inline" id="layerDemo">
-					<script type="text/html" template>
-						<!--<input type="text" name="attributeId" lay-verify="title" autocomplete="off" placeholder="证书等级" class="layui-input">-->
-						<select name="typeId" lay-search="" id="editCourseTypeId" lay-filter="editCourseTypeId" class="layui-form">
-							<option value="">请选择</option>
-						</select>
+			<script type="text/html" template>
+				<input type="text" name="typeId" id="editCourseTypeId" lay-filter="editCourseTypeId" class="layui-input">
 					</script>
-				</div>
+		</div>
 		<label class="layui-form-label">课程属性</label>
 		<div class="layui-input-inline" id="layerBute">
 			<script type="text/html" template>
-				<!--<input type="text" name="attributeId" lay-verify="title" autocomplete="off" placeholder="证书等级" class="layui-input">-->
-					<select name="attributeId" lay-search="" id="editCourseAttributeId" lay-filter="editCourseAttributeId" class="layui-form">
-						<option value="">请选择</option>
+				<input type="text" name="attributeId" id="editCourseAttributeId" lay-filter="editCourseAttributeId" class="layui-input">		
 					</select>
 				</script>
 		</div>
@@ -306,64 +301,64 @@
 										// console.log($("#dataTables").next().find("tbody").find("tr").eq(0))
 									}
 								});
-					
+
 								//定义事件集合
 								var active = {
-								// 	addRows: function() { //添加一行
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		var newRow = {
-								// 			tempId: new Date().valueOf(),
-								// 			type: null,
-								// 			name: '请填写名称',
-								// 			state: 0
-								// 		};
-								// 		oldData.push(newRow);
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	updateRow: function(obj) {
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (row.tempId == obj.tempId) {
-								// 				$.extend(oldData[i], obj);
-								// 				return;
-								// 			}
-								// 		}
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	removeEmptyTableCache: function() {
-								// 		var oldData = table.cache[layTableId];
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (!row || !row.tempId) {
-								// 				oldData.splice(i, 1); //删除一项
-								// 			}
-								// 			continue;
-								// 		}
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	save: function() {
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (!row.type) {
-								// 				layer.msg("检查每一行，请选择分类！", {
-								// 					icon: 5
-								// 				}); //提示
-								// 				return;
-								// 			}
-								// 		}
-								// 		document.getElementById("jsonResult").innerHTML = JSON.stringify(table.cache[layTableId], null, 2); //使用JSON.stringify() 格式化输出JSON字符串		
-								// 	}
+									// 	addRows: function() { //添加一行
+									// 		var oldData = table.cache[layTableId];
+									// 		console.log(oldData);
+									// 		var newRow = {
+									// 			tempId: new Date().valueOf(),
+									// 			type: null,
+									// 			name: '请填写名称',
+									// 			state: 0
+									// 		};
+									// 		oldData.push(newRow);
+									// 		tableIns.reload({
+									// 			data: oldData
+									// 		});
+									// 	},
+									// 	updateRow: function(obj) {
+									// 		var oldData = table.cache[layTableId];
+									// 		console.log(oldData);
+									// 		for (var i = 0, row; i < oldData.length; i++) {
+									// 			row = oldData[i];
+									// 			if (row.tempId == obj.tempId) {
+									// 				$.extend(oldData[i], obj);
+									// 				return;
+									// 			}
+									// 		}
+									// 		tableIns.reload({
+									// 			data: oldData
+									// 		});
+									// 	},
+									// 	removeEmptyTableCache: function() {
+									// 		var oldData = table.cache[layTableId];
+									// 		for (var i = 0, row; i < oldData.length; i++) {
+									// 			row = oldData[i];
+									// 			if (!row || !row.tempId) {
+									// 				oldData.splice(i, 1); //删除一项
+									// 			}
+									// 			continue;
+									// 		}
+									// 		tableIns.reload({
+									// 			data: oldData
+									// 		});
+									// 	},
+									// 	save: function() {
+									// 		var oldData = table.cache[layTableId];
+									// 		console.log(oldData);
+									// 		for (var i = 0, row; i < oldData.length; i++) {
+									// 			row = oldData[i];
+									// 			if (!row.type) {
+									// 				layer.msg("检查每一行，请选择分类！", {
+									// 					icon: 5
+									// 				}); //提示
+									// 				return;
+									// 			}
+									// 		}
+									// 		document.getElementById("jsonResult").innerHTML = JSON.stringify(table.cache[layTableId], null, 2); //使用JSON.stringify() 格式化输出JSON字符串		
+									// 	}
 								}
 
 								//激活事件
