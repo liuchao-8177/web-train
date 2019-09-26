@@ -96,16 +96,16 @@
 						<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 					</div>
 				</div>
+				<!-- 搜索按钮 -->
+				<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+					<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+				</button>
 			</div>
 		</div>
 	</div>
 	<div class="layui-card-body">
 		<div style="padding-bottom: 10px;">
 			<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-			<!-- 搜索按钮 -->
-			<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-				<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-			</button>
 		</div>
 		<table id="LAY-report-statement-else" lay-filter="LAY-report-statement-else"></table>
 	</div>

@@ -62,7 +62,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topictrain" lay-filter="topictrain" class="layui-form">
+								<select name="courseId" lay-search="" id="topictrain" lay-filter="topictrain" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -89,18 +89,134 @@
 								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
+						<!-- 搜索按钮 -->
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
 
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" data-type="reload">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
 						</div>
-						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
+						<table class="layui-hide" id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
 					</div>
+
+					<script type="text/javascript">
+						layui.use(['form'], function() {
+							var form = layui.form; //form模块
+							var $ = layui.$; //引入内置jquery
+
+							<!--根据课程类型id查询课程类型名称-->
+							ajax_courseTypetrain();
+
+							function ajax_courseTypetrain() {
+								// 清空原有select内的数据  只保留第一项
+								$("#courseTypetrain").find("option:not(:first)").remove();
+								form.render('select', 'courseTypetrain'); //渲染表单
+								$.ajax({
+									url: commonSrc + "/api/train/courseTypeController/list",
+									type: "get",
+									dataType: "json",
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											var id = v.id;
+											var text = v.typeName;
+											// alert(id + text);
+											$("#courseTypetrain").append("<option value='" + id + "'>" + text + "</option>");
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select', 'app-content-list');
+									},
+									error: function() {
+										// alert(errorThrown);
+									}
+								});
+							}
+							<!--根据课程属性id查询课程属性名称-->
+							ajax_courseAttrIdtrain();
+
+							function ajax_courseAttrIdtrain() {
+								// 清空原有select内的数据  只保留第一项
+								$("#courseAttrIdtrain").find("option:not(:first)").remove();
+								form.render('select', 'courseAttrIdtrain'); //渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/courseAttributeController/list",
+									type: "get",
+									dataType: "json",
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											var id = v.id;
+											var text = v.attrName;
+											// alert(id + text);
+											$("#courseAttrIdtrain").append("<option value='" + id + "'>" + text + "</option>");
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select', 'app-content-list');
+									},
+									error: function() {
+										// alert(errorThrown);
+									}
+								});
+							}
+							<!--根据等效课程id查询等效课程名称-->
+							ajax_topictrain();
+
+							function ajax_topictrain() {
+								// 清空原有select内的数据  只保留第一项
+								$("#topictrain").find("option:not(:first)").remove();
+								form.render('select', 'topictrain'); //渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
+									type: "get",
+									dataType: "json",
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											var id = v.id;
+											var text = v.topic;
+											// alert(id + text);
+											$("#topictrain").append("<option value='" + id + "'>" + text + "</option>");
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select', 'app-content-list');
+									},
+									error: function() {
+										// alert(errorThrown);
+									}
+								});
+							}
+							<!--根据讲师id查询讲师姓名-->
+							ajax_teachertrain();
+
+							function ajax_teachertrain() {
+								// 清空原有select内的数据  只保留第一项
+								$("#teacherIdtrain").find("option:not(:first)").remove();
+								form.render('select', 'teacherIdtrain'); //渲染表单
+								$.ajax({
+									url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
+									type: "get",
+									dataType: "json",
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											var id = v.id;
+											var text = v.name;
+											// alert(id + text);
+											$("#teacherIdtrain").append("<option value='" + id + "'>" + text + "</option>");
+										});
+										//渲染select 表单  filter 是 重新渲染对象
+										form.render('select', 'app-content-list');
+									},
+									error: function() {
+										// alert(errorThrown);
+									}
+								});
+							}
+						});
+					</script>
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
@@ -112,6 +228,11 @@
 						form = layui.form,
 						element = layui.element;
 						
+						element.on('tab(LAY-report-general-train)', function(data){
+						  // console.log(this); //当前Tab标题所在的原始DOM元素
+						  // console.log(data.index); //得到当前Tab的所在下标
+						  // console.log(data.elem); //得到当前的Tab大容器
+						});
 
 				//表格渲染
 				table.render({
@@ -153,6 +274,10 @@
 						toolbar: '#courseTypeName',
 						align: 'center'
 					}, {
+						field: 'startTime ',
+						title: '开始日期',
+						align: 'center'
+					},{
 						field: 'endTime',
 						title: '结束日期',
 						align: 'center'
@@ -201,10 +326,6 @@
 						title: '课时',
 						align: 'center'
 					},{
-						field: 'startTime ',
-						title: '开始日期',
-						align: 'center'
-					},{
 						field: 'teacherName ',
 						title: '讲师',
 						align: 'center'
@@ -240,110 +361,7 @@
 					});
 				});
 				  
-				  <!--根据课程类型id查询课程类型名称-->
-				  ajax_courseTypetrain();
-				  function ajax_courseTypetrain() {
-				  			// 清空原有select内的数据  只保留第一项
-				  			$("#courseTypetrain").find("option:not(:first)").remove();
-				  			form.render('select', 'courseTypetrain');//渲染表单
-				  			$.ajax({
-				  				url: commonSrc + "/api/train/courseTypeController/list",
-				  				type: "get",
-				  				dataType: "json",
-				  				success: function (res) {
-				  					var data = res.dataList;
-				  					$.each(data, function (i, v) {
-				  						var id = v.id;
-				  						var text = v.typeName;
-				  						// alert(id + text);
-				  						$("#courseTypetrain").append("<option value='" + id + "'>" + text + "</option>");
-				  					});
-				  					//渲染select 表单  filter 是 重新渲染对象
-				  					form.render('select', 'app-content-list');
-				  				},
-				  				error: function () {
-				  					// alert(errorThrown);
-				  				}
-				  			});
-				  		}
-				  		<!--根据课程属性id查询课程属性名称-->
-				  		ajax_courseAttrIdtrain();
-				  		function ajax_courseAttrIdtrain() {
-				  					// 清空原有select内的数据  只保留第一项
-				  					$("#courseAttrIdtrain").find("option:not(:first)").remove();
-				  					form.render('select', 'courseAttrIdtrain');//渲染表单
-				  					$.ajax({
-				  						url: commonSrc + "api/train/courseAttributeController/list",
-				  						type: "get",
-				  						dataType: "json",
-				  						success: function (res) {
-				  							var data = res.dataList;
-				  							$.each(data, function (i, v) {
-				  								var id = v.id;
-				  								var text = v.attrName;
-				  								// alert(id + text);
-				  								$("#courseAttrIdtrain").append("<option value='" + id + "'>" + text + "</option>");
-				  							});
-				  							//渲染select 表单  filter 是 重新渲染对象
-				  							form.render('select', 'app-content-list');
-				  						},
-				  						error: function () {
-				  							// alert(errorThrown);
-				  						}
-				  					});
-				  				}
-				  				<!--根据等效课程id查询等效课程名称-->
-				  				ajax_topictrain();
-				  				function ajax_topictrain() {
-				  							// 清空原有select内的数据  只保留第一项
-				  							$("#topictrain").find("option:not(:first)").remove();
-				  							form.render('select', 'topictrain');//渲染表单
-				  							$.ajax({
-				  								url: commonSrc + "api/train/courseController/list?pageNum=1&pageSize=99999",
-				  								type: "get",
-				  								dataType: "json",
-				  								success: function (res) {
-				  									var data = res.dataList;
-				  									$.each(data, function (i, v) {
-				  										var id = v.id;
-				  										var text = v.topic;
-				  										// alert(id + text);
-				  										$("#topictrain").append("<option value='" + id + "'>" + text + "</option>");
-				  									});
-				  									//渲染select 表单  filter 是 重新渲染对象
-				  									form.render('select', 'app-content-list');
-				  								},
-				  								error: function () {
-				  									// alert(errorThrown);
-				  								}
-				  							});
-				  						}
-						<!--根据讲师id查询讲师姓名-->
-						ajax_teachertrain();
-						function ajax_teachertrain() {
-							// 清空原有select内的数据  只保留第一项
-							$("#teacherIdtrain").find("option:not(:first)").remove();
-							form.render('select', 'teacherIdtrain'); //渲染表单
-							$.ajax({
-								url: commonSrc + "api/train/teacherController/list?pageNum=1&pageSize=99999",
-								type: "get",
-								dataType: "json",
-								success: function(res) {
-									var data = res.dataList;
-									$.each(data, function(i, v) {
-										var id = v.id;
-										var text = v.name;
-										// alert(id + text);
-										$("#teacherIdtrain").append("<option value='" + id + "'>" + text + "</option>");
-									});
-									//渲染select 表单  filter 是 重新渲染对象
-									form.render('select', 'app-content-list');
-								},
-								error: function() {
-									// alert(errorThrown);
-								}
-							});
-						}
+				  
 
 				// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
 				// 	var type = $(this).data('type');
@@ -361,6 +379,8 @@
 				})
 				</script>
 				</div>
+
+
 
 				<!--讲师相关-->
 				<div class="layui-tab-item">
@@ -449,30 +469,19 @@
 								</select>
 							</div>
 						</div>
-						<div class="layui-card-body">
-							<script type="text/html" id="inside">
-								{{#  if(d.checkStatus==1){ }}
-								<button>保存</button>
-								{{#  } else if(d.checkStatus==2) { }}
-								<button>审核中</button>
-								{{#  } else if(d.checkStatus==3) { }}
-								<button>审核通过</button>
-								{{#  } }}
-							    </script>
-						</div>
-
-
-						<div class="layui-card-body">
-							<div style="padding-bottom: 10px;">
-								<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-								<!-- 搜索按钮 -->
-								<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
-									<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-								</button>
-							</div>
-							<table id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
-						</div>
+						<!-- 搜索按钮 -->
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
+					
+					<div class="layui-card-body">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+						</div>
+						<table class="layui-hide" id="LAY-report-general-lecturer" lay-filter="LAY-report-general-lecturer"></table>
+					</div>
+
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate', 'element'], function() {
@@ -483,6 +492,12 @@
 								laydate = layui.laydate,
 								form = layui.form,
 								element = layui.element;
+
+							element.on('tab(LAY-report-general-train)', function(data) {
+								// console.log(this); //当前Tab标题所在的原始DOM元素
+								// console.log(data.index); //得到当前Tab的所在下标
+								// console.log(data.elem); //得到当前的Tab大容器
+							});
 
 							//表格渲染
 							table.render({
@@ -522,7 +537,7 @@
 											field: 'teacherName',
 											title: '讲师',
 											align: 'center'
-										},  {
+										}, {
 											field: 'otherName',
 											title: '课程别名',
 											align: 'center'

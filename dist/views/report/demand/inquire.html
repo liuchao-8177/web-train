@@ -131,6 +131,10 @@
 								</select>
 							</div>
 						</div>
+						<!-- 搜索按钮 -->
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-notraining">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
 					<script type="text/html" id="prioritynever">
 						{{#  if(d.priority==1){ }}
@@ -143,10 +147,6 @@
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-notraining">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
 						</div>
 						<table id="LAY-report-inquire-already" lay-filter="LAY-report-inquire-already"></table>
 					</div>
@@ -219,6 +219,7 @@
 							//监听搜索
 							form.on('submit(LAY-app-contlist-search-notraining)', function(data) {
 								var field = data.field;
+								console.log(field);
 								//执行重载
 								table.reload('LAY-report-inquire-already', {
 									where: field
@@ -321,7 +322,7 @@
 				</div>
 
 				<!-- 已培训查询 -->
-				<div class="layui-tab-item layui-form">
+				<div class="layui-tab-item">
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
@@ -329,7 +330,7 @@
 						</div>
 					</div>
 
-					<div class="layui-form-item">
+					<div class="layui-form-item layui-form">
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
@@ -458,7 +459,18 @@
 								</select>
 							</div>
 						</div>
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-training">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
+					<div class="layui-card-body">
+						<div class="layui-form-item">
+							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							
+						</div>
+						<table id="LAY-report-inquire-havenot" lay-filter="LAY-report-inquire-havenot"></table>
+					</div>
+
 					<script type="text/html" id="trainform">
 						{{#  if(d.trainForm==1){ }}
 							内部培训
@@ -470,17 +482,6 @@
 								
 						{{#  } }}
 					   </script>
-					<div class="layui-card-body">
-						<div class="layui-form-item">
-							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-training">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
-						</div>
-						<table id="LAY-report-inquire-havenot" lay-filter="LAY-report-inquire-havenot"></table>
-					</div>
-
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
@@ -779,15 +780,15 @@
 								</select>
 							</div>
 						</div>
+						<!-- 搜索按钮 -->
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-exempt">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-exempt">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
 						</div>
 						<table id="LAY-report-inquire-exemptt" lay-filter="LAY-report-inquire-exemptt"></table>
 					</div>
@@ -1111,16 +1112,15 @@
 								</select>
 							</div>
 						</div>
+						<!-- 搜索按钮 -->
+						<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-matrix">
+							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+						</button>
 					</div>
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
-							<!-- 搜索按钮 -->
-							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-matrix">
-								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
-							</button>
-
 						</div>
 						<table id="LAY-report-inquire-matrix" lay-filter="LAY-report-inquire-matrix"></table>
 					</div>
