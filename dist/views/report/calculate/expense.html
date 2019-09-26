@@ -325,36 +325,77 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
-								field: 'id',
-								title: 'id',
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
+								field: 'endTime',
+								title: '培训日期 止',
+								hide: true,
+							},{
+								field: 'startTime',
+								title: '培训日期 起',
 								hide: true,
 							}, {
-								field: 'commonId',
-								title: '申请公共id',
+								field: 'tenantCode',
+								title: '租户编码',
 								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-								field: 'applyType',
-								title: '是否离职',
-								align: 'center'
-							}, {
-								field: 'applyType',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'checkStatus',
-								title: '离职日期',
-								templet: "#buttonTpl",
-								minWidth: 80,
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -488,36 +529,77 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
-								field: 'id',
-								title: 'id',
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
+								field: 'endTime',
+								title: '培训日期 止',
+								hide: true,
+							},{
+								field: 'startTime',
+								title: '培训日期 起',
 								hide: true,
 							}, {
-								field: 'commonId',
-								title: '申请公共id',
+								field: 'tenantCode',
+								title: '租户编码',
 								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-								field: 'applyType',
-								title: '是否离职',
-								align: 'center'
-							}, {
-								field: 'applyType',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'checkStatus',
-								title: '离职日期',
-								templet: "#buttonTpl",
-								minWidth: 80,
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -576,14 +658,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -770,7 +852,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topic" lay-filter="topic" class="layui-form">
+								<select name="courseId" lay-search="" id="topic" lay-filter="topic" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -779,14 +861,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -988,14 +1070,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1008,6 +1090,13 @@
 							</div>
 						</div>
 					</div>
+					<script type="text/html" id="prior">
+						{{#  if(d.priority==1){ }}
+					           必修
+					       {{#  } else {  }}
+					           选修
+					       {{#  } }}
+					   </script>
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
@@ -1084,6 +1173,7 @@
 							},{
 								field: 'priority',
 								title: '优先级',
+								toolbar: '#prior',
 								align: 'center'
 							},{
 								field: 'selfPay',
@@ -1169,14 +1259,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1434,36 +1524,77 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
-								field: 'id',
-								title: 'id',
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
+								field: 'endTime',
+								title: '培训日期 止',
+								hide: true,
+							},{
+								field: 'startTime',
+								title: '培训日期 起',
 								hide: true,
 							}, {
-								field: 'commonId',
-								title: '申请公共id',
+								field: 'tenantCode',
+								title: '租户编码',
 								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-								field: 'applyType',
-								title: '是否离职',
-								align: 'center'
-							}, {
-								field: 'applyType',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'checkStatus',
-								title: '离职日期',
-								templet: "#buttonTpl",
-								minWidth: 80,
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -1586,36 +1717,77 @@
 								type: 'checkbox',
 								fixed: "left"
 							}, {
-								field: 'id',
-								title: 'id',
+								field: 'avgTrainTime',
+								title: '人均培训小时',
+								align: 'center'
+							},{
+								field: 'classOnJob',
+								title: '职位类型',
+								align: 'center'
+							},{
+								field: 'companyPay',
+								title: '公司支付',
+								align: 'center'
+							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
+								field: 'other',
+								title: '其他',
+								hide: true,
+							},{
+								field: 'penetrationOnJob',
+								title: '在职培训',
+								hide: true,
+							},{
+								field: 'personNumOnJob',
+								title: '在职人数',
+								hide: true,
+							},{
+								field: 'planClass',
+								title: '计划',
+								hide: true,
+							},{
+								field: 'selfPay',
+								title: '个人支付',
+								align: 'center'
+							},{
+								field: 'trainNum',
+								title: '普及率',
+								align: 'center'
+							},
+							{
+								field: 'trainPercentage',
+								title: '培训百分比',
+								align: 'center'
+							},
+							{
+								field: 'trainPersonNumOnJob',
+								title: '在职培训员工编号',
+								hide: true,
+							},
+							{
+								field: 'travel',
+								title: '差旅',
+								align: 'center'
+							},
+							{
+								field: 'tuition',
+								title: '学费',
+								align: 'center'
+							},{
+								field: 'endTime',
+								title: '培训日期 止',
+								hide: true,
+							},{
+								field: 'startTime',
+								title: '培训日期 起',
 								hide: true,
 							}, {
-								field: 'commonId',
-								title: '申请公共id',
+								field: 'tenantCode',
+								title: '租户编码',
 								hide: true,
-							}, {
-								field: 'overtimeCode',
-								title: '申请编号',
-								hide: true,
-							}, {
-								field: 'applyType',
-								title: '是否离职',
-								align: 'center'
-							}, {
-								field: 'applyType',
-								title: '备注',
-								align: 'center'
-							}, {
-								field: 'checkStatus',
-								title: '离职日期',
-								templet: "#buttonTpl",
-								minWidth: 80,
-								align: 'center'
-							}, {
-								fixed: 'right',
-								title: '操作',
-								toolbar: '#table-content-list',
-								minWidth: 150,
 							}]
 						],
 						page: !0,
@@ -1663,20 +1835,20 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">

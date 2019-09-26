@@ -7,7 +7,7 @@
 </div>
 
 <div class="layui-fluid" style="background-color: #fff!important;">
-	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layui-form layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">未培训</li>
@@ -18,7 +18,7 @@
 
 			<div class="layui-tab-content">
 				<!-- 未培训查询，默认开始 -->
-				<div class="layui-tab-item layui-show">
+				<div class="layui-tab-item  layui-show">
 					<div class="layui-form-item">
 						<div class="layui-inline">
 							<button class="layui-btn layuiadmin-btn-list">查询信息</button>
@@ -79,7 +79,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseTypenever" lay-filter="courseTypenever" class="layui-form">
+								<select name="courseTypeId" lay-search="" id="courseTypenever" lay-filter="courseTypenever" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -97,25 +97,25 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topicnever" lay-filter="topicnever" class="layui-form">
+								<select name="courseId" lay-search="" id="topicnever" lay-filter="topicnever" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 					<script type="text/html" id="prioritynever">
-					    {{#  if(d.priority==1){ }}
+						{{#  if(d.priority==1){ }}
 					           必修
 					       {{#  } else {  }}
 					           选修
@@ -147,18 +147,18 @@
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-notraining">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
 							</button>
-
 						</div>
 						<table id="LAY-report-inquire-already" lay-filter="LAY-report-inquire-already"></table>
 					</div>
 					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 							var $ = layui.$,
 								admin = layui.admin,
 								view = layui.view,
 								table = layui.table,
 								laydate = layui.laydate,
-								form = layui.form;
+								form = layui.form,
+								element = layui.element;
 					
 							//表格渲染
 							table.render({
@@ -219,7 +219,6 @@
 							//监听搜索
 							form.on('submit(LAY-app-contlist-search-notraining)', function(data) {
 								var field = data.field;
-								console.log(field);
 								//执行重载
 								table.reload('LAY-report-inquire-already', {
 									where: field
@@ -306,10 +305,10 @@
 														});
 													}
 					
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
+							// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+							// 	var type = $(this).data('type');
+							// 	active[type] ? active[type].call(this) : '';
+							// });
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -322,7 +321,7 @@
 				</div>
 
 				<!-- 已培训查询 -->
-				<div class="layui-tab-item">
+				<div class="layui-tab-item layui-form">
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
@@ -384,7 +383,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<input type="text" name="agency" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
+								<input type="agency" name="agency" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -419,25 +418,25 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startTrainTime" name="startTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endTrainTime" name="endTrainTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topicalready" lay-filter="topicalready" class="layui-form">
+								<select name="courseId" lay-search="" id="topicalready" lay-filter="topicalready" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -446,7 +445,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程别名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="otherName" lay-verify="" placeholder="课程别名" autocomplete="off" class="layui-input">
+								<input type="otherName" name="otherName" lay-verify="" placeholder="课程别名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -460,6 +459,17 @@
 							</div>
 						</div>
 					</div>
+					<script type="text/html" id="trainform">
+						{{#  if(d.trainForm==1){ }}
+							内部培训
+						{{#  }else if(d.trainForm==2){ }}
+							外部公开班
+						{{#  }else if(d.trainForm==3){ }}
+							外聘培训
+						{{#  } else {  }}
+								
+						{{#  } }}
+					   </script>
 					<div class="layui-card-body">
 						<div class="layui-form-item">
 							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
@@ -473,12 +483,13 @@
 
 
 					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 							var $ = layui.$,
 								admin = layui.admin,
 								view = layui.view,
 								table = layui.table,
 								laydate = layui.laydate,
+								element = layui.element,
 								form = layui.form;
 					
 							//表格渲染
@@ -532,7 +543,8 @@
 												align: 'center'
 											},{
 												field: 'trainForm',
-												title: '培训形式',
+												title: '培训形式', //1：内部培训； 2：外部公开班； 3：外聘培训
+												toolbar: '#trainform',
 												align: 'center'
 											}
 										]
@@ -634,10 +646,10 @@
 													}
 	
 
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
+							// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+							// 	var type = $(this).data('type');
+							// 	active[type] ? active[type].call(this) : '';
+							// });
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -653,7 +665,7 @@
 				</div>
 
 				<!-- 免除培训 -->
-				<div class="layui-tab-item">
+				<div class="layui-tab-item layui-form">
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
@@ -715,7 +727,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseTypefrom" lay-filter="courseTypefrom" class="layui-form">
+								<select name="courseTypeId" lay-search="" id="courseTypefrom" lay-filter="courseTypefrom" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -733,25 +745,25 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startRemoveTime" name="startRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endRemoveTime" name="endRemoveTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topicfrom" lay-filter="topicfrom" class="layui-form">
+								<select name="courseId" lay-search="" id="topicfrom" lay-filter="topicfrom" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -771,7 +783,7 @@
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
-							<button class="layui-btn layuiadmin-btn-list" data-type="">数据列表</button>
+							<button class="layui-btn layuiadmin-btn-list">数据列表</button>
 							<!-- 搜索按钮 -->
 							<button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search-exempt">
 								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>查询
@@ -780,12 +792,13 @@
 						<table id="LAY-report-inquire-exemptt" lay-filter="LAY-report-inquire-exemptt"></table>
 					</div>
 					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 							var $ = layui.$,
 								admin = layui.admin,
 								view = layui.view,
 								table = layui.table,
 								laydate = layui.laydate,
+								element = layui.element,
 								form = layui.form;
 					
 							//表格渲染
@@ -842,6 +855,27 @@
 								}),
 													
 							form.render(null, 'app-content-list');
+							
+							// active = {
+							//     reload: function(){
+							//       // // var demoReload = $('#demoReload');
+							//       // 
+							// 	  table.reload('LAY-report-inquire-exemptt', {
+							// 	  	where: field
+							// 	  });
+							//       // //执行重载
+							//       // table.reload('testReload', {
+							//       //   page: {
+							//       //     curr: 1 //重新从第 1 页开始
+							//       //   }
+							//       //   ,where: {
+							//       //     key: {
+							//       //       id: demoReload.val()
+							//       //     }
+							//       //   }
+							//       // }, 'data');
+							//     }
+							//   };
 					
 							//监听搜索
 							form.on('submit(LAY-app-contlist-search-exempt)', function(data) {
@@ -932,10 +966,7 @@
 														});
 													}
 
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
+							
 							
 							//日期
 							$(".date").each(function() {
@@ -952,7 +983,7 @@
 				</div>
 
 				<!-- 需求矩阵 -->
-				<div class="layui-tab-item">
+				<div class="layui-tab-item layui-form">
 
 					<div class="layui-form-item">
 						<div class="layui-inline">
@@ -1032,19 +1063,19 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">需求日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="startDemandTime" name="startDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="endDemandTime" name="endDemandTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1095,13 +1126,14 @@
 					</div>
 
 					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
 							var $ = layui.$,
 								admin = layui.admin,
 								view = layui.view,
 								table = layui.table,
 								laydate = layui.laydate,
-								form = layui.form;
+								form = layui.form,
+								element = layui.element;
 
 							//表格渲染
 							table.render({
@@ -1228,10 +1260,10 @@
 								});
 							}
 
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
+							// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+							// 	var type = $(this).data('type');
+							// 	active[type] ? active[type].call(this) : '';
+							// });
 							//日期
 							$(".date").each(function() {
 								laydate.render({

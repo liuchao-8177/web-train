@@ -179,21 +179,55 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
-				            ]],
+				                {
+				                	type: 'checkbox',
+				                	fixed: "left",
+				                },{
+				                	field: 'courseTypeName', 
+				                	title: '课程类型', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次x2', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次x1+x2-y-z',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次z', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率(y+z)/(x1+x2)',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次x1', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次y', 
+				                	align: 'center',
+				                }]
+								],
 				            page: !0,
 				            limit: 10,
 				            limits: [10, 15, 20, 25, 30],
@@ -211,10 +245,10 @@
 				        });
 
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -382,20 +416,54 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+				                	type: 'checkbox',
+				                	fixed: "left",
+				                },{
+				                	field: 'courseTypeName', 
+				                	title: '课程类型', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次x2', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次x1+x2-y-z',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次z', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率(y+z)/(x1+x2)',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次x1', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次y', 
+				                	align: 'center',
+				                }
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -414,10 +482,10 @@
 				            });
 				        });
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -585,20 +653,54 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+				                	type: 'checkbox',
+				                	fixed: "left",
+				                },{
+				                	field: 'courseTypeName', 
+				                	title: '课程类型', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次x2', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次x1+x2-y-z',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次z', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率(y+z)/(x1+x2)',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次x1', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次y', 
+				                	align: 'center',
+				                }
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -617,10 +719,10 @@
 				            });
 				        });
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -701,7 +803,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseType" lay-search="" id="courseTypetype" lay-filter="courseTypetype" class="layui-form">
+								<select name="courseTypeid" lay-search="" id="courseTypetype" lay-filter="courseTypetype" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -928,10 +1030,10 @@
 													});
 												}
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 						
 				        //日期
 				        $(".date").each(function () {
@@ -1041,7 +1143,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topicequal" lay-filter="topicequal" class="layui-form">
+								<select name="courseId" lay-search="" id="topicequal" lay-filter="topicequal" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -1109,7 +1211,7 @@
 				                },{
 				                	field: 'avgDynamicHours', 
 				                	title: '人均动态需求小时',
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'avgFinishHours', 
 				                	title: '人均完成需求小时', 
@@ -1121,7 +1223,7 @@
 				                },{
 				                	field: 'developDemandNum', 
 				                	title: '发展需求人次x2', 
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'dynamicNum', 
 				                	title: '动态需求人次x1+x2-y-z',
@@ -1240,10 +1342,10 @@
 													});
 												}
 
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -1365,6 +1467,13 @@
 							</div>
 						</div>
 					</div>
+					<script type="text/html" id="priority">
+					    {{#  if(d.priority==1){ }}
+					           必修
+					       {{#  } else {  }}
+					           选修
+					       {{#  } }}
+					   </script>
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
@@ -1415,7 +1524,7 @@
 								},{
 				                	field: 'priority', 
 				                	title: '优先级', 
-									toolbar: '#prows',
+									toolbar: '#priority',
 				                	align: 'center',
 				                },{
 				                	field: 'avgDemandHours', 
@@ -1424,7 +1533,7 @@
 				                },{
 				                	field: 'avgDynamicHours', 
 				                	title: '人均动态需求小时',
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'avgFinishHours', 
 				                	title: '人均完成需求小时', 
@@ -1440,18 +1549,18 @@
 				                },{
 				                	field: 'dynamicNum', 
 				                	title: '动态需求人次x1+x2-y-z',
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'exemptNum', 
 				                	title: '免除培训人次z', 
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'finishRate', 
 				                	title: '需求完成率(y+z)/(x1+x2)',
-				                	 align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'staticDemandNum', 
-				                	title: '静态需求人次x1', 
+				                	hide: true, 
 				                	align: 'center',
 				                },{
 				                	field: 'trainedNum', 
@@ -1555,10 +1664,10 @@
 													});
 												}
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -1566,9 +1675,8 @@
 				                trigger: 'click',
 				            });
 				        })
-				
-				    });
-				</script>
+				     });
+				    </script>
 				</div>
 
 				<!--按课程属性查询-->
@@ -1731,7 +1839,7 @@
 				                },{
 				                	field: 'avgDynamicHours', 
 				                	title: '人均动态需求小时',
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'avgFinishHours', 
 				                	title: '人均完成需求小时', 
@@ -1743,11 +1851,11 @@
 				                },{
 				                	field: 'developDemandNum', 
 				                	title: '发展需求人次x2', 
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'dynamicNum', 
 				                	title: '动态需求人次x1+x2-y-z',
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'exemptNum', 
 				                	title: '免除培训人次z', 
@@ -1755,15 +1863,15 @@
 				                },{
 				                	field: 'finishRate', 
 				                	title: '需求完成率(y+z)/(x1+x2)',
-				                	 align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'staticDemandNum', 
 				                	title: '静态需求人次x1', 
-				                	align: 'center',
+				                	hide: true,
 				                },{
 				                	field: 'trainedNum', 
 				                	title: '已培训人次y', 
-				                	align: 'center',
+				                	hide: true,
 				                }
 				            ]],
 				            page: !0,
@@ -1862,10 +1970,10 @@
 												});
 											}
 											
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -2038,20 +2146,54 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+				                	type: 'checkbox',
+				                	fixed: "left",
+				                },{
+				                	field: 'courseTypeName', 
+				                	title: '课程类型', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次x2', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次x1+x2-y-z',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次z', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率(y+z)/(x1+x2)',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次x1', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次y', 
+				                	align: 'center',
+				                }
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -2070,10 +2212,10 @@
 				            });
 				        });
 				
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -2246,20 +2388,54 @@
 				                };
 				            },
 				            cols: [[
-				                {type: 'checkbox', fixed: "left"},
-				                {field: 'id', title: 'id', hide: true},
-				                {field: 'commonId', title: '申请公共id', hide: true},
-				                {field: 'applyId', title: '申请人id', hide: true},
-				                {field: 'applyName', title: '申请人姓名', align: 'center'},
-				                {field: 'type', title: '休假类型',templet: "#type", align: 'center'},
-				                {field: 'linkTel', title: '联系电话', align: 'center'},
-				                {field: 'startTime', title: '请假开始日期', align: 'center'},
-				                {field: 'endTime', title: '请假结束日期', align: 'center'},
-				                {field: 'proxyName', title: '临时代理人', align: 'center'},
-				                {field: 'extension', title: '代理人电话', align: 'center'},
-				                {field: 'reason', title: '申请理由', align: 'center'},
-				                {field: 'checkStatus', title: '申请状态', templet: "#buttonTpl", minWidth: 80, align: 'center'},
-				                {fixed: 'right', title: '操作', toolbar: '#table-content-list', minWidth: 150}
+				                {
+				                	type: 'checkbox',
+				                	fixed: "left",
+				                },{
+				                	field: 'courseTypeName', 
+				                	title: '课程类型', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDemandHours', 
+				                	title: '人均需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'avgDynamicHours', 
+				                	title: '人均动态需求小时',
+				                	align: 'center',
+				                },{
+				                	field: 'avgFinishHours', 
+				                	title: '人均完成需求小时', 
+				                	align: 'center',
+				                },{
+				                	field: 'demandNum', 
+				                	title: '需求人数', 
+				                	align: 'center',
+				                },{
+				                	field: 'developDemandNum', 
+				                	title: '发展需求人次x2', 
+				                	align: 'center',
+				                },{
+				                	field: 'dynamicNum', 
+				                	title: '动态需求人次x1+x2-y-z',
+				                	align: 'center',
+				                },{
+				                	field: 'exemptNum', 
+				                	title: '免除培训人次z', 
+				                	align: 'center',
+				                },{
+				                	field: 'finishRate', 
+				                	title: '需求完成率(y+z)/(x1+x2)',
+				                	 align: 'center',
+				                },{
+				                	field: 'staticDemandNum', 
+				                	title: '静态需求人次x1', 
+				                	align: 'center',
+				                },{
+				                	field: 'trainedNum', 
+				                	title: '已培训人次y', 
+				                	align: 'center',
+				                }
 				            ]],
 				            page: !0,
 				            limit: 10,
@@ -2278,10 +2454,11 @@
 				            });
 				        });
 
-				        $('.layui-btn.layuiadmin-btn-list').on('click', function () {
-				            var type = $(this).data('type');
-				            active[type] ? active[type].call(this) : '';
-				        });
+				        // $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+				        //     var type = $(this).data('type');
+				        //     active[type] ? active[type].call(this) : '';
+				        // });
+						
 				        //日期
 				        $(".date").each(function () {
 				            laydate.render({
@@ -2458,7 +2635,7 @@
 									}, {
 										field: 'avgDynamicHours',
 										title: '人均动态需求小时',
-										align: 'center',
+										hide: true,
 									}, {
 										field: 'avgFinishHours',
 										title: '人均完成需求小时',
@@ -2474,19 +2651,19 @@
 									}, {
 										field: 'dynamicNum',
 										title: '动态需求人次x1+x2-y-z',
-										align: 'center',
+										hide: true,
 									}, {
 										field: 'exemptNum',
 										title: '免除培训人次z',
-										align: 'center',
+										hide: true,
 									}, {
 										field: 'finishRate',
 										title: '需求完成率(y+z)/(x1+x2)',
-										align: 'center',
+										hide: true,
 									}, {
 										field: 'staticDemandNum',
 										title: '静态需求人次x1',
-										align: 'center',
+										hide: true,
 									}, {
 										field: 'trainedNum',
 										title: '已培训人次y',
@@ -2593,10 +2770,11 @@
 								});
 							}
 
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
+							// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+							// 	var type = $(this).data('type');
+							// 	active[type] ? active[type].call(this) : '';
+							// });
+							
 							//日期
 							$(".date").each(function() {
 								laydate.render({

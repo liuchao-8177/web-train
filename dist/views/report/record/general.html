@@ -89,34 +89,7 @@
 								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
-						<div class="layui-card-body">
-							<!--课程类型-->
-							<script type="text/html" id="courseTypeName">
-								{{#  
-								if(d.courseTypeName==1){ }}USB{{#  } else 
-								if(d.courseTypeName==6) { }}操作证{{#  } else 
-								if(d.courseTypeName==10) { }}供应链管理{{#  } else 
-								if(d.courseTypeName==11) { }}管理{{#  } else 
-								if(d.courseTypeName==28) { }}基础{{#  } else 
-								if(d.courseTypeName==30) { }}计算机{{#  } else 
-								if(d.courseTypeName==51) { }}品质管理{{#  } else 
-								{ }}
-								{{#  } }}
-		                    </script>
-							<!--课程属性-->
-							<script type="text/html" id="courseAttrId">
-								{{#  if(d.courseAttrId==1){ }}
-					        单词
-							{{#  } else if(d.courseAttrId==2) { }}
-							测试属性
-							{{#  } else if(d.courseAttrId==3) { }}
-							防身
-							{{#  } else { }}
-							{{#  } }}
-							</script>
-						</div>
 					</div>
-
 
 					<div class="layui-card-body">
 						<div style="padding-bottom: 10px;">
@@ -128,7 +101,6 @@
 						</div>
 						<table id="LAY-report-general-train" lay-filter="LAY-report-general-train"></table>
 					</div>
-
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
@@ -257,6 +229,16 @@
 				}),
 			
 				form.render(null, 'app-content-list');
+				
+				//监听搜索
+				form.on('submit(LAY-app-contlist-search)', function(data) {
+					var field = data.field;
+					console.log(field);
+					//执行重载
+					table.reload('LAY-report-general-train', {
+						where: field
+					});
+				});
 				  
 				  <!--根据课程类型id查询课程类型名称-->
 				  ajax_courseTypetrain();
@@ -363,22 +345,10 @@
 							});
 						}
 
-
-				//监听搜索
-				form.on('submit(LAY-app-contlist-search)', function(data) {
-					var field = data.field;
-					console.log(field);
-					//执行重载
-					table.reload('LAY-report-general-train', {
-						where: field
-					});
-				});
-
-
-				$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-					var type = $(this).data('type');
-					active[type] ? active[type].call(this) : '';
-				});
+				// $('.layui-btn.layuiadmin-btn-list').on('click', function() {
+				// 	var type = $(this).data('type');
+				// 	active[type] ? active[type].call(this) : '';
+				// });
 				
 				//日期
 				$(".date").each(function() {
@@ -441,7 +411,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<select name="topic" lay-search="" id="topiclecturer" lay-filter="topiclecturer" class="layui-form">
+								<select name="courseId" lay-search="" id="topiclecturer" lay-filter="topiclecturer" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -552,11 +522,7 @@
 											field: 'teacherName',
 											title: '讲师',
 											align: 'center'
-										}, {
-											field: 'endTime',
-											title: '结束日期',
-											align: 'center'
-										}, {
+										},  {
 											field: 'otherName',
 											title: '课程别名',
 											align: 'center'
@@ -575,6 +541,10 @@
 										}, {
 											field: 'startTime',
 											title: '开始日期',
+											align: 'center'
+										}, {
+											field: 'endTime',
+											title: '结束日期',
 											align: 'center'
 										}, {
 											field: 'teacherGrade',
