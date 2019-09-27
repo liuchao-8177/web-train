@@ -7,7 +7,7 @@
 </div>
 
 <div class="layui-fluid" style="background-color: #fff!important;">
-	<div class="layui-form  layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class="layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card" lay-filter="">
 			<ul class="layui-tab-title">
 				<li data-status="" class="layui-this">按部门</li>
@@ -24,8 +24,8 @@
 
 			<div class="layui-tab-content">
 
-				<!--按部门查询，默认开始-->
-				<div class="layui-tab-item layui-show">
+				<!--1按部门查询，默认开始-->
+				<div class="layui-tab-item layui-form layui-show" lay-filter="app-content-list1">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -37,104 +37,61 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="课程属性*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">必修</option>
-									<option value="2">选修</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="员工id*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -261,8 +218,8 @@
 				</script>
 				</div>
 
-				<!--按职位类型查询-->
-				<div class="layui-tab-item">
+				<!--2按职位类型查询-->
+				<div class="layui-tab-item  layui-form" lay-filter="app-content-list2">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -274,104 +231,61 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="课程属性*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">必修</option>
-									<option value="2">选修</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="员工id*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="等效课程**" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -498,8 +412,8 @@
 				</script>
 				</div>
 
-				<!--按职位级别查询-->
-				<div class="layui-tab-item">
+				<!--3按职位级别查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list3">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -511,104 +425,61 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="课程属性*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">必修</option>
-									<option value="2">选修</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="员工id*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -735,8 +606,8 @@
 				</script>
 				</div>
 
-				<!--按课程类型查询-->
-				<div class="layui-tab-item">
+				<!--4按课程类型查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list4">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -748,14 +619,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">主任</option>
 									<option value="2">经理</option>
 									<option value="3">工人</option>
@@ -771,7 +642,7 @@
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">IT</option>
 									<option value="2">保险产品</option>
 									<option value="3">财务</option>
@@ -787,7 +658,7 @@
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">人事专员</option>
 									<option value="2">人事专员</option>
 									<option value="3">项目经理</option>
@@ -797,13 +668,13 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="courseTypeid" lay-search="" id="courseTypetype" lay-filter="courseTypetype" class="layui-form">
+								<select name="courseTypeId" lay-search="" id="courseTypetype" lay-filter="courseTypetype" class="layui-form">
 									<option value="">--所有--</option>
 									<option value="">产生错误了</option>
 								</select>
@@ -840,7 +711,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工id" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -951,7 +822,7 @@
 				            });
 				        });
 						
-						<!--根据课程类型id查询课程类型名称-->
+						//根据课程类型id查询课程类型名称
 						ajax_courseTypetype();
 						function ajax_courseTypetype() {
 									// 清空原有select内的数据  只保留第一项
@@ -970,14 +841,14 @@
 												$("#courseTypetype").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
-											form.render('select', 'app-content-list');
+											form.render('select', 'app-content-list4');
 										},
 										error: function () {
 											// alert(errorThrown);
 										}
 									});
 								}
-								<!--根据课程属性id查询课程属性名称-->
+								//根据课程属性id查询课程属性名称
 								ajax_courseAttrIdtype();
 								function ajax_courseAttrIdtype() {
 											// 清空原有select内的数据  只保留第一项
@@ -996,14 +867,14 @@
 														$("#courseAttrIdtype").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
-													form.render('select', 'app-content-list');
+													form.render('select', 'app-content-list4');
 												},
 												error: function () {
 													// alert(errorThrown);
 												}
 											});
 										}
-										<!--根据等效课程id查询等效课程名称-->
+										//根据等效课程id查询等效课程名称
 										ajax_topictype();
 										function ajax_topictype() {
 													// 清空原有select内的数据  只保留第一项
@@ -1022,7 +893,7 @@
 																$("#topictype").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
-															form.render('select', 'app-content-list');
+															form.render('select', 'app-content-list4');
 														},
 														error: function () {
 															// alert(errorThrown);
@@ -1047,8 +918,8 @@
 				</script>
 				</div>
 				
-				<!--按等效课程查询-->
-				<div class="layui-tab-item">
+				<!--5按等效课程查询-->
+				<div class="layui-tab-item  layui-form" lay-filter="app-content-list5">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1060,14 +931,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">主任</option>
 									<option value="2">经理</option>
 									<option value="3">工人</option>
@@ -1083,7 +954,7 @@
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">IT</option>
 									<option value="2">保险产品</option>
 									<option value="3">财务</option>
@@ -1099,7 +970,7 @@
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">人事专员</option>
 									<option value="2">人事专员</option>
 									<option value="3">项目经理</option>
@@ -1109,7 +980,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1152,7 +1023,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工id" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -1263,7 +1134,7 @@
 				            });
 				        });
 						
-						<!--根据课程类型id查询课程类型名称-->
+						//根据课程类型id查询课程类型名称
 						ajax_courseTypeequal();
 						function ajax_courseTypeequal() {
 									// 清空原有select内的数据  只保留第一项
@@ -1282,14 +1153,14 @@
 												$("#courseTypeequal").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
-											form.render('select', 'app-content-list');
+											form.render('select', 'app-content-list5');
 										},
 										error: function () {
 											// alert(errorThrown);
 										}
 									});
 								}
-								<!--根据课程属性id查询课程属性名称-->
+								//根据课程属性id查询课程属性名称
 								ajax_courseAttrIdequal();
 								function ajax_courseAttrIdequal() {
 											// 清空原有select内的数据  只保留第一项
@@ -1308,14 +1179,14 @@
 														$("#courseAttrIdequal").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
-													form.render('select', 'app-content-list');
+													form.render('select', 'app-content-list5');
 												},
 												error: function () {
 													// alert(errorThrown);
 												}
 											});
 										}
-										<!--根据等效课程id查询等效课程名称-->
+										//根据等效课程id查询等效课程名称
 										ajax_topicequal();
 										function ajax_topicequal() {
 													// 清空原有select内的数据  只保留第一项
@@ -1334,7 +1205,7 @@
 																$("#topicequal").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
-															form.render('select', 'app-content-list');
+															form.render('select', 'app-content-list5');
 														},
 														error: function () {
 															// alert(errorThrown);
@@ -1358,8 +1229,8 @@
 				</script>
 				</div>
 
-				<!--按优先级查询-->
-				<div class="layui-tab-item">
+				<!--6按优先级查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list6">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1371,14 +1242,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">主任</option>
 									<option value="2">经理</option>
 									<option value="3">工人</option>
@@ -1394,7 +1265,7 @@
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">IT</option>
 									<option value="2">保险产品</option>
 									<option value="3">财务</option>
@@ -1410,7 +1281,7 @@
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">人事专员</option>
 									<option value="2">人事专员</option>
 									<option value="3">项目经理</option>
@@ -1420,7 +1291,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1463,7 +1334,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工id" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -1585,7 +1456,7 @@
 				            });
 				        });
 						
-						<!--根据课程类型id查询课程类型名称-->
+						//根据课程类型id查询课程类型名称
 						ajax_courseTypeprecedence();
 						function ajax_courseTypeprecedence() {
 									// 清空原有select内的数据  只保留第一项
@@ -1604,14 +1475,14 @@
 												$("#courseTypeprecedence").append("<option value='" + id + "'>" + text + "</option>");
 											});
 											//渲染select 表单  filter 是 重新渲染对象
-											form.render('select', 'app-content-list');
+											form.render('select', 'app-content-list6');
 										},
 										error: function () {
 											// alert(errorThrown);
 										}
 									});
 								}
-								<!--根据课程属性id查询课程属性名称-->
+								//根据课程属性id查询课程属性名称
 								ajax_courseAttrIdprecedence();
 								function ajax_courseAttrIdprecedence() {
 											// 清空原有select内的数据  只保留第一项
@@ -1630,14 +1501,14 @@
 														$("#courseAttrIdprecedence").append("<option value='" + id + "'>" + text + "</option>");
 													});
 													//渲染select 表单  filter 是 重新渲染对象
-													form.render('select', 'app-content-list');
+													form.render('select', 'app-content-list6');
 												},
 												error: function () {
 													// alert(errorThrown);
 												}
 											});
 										}
-										<!--根据等效课程id查询等效课程名称-->
+										//根据等效课程id查询等效课程名称
 										ajax_topicprecedence();
 										function ajax_topicprecedence() {
 													// 清空原有select内的数据  只保留第一项
@@ -1656,7 +1527,7 @@
 																$("#topicprecedence").append("<option value='" + id + "'>" + text + "</option>");
 															});
 															//渲染select 表单  filter 是 重新渲染对象
-															form.render('select', 'app-content-list');
+															form.render('select', 'app-content-list6');
 														},
 														error: function () {
 															// alert(errorThrown);
@@ -1679,8 +1550,8 @@
 				    </script>
 				</div>
 
-				<!--按课程属性查询-->
-				<div class="layui-tab-item">
+				<!--7按课程属性查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list7">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1692,14 +1563,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">主任</option>
 									<option value="2">经理</option>
 									<option value="3">工人</option>
@@ -1715,7 +1586,7 @@
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">IT</option>
 									<option value="2">保险产品</option>
 									<option value="3">财务</option>
@@ -1731,7 +1602,7 @@
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">人事专员</option>
 									<option value="2">人事专员</option>
 									<option value="3">项目经理</option>
@@ -1741,7 +1612,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -1784,7 +1655,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工id" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -1891,7 +1762,7 @@
 				            });
 				        });
 							
-					<!--根据课程类型id查询课程类型名称-->
+					//根据课程类型id查询课程类型名称
 					ajax_courseTypeproperty();
 					function ajax_courseTypeproperty() {
 								// 清空原有select内的数据  只保留第一项
@@ -1910,14 +1781,14 @@
 											$("#courseTypeproperty").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
-										form.render('select', 'app-content-list');
+										form.render('select', 'app-content-list7');
 									},
 									error: function () {
 										// alert(errorThrown);
 									}
 								});
 							}
-							<!--根据课程属性id查询课程属性名称-->
+							//根据课程属性id查询课程属性名称
 							ajax_courseAttrIdproperty();
 							function ajax_courseAttrIdproperty() {
 										// 清空原有select内的数据  只保留第一项
@@ -1936,14 +1807,14 @@
 													$("#courseAttrIdproperty").append("<option value='" + id + "'>" + text + "</option>");
 												});
 												//渲染select 表单  filter 是 重新渲染对象
-												form.render('select', 'app-content-list');
+												form.render('select', 'app-content-list7');
 											},
 											error: function () {
 												// alert(errorThrown);
 											}
 										});
 									}
-									<!--根据等效课程id查询等效课程名称-->
+									//根据等效课程id查询等效课程名称
 									ajax_topicproperty();
 									function ajax_topicproperty() {
 												// 清空原有select内的数据  只保留第一项
@@ -1962,7 +1833,7 @@
 															$("#topicproperty").append("<option value='" + id + "'>" + text + "</option>");
 														});
 														//渲染select 表单  filter 是 重新渲染对象
-														form.render('select', 'app-content-list');
+														form.render('select', 'app-content-list7');
 													},
 													error: function () {
 														// alert(errorThrown);
@@ -1986,8 +1857,8 @@
 				</script>
 				</div>
 
-				<!--按职位名称查询-->
-				<div class="layui-tab-item">
+				<!--8按职位名称查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list8">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1999,109 +1870,61 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
-								<select name="courseAttrId" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
-									<option value="1">单词</option>
-									<option value="2">测试属性</option>
-									<option value="3">防身</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">必修</option>
-									<option value="2">选修</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="员工id*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -2228,8 +2051,8 @@
 				</script>
 				</div>
 
-				<!--按工龄查询-->
-				<div class="layui-tab-item">
+				<!--9按工龄查询-->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list9">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -2241,83 +2064,44 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
-							<label class="layui-form-label">职务类型</label>
+							<label class="layui-form-label">职务类型*</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">USB</option>
-									<option value="2">操作证1</option>
-									<option value="3">供应链管理</option>
-									<option value="4">管理</option>
-									<option value="5">基础</option>
-									<option value="6">计算机</option>
-									<option value="7">品质管理</option>
-									<option value="8">其他</option>
-									<option value="9">人力资源</option>
-									<option value="10">入职培训</option>
-									<option value="11">生产</option>
-									<option value="12">市场营销</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">课程属性</label>
 							<div class="layui-input-inline">
 								<select name="courseAttrId" lay-verify="" lay-search="">
-									<option value="">--所有--</option>
+									<option value="">--所有*--</option>
 									<option value="1">单词</option>
 									<option value="2">测试属性</option>
 									<option value="3">防身</option>
@@ -2327,23 +2111,19 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">优先级</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">必修</option>
-									<option value="2">选修</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="员工id*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">等效课程</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="等效课程" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="等效课程*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -2471,8 +2251,8 @@
 				</script>
 				</div>
 
-				<!--按员工查询-->
-				<div class="layui-tab-item">
+				<!--10按员工查询-->
+				<div class="layui-tab-item  layui-form" lay-filter="app-content-list10">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -2484,14 +2264,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">主任</option>
 									<option value="2">经理</option>
 									<option value="3">工人</option>
@@ -2507,7 +2287,7 @@
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">IT</option>
 									<option value="2">保险产品</option>
 									<option value="3">财务</option>
@@ -2523,7 +2303,7 @@
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
+									<option value="">--请选择*--</option>
 									<option value="1">人事专员</option>
 									<option value="2">人事专员</option>
 									<option value="3">项目经理</option>
@@ -2533,7 +2313,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -2576,7 +2356,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工姓名</label>
 							<div class="layui-input-inline">
-								<input type="text" name="employId" lay-verify="" placeholder="员工姓名" autocomplete="off" class="layui-input">
+								<input type="employId" name="employId" lay-verify="" placeholder="员工id" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -2688,7 +2468,7 @@
 								});
 							});
 
-							<!--根据课程类型id查询课程类型名称-->
+							//根据课程类型id查询课程类型名称
 							ajax_courseTypestaff();
 
 							function ajax_courseTypestaff() {
@@ -2708,14 +2488,14 @@
 											$("#courseTypestaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
-										form.render('select', 'app-content-list');
+										form.render('select', 'app-content-list10');
 									},
 									error: function() {
 										// alert(errorThrown);
 									}
 								});
 							}
-							<!--根据课程属性id查询课程属性名称-->
+							//根据课程属性id查询课程属性名称
 							ajax_courseAttrIdstaff();
 
 							function ajax_courseAttrIdstaff() {
@@ -2735,14 +2515,14 @@
 											$("#courseAttrIdstaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
-										form.render('select', 'app-content-list');
+										form.render('select', 'app-content-list10');
 									},
 									error: function() {
 										// alert(errorThrown);
 									}
 								});
 							}
-							<!--根据等效课程id查询等效课程名称-->
+							//根据等效课程id查询等效课程名称
 							ajax_topicstaff();
 
 							function ajax_topicstaff() {
@@ -2762,7 +2542,7 @@
 											$("#topicstaff").append("<option value='" + id + "'>" + text + "</option>");
 										});
 										//渲染select 表单  filter 是 重新渲染对象
-										form.render('select', 'app-content-list');
+										form.render('select', 'app-content-list10');
 									},
 									error: function() {
 										// alert(errorThrown);

@@ -7,7 +7,7 @@
 </div>
 
 <div class="layui-fluid" style="background-color: #fff!important;">
-	<div class="layui-form layuiadmin-card-header-auto" lay-filter="app-content-list">
+	<div class=" layuiadmin-card-header-auto" lay-filter="app-content-list">
 		<div class="layui-tab layui-tab-card">
 			<ul class="layui-tab-title">
 				<li class="layui-this">按部门</li>
@@ -24,8 +24,8 @@
 
 			<div class="layui-tab-content">
 
-				<!-- 按部门查询，默认开始 -->
-				<div class="layui-tab-item layui-show">
+				<!--1 按部门查询，默认开始 -->
+				<div class="layui-tab-item  layui-form layui-show" lay-filter="app-content-list1">
 
 
 					<div class="layui-form-item ">
@@ -38,29 +38,26 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						
@@ -231,8 +228,8 @@
 					</script>
 				</div>
 
-				<!-- 按职位类型查询 -->
-				<div class="layui-tab-item">
+				<!--2 按职位类型查询 -->
+				<div class="layui-tab-item layui-form" lay-filter="app-content-list2">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -244,39 +241,26 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">职务类型</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">IT</option>
-									<option value="2">保险产品</option>
-									<option value="3">财务</option>
-									<option value="4">采购</option>
-									<option value="5">客服</option>
-									<option value="6">人力资源</option>
-									<option value="7">市场</option>
-									<option value="8">销售</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -435,8 +419,8 @@
 		</script>
 				</div>
 
-				<!-- 按职位级别查询 -->
-				<div class="layui-tab-item">
+				<!--3 按职位级别查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list3">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -448,39 +432,26 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">职务级别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">主任</option>
-									<option value="2">经理</option>
-									<option value="3">工人</option>
-									<option value="4">科员</option>
-									<option value="5">总监</option>
-									<option value="6">文员</option>
-									<option value="7">主管</option>
-									<option value="8">互动专员</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -638,8 +609,8 @@
 		</script>
 				</div>
 
-				<!-- 按课程类型查询 -->
-				<div class="layui-tab-item">
+				<!--4 按课程类型查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list4">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -673,7 +644,7 @@
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
+									<option value="">男*</option>
 									<option value="1">女</option>
 								</select>
 							</div>
@@ -726,6 +697,10 @@
 								type: 'checkbox',
 								fixed: "left"
 							},{
+								field: 'courseTypeName',
+								title: '课程类型',
+								align: 'center'
+							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
 								hide: true,
@@ -737,10 +712,6 @@
 								field: 'companyPay',
 								title: '公司支付',
 								hide: true,
-							},{
-								field: 'courseTypeName',
-								title: '课程类型',
-								align: 'center'
 							},{
 								field: 'other',
 								title: '其他费用',
@@ -817,7 +788,7 @@
 										var text = v.typeName;
 										$("#courseTypeId").append("<option value='" + id + "'>" + text + "</option>");
 									});
-									form.render('select', 'app-content-list');
+									form.render('select', 'app-content-list4');
 								},
 								error: function () {
 								}
@@ -841,8 +812,8 @@
 		</script>
 				</div>
 
-				<!-- 按等效课程查询 -->
-				<div class="layui-tab-item">
+				<!--5 按等效课程查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list5">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -877,7 +848,7 @@
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
+									<option value="">男*</option>
 									<option value="1">女</option>
 								</select>
 							</div>
@@ -1002,7 +973,7 @@
 					});
 				});
 				
-				<!--根据等效课程id查询等效课程名称-->
+				//根据等效课程id查询等效课程名称
 				ajax_topic();
 				
 				function ajax_topic() {
@@ -1022,7 +993,7 @@
 								$("#topic").append("<option value='" + id + "'>" + text + "</option>");
 							});
 							//渲染select 表单  filter 是 重新渲染对象
-							form.render('select', 'app-content-list');
+							form.render('select', 'app-content-list5');
 						},
 						error: function() {
 							// alert(errorThrown);
@@ -1050,8 +1021,8 @@
 		</script>
 				</div>
 
-				<!-- 按优先级查询 -->
-				<div class="layui-tab-item">
+				<!--6 按优先级查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list6">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1087,7 +1058,7 @@
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
+									<option value="">男*</option>
 									<option value="1">女</option>
 								</select>
 							</div>
@@ -1146,6 +1117,11 @@
 								type: 'checkbox',
 								fixed: "left"
 							},{
+								field: 'priority',
+								title: '优先级',
+								toolbar: '#prior',
+								align: 'center'
+							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
 								hide: true,
@@ -1172,11 +1148,6 @@
 							},{
 								field: 'planClass',
 								title: '课时（已培训人所有人总课时',
-								align: 'center'
-							},{
-								field: 'priority',
-								title: '优先级',
-								toolbar: '#prior',
 								align: 'center'
 							},{
 								field: 'selfPay',
@@ -1241,8 +1212,8 @@
 		</script>
 				</div>
 
-				<!-- 按课程属性查询 -->
-				<div class="layui-tab-item">
+				<!--7 按课程属性查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list7">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1276,7 +1247,7 @@
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
+									<option value="">男*</option>
 									<option value="1">女</option>
 								</select>
 							</div>
@@ -1328,6 +1299,10 @@
 								type: 'checkbox',
 								fixed: "left"
 							},{
+								field: 'courseAttrName',
+								title: '课程属性',
+								align: 'center'
+							},{
 								field: 'avgTrainTime',
 								title: '人均培训小时',
 								hide: true,
@@ -1339,10 +1314,6 @@
 								field: 'companyPay',
 								title: '公司支付',
 								hide: true,
-							},{
-								field: 'courseAttrName',
-								title: '课程属性',
-								align: 'center'
 							},{
 								field: 'other',
 								title: '其他费用',
@@ -1415,7 +1386,7 @@
 										var text = v.attrName;
 										$("#courseAttrId").append("<option value='" + id + "'>" + text + "</option>");
 									});
-									form.render('select', 'app-content-list');
+									form.render('select', 'app-content-list7');
 								},
 								error: function () {
 								}
@@ -1437,8 +1408,8 @@
 		</script>
 				</div>
 
-				<!-- 按职务名称查询 -->
-				<div class="layui-tab-item">
+				<!--8 按职务名称查询 -->
+				<div class="layui-tab-item  layui-form " lay-filter="app-content-list8">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1450,34 +1421,26 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">职务名称</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">--请选择--</option>
-									<option value="1">人事专员</option>
-									<option value="2">人事专员</option>
-									<option value="3">项目经理</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -1635,8 +1598,8 @@
 		</script>
 				</div>
 
-				<!-- 按工龄查询 -->
-				<div class="layui-tab-item">
+				<!--9 按工龄查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list9">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1648,29 +1611,26 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">工龄</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="工龄" autocomplete="off" class="layui-input">
+								<input type="text" name="" lay-verify="" placeholder="工龄*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd*" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
-								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
-									<option value="1">女</option>
-								</select>
+								<input type="text" name="" lay-verify="" placeholder="空*" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<!-- 搜索按钮 -->
@@ -1825,8 +1785,8 @@
 		</script>
 				</div>
 
-				<!-- 按员工查询 -->
-				<div class="layui-tab-item">
+				<!--10 按员工查询 -->
+				<div class="layui-tab-item layui-form " lay-filter="app-content-list10">
 
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -1838,27 +1798,27 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">员工</label>
 							<div class="layui-input-inline">
-								<input type="employId" name="employId" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
+								<input type="text" name="employId" lay-verify="" placeholder="员工" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">培训日期</label>
 							<div class="layui-input-inline">
-								<input type="startTime" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="endTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 
 						<div class="layui-inline">
 							<label class="layui-form-label">结束日期</label>
 							<div class="layui-input-inline">
-								<input type="endTime" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
+								<input type="text" name="startTime" lay-verify="" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input date">
 							</div>
 						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">性别</label>
 							<div class="layui-input-inline">
 								<select name="buttonTpl" lay-verify="" lay-search="">
-									<option value="">男</option>
+									<option value="">男*</option>
 									<option value="1">女</option>
 								</select>
 							</div>
@@ -1910,6 +1870,10 @@
 											type: 'checkbox',
 											fixed: "left"
 										}, {
+											field: 'employId',
+											title: '员工ID',
+											align: 'center'
+										}, {
 											field: 'avgTrainTime',
 											title: '人均培训小时',
 											hide: true,
@@ -1921,11 +1885,7 @@
 											field: 'companyPay',
 											title: '公司支付',
 											hide: true,
-										}, {
-											field: 'employId',
-											title: '员工ID',
-											align: 'center'
-										}, {
+										},  {
 											field: 'other',
 											title: '其他费用',
 											align: 'center'
