@@ -73,7 +73,7 @@
 
 			<div id="userBar" style="display: none;">
 				<!-- <a class="layui-btn layui-btn-xs" lay-event="look" >查看</a> -->
-				<a class="layui-btn layui-btn-xs" href="#/train/record/RecordAdd">编辑</a>
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 			</div>
 
@@ -100,7 +100,7 @@
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
-				url: 'http://119.3.77.206:8004/api/train/evaluationRecordController/selectEvaluationList',
+			url: commonSrc + 'api/train/evaluationRecordController/selectEvaluationList',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
 						,
@@ -172,9 +172,14 @@
 			table.on("tool(LAY-app-content-list)", function(obj) {
 				var data = obj.data;
 
+				// 编辑 记录评估
+				if ("edit" == obj.event) {
+					location.href = "#/train/record/RecordAdd/planDetailId=" + data.planDetailId;
+				}
+
 				if ("del" === obj.event) {
 					$.ajax({
-						url: 'http://119.3.77.206:8004/api/train/evaluationRecordController/deleteEvaById', //换成自己的url
+						url: commonSrc + 'api/train/evaluationRecordController/deleteEvaById', //换成自己的url
 						type: "POST",
 						dataType: "json",
 						data: {
