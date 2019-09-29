@@ -28,7 +28,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">培训形式:</label>
                         <div class="layui-input-inline">
-                            <select name="trainForm" id="trainForm" lay-filter="trainForm" class="layui-form"
+                            <select name="trainForm" id="trainForm" required="required" lay-filter="trainForm"
+                                    class="layui-form"
                                     lay-verify="required" lay-search="">
                                 <option value=""></option>
                                 <option value="1">外部公开课</option>
@@ -58,7 +59,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">对应证书:</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="cerLevel" id="cerLevel" autocomplete="off" placeholder="对应证书"
+                            <input type="text" name="cerLevel" id="cerLevel" readonly autocomplete="off"
+                                   placeholder="对应证书"
                                    class="layui-input">
                         </div>
                     </div>
@@ -87,7 +89,7 @@
                     </div>
                     <div class="layui-form-item" style="text-align: right;">
                         <div class="layui-input-block">
-                            <button type="button" class="layui-btn layuiadmin-btn-list">确定</button>
+                            <button type="button" class="layui-btn layuiadmin-btn-list" id="confirmEditEva">确定</button>
                             <a href="javascript:history.back(-1)">
                                 <button type="button" class="layui-btn layui-btn-normal daainfor">返回</button>
                             </a>
@@ -339,10 +341,6 @@
                                                 }
                                             });
 
-                                            //执行 Ajax 后重载
-                                            /*
-
-                                            */
                                         });
                                     }
 
@@ -473,64 +471,6 @@
                                 </script>
                             </div>
                         </div>
-
-                        <!--                        <script>-->
-                        <!--                            layui.use('upload', function () {-->
-                        <!--                                var $ = layui.jquery,-->
-                        <!--                                    upload = layui.upload;-->
-                        <!--                                var demoListView = $('#demoList'),-->
-                        <!--                                    uploadListIns = upload.render({-->
-                        <!--                                        elem: '#testList',-->
-                        <!--                                        url: '/upload/',-->
-                        <!--                                        accept: 'file',-->
-                        <!--                                        multiple: true,-->
-                        <!--                                        auto: false,-->
-                        <!--                                        bindAction: '#testListAction',-->
-                        <!--                                        choose: function (obj) {-->
-                        <!--                                            var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列-->
-                        <!--                                            //读取本地文件-->
-                        <!--                                            obj.preview(function (index, file, result) {-->
-                        <!--                                                var tr = $(['<tr id="upload-' + index + '">', '<td>' + file.name + '</td>', '<td>' + (file.size /-->
-                        <!--                                                    1014).toFixed(1) + 'kb</td>', '<td>等待上传</td>', '<td>',-->
-                        <!--                                                    '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>',-->
-                        <!--                                                    '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>', '</td>',-->
-                        <!--                                                    '</tr>'-->
-                        <!--                                                ].join(''));-->
-
-                        <!--                                                //单个重传-->
-                        <!--                                                tr.find('.demo-reload').on('click', function () {-->
-                        <!--                                                    obj.upload(index, file);-->
-                        <!--                                                });-->
-
-                        <!--                                                //删除-->
-                        <!--                                                tr.find('.demo-delete').on('click', function () {-->
-                        <!--                                                    delete files[index]; //删除对应的文件-->
-                        <!--                                                    tr.remove();-->
-                        <!--                                                    uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选-->
-                        <!--                                                });-->
-
-                        <!--                                                demoListView.append(tr);-->
-                        <!--                                            });-->
-                        <!--                                        },-->
-                        <!--                                        done: function (res, index, upload) {-->
-                        <!--                                            if (res.code == 0) { //上传成功-->
-                        <!--                                                var tr = demoListView.find('tr#upload-' + index),-->
-                        <!--                                                    tds = tr.children();-->
-                        <!--                                                tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');-->
-                        <!--                                                tds.eq(3).html(''); //清空操作-->
-                        <!--                                                return delete this.files[index]; //删除文件队列已经上传成功的文件-->
-                        <!--                                            }-->
-                        <!--                                            this.error(index, upload);-->
-                        <!--                                        },-->
-                        <!--                                        error: function (index, upload) {-->
-                        <!--                                            var tr = demoListView.find('tr#upload-' + index),-->
-                        <!--                                                tds = tr.children();-->
-                        <!--                                            tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');-->
-                        <!--                                            tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传-->
-                        <!--                                        }-->
-                        <!--                                    });-->
-                        <!--                            })-->
-                        <!--                        </script>-->
                     </div>
 
                     <!--备注-->
@@ -578,27 +518,16 @@
         var evaluationTeacher;
         var teacherList;
 
+
+        // 修改时删除子课程及附件暂存
+        var deCourseIds = [];
+        var deFileIds = [];
+
         // 获取讲师数据列表
 
 
         function initHtml() {
-            //讲师
-            $.ajax({
-                url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
-                type: "GET",
-                dataType: "json",
-                success: function (res) {
-                    var data = res.dataList;
-                    teacherList = data;
-                    // console.log("cccccc"+ teacherList);
-                    $.each(data, function (i, v) {
-                        // alert(v.name);
-                        $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
-                        sessionStorage.setItem("childTeacher" + v.id, v.name);
-                    });
-                    // console.log($("#teacherId").html());
-                }
-            });
+
             //获取评估数据
             $.ajax({
                 url: commonSrc + "api/train/evaluationRecordController/selectEvaByDetailId?planDetailId=" + planDetailId,
@@ -608,10 +537,28 @@
                 success: function (res) {
                     var data = res.data;
                     evadata = data;
-                    // console.log(data);
                 },
                 error: function () {
                     alert("错误");
+                }
+            });
+            //讲师
+            $.ajax({
+                url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    var data = res.dataList;
+                    teacherList = data;
+                    $.each(data, function (i, v) {
+                        if (evadata.teacherId == v.id) {
+                            $("#teacherId").append('<option selected="selected" value="' + v.id + '">' + v.name + '</option>');
+                        } else {
+                            $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
+                        }
+                        sessionStorage.setItem("childTeacher" + v.id, v.name);
+                    });
                 }
             });
         }
@@ -628,24 +575,14 @@
         $("#trainForm").val(evadata.trainForm);
         $("#teacherId").val(evadata.teacherId);
 
-        console.log(teacherList);
 
-        // $.each(teacherList, function(i, v) {
-        //     // alert(v.name);
-        //     // $("#teacherId").append('<option value="'+ v.id + '">'+ v.name + '</option>');
-        //     console.log("11");
-        // });
         $("#test-laydate-start").val(evadata.startTime);
         $("#test-laydate-end").val(evadata.endTime);
-        // console.log($("#teacherId").html());
-        // console.log(evadata.teacherId);
-        // console.log($("#teacherId").val());
-        form.render();
+        form.render('select');
 
 
         // 获取对讲师评估数据
         evaluationTeacher = evadata.evaluationTeacherVo;
-        // console.log(evaluationCourse);
         $("#teacherName").val(sessionStorage.getItem("childTeacher" + evadata.teacherId));
         $("#planClass").val(evadata.planClass);
         $("#tgrade").val(evaluationTeacher.grade);
@@ -689,11 +626,6 @@
             //,limit: 5 //每页默认显示的数量
         });
 
-
-        // //监听子课程行工具条
-        // table.on('tool(LAY-app-content-list-childCourse)', function(obj){
-        //
-        // });
 
         function CellClick(that, obj) {
             //当前点击字段
@@ -823,6 +755,8 @@
             var data = obj.data;
             if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (index) {
+                    deCourseIds.push(obj.data.id);
+                    // console.log(obj.data.id);
                     obj.del();
                     layer.close(index);
                 });
@@ -941,6 +875,7 @@
             var data = obj.data;
             if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (index) {
+                    deFileIds.push(obj.data.id);
                     obj.del();
                     layer.close(index);
                 });
@@ -977,5 +912,97 @@
         //     layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
         // });
 
+        // 确认修改
+        $("#confirmEditEva").click(function () {
+
+            // // 修改
+            // Object.keys(table.cache["LAY-app-content-list-childCourse"]).forEach(function(key){
+            //     console.log(key,obj[key]);
+            //
+            // });
+            // table
+
+            var childCourseDataFlush = [];
+            var fileDataFlush = [];
+            // 获取之前编辑过的全部数据，
+            var tableBak = table.cache["LAY-app-content-list-childCourse"];
+            var tableBak1 = table.cache["LAY-app-content-list-file"];
+            for (var i = 0; i < tableBak.length; i++) {
+                if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].startTime === undefined
+                    && tableBak[i].endTime === undefined && tableBak[i].teacherId === null) {
+                    continue;
+                }
+                var item = {
+                    'id': tableBak[i].id,
+                    'childCourseName': tableBak[i].childCourseName,
+                    'startTime': tableBak[i].startTime,
+                    'endTime': tableBak[i].endTime,
+                    'teacherId': tableBak[i].teacherId
+                }
+                childCourseDataFlush.push(item);      //将之前的数组备份
+            }
+            for (var i = 0; i < tableBak1.length; i++) {
+                if (tableBak1[i].id === undefined && tableBak1[i].type === undefined && tableBak1[i].fileId === undefined) {
+                    continue;
+                }
+                var item = {
+                    'id': tableBak1[i].id,
+                    'type': tableBak1[i].type,
+                    'fileId': tableBak1[i].fileId
+                }
+                fileDataFlush.push(item);      //将之前的数组备份
+            }
+            // console.log("---" + fileDataFlush[0].id);
+
+            var data = {
+                'agency': $("#agency").val()
+                , 'courseRemark': $("#cremark").val()
+                , 'courseGrade': $("#cgrade").val()
+
+                // 删除子课程集合
+                , 'dePlanDetailIds': deCourseIds
+                // 删除附件集合
+                , 'dePlanFileIds': deFileIds
+
+                , 'endTime': $("#test-laydate-end").val()
+                , 'startTime': $("#test-laydate-start").val()
+
+                // 修改子课程及新增的子课程
+                , 'evaChildCourseBos': childCourseDataFlush
+
+                // 修改的附件及新增的附件
+                , 'planFileBos': fileDataFlush
+
+                // ,'planClass': $("#planClass").val()
+                , 'planDetailId': planDetailId
+                , 'otherName': $("#otherName").val()
+                , 'place': $("#place").val()
+                , 'remark': $("#remark").val()
+                , 'teacherGrade': $("#tgrade").val()
+                , 'teacherId': $("#teacherId").val()
+                , 'trainForm': $("#trainForm").val()
+
+            }
+
+            // console.log(JSON.stringify(data));
+            $.ajax({
+                type: "post",
+                contentType: "application/json;charset=UTF-8",
+                dataType: 'json',
+                url: commonSrc + "api/train/evaluationRecordController/updateEvaluation",
+                data: JSON.stringify(data),
+                success: function (result) {
+                    layer.msg("修改成功", {
+                        time: 1000
+                    }, function () {
+                        layer.close(index); //执行关闭
+                        // layui.table.reload('LAY-app-content-list'); //重载表格
+                    })
+                },
+                error: function (result) {
+                    console.log("error :" + result);
+                }
+            });
+        });
     });
 </script>
