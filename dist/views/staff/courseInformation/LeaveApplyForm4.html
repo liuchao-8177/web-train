@@ -6,7 +6,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">课程属性</label>
 					<div class="layui-input-inline">
-						<input name="attrName" lay-verify="" placeholder="课程属性" autocomplete="off" class="layui-input">
+						<input name="attrName" lay-verify="" placeholder="请输入列表存在的课程属性" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
@@ -23,7 +23,8 @@
 			<div style="padding-bottom: 10px;">
 				<!-- <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button> -->
 				<button class="layui-btn layuiadmin-btn-list" data-type="addcs">添加</button>
-				<button class="layui-btn">确认</button>
+				<button class="layui-btn layuiadmin-btn-list" data-type="max">确认</button>
+
 			</div>
 
 			<table id="arrtname" lay-filter="arrtname" class="layui-table"></table>
@@ -57,6 +58,12 @@
 					statusCode: 200 //规定成功的状态码，默认：0
 				},
 				parseData: function(res) { //res 即为原始返回的数据
+					let attrNameList = [];
+					for (var i = 0; i < res.dataList.length; i++) {
+						attrNameList.push(res.dataList[i].attrName)
+					}
+					localStorage.setItem('attrname', JSON.stringify(attrNameList))
+
 					return {
 						"code": res.code, //解析接口状态
 						"msg": res.desc, //解析提示文本
@@ -135,7 +142,7 @@
 				}) : "editdes" === obj.event && admin.popup({
 					title: "编辑课程信息",
 					area: ['400px', '200px'],
-					moveOut:'true',
+					moveOut: 'true',
 					id: "LAY-popup-contentTable-edit",
 					success: function(t, layero) {
 						view(this.id).render("staff/courseInformation/LeaveApplyForm5", data).done(function() {
@@ -223,26 +230,13 @@
 				,
 			addcs: function(othis) {
 				admin.popup({
-					title: '添加课程信息',
+					title: '添加课程属性',
 					area: ['400px', '200px'],
 					id: 'LAY-popup-contentTable-add',
 					success: function(layero, index) {
 						view(this.id).render('staff/courseInformation/LeaveApplyForm5').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
-							$("#editCourseTypeId").click(function() {
-								admin.popup({
-									title: '添加课程信息',
-									area: ['400px', '350px'],
-									id: 'LAY-popup-contentTable-edit',
-									success: function(layero, index) {
-										view(this.id).render('staff/courseInformation/LeaveApplyForm2').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-											}
 
-										)
-									},
-								})
-							})
 							// 监听课程类型点击事件
 							// form.on('select(editCourseTypeId)', function(data) {
 							// 	console.log("click")
@@ -277,6 +271,16 @@
 						});
 					}
 				});
+			},
+			max: function(othis) {
+				var $=layui.jquery;
+				let names = JSON.parse(localStorage.getItem('attrname'));
+				if(names.indexOf($("input[name='attrName']").val()) == -1){
+						layer.alert('不存在该课程属性')
+				}else{
+					layer.close(HianKeIndex);
+					$("#editCourseAttributeId").val($("input[name='attrName']").val());
+				}
 			}
 		};
 
@@ -286,5 +290,3 @@
 		});
 	})
 </script>
-
-

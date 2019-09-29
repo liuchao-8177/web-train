@@ -6,7 +6,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">课程类型</label>
 					<div class="layui-input-inline">
-						<input name="typeName" lay-verify="" placeholder="课程类型" autocomplete="off" class="layui-input">
+						<input name="typeName" lay-verify="" placeholder="请输入列表存在的课程类型" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
@@ -23,7 +23,7 @@
 			<div style="padding-bottom: 10px;">
 				<!-- <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button> -->
 				<button class="layui-btn layuiadmin-btn-list" data-type="addes">添加</button>
-				<button class="layui-btn">确认</button>
+				<button class="layui-btn layuiadmin-btn-list"  data-type="subm">确认</button>
 			</div>
 
 			<table id="contentTable" lay-filter="contentTable" class="layui-table"></table>
@@ -57,6 +57,13 @@
 					statusCode: 200 //规定成功的状态码，默认：0
 				},
 				parseData: function(res) { //res 即为原始返回的数据
+				    let typeNameList=[];
+					for(var i=0;i<res.dataList.length;i++){
+						typeNameList.push(res.dataList[i].typeName)
+					}
+					localStorage.setItem('typename',JSON.stringify(typeNameList))
+					
+				
 					return {
 						"code": res.code, //解析接口状态
 						"msg": res.desc, //解析提示文本
@@ -80,12 +87,14 @@
 						fixed: 'right',
 						title: '操作',
 						toolbar: '#tablelist',
+						align: 'center',
 						minWidth: 150,
 					}]
 				],
 			}),
 			table.on("tool(contentTable)", function(obj) {
 				var data = obj.data;
+				
 				if ("wait" === obj.event) {
 					layer.confirm('请确认后选择', {
 						btn: ['通过', '不行'] //按钮
@@ -176,7 +185,6 @@
 		//监听搜索
 		form.on('submit(LAY-app-contlist-search)', function(data) {
 			var field = data.field;
-			console.log(field);
 			//执行重载
 			table.reload('contentTable', {
 				where: field
@@ -223,22 +231,10 @@
 					area: ['400px', '200px'],
 					id: 'LAY-popup-contentTable-add',
 					success: function(layero, index) {
+						window.AianKeIndex = index;
 						view(this.id).render('staff/courseInformation/LeaveApplyForm3').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
-							$("#editCourseTypeId").click(function() {
-								admin.popup({
-									title: '添加课程信息',
-									area: ['400px', '350px'],
-									id: 'LAY-popup-contentTable-edit',
-									success: function(layero, index) {
-										view(this.id).render('staff/courseInformation/LeaveApplyForm2').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
-											}
-
-										)
-									},
-								})
-							})
+							
 							// 监听课程类型点击事件
 							// form.on('select(editCourseTypeId)', function(data) {
 							// 	console.log("click")
@@ -264,7 +260,8 @@
 										layer.msg("新增成功", {
 											time: 1000
 										}, function() {
-											layer.close(index); //执行关闭 
+											var index=parent.layer.getFrameIndex(window.name);
+											layer.close(AianKeIndex); //执行关闭 
 											layui.table.reload('contentTable'); //重载表格
 										})
 									});
@@ -273,6 +270,27 @@
 						});
 					}
 				});
+			},
+			subm:function(othis){
+				var $=layui.jquery;
+				let sname = JSON.parse(localStorage.getItem('typename'));
+				if(sname.indexOf($("input[name='typeName']").val()) == -1){
+					layer.alert('不存在该课程类型')
+				}else{
+					layer.close(TianKeIndex);
+					$("#editCourseTypeId").val($("input[name='typeName']").val());
+				}
+				// for(var i=0;i<sname.length;i++){
+				//  if($("input[name='typeName']").val() == sname[i]){
+				// 	$("#editCourseTypeId").val($("input[name='typeName']").val());
+				//     layer.close(layer.index);
+				//  }else{
+				// 	 layer.msg('不存在');
+				//  }
+				// }
+				
+				
+				 
 			}
 		};
 

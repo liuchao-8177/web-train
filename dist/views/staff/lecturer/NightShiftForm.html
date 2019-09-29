@@ -84,12 +84,7 @@
 	</div>
 	<input type="hidden" name="id" />
 	<input type="hidden" name="tenantCode" />
-	<div class="layui-form-item my-form-item">
-		<label class="layui-form-label layui-icon"></label>
-		<div class="layui-input-inline">
-			<input type="button" value="提交" lay-submit lay-filter="form_submit" class="layui-btn">
-		</div>
-	</div>
+
 	<input type="hidden" id="ClickFun" />
 	<div class="layui-card">
 
@@ -219,10 +214,7 @@
 												title: '满意度',
 												align: 'center'
 											}]
-										],
-										page: !0,
-										limit: 10,
-										limits: [10, 15, 20, 25, 30],
+										],										
 									})
 								}
 
@@ -295,10 +287,7 @@
 												title: '满意度',
 												align: 'center'
 											}]
-										],
-										page: !0,
-										limit: 10,
-										limits: [10, 15, 20, 25, 30],
+										],									
 									})
 								}
 								$("#ClickFun").click(function() {
@@ -329,6 +318,13 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	
+	<div class="layui-form-item my-form-item">
+		<label class="layui-form-label layui-icon"></label>
+		<div class="layui-input-inline">
+			<input type="button" value="提交" lay-submit lay-filter="form_submit" class="layui-btn">
 		</div>
 	</div>
 </div>

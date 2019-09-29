@@ -195,240 +195,7 @@
 				<div class="layui-tab-content">
 					<!--相关课件bengin  -->
 					<div class="layui-tab-item layui-show">
-						<section class="layui-col-md10" style="margin: 0 auto; float: none;">
-							<div class="layui-card">
-
-								<div>
-									<button type="button" class="layui-btn layui-btn-sm" data-type="addRows" title="添加一行">
-										<i class="layui-icon layui-icon-add-1"></i> 添加
-									</button>
-								</div>
-
-								<div id="tableRs" class="table-overlay">
-									<table id="dataTables" lay-filter="dataTables" class="layui-hide"></table>
-								</div>
-							</div>
-						</section>
-						<script type="text/javascript">
-							//准备视图对象
-							window.viewObj = {
-								tbData: [{
-									tempId: new Date().valueOf(),
-									type: 2,
-									name: '填写名称',
-									state: 1
-								}],
-								typeData: [{
-									id: 1,
-									name: '分类一'
-								}, {
-									id: 2,
-									name: '分类二'
-								}, {
-									id: 3,
-									name: '分类三'
-								}, {
-									id: 4,
-									name: '分类四'
-								}],
-								renderSelectOptions: function(data, settings) {
-									settings = settings || {};
-									var valueField = settings.valueField || 'value',
-										textField = settings.textField || 'text',
-										selectedValue = settings.selectedValue || "";
-									var html = [];
-									for (var i = 0, item; i < data.length; i++) {
-										item = data[i];
-										html.push('<option value="');
-										html.push(item[valueField]);
-										html.push('"');
-										if (selectedValue && item[valueField] == selectedValue) {
-											html.push(' selected="selected"');
-										}
-										html.push('>');
-										html.push(item[textField]);
-										html.push('</option>');
-									}
-									return html.join('');
-								}
-							};
-
-							//layui 模块化引用
-							layui.use(['jquery', 'table', 'layer'], function() {
-								var $ = layui.$,
-									table = layui.table,
-									form = layui.form,
-									layer = layui.layer;
-								//数据表格实例化			
-								var tbWidth = $("#tableRs").width();
-								var layTableId = "layTable";
-								var tableIns = table.render({
-									elem: '#dataTables',
-									id: layTableId,
-									data: viewObj.tbData,
-									width: tbWidth,
-									loading: true,
-									even: false, //不开启隔行背景
-									cols: [
-										[{
-												title: '序号',
-												type: 'numbers'
-											}, {
-												field: 'type',
-												title: '附件类型',
-												templet: function(d) {
-													var options = viewObj.renderSelectOptions(viewObj.typeData, {
-														valueField: "id",
-														textField: "name",
-														selectedValue: d.type
-													});
-													return '<a lay-event="type"></a><select name="type" lay-filter="type"><option value="">请选择分类</option>' +
-														options + '</select>';
-												}
-											},
-											{
-												field: 'name',
-												title: '附件名称',
-												edit: 'text'
-											},
-											{
-												field: 'tempId',
-												title: '操作',
-												templet: function(d) {
-													return '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" lay-id="' + d.tempId +
-														'"><i class="layui-icon layui-icon-delete"></i>移除</a>';
-												}
-											}
-										]
-									],
-									done: function(res, curr, count) {
-										viewObj.tbData = res.data;
-										// console.log($("#dataTables").next().find("tbody").find("tr").eq(0))
-									}
-								});
-					
-								//定义事件集合
-								var active = {
-								// 	addRows: function() { //添加一行
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		var newRow = {
-								// 			tempId: new Date().valueOf(),
-								// 			type: null,
-								// 			name: '请填写名称',
-								// 			state: 0
-								// 		};
-								// 		oldData.push(newRow);
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	updateRow: function(obj) {
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (row.tempId == obj.tempId) {
-								// 				$.extend(oldData[i], obj);
-								// 				return;
-								// 			}
-								// 		}
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	removeEmptyTableCache: function() {
-								// 		var oldData = table.cache[layTableId];
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (!row || !row.tempId) {
-								// 				oldData.splice(i, 1); //删除一项
-								// 			}
-								// 			continue;
-								// 		}
-								// 		tableIns.reload({
-								// 			data: oldData
-								// 		});
-								// 	},
-								// 	save: function() {
-								// 		var oldData = table.cache[layTableId];
-								// 		console.log(oldData);
-								// 		for (var i = 0, row; i < oldData.length; i++) {
-								// 			row = oldData[i];
-								// 			if (!row.type) {
-								// 				layer.msg("检查每一行，请选择分类！", {
-								// 					icon: 5
-								// 				}); //提示
-								// 				return;
-								// 			}
-								// 		}
-								// 		document.getElementById("jsonResult").innerHTML = JSON.stringify(table.cache[layTableId], null, 2); //使用JSON.stringify() 格式化输出JSON字符串		
-								// 	}
-								}
-
-								//激活事件
-								var activeByType = function(type, arg) {
-									if (arguments.length === 2) {
-										active[type] ? active[type].call(this, arg) : '';
-									} else {
-										active[type] ? active[type].call(this) : '';
-									}
-								}
-
-								//注册按钮事件
-								$('.layui-btn[data-type]').on('click', function() {
-									var type = $(this).data('type');
-									activeByType(type);
-								});
-
-								//监听select下拉选中事件
-								form.on('select(type)', function(data) {
-									var elem = data.elem; //得到select原始DOM对象
-									$(elem).prev("a[lay-event='type']").trigger("click");
-								});
-
-								//监听工具条
-								table.on('tool(dataTables)', function(obj) {
-									var data = obj.data,
-										event = obj.event,
-										tr = obj.tr; //获得当前行 tr 的DOM对象;
-									console.log(data);
-									switch (event) {
-										case "type":
-											//console.log(data);
-											var select = tr.find("select[name='type']");
-											if (select) {
-												var selectedVal = select.val();
-												if (!selectedVal) {
-													layer.tips("请选择一个分类", select.next('.layui-form-select'), {
-														tips: [3, '#FF5722']
-													}); //吸附提示
-												}
-												console.log(selectedVal);
-												$.extend(obj.data, {
-													'type': selectedVal
-												});
-												activeByType('updateRow', obj.data); //更新行记录对象
-											}
-											break;
-										case "state":
-											var stateVal = tr.find("input[name='state']").prop('checked') ? 1 : 0;
-											$.extend(obj.data, {
-												'state': stateVal
-											})
-											activeByType('updateRow', obj.data); //更新行记录对象
-											break;
-										case "del":
-											layer.confirm('真的删除行么？', function(index) {
-												obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-												layer.close(index);
-												activeByType('removeEmptyTableCache');
-											});
-											break;
-									}
-								});
-							});
-						</script>
+			
 					</div>
 					<!--相关课件end  -->
 
@@ -550,7 +317,6 @@
 								var active = {
 									add: function() { //添加一行
 										var oldData = table.cache[layTableId];
-										console.log(oldData);
 										var newRow = {
 											tempId: new Date().valueOf(),
 											type: null,
@@ -564,7 +330,6 @@
 									},
 									updateRow: function(obj) {
 										var oldData = table.cache[layTableId];
-										console.log(oldData);
 										for (var i = 0, row; i < oldData.length; i++) {
 											row = oldData[i];
 											if (row.tempId == obj.tempId) {
@@ -591,7 +356,6 @@
 									},
 									save: function() {
 										var oldData = table.cache[layTableId];
-										console.log(oldData);
 										for (var i = 0, row; i < oldData.length; i++) {
 											row = oldData[i];
 											if (!row.type) {
@@ -631,7 +395,6 @@
 									var data = obj.data,
 										event = obj.event,
 										tr = obj.tr; //获得当前行 tr 的DOM对象;
-									console.log(data);
 									switch (event) {
 										case "type":
 											//console.log(data);
@@ -643,7 +406,6 @@
 														tips: [3, '#FF5722']
 													}); //吸附提示
 												}
-												console.log(selectedVal);
 												$.extend(obj.data, {
 													'type': selectedVal
 												});

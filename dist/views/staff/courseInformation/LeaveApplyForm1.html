@@ -3,13 +3,15 @@
 		<label class="layui-form-label">课程类型</label>
 		<div class="layui-input-inline" id="layerDemo">
 			<script type="text/html" template>
-				<input type="text" name="typeId" id="editCourseTypeId" lay-filter="editCourseTypeId" class="layui-input">
+				<input type="text" name="typeId" id="editCourseTypeId" lay-filter="editCourseTypeId" autocomplete="off" 
+				    readonly  unselectable="on" placeholder="课程类型" class="layui-input">
 					</script>
 		</div>
 		<label class="layui-form-label">课程属性</label>
 		<div class="layui-input-inline" id="layerBute">
 			<script type="text/html" template>
-				<input type="text" name="attributeId" id="editCourseAttributeId" lay-filter="editCourseAttributeId" class="layui-input">		
+				<input type="text" name="attributeId" id="editCourseAttributeId" lay-filter="editCourseAttributeId" 
+				    readonly  unselectable="on" autocomplete="off" placeholder="课程属性" class="layui-input">		
 					</select>
 				</script>
 		</div>
@@ -18,13 +20,13 @@
 		<label class="layui-form-label">课时(H)</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="hours" lay-verify="title" autocomplete="off" placeholder="课时(H)" class="layui-input">
+				<input type="text" name="hours" lay-verify="required" autocomplete="off" placeholder="课时(H)" class="layui-input">
 			</script>
 		</div>
 		<label class="layui-form-label">证书等级</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="cerLevel" lay-verify="title" autocomplete="off" placeholder="证书等级" class="layui-input">
+				<input type="text" name="cerLevel" autocomplete="off" placeholder="证书等级" class="layui-input">
 	        </script>
 		</div>
 	</div>
@@ -32,13 +34,13 @@
 		<label class="layui-form-label">有效天数</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="validDay" lay-verify="title" autocomplete="off" placeholder="有效天数" class="layui-input">
+				<input type="text" name="validDay" autocomplete="off" placeholder="有效天数" class="layui-input">
 			</script>
 		</div>
 		<label class="layui-form-label">到岗x天培训</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="arrivalDay" lay-verify="title" autocomplete="off" placeholder="到岗x天培训" class="layui-input">
+				<input type="text" name="arrivalDay" autocomplete="off" placeholder="到岗x天培训" class="layui-input">
 	        </script>
 		</div>
 	</div>
@@ -46,13 +48,13 @@
 		<label class="layui-form-label">快捷码</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="fastCode" lay-verify="title" autocomplete="off" placeholder="快捷码" class="layui-input">
+				<input type="text" name="fastCode" autocomplete="off" placeholder="快捷码" class="layui-input">
         </script>
 		</div>
 		<label class="layui-form-label">部门级</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="isDept">
+				<select name="isDept" lay-verify="required">
 				<option value="">--请选择--</option>
 				<option value="1">是</option>
 				<option value="2">否</option>
@@ -64,7 +66,7 @@
 		<label class="layui-form-label">启动</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="isUse">
+				<select name="isUse" lay-verify="required">
 				<option value="">--请选择--</option>
 				<option value="1">是</option>
 				<option value="2">否</option>
@@ -74,7 +76,7 @@
 		<label class="layui-form-label">优先级别</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="priority">
+				<select name="priority" lay-verify="required">
 				<option value="">--请选择--</option>
 				<option value="1">必修</option>
 				<option value="2">选修</option>
@@ -83,26 +85,10 @@
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">租户编码</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="tenantCode"  lay-verify="title" placeholder="租户编码" autocomplete="off" class="layui-input" />
-						</script>
-		</div>
-		<label class="layui-form-label">等效课程</label>
-		<div class="layui-input-inline">
-			<div class="layui-input-inline">
-				<script type="text/html" template>
-					<input type="text" name="topic"  lay-verify="title" placeholder="等效课程" autocomplete="off" class="layui-input" />
-				</script>
-			</div>
-		</div>
-	</div>
-	<div class="layui-form-item">
 		<label class="layui-form-label">培训形式</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="traForm">
+				<select name="traForm" lay-verify="required">
 				<option value="">--请选择--</option>
 				<option value="1">外部公开课</option>
 				<option value="2">外聘培训</option>
@@ -110,75 +96,23 @@
 			</select>
 			</script>
 		</div>
-
+		<label class="layui-form-label">等效课程</label>
+		<div class="layui-input-inline">
+			<div class="layui-input-inline">
+				<script type="text/html" template>
+					<input type="text" name="topic" lay-verify="required" placeholder="等效课程" autocomplete="off" class="layui-input" />
+				</script>
+			</div>
+		</div>
 	</div>
+
+	<input type="hidden" id="insertChildCourse" name="insertChildCourseBos" />
 	<script type="text/html" template>
 		<input type="hidden" name="id" />
 </script>
 
 
-	<script type="text/javascript">
-		layui.use(['form'], function() {
-			var form = layui.form; //form模块
-			var $ = layui.$; //引入内置jquery
 
-
-			ajax_courseType();
-			ajax_courseAttribute();
-
-			//  课程类型
-			function ajax_courseType() {
-				// 清空原有select内的数据  只保留第一项
-				$("#editCourseTypeId").find("option:not(:first)").remove();
-				form.render('select', 'editCourseTypeId'); //渲染表单
-				$.ajax({
-					url: commonSrc + "api/train/courseTypeController/list",
-					type: "get",
-					dataType: "json",
-					success: function(res) {
-						var data = res.dataList;
-						$.each(data, function(i, v) {
-							var id = v.id;
-							var text = v.typeName;
-							// alert(id + text);
-							$("#editCourseTypeId").append("<option value='" + id + "'>" + text + "</option>");
-						});
-						//渲染select 表单  filter 是 重新渲染对象
-						form.render('select', 'editCourseTypeId');
-					},
-					error: function() {
-						// alert(errorThrown);
-					}
-				});
-			}
-
-			//  课程属性
-			function ajax_courseAttribute() {
-				// 清空原有select内的数据  只保留第一项
-				$("#editCourseAttributeId").find("option:not(:first)").remove();
-				form.render('select', 'editCourseAttributeId'); //渲染表单
-				$.ajax({
-					url: commonSrc + "api/train/courseAttributeController/list",
-					type: "get",
-					dataType: "json",
-					success: function(res) {
-						var data = res.dataList;
-						$.each(data, function(i, v) {
-							var id = v.id;
-							var text = v.attrName;
-							// alert(id + text);
-							$("#editCourseAttributeId").append("<option value='" + id + "'>" + text + "</option>");
-						});
-						//渲染select 表单  filter 是 重新渲染对象
-						form.render('select', 'editCourseAttributeId');
-					},
-					error: function() {
-						// alert(errorThrown);
-					}
-				});
-			}
-		});
-	</script>
 	<!-- 相关附件及子课程 begin -->
 	<div class="layui-fluid">
 		<div class="layui-card">
@@ -190,480 +124,36 @@
 				<div class="layui-tab-content">
 					<!--相关课件bengin  -->
 					<div class="layui-tab-item layui-show">
-						<section class="layui-col-md10" style="margin: 0 auto; float: none;">
-							<div class="layui-card">
-
-								<div>
-									<button type="button" class="layui-btn layui-btn-sm" data-type="addRows" title="添加一行">
-										<i class="layui-icon layui-icon-add-1"></i> 添加
-									</button>
-								</div>
-
-								<div id="tableRs" class="table-overlay">
-									<table id="dataTables" lay-filter="dataTables" class="layui-hide"></table>
-								</div>
-							</div>
-						</section>
-						<script type="text/javascript">
-							//准备视图对象
-							window.viewObj = {
-								tbData: [{
-									tempId: new Date().valueOf(),
-									type: 2,
-									name: '填写名称',
-									state: 1
-								}],
-								typeData: [{
-									id: 1,
-									name: '分类一'
-								}, {
-									id: 2,
-									name: '分类二'
-								}, {
-									id: 3,
-									name: '分类三'
-								}, {
-									id: 4,
-									name: '分类四'
-								}],
-								renderSelectOptions: function(data, settings) {
-									settings = settings || {};
-									var valueField = settings.valueField || 'value',
-										textField = settings.textField || 'text',
-										selectedValue = settings.selectedValue || "";
-									var html = [];
-									for (var i = 0, item; i < data.length; i++) {
-										item = data[i];
-										html.push('<option value="');
-										html.push(item[valueField]);
-										html.push('"');
-										if (selectedValue && item[valueField] == selectedValue) {
-											html.push(' selected="selected"');
-										}
-										html.push('>');
-										html.push(item[textField]);
-										html.push('</option>');
-									}
-									return html.join('');
-								}
-							};
-
-							//layui 模块化引用
-							layui.use(['jquery', 'table', 'layer'], function() {
-								var $ = layui.$,
-									table = layui.table,
-									form = layui.form,
-									layer = layui.layer;
-								//数据表格实例化			
-								var tbWidth = $("#tableRs").width();
-								var layTableId = "layTable";
-								var tableIns = table.render({
-									elem: '#dataTables',
-									id: layTableId,
-									data: viewObj.tbData,
-									width: tbWidth,
-									loading: true,
-									even: false, //不开启隔行背景
-									cols: [
-										[{
-												title: '序号',
-												type: 'numbers'
-											}, {
-												field: 'type',
-												title: '附件类型',
-												templet: function(d) {
-													var options = viewObj.renderSelectOptions(viewObj.typeData, {
-														valueField: "id",
-														textField: "name",
-														selectedValue: d.type
-													});
-													return '<a lay-event="type"></a><select name="type" lay-filter="type"><option value="">请选择分类</option>' +
-														options + '</select>';
-												}
-											},
-											{
-												field: 'name',
-												title: '附件名称',
-												edit: 'text'
-											},
-											{
-												field: 'tempId',
-												title: '操作',
-												templet: function(d) {
-													return '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" lay-id="' + d.tempId +
-														'"><i class="layui-icon layui-icon-delete"></i>移除</a>';
-												}
-											}
-										]
-									],
-									done: function(res, curr, count) {
-										viewObj.tbData = res.data;
-										// console.log($("#dataTables").next().find("tbody").find("tr").eq(0))
-									}
-								});
-
-								//定义事件集合
-								var active = {
-									// 	addRows: function() { //添加一行
-									// 		var oldData = table.cache[layTableId];
-									// 		console.log(oldData);
-									// 		var newRow = {
-									// 			tempId: new Date().valueOf(),
-									// 			type: null,
-									// 			name: '请填写名称',
-									// 			state: 0
-									// 		};
-									// 		oldData.push(newRow);
-									// 		tableIns.reload({
-									// 			data: oldData
-									// 		});
-									// 	},
-									// 	updateRow: function(obj) {
-									// 		var oldData = table.cache[layTableId];
-									// 		console.log(oldData);
-									// 		for (var i = 0, row; i < oldData.length; i++) {
-									// 			row = oldData[i];
-									// 			if (row.tempId == obj.tempId) {
-									// 				$.extend(oldData[i], obj);
-									// 				return;
-									// 			}
-									// 		}
-									// 		tableIns.reload({
-									// 			data: oldData
-									// 		});
-									// 	},
-									// 	removeEmptyTableCache: function() {
-									// 		var oldData = table.cache[layTableId];
-									// 		for (var i = 0, row; i < oldData.length; i++) {
-									// 			row = oldData[i];
-									// 			if (!row || !row.tempId) {
-									// 				oldData.splice(i, 1); //删除一项
-									// 			}
-									// 			continue;
-									// 		}
-									// 		tableIns.reload({
-									// 			data: oldData
-									// 		});
-									// 	},
-									// 	save: function() {
-									// 		var oldData = table.cache[layTableId];
-									// 		console.log(oldData);
-									// 		for (var i = 0, row; i < oldData.length; i++) {
-									// 			row = oldData[i];
-									// 			if (!row.type) {
-									// 				layer.msg("检查每一行，请选择分类！", {
-									// 					icon: 5
-									// 				}); //提示
-									// 				return;
-									// 			}
-									// 		}
-									// 		document.getElementById("jsonResult").innerHTML = JSON.stringify(table.cache[layTableId], null, 2); //使用JSON.stringify() 格式化输出JSON字符串		
-									// 	}
-								}
-
-								//激活事件
-								var activeByType = function(type, arg) {
-									if (arguments.length === 2) {
-										active[type] ? active[type].call(this, arg) : '';
-									} else {
-										active[type] ? active[type].call(this) : '';
-									}
-								}
-
-								//注册按钮事件
-								$('.layui-btn[data-type]').on('click', function() {
-									var type = $(this).data('type');
-									activeByType(type);
-								});
-
-								//监听select下拉选中事件
-								form.on('select(type)', function(data) {
-									var elem = data.elem; //得到select原始DOM对象
-									$(elem).prev("a[lay-event='type']").trigger("click");
-								});
-
-								//监听工具条
-								table.on('tool(dataTables)', function(obj) {
-									var data = obj.data,
-										event = obj.event,
-										tr = obj.tr; //获得当前行 tr 的DOM对象;
-									console.log(data);
-									switch (event) {
-										case "type":
-											//console.log(data);
-											var select = tr.find("select[name='type']");
-											if (select) {
-												var selectedVal = select.val();
-												if (!selectedVal) {
-													layer.tips("请选择一个分类", select.next('.layui-form-select'), {
-														tips: [3, '#FF5722']
-													}); //吸附提示
-												}
-												console.log(selectedVal);
-												$.extend(obj.data, {
-													'type': selectedVal
-												});
-												activeByType('updateRow', obj.data); //更新行记录对象
-											}
-											break;
-										case "state":
-											var stateVal = tr.find("input[name='state']").prop('checked') ? 1 : 0;
-											$.extend(obj.data, {
-												'state': stateVal
-											})
-											activeByType('updateRow', obj.data); //更新行记录对象
-											break;
-										case "del":
-											layer.confirm('真的删除行么？', function(index) {
-												obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-												layer.close(index);
-												activeByType('removeEmptyTableCache');
-											});
-											break;
-									}
-								});
-							});
+						<div style="padding-bottom: 10px;">
+							<button type="button" class="layui-btn layuiadmin-btn-list" id="addthinkpo">添加
+							</button>
+						</div>
+						<table id="chek" lay-filter="chek"></table>
+						<script type="text/html" id="edit_chek">
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+						            class="layui-icon layui-icon-delete"></i>删除</a>
 						</script>
+
 					</div>
 					<!--相关课件end  -->
 
 					<!--子课件bengin  -->
 					<div class="layui-tab-item">
-
-						<section class="layui-col-md10" style="margin: 0 auto; float: none;">
-							<div class="layui-card">
-								<div id="toolbar">
-									<div>
-										<button type="button" class="layui-btn layui-btn-sm" data-type="add" title="添加">
-											<i class="layui-icon layui-icon-add-1"></i> 添加
-										</button>
-									</div>
-								</div>
-								<div id="tableRes" class="table-overlay">
-									<table id="dataTable" lay-filter="dataTable" class="layui-hide"></table>
-								</div>
-							</div>
-
-						</section>
-						<script type="text/javascript">
-							//准备视图对象
-							window.viewObj = {
-								tbData: [{
-									tempId: new Date().valueOf(),
-									type: 2,
-									name: '测试项名称',
-									state: 1
-								}],
-								typeData: [{
-										id: 1,
-										name: '分类一'
-									},
-									{
-										id: 2,
-										name: '分类二'
-									},
-									{
-										id: 3,
-										name: '分类三'
-									},
-									{
-										id: 4,
-										name: '分类四'
-									}
-								],
-								renderSelectOptions: function(data, settings) {
-									settings = settings || {};
-									var valueField = settings.valueField || 'value',
-										textField = settings.textField || 'text',
-										selectedValue = settings.selectedValue || "";
-									var html = [];
-									for (var i = 0, item; i < data.length; i++) {
-										item = data[i];
-										html.push('<option value="');
-										html.push(item[valueField]);
-										html.push('"');
-										if (selectedValue && item[valueField] == selectedValue) {
-											html.push(' selected="selected"');
-										}
-										html.push('>');
-										html.push(item[textField]);
-										html.push('</option>');
-									}
-									return html.join('');
-								}
-							};
-
-							//layui 模块化引用
-							layui.use(['jquery', 'table', 'layer'], function() {
-								var $ = layui.$,
-									table = layui.table,
-									form = layui.form,
-									layer = layui.layer;
-
-								//数据表格实例化			
-								var tbWidth = $("#tableRes").width();
-								var layTableId = "layTable";
-								var tableIns = table.render({
-									elem: '#dataTable',
-									id: layTableId,
-									data: viewObj.tbData,
-									width: tbWidth,
-									page: false,
-									loading: true,
-									even: false, //不开启隔行背景
-									cols: [
-										[{
-												title: '序号',
-												type: 'numbers'
-											},
-											{
-												field: 'name',
-												title: '子课程名称',
-												edit: 'text'
-											},
-											{
-												field: 'state',
-												title: '默认讲师名',
-												edit: 'text'
-											},
-											{
-												field: 'tempId',
-												title: '操作',
-												templet: function(d) {
-													return '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" lay-id="' + d.tempId +
-														'"><i class="layui-icon layui-icon-delete"></i>移除</a>';
-												}
-											}
-										]
-									],
-									done: function(res, curr, count) {
-										viewObj.tbData = res.data;
-									}
-								});
-
-								//定义事件集合
-								var active = {
-									add: function() { //添加一行
-										var oldData = table.cache[layTableId];
-										console.log(oldData);
-										var newRow = {
-											tempId: new Date().valueOf(),
-											type: null,
-											name: '请填写名称',
-											state: 0
-										};
-										oldData.push(newRow);
-										tableIns.reload({
-											data: oldData
-										});
-									},
-									updateRow: function(obj) {
-										var oldData = table.cache[layTableId];
-										console.log(oldData);
-										for (var i = 0, row; i < oldData.length; i++) {
-											row = oldData[i];
-											if (row.tempId == obj.tempId) {
-												$.extend(oldData[i], obj);
-												return;
-											}
-										}
-										tableIns.reload({
-											data: oldData
-										});
-									},
-									removeEmptyTableCache: function() {
-										var oldData = table.cache[layTableId];
-										for (var i = 0, row; i < oldData.length; i++) {
-											row = oldData[i];
-											if (!row || !row.tempId) {
-												oldData.splice(i, 1); //删除一项
-											}
-											continue;
-										}
-										tableIns.reload({
-											data: oldData
-										});
-									},
-									save: function() {
-										var oldData = table.cache[layTableId];
-										console.log(oldData);
-										for (var i = 0, row; i < oldData.length; i++) {
-											row = oldData[i];
-											if (!row.type) {
-												layer.msg("检查每一行，请选择分类！", {
-													icon: 5
-												}); //提示
-												return;
-											}
-										}
-										document.getElementById("jsonResult").innerHTML = JSON.stringify(table.cache[layTableId], null, 2); //使用JSON.stringify() 格式化输出JSON字符串		
-									}
-								}
-
-								//激活事件
-								var activeByType = function(type, arg) {
-									if (arguments.length === 2) {
-										active[type] ? active[type].call(this, arg) : '';
-									} else {
-										active[type] ? active[type].call(this) : '';
-									}
-								}
-
-								//注册按钮事件
-								$('.layui-btn[data-type]').on('click', function() {
-									var type = $(this).data('type');
-									activeByType(type);
-								});
-
-								//监听select下拉选中事件
-								form.on('select(type)', function(data) {
-									var elem = data.elem; //得到select原始DOM对象
-									$(elem).prev("a[lay-event='type']").trigger("click");
-								});
-
-								//监听工具条
-								table.on('tool(dataTable)', function(obj) {
-									var data = obj.data,
-										event = obj.event,
-										tr = obj.tr; //获得当前行 tr 的DOM对象;
-									console.log(data);
-									switch (event) {
-										case "type":
-											//console.log(data);
-											var select = tr.find("select[name='type']");
-											if (select) {
-												var selectedVal = select.val();
-												if (!selectedVal) {
-													layer.tips("请选择一个分类", select.next('.layui-form-select'), {
-														tips: [3, '#FF5722']
-													}); //吸附提示
-												}
-												console.log(selectedVal);
-												$.extend(obj.data, {
-													'type': selectedVal
-												});
-												activeByType('updateRow', obj.data); //更新行记录对象
-											}
-											break;
-										case "state":
-											var stateVal = tr.find("input[name='state']").prop('checked') ? 1 : 0;
-											$.extend(obj.data, {
-												'state': stateVal
-											})
-											activeByType('updateRow', obj.data); //更新行记录对象
-											break;
-										case "del":
-											layer.confirm('真的删除行么？', function(index) {
-												obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-												layer.close(index);
-												activeByType('removeEmptyTableCache');
-											});
-											break;
-									}
-								});
-							});
+						<div style="padding-bottom: 10px;">
+							<button type="button" class="layui-btn layuiadmin-btn-list" id="addChildCourse">添加
+							</button>
+						</div>
+						<table id="book" lay-filter="book"></table>
+						<script type="text/html" id="childTeacherTemplate">
+							{{# if( sessionStorage.getItem("childTeacher" + d.teacherId)==null){ }}
+						    {{#  } else {  }}
+						    <span>{{ sessionStorage.getItem("childTeacher" + d.teacherId) }}</span>
+						    {{#  } }}
 						</script>
-
+						<script type="text/html" id="edit_childCourse_table">
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+						            class="layui-icon layui-icon-delete"></i>删除</a>
+						</script>
 					</div>
 
 					<!--子课件end  -->
@@ -675,7 +165,296 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label"></label>
 		<div class="layui-input-inline">
-			<input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
+			<input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="confirm" value="确认" class="layui-btn">
 		</div>
 	</div>
 </div>
+<script>
+	layui.use(['table', 'layer', 'admin', 'laydate', 'form'], function() {
+		var table = layui.table;
+		var $ = layui.$;
+		var laydate = layui.laydate;
+		var form = layui.form;
+
+		var teacherList;
+
+		var childCourseData = null;
+		// 获取讲师数据列表
+		function initHtml() {
+			//讲师
+			$.ajax({
+				url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
+				type: "GET",
+				dataType: "json",
+				async: false,
+				success: function(res) {
+					var data = res.dataList;
+					teacherList = data;
+					// console.log("cccccc"+ teacherList);
+					$.each(data, function(i, v) {
+						// alert(v.name);
+						// $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
+						sessionStorage.setItem("childTeacher" + v.id, v.name);
+					});
+					// console.log($("#teacherId").html());
+				}
+			});
+
+		}
+
+		initHtml();
+
+		var data11 = [{
+			'id': '1',
+			'childCourseName': '1',
+			'teacherId': '1'
+		}]
+		var data12 = [{
+			'id': '1',
+			'childfileType': '1',
+			'fileId': '1',
+			'courseId': '1'
+		}]
+		//展示子课程已知数据
+		table.render({
+			elem: '#book',
+			cols: [
+				[ //标题栏
+					{
+						field: 'id',
+						title: 'ID',
+						width: 1,
+						hidden: true
+					}, {
+						field: 'childCourseName',
+						title: '子课程名称',
+						edit: true,
+						minWidth: 120
+					}, {
+						field: 'teacherId',
+						title: '讲师',
+						minWidth: 100,
+						event: "cellClick",
+						templet: '#childTeacherTemplate'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						width: 100,
+						align: 'center',
+						toolbar: '#edit_childCourse_table'
+					}
+				]
+			],
+			done: function() {
+				$("[data-field='id']").css('display', 'none');
+			},
+			data: data11
+				//,skin: 'line' //表格风格
+				,
+			even: true
+			//,page: true //是否显示分页
+			//,limits: [5, 7, 10]
+			//,limit: 5 //每页默认显示的数量
+		});
+		//展示相关附件类型
+		table.render({
+			elem: '#chek',
+			cols: [
+				[ //标题栏
+					{
+						field: 'id',
+						title: 'ID',
+						width: 1,
+						hidden: true
+					}, {
+						field: 'childfileType',
+						title: '附件类型',
+						edit: true,
+						minWidth: 120
+					}, {
+						field: 'fileId',
+						title: '附件名称',
+						edit: true,
+						minWidth: 120
+					}, {
+						fixed: 'right',
+						title: '操作',
+						width: 100,
+						align: 'center',
+						toolbar: '#edit_chek'
+					}
+				]
+			],
+			done: function() {
+				$("[data-field='id']").css('display', 'none');
+			},
+			data: data12
+				//,skin: 'line' //表格风格
+				,
+			even: true
+			//,page: true //是否显示分页
+			//,limits: [5, 7, 10]
+			//,limit: 5 //每页默认显示的数量
+		});
+		//添加子课程空行
+		$("#addChildCourse").click(function() {
+			//定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+			var dataBak = [];
+			console.log(table.cache);
+			// 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+			var tableBak = table.cache["book"];
+			// console.log(tableBak)
+			for (var i = 0; i < tableBak.length; i++) {
+				dataBak.push(tableBak[i]); //将之前的数组备份
+			}
+			// console.log(dataBak)
+			dataBak.push({
+				"id": "",
+				"childCourseName": "",
+				"teacherId": ""
+			});
+
+			table.reload("book", {
+				data: dataBak // 将新数据重新载入表格
+			});
+		});
+		//添加相关附件
+		$("#addthinkpo").click(function() {
+			//定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+			var dataBak = [];
+			console.log(table.cache);
+			// 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+			var tableBak = table.cache["chek"];
+			// console.log(tableBak)
+			for (var i = 0; i < tableBak.length; i++) {
+				dataBak.push(tableBak[i]); //将之前的数组备份
+			}
+			// console.log(dataBak)
+			dataBak.push({
+				"id": "",
+				"childfileType": "",
+				"fileId": ""
+			});
+
+			table.reload("chek", {
+				data: dataBak // 将新数据重新载入表格
+			});
+		});
+		// 讲师弹出层
+		function cellClick(that, obj) {
+			// alert();
+			//当前点击字段
+			var field = $(that).data("field");
+			//判断是否需要添加编辑框
+			// if(field=="edit")return true;
+
+			//当前行数据
+			var data = obj.data;
+			//当前单元格的值
+			var value = data[field];
+
+			//当前点击td的宽高
+			var height = $(that)[0].offsetHeight,
+				width = $(that)[0].offsetWidth;
+			//当前点击td的坐标
+			var top = $(that).offset().top,
+				left = $(that).offset().left;
+
+			//输入框 这里可以自定义表单内容
+			var input = '<select name="childTeacherId" lay-search="" id="' + field +
+				'_input" lay-filter="childTeacherId" data-field="' + field + '" class="layui-form" style="width:' + width +
+				'px;height:' + height + 'px">' +
+				'<option value="">请选择</option>' +
+				'</select>';
+			// var input = '<input type="text" lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" id="'+field+'_input" data-field="'+field+'" style="width:'+width+'px;height:'+height+'px">';
+
+			//日期弹出层
+			layer.open({
+				type: 1,
+				title: false,
+				page: true,
+				limit: 1,
+				closeBtn: 0,
+				area: [width + "px", height + "px"],
+				shade: [0.01, '#fff'],
+				shadeClose: true,
+				content: input //这里content是一个普通的String
+					,
+				offset: [top, left],
+				success: function() {
+					// 讲师下拉列表
+					$.each(teacherList, function(i, v) {
+						// console.log(v.id);
+						$("#" + field + "_input").append('<option value="' + v.id + '">' + v.name + '</option>');
+					});
+					//使弹出层相对定位
+					$(".layui-layer-page").css("position", "absolute");
+
+					//设置输入框的值
+					$("#" + field + "_input").val(value);
+					$("#" + field + "_input").blur(function() {
+						//同步更新缓存对应的值
+						data[field] = $(this).val();
+						obj.update(data);
+					})
+				}
+			});
+
+		}
+
+		// 监听子课程工具条
+		table.on('tool(book)', function(obj) {
+			switch (obj.event) {
+				case 'cellClick':
+					cellClick(this, obj);
+					break;
+			};
+			var data = obj.data;
+			if (obj.event === 'del') {
+				layer.confirm('真的删除行么', function(index) {
+					obj.del();
+					layer.close(index);
+				});
+			} else if (obj.event === 'edit') {
+
+			}
+		});
+		//监听相关附件
+		table.on('tool(chek)', function(obj) {
+			/* switch (obj.event) {
+				case 'cellClick':
+					cellClick(this, obj);
+					break;
+			}; */
+			var data = obj.data;
+			if (obj.event === 'del') {
+				layer.confirm('真的删除行么', function(index) {
+					obj.del();
+					layer.close(index);
+				});
+			} else if (obj.event === 'edit') {
+
+			}
+		});
+
+
+		$("#confirm").click(function() {
+			var childCourseDataFlush = [];
+			// 获取之前编辑过的全部数据，
+			var tableBak = table.cache["book"];
+			for (var i = 0; i < tableBak.length; i++) {
+				if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].teacherId === null) {
+					continue;
+				}
+				var item = {
+					'id': tableBak[i].id,
+					'name': tableBak[i].childCourseName,
+					'teacherId': tableBak[i].teacherId
+				}
+				childCourseDataFlush.push(item); //将之前的数组备份
+			}
+			// console.log(childCourseDataFlush);
+			$("#insertChildCourse").val(JSON.stringify(childCourseDataFlush));
+		});
+	});
+</script>

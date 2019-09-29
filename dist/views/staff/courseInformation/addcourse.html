@@ -99,24 +99,6 @@
 
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
 
-			<!-- <script type="text/javascript">
-				layui.use("form", function() {
-					var $ = layui.jquery;
-					let addId = JSON.parse(localStorage.getItem('typeId'));
-					let strs = "";
-					let addcomment = JSON.parse(localStorage.getItem('comment'));
-					strs += `<option value="">请选择</option>`
-					for (i = 0; i < addId.length; i++) {
-						strs += `<option value="${addId[i]}">`
-						for (y = i; y < addcomment.length; y++) {
-							strs += `${addcomment[y]}</option>`
-						}
-					}
-					console.log(strs);
-					console.log($('#addoption'))
-					$('#addoption').html(strs)
-				});
-			</script> -->
 			<script type="text/javascript">
 				layui.use(['form'], function() {
 					var form = layui.form; //form模块
@@ -162,7 +144,7 @@
 						});
 					}
 
-					//        课程属性
+					//课程属性
 					function ajax_courseAttribute() {
 						// 清空原有select内的数据  只保留第一项
 						$("#courseTypeId").find("option:not(:first)").remove();
@@ -271,11 +253,12 @@
 					for (var i = 0; i < res.dataList.length; i++) {
 						listattributeId.push(res.dataList[i].attributeId)
 					}
-					console.log(listattributeId);
+					//console.log(listattributeId);
 					let listtypeIdAll = [];
 					let listTypeName = [];
 					let listattributeIdAll = [];
 					let lsitattrName = [];
+					//console.log(listTypeName);
 					//课程类型
 					$.ajax({
 						url: commonSrc + "api/train/courseTypeController/list",
@@ -500,7 +483,7 @@
 		//监听搜索
 		form.on('submit(LAY-app-contlist-search)', function(data) {
 			var field = data.field;
-			console.log(field);
+			//console.log(field);
 			//执行重载
 			table.reload('LAY-app-content-list', {
 				where: field
@@ -547,18 +530,16 @@
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						console.log(index)
 						view(this.id).render('staff/courseInformation/LeaveApplyForm1').done(function() {
 							form.render(null, 'layuiadmin-app-form-list');
 							$("#editCourseTypeId").click(function() {
 								admin.popup({
 									title: '添加课程类型',
 									area: ['600px', '450px'],
-									id: 'LAY-popup-content-edit',
 									success: function(layero1, index) {
+						                window.TianKeIndex = index;
 										view(this.id).render('staff/courseInformation/LeaveApplyForm2').done(function() {
 												form.render(null, 'layuiadmin-app-form-list');
-												
 											}
 										)
 									},
@@ -569,6 +550,7 @@
 									title: '添加课程属性',
 									area: ['600px', '450px'],
 									success: function(layero1, index) {
+										window.HianKeIndex = index;
 										view(this.id).render('staff/courseInformation/LeaveApplyForm4').done(function() {
 												form.render(null, 'layuiadmin-app-form-list');
 												
@@ -576,6 +558,9 @@
 										)
 									},
 								})
+							})
+							
+							$("#addChildCourse").click(function(){
 							})
 							// 监听课程类型点击事件
 							// form.on('select(editCourseTypeId)', function(data) {
@@ -596,6 +581,55 @@
 							//监听提交
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
+								let listtypeIdAll = [];
+								let listTypeName = [];
+								let listattributeIdAll = [];
+								let lsitattrName = [];
+								
+								console.log(field)
+                                //课程类型
+								$.ajax({
+									url: commonSrc + "api/train/courseTypeController/list",
+									type: "get",
+									dataType: "json",
+									async: false,
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											listtypeIdAll.push(v.id);
+											listTypeName.push(v.typeName)
+										});
+									}
+								});
+								//课程属性
+								$.ajax({
+									url: commonSrc + "api/train/courseAttributeController/list",
+									type: "get",
+									dataType: "json",
+									async: false,
+									success: function(res) {
+										var data = res.dataList;
+										$.each(data, function(i, v) {
+											listattributeIdAll.push(v.id);
+											lsitattrName.push(v.attrName)
+										});
+									}
+								});
+								//课程类型
+								for(let i = 0;i < listTypeName.length;i ++){
+									// console.log(listTypeName[i]);
+									if(field.typeId == listTypeName[i]){
+										field.typeId=listtypeIdAll[i]
+									}
+								}
+								//课程属性
+								for(let i = 0;i < lsitattrName.length;i ++){
+									// console.log(listTypeName[i]);
+									if(field.attributeId == lsitattrName[i]){
+										field.attributeId=listattributeIdAll[i]
+									}
+								}
+								//提交
 								$.post(commonSrc + "api/train/courseController/insertCourse",
 									data.field,
 									function(ev) {

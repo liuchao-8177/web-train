@@ -40,7 +40,7 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="layui-inline">
 					<label class="layui-form-label">内部讲师</label>
 					<div class="layui-input-inline">
@@ -51,7 +51,7 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="layui-inline">
 					<label class="layui-form-label">培训机构</label>
 					<div class="layui-input-inline">
@@ -72,14 +72,13 @@
 
 		<div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
-				<!-- <button class="layui-btn layuiadmin-btn-list" data-type="batchdelwag">删除</button> -->
 				<button class="layui-btn layuiadmin-btn-list" data-type="addwag">添加</button>
 			</div>
 
-				<table id="test" lay-filter="test"></table>
-				
-            <script type="text/html" id="types">
-            	{{#  if(d.type==1){ }}
+			<table id="test" lay-filter="test"></table>
+
+			<script type="text/html" id="types">
+				{{#  if(d.type==1){ }}
                     领导
                 {{#  }else if(d.type==2){ }}
                     内部讲师
@@ -88,7 +87,7 @@
 				{{#  } else {  }}
                 {{#  } }}
             </script>
-			
+
 			<script type="text/html" id="buttonTpl">
 				{{#  if(d.attest==1){ }}
 			    <button class="layui-btn layui-btn-xs">是</button>
@@ -245,7 +244,7 @@
 								success: function(e) {
 									//layer.msg(e.contractCheckVo);
 									let obj = e.data;
-									form.val("layuiadmin-app-form-list",obj);
+									form.val("layuiadmin-app-form-list", obj);
 									$("#ClickFun").val(data.id);
 									$("#ClickFun").click();
 									//日期
@@ -379,6 +378,6 @@
 				trigger: 'click',
 			});
 		})
- 
+
 	});
 </script>
