@@ -461,15 +461,33 @@
 							})
 							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
 								data) {
-								$.post(commonSrc + "api/train/courseController/updateCourse",
-									data.field,
-									function(ev) {
-										layer.msg("修改成功", {
-											time: 1000
-										}, function() {
-											layui.table.reload("LAY-app-content-list"), layer.close(layero)
-										})
+									$.ajax({
+									    type: "post",
+									    contentType: "application/json;charset=UTF-8",
+									    dataType: 'json',
+									    url: commonSrc + "api/train/courseController/updateCourse",
+									    data: JSON.stringify(data.field),
+									    success: function (result) {
+									        layer.msg("修改成功", {
+									            time: 1000
+									        }, function () {
+									       		layui.table.reload("LAY-app-content-list"), layer.close(layero)
+									            // layui.table.reload('LAY-app-content-list'); //重载表格
+									        })
+									    },
+									    error: function (result) {
+									        console.log("error :" + result);
+									    }
 									});
+								// $.post(commonSrc + "api/train/courseController/updateCourse",
+								// 	data.field,
+								// 	function(ev) {
+								// 		layer.msg("修改成功", {
+								// 			time: 1000
+								// 		}, function() {
+								// 			layui.table.reload("LAY-app-content-list"), layer.close(layero)
+								// 		})
+								// 	});
 								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 							})
 						})
@@ -629,17 +647,35 @@
 										field.attributeId=listattributeIdAll[i]
 									}
 								}
+								$.ajax({
+								    type: "post",
+								    contentType: "application/json;charset=UTF-8",
+								    dataType: 'json',
+								    url: commonSrc + "api/train/courseController/insertCourse",
+								    data: JSON.stringify(field),
+								    success: function (result) {
+								        layer.msg("新增成功", {
+								            time: 1000
+								        }, function () {
+								            layer.close(index); //执行关闭
+								            layui.table.reload('LAY-app-content-list'); //重载表格
+								        })
+								    },
+								    error: function (result) {
+								        console.log("error :" + result);
+								    }
+								});
 								//提交
-								$.post(commonSrc + "api/train/courseController/insertCourse",
-									data.field,
-									function(ev) {
-										layer.msg("新增成功", {
-											time: 1000
-										}, function() {
-											layer.close(index); //执行关闭 
-											layui.table.reload('LAY-app-content-list'); //重载表格
-										})
-									});
+								// $.post(commonSrc + "api/train/courseController/insertCourse",
+								// 	data.field,
+								// 	function(ev) {
+								// 		layer.msg("新增成功", {
+								// 			time: 1000
+								// 		}, function() {
+								// 			layer.close(index); //执行关闭 
+								// 			layui.table.reload('LAY-app-content-list'); //重载表格
+								// 		})
+								// 	});
 								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 							});
 						});
