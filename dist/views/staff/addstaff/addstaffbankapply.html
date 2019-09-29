@@ -103,7 +103,7 @@
                 			</script>
 				</div>
 
-				<script>
+				<!-- <script>
 					layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
 						var $ = layui.$,
 							admin = layui.admin,
@@ -337,7 +337,7 @@
 							active[type] ? active[type].call(this) : '';
 						});
 					});
-				</script>
+				</script> -->
 			</div>
 			
 		
@@ -374,7 +374,7 @@
 						//表格渲染
 						table.render({
 								elem: '#curriculums', //指定原始表格元素选择器（推荐id选择器）
-								url: commonSrc + 'api/hr/transferController/list', //设置异步接口
+								url: commonSrc + '', //设置异步接口
 								request: { //用于对分页请求的参数：page、limit重新设定名称
 									pageName: 'pageNum' //页码的参数名称，默认：page
 										,
