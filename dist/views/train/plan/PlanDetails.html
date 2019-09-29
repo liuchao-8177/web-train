@@ -109,16 +109,12 @@
 	 	type: "GET",
 	 	dataType: "json",
 	 	success: function(e){
-	 			var data = e.dataList
-				
+	 			var data = e.dataList		
 	 			$.each(data, function(i,v){
 	 				var id = v.id;
 	 				var name = v.name;
-	 				
-	 			sessionStorage.setItem("teacher" + id, name);
-	 			
+	 			sessionStorage.setItem("teacher" + id, name);	
 	 			});
-	 
 	 	}
 	 });
 	 
@@ -215,7 +211,7 @@
 						id: "LAY-popup-content-view",
 						success: function(t, layero) {
 							view(this.id).render("train/plan/Look").done(function() {
-								form.render(null,"layuiadmin-app-form-list");
+						
 								 //日期
 								$(".date").each(function() {
 									laydate.render({
@@ -234,11 +230,71 @@
 									},
 									success: function(e) {
 										//layer.msg(e.contractCheckVo);
-										let obj = e.data;
+										let obj = e.data;                                       
 										form.val("layuiadmin-app-form-list",obj/* {
-										
-				
 										} */);
+										ajax_editPlanDetailTeacherId();
+										ajax_editPlanDetailCourseId();
+										function ajax_editPlanDetailCourseId() {
+											// 清空原有select内的数据  只保留第一项
+											$("#editPlanDetailCourseId").find("option:not(:first)").remove();
+											form.render('select', 'editPlanDetailCourseId');//渲染表单
+											$.ajax({
+												url: commonSrc + "api/train/courseController/selectCourseOneById",
+												type: "GET",
+												data: {
+													id: data.courseId
+												},
+												dataType: "json",
+												success: function (res) {
+													var data = res.data;
+													console.log(data);
+													
+											// 		$.each(data, function (i, v) {
+											// 			var id = v.id;
+											// 			var text = v.topic;
+											// 			alert(id + text);
+											       // alert(data.id + data.topic);
+											$("#editPlanDetailCourseId").append("<option selected='selected' value='" + data.id + "'>" + data.topic + "</option>");
+											// 			
+											// 			
+											// 		});
+													//渲染select 表单  filter 是 重新渲染对象
+													form.render('select');
+												},
+												error: function () {
+													// alert(errorThrown);
+												}
+											});
+										}
+										function ajax_editPlanDetailTeacherId() {
+											// 清空原有select内的数据  只保留第一项
+											$("#teacherId").find("option:not(:first)").remove();
+											form.render('select', 'teacherId');//渲染表单
+											$.ajax({
+												url: commonSrc + "api/train/teacherController/selectTeacherTypeById",
+												type: "GET",
+												data: {
+													id: data.teacherId
+												},
+												dataType: "json",
+												success: function (res) {
+													var data = res.data;
+													// $.each(data, function (i, v) {
+													// 	var id = v.id;
+													// 	var text = v.name;
+														// alert(id + text);
+										          $("#teacherId").append("<option selected='selected' value='" + data.id + "'>" + data.name + "</option>");
+														
+													// });
+													//渲染select 表单  filter 是 重新渲染对象
+													form.render('select');
+												},
+												error: function () {
+													// alert(errorThrown);
+												}
+											});
+										}
 				
 									},
 								})
@@ -283,7 +339,6 @@
 									// //layer.msg(e.contractCheckVo);
 									let obj = e.data;
 									form.val("layuiadmin-app-form-list",obj);
-									// $("#selfPlanId").val(localStorage.getItem(""))
 									ajax_editPlanDetailTeacherId();
 									ajax_editPlanDetailCourseId();
 									function ajax_editPlanDetailCourseId() {
@@ -342,7 +397,7 @@
 											}
 										});
 									}
-									
+								
 											
 									
 									$(".date").each(function() {

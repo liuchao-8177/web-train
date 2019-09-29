@@ -10,19 +10,22 @@
 	<div class="layui-card">
 		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
 			<!-- 搜索条件开始 -->
-			
 			<form action="" class="layui-form" method="post">
-				
 				<div class="layui-form-item">
-					<div class="layui-inline">
-						<label class="layui-form-label">优先级:</label>
-						<div class="layui-input-inline">
-							<select name="proprity" lay-filter="proprity " id="proprity " lay-search="">
-								<option value="0">请选择级别</option>
-								<option value="1">必修</option>
-								<option value="2">选修</option>
+					<label class="layui-form-label">课程类型:</label>
+					<div class="layui-input-inline">
+						<script type="text/html" template>
+							<input type="text" name="courseTypeId" lay-verify="title" autocomplete="off" placeholder="课程类型"
+						               class="layui-input">
+						    </script>
+					</div>
+					<label class="layui-form-label">等效课程:</label>
+					<div class="layui-input-inline">
+						<script type="text/html" template>
+							<select name="courseId" lay-filter="editPlanDetailCourseId" id="editPlanDetailCourseId " lay-search="">
+								<option value="">请选择</option>	
 							</select>
-						</div>
+						    </script>
 					</div>
 				</div>
 				<div class="layui-form-item" style="text-align: right;">
@@ -33,24 +36,22 @@
 				</div>
 				<input type="hidden" name="courseAttributeId" />
 				<input type="hidden" name="courseId"/>
+				<input type="hidden" name="courseTypeId"/>
 			</form>
 </div>
 			<!-- 搜索条件结束 -->
 		<div class="layui-card-body">
-			
-
+			<script type="text/html" id="course">
+						 {{#  if(sessionStorage.getItem(d.courseId)==null){ }}
+						      
+						 {{#  } else {  }}
+						 <span>{{ sessionStorage.getItem(d.courseId) }}</span>
+						 {{#  } }}
+						 
+			 </script>
 			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-
-			<!-- <div id="userBar" style="display: none;">
-				<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
-				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-			</div> -->
 			<!-- 数据表格结束 -->
-
 			<!-- 添加和修改的弹出层开始 -->
-			
-        
 		</div>
 		<!-- 添加和修改的弹出层结束 -->
 	</div>
@@ -64,7 +65,20 @@
 			table = layui.table,
 			laydate = layui.laydate,
 			form = layui.form;
-
+      $.ajax({
+      	url: commonSrc +'api/train/trainBudgetController/list', //换成自己的url
+      	type: "GET",
+      	dataType: "json",
+      	success: function(e) {
+      			var data = e.dataList
+      			$.each(data, function(i,v){
+      				var id = v.id;
+      				var topic = v.topic;
+      				sessionStorage.setItem(id, topic);
+      			});
+      
+      	},
+      });
 
 		//绑定时间选择器
 		laydate.render({
@@ -76,7 +90,7 @@
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
-				url: 'http://119.3.77.206:8004/api/train/trainBudgetController/list',
+				url: commonSrc + 'api/train/trainBudgetController/list',
 				request: {
 					pageName: 'pageNum' //页码的参数名称，默认：page
 						,
@@ -96,36 +110,80 @@
 				cols: [
 					[ //列表数据
 						 {
-							field: 'courseAttributeId',
-							title: '课程属性id',
-							align: 'center',
-							hide:'true'
-						} ,{
-							field: 'courseId',
-							title: '等效课程id(课程id)',
-							align: 'center',
-							hide:'true'
-						}, {
-							field: 'priority',
-							title: '优先级别',
-							templet:'priority',
+						 	field: 'topic',
+						 	title: '等效课程',
+						 	align: 'center'
+						 	
+						 },{
+							field: 'courseTypeName',
+							title: '课程类型名称',
+							align: 'center'
+							
+						} , {
+							field: 'sumCount',
+							title: '需求总人次',
 							align: 'center'
 							
 						}, {
-							field: 'courseTypeId',
-							title: '课程类型id',
+							field: 'completeCount',
+							title: '需求已完成',
 							align: 'center'
 							
 						}, {
-							field: 'employId',
-							title: '员工id',
+							field: 'unCompeleteCount',
+							title: '需求未完成',
 							align: 'center'
 							
 						},{
-							field: 'tenantCode',
-							title: '租户编码',
-							align: 'center',
-							id:'priority'
+							field: 'addPersonNum',
+							title: '预计增加人次',
+							align: 'center'
+							
+						},{
+							field: 'classNum',
+							title: '预计开班数',
+							align: 'center'
+							
+						},{
+							field: 'trainNum',
+							title: '预计培训人数',
+							align: 'center'
+							
+						},{
+							field: 'classPersonNum',
+							title: '预计每班人数',
+							align: 'center'
+							
+						},{
+							field: 'completeRate',
+							title: '需求完成率',
+							align: 'center'
+							
+						},{
+							field: 'sumCount',
+							title: '预计增加人次',
+							align: 'center'
+							
+						},{
+							field: 'classCost',
+							title: '每班成本',
+							align: 'center'
+							
+						},{
+							field: 'totalCost',
+							title: '总成本',
+							align: 'center'
+							
+						},{
+							field: 'sPlanClass',
+							title: '学员',
+							align: 'center'
+							
+						},{
+							field: 'tPlanClass',
+							title: '讲师',
+							align: 'center'
+							
 						}]
 				],
 				// page: !0,
@@ -260,6 +318,7 @@
 		//监听搜索
 		form.on('submit(LAY-app-contlist-search)', function(data) {
 			var field = data.field;
+			// alert(field);
 			console.log(field);
 			//执行重载
 			table.reload('LAY-app-content-list', {

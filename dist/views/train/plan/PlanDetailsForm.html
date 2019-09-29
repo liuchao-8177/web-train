@@ -2,12 +2,30 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
 	<!-- <form action="" class="layui-form" method="post"> -->
 	<div class="layui-form-item">
-		<label class="layui-form-label">培训机构</label>
+		<label class="layui-form-label">等效课程</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="agency" lay-verify="title" autocomplete="off" placeholder="培训机构"
-			               class="layui-input">
+				<select name="courseId"  id="editPlanDetailCourseId" lay-filter="editPlanDetailCourseId" class="layui-form">
+					<option value="">请选择</option>
+				</select>
 			</script>
+		</div>
+		<label class="layui-form-label">课程别名</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="otherName" lay-verify="title" autocomplete="off" placeholder="课程别名"
+		               class="layui-input">
+		    </script>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">讲师</label>
+		<div class="layui-input-inline">	
+		<script type="text/html" template>
+			<select name="teacherId"  id="teacherId" lay-filter="teacherId" class="layui-form">
+				<option value="">请选择</option>
+			</select>
+		</script>
 		</div>
 		<label class="layui-form-label">容量</label>
 		<div class="layui-input-inline">
@@ -16,17 +34,16 @@
 		               class="layui-input">
 		    </script>
 		</div>
-	</div>
-
-	<div class="layui-form-item">
-		<label class="layui-form-label">课程别名</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="otherName" lay-verify="title" autocomplete="off" placeholder="课程别名"
-		               class="layui-input">
-		    </script>
-		</div>
 		
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">差旅费</label>
+		<div class="layui-input-inline">
+		<script type="text/html" template>
+			<input type="text" name="travel" lay-verify="title" autocomplete="off" placeholder="差旅费"
+		           class="layui-input">
+		</script>
+		</div>
 		<label class="layui-form-label">是否启用</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
@@ -37,6 +54,7 @@
 		    </select>
 		    </script>
 		</div>
+		
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">其它一</label>
@@ -104,25 +122,7 @@
 			</script>
 			</div>
 	</div>
-	
-		<div class="layui-form-item">
-			<label class="layui-form-label">差旅费</label>
-			<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="travel" lay-verify="title" autocomplete="off" placeholder="差旅费"
-			           class="layui-input">
-			</script>
-			</div>
-			<label class="layui-form-label">讲师</label>
-			<div class="layui-input-inline">	
-			<script type="text/html" template>
-				<select name="teacherId"  id="teacherId" lay-filter="teacherId" class="layui-form">
-					<option value="">请选择</option>
-				</select>
-			</script>
-			</div>
-		</div>
-	
+
 	<div class="layui-form-item">
 		<label class="layui-form-label">培训形式</label>
 		<div class="layui-input-inline">
@@ -135,15 +135,22 @@
 	    </select>
 		    </script>
 		</div>
-		<label class="layui-form-label">等效课程</label>
+		<label class="layui-form-label">培训机构</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="courseId"  id="editPlanDetailCourseId" lay-filter="editPlanDetailCourseId" class="layui-form">
-					<option value="">请选择</option>
-			
-				</select>
+				<input type="text" name="agency" lay-verify="title" autocomplete="off" placeholder="培训机构"
+			               class="layui-input">
 			</script>
 		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">学费</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="tuition" lay-verify="title" autocomplete="off" placeholder="学费"
+			           class="layui-input">
+			</script>
+			</div>	
 		</div>
 		<input type="hidden" name="id"/>
 		

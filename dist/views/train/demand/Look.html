@@ -1,8 +1,8 @@
-<title>计划报名</title>
+<title>需求设置</title>
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
 		<a lay-href="">培训运作</a>
-		<a><cite>计划报名</cite></a>
+		<a><cite>需求设置</cite></a>
 	</div>
 </div>
 <div class="layui-fluid">
@@ -75,16 +75,16 @@
 			laydate = layui.laydate,
 			form = layui.form;
         var router = layui.router();
-		var apply=router.search.planDetailId;
+		var look=router.search.demandId;
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
 				type: "GET",
-				url: commonSrc + 'api/train/planSignController/selectPlanSignList?id='+apply, //数据接口
+				url: commonSrc + 'api/train/demandItemController/list?demandId='+look, //数据接口
 		        // page: !0,
 		        // limit: 10,
 		        // limits: [10, 15, 20, 25, 30],//开启分页
-				// toolbar: '#toolbarDemo',
+			
 				response: {
 					statusCode: 200 //规定成功的状态码，默认：0
 				},
@@ -108,41 +108,36 @@
 										field: 'id',
 										title: 'id',
 									 	align: 'center',
-										hide: true,
+										hide:true	
 									},{
-										field: 'detailId',
-										title: '计划明细id',
-									 	align: 'center',
+										field: 'courseId',
+										title: '等效课程',
+									 	align: 'center'										
+									},{
+										field: 'typeId',
+										title: '课程类型',
+									 	align: 'center'										
+									},{
+										field: 'demandId',
+										title: '需求设置id',
 										hide: true,
+									 	align: 'center'										
 									},{
 										field: 'employId ',
 										title: '员工id',
 									 	align: 'center',
-										hide: true,
+										hide: true
 									},{
-										field: 'remark',
-										title: '备注',
-									 	align: 'center'
-									},{
-										field: 'absence',
-										title: '缺席原因',
-										toolbar:'#absence',
-									 	align: 'center'
-									}, {
 										field: 'isTrain',
 										title: '是否已培训',
 										templet:'#isTrain',
-									 	align: 'center'
-									},{
-										field: 'signGroup',
-										title: '组',
 									 	align: 'center'
 									},{
 										fixed: 'right',
 										title: '操作',
 										toolbar: '#table-content-list',
 										align:'center',
-										minWidth: 150,
+										minWidth: 150
 									}]
 								],
 				  page: !0,
@@ -151,10 +146,11 @@
 			}),
 
 			table.on("tool(LAY-app-content-list)", function(obj) {
+				
 				var data = obj.data;
 				"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
 					$.ajax({
-						url: commonSrc + "api/train/planSignController/deletePlanSignById", //换成自己的url
+						url: commonSrc + "api/train/demandItemController/deleteDemandItemById", //换成自己的url
 						type: "POST",
 						dataType: "json",
 						data: {
@@ -176,7 +172,7 @@
 					area: ['720px', '700px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
-						view(this.id).render("train/plan/PlanSignForm").done(function() {
+						view(this.id).render("train/demand/LookForm").done(function() {
 							$.ajax({
 								url: commonSrc + "api/train/planSignController/selectPlanSignById", //换成自己的url
 								type: "GET",
@@ -203,7 +199,7 @@
 							})
 							form.render(null, "layuiadmin-app-form-list"),
 								form.on("submit(layuiadmin-app-form-submit)", function(data) { //sub添加提交
-									$.post(commonSrc + "api/train/planSignController/updatePlanSign",
+									$.post(commonSrc + "api/train/demandItemController/updateDemandItem",
 										data.field,
 										
 										function(ev) {
@@ -274,11 +270,11 @@
 				,
 			add: function(othis){
 				admin.popup({
-					title: '添加报名',
+					title: '添加',
 					area: ['720px', '700px'],
 					id: 'LAY-popup-content-add',
 					success: function(layero, index) {
-						view(this.id).render('train/plan/PlanSignForm').done(function() { //跳转
+						view(this.id).render('train/demand/LookForm').done(function() { //跳转
 							//日期
 							$(".date").each(function() {
 								laydate.render({
@@ -292,7 +288,7 @@
 								var field = data.field; //获取提交的字段
 								field.detailId = apply;
 								console.log(field);
-								$.post(commonSrc + "api/train/planSignController/insertPlanSign",
+								$.post(commonSrc + "api/train/demandItemController/insertDemandItem",
 									field,
 									function(ev) {
 										console.log(ev);

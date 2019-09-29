@@ -2,55 +2,54 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
 	<form action="" class="layui-form" method="post">
 	<div class="layui-form-item">
-		<label class="layui-form-label">培训机构</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="agency" lay-verify="title" autocomplete="off" placeholder="培训机构"
-			               class="layui-input">
-			    </script>
+		<label class="layui-form-label">等效课程</label>
+		<div class="layui-input-inline">	
+		<script type="text/html" template>
+			<select name="courseId" id="editPlanDetailCourseId"  disabled="disabled">
+			
+			</select>
+		</script>
 		</div>
 		<label class="layui-form-label">容量</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="capacity" lay-verify="title" autocomplete="off" placeholder="容量"
+				<input type="text" name="capacity"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="容量"
 		               class="layui-input">
 		    </script>
 		</div>
 	</div>
-
 	<div class="layui-form-item">
 		<label class="layui-form-label">课程别名</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="otherName" lay-verify="title" autocomplete="off" placeholder="课程别名"
+				<input type="text" name="otherName" disabled="disabled" lay-verify="title" autocomplete="off" placeholder="课程别名"
 		               class="layui-input">
 		    </script>
 		</div>
+		<label class="layui-form-label">讲师</label>
+		<div class="layui-input-inline">	
 		
-		<label class="layui-form-label">是否启用</label>
-		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="isUse" >
-		    	<option value="">--请选择--</option>
-		    	<option value="1">否</option>
-		    	<option value="2">是</option>
-		    </select>
-		    </script>
+				<select name="teacherId" id="teacherId"  disabled="disabled">
+				
+				</select>
+		</script>
 		</div>
+		
 	</div>
 
 	<div class="layui-form-item">
 		<label class="layui-form-label">其它一</label>
 		<div class="layui-input-inline">
 		<script type="text/html" template>
-			<input type="text" name="otherOne" lay-verify="title" autocomplete="off" placeholder="其它一"
+			<input type="text" name="otherOne"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="其它一"
 		           class="layui-input">
 		</script>
 		</div>
 		<label class="layui-form-label">其它二</label>
 		<div class="layui-input-inline">
 		<script type="text/html" template>
-			<input type="text" name="otherTwo" lay-verify="title" autocomplete="off" placeholder="其它二"
+			<input type="text" name="otherTwo"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="其它二"
 		           class="layui-input">
 		</script>
 		</div>
@@ -59,14 +58,14 @@
 			<label class="layui-form-label">其它三</label>
 			<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="otherThree" lay-verify="title" autocomplete="off" placeholder="其它三"
+				<input type="text" name="otherThree"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="其它三"
 			           class="layui-input">
 			</script>
 			</div>
 			<label class="layui-form-label">培训地点</label>
 			<div class="layui-input-inline">	
 			<script type="text/html" template>
-				<input type="text" name="place" lay-verify="title" autocomplete="off" placeholder="培训地点"
+				<input type="text" name="place"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="培训地点"
 			           class="layui-input">
 			</script>
 			</div>
@@ -76,14 +75,14 @@
 			<label class="layui-form-label">培训开始日期</label>
 			<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="startTime" lay-verify="title" autocomplete="off" placeholder="培训开始日期"
+				<input type="text" name="startTime" disabled="disabled" lay-verify="title" autocomplete="off" placeholder="培训开始日期"
 			           class="layui-input date">
 			</script>
 			</div>
 			<label class="layui-form-label">培训结束日期</label>
 			<div class="layui-input-inline">	
 			<script type="text/html" template>
-				<input type="text" name="endTime" lay-verify="title" autocomplete="off" placeholder="培训结束日期"
+				<input type="text" name="endTime" disabled="disabled" lay-verify="title" autocomplete="off" placeholder="培训结束日期"
 			           class="layui-input date">
 			</script>
 			</div>
@@ -93,14 +92,14 @@
 			<label class="layui-form-label">课时</label>
 			<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="planClass" lay-verify="title" autocomplete="off" placeholder="课时"
+				<input type="text" name="planClass"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="课时"
 			           class="layui-input">
 			</script>
 			</div>
 			<label class="layui-form-label">备注</label>
 			<div class="layui-input-inline">	
 			<script type="text/html" template>
-				<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+				<input type="text" name="remark"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="备注"
 			           class="layui-input">
 			</script>
 			</div>
@@ -110,14 +109,14 @@
 			<label class="layui-form-label">差旅费</label>
 			<div class="layui-input-inline">
 			<script type="text/html" template>
-				<input type="text" name="travel" lay-verify="title" autocomplete="off" placeholder="差旅费"
+				<input type="text" name="travel"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="差旅费"
 			           class="layui-input">
 			</script>
 			</div>
 			<label class="layui-form-label">学费</label>
 			<div class="layui-input-inline">	
 			<script type="text/html" template>
-				<input type="text" name="tuition" lay-verify="title" autocomplete="off" placeholder="学费"
+				<input type="text" name="tuition"  readonly="readonly" lay-verify="title" autocomplete="off" placeholder="学费"
 			           class="layui-input">
 			</script>
 			</div>
@@ -126,7 +125,7 @@
 		<label class="layui-form-label">培训形式</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
-				<select name="trainForm" >
+				<select name="trainForm"  disabled="disabled"  >
 		    	<option value="">--请选择--</option>
 		    	<option value="1">内部培训</option>
 		    	<option value="2">外部公开班</option>
@@ -134,40 +133,37 @@
 		    </select>
 		    </script>
 		</div>
-		<label class="layui-form-label">讲师</label>
-		<div class="layui-input-inline">	
-		<script type="text/html" template>
-			<input type="text" name="teacherId" lay-verify="title" autocomplete="off" placeholder="讲师"
-		           class="layui-input">
-		</script>
+		<label class="layui-form-label">是否启用</label>
+		<div class="layui-input-inline">
+			<script type="text/html" template>
+				<select name="isUse"  disabled="disabled" >
+		    	<option value="">--请选择--</option>
+		    	<option value="1">否</option>
+		    	<option value="2">是</option>
+		    </select>
+		    </script>
 		</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">等效课程</label>
-			<div class="layui-input-inline">	
-			<script type="text/html" template>
-				<select name="courseId" >
-		    	<option value="">--请选择--</option>
-		    	
-			</script>
+			<label class="layui-form-label">培训机构</label>
+			<div class="layui-input-inline">
+				<script type="text/html" template>
+					<input type="text" name="agency"  disabled="disabled"  lay-verify="title" autocomplete="off" placeholder="培训机构"
+				               class="layui-input">
+				    </script>
 			</div>
-		</div>
+			</div>
 		
 		
+<!-- 		
 		<input type="hidden" name="id" />
-		<!-- <input type="hidden" name="courseId" /> -->
+		<input type="hidden" name="courseId" />
 		<input type="hidden" name="employId" />
 		<input type="hidden" name="checkerId" />
 		<input type="hidden" name="trainerId" />
-
+ -->
 	
-	<div class="layui-form-item">
-	    <label class="layui-form-label"></label>
-	    <div class="layui-input-block" style="text-align: left;">
-	    		<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="layuiadmin-app-form-submit" id="doSearch">确认</button>
-	    		<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
-	    </div>
-	</div>
+	
 	</form>
 	
 </div>

@@ -1,70 +1,305 @@
 <title>需求设置</title>
-
-
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
 		<a lay-href="">培训运作</a>
 		<a><cite>需求设置</cite></a>
 	</div>
 </div>
-<!-- 表格样式 begin-->
 <div class="layui-fluid">
 	<div class="layui-card">
-		<!-- 表格样式end -->
-		<div class="layui-tab">
-			<ul class="layui-tab-title">
-				<li class="layui-this">商务服务有限公司</li>
-				<li>有限公司</li>
-			</ul>
-			<div class="layui-tab-content">
-				<!-- one begin -->
-				<div class="layui-tab-item layui-show">
-					<div class="layui-fluid">
-						<div class="layui-card">
-
-							<div class="layui-card-body">
-								<div style="padding-bottom: 10px;">
-									<button class="layui-btn layuiadmin-btn-list" data-type="addwag">添加</button>
-								</div>
-
-								<table id="test" lay-filter="test"></table>
-                                <script type="text/html" id="type">
-                                	{{#  if(d.type==1){ }}
-                                    <button class="layui-btn layui-btn-xs">公司级别</button>
-                                    {{#  } else if(d.type==2) { }}
-                                    <button class="layui-btn layui-btn-danger layui-btn-xs">职位类型</button>
-								    {{#  } else if(d.type==3) { }}
-									 <button class="layui-btn layui-btn-danger layui-btn-xs">职位级别</button>
-                                    {{#  } else { }} 
-                                       <button class="layui-btn layui-btn-primary layui-btn-xs">无需求类别</button>
-                                    {{#  } }} 
-                                </script>     
-								<script type="text/html" id="barDemo">
-									<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                    				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-                    			</script>
-							</div>
-
+		<div class="layui-card-body">
+			<div class="layui-tab">
+				<ul class="layui-tab-title">
+					<li class="layui-this">按公司</li>
+					<li>按职位类型</li>
+					<li>按职位级别</li>
+				</ul>
+				<div class="layui-tab-content">
+					<!-- 按公司 start-->
+					<div class="layui-tab-item layui-show">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
 						</div>
-					</div>
-					<script>
-						layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
-							var $ = layui.$,
-								admin = layui.admin,
-								view = layui.view,
-								table = layui.table,
-								laydate = layui.laydate,
-								form = layui.form;
+						<table id="test" lay-filter="test"></table>
+						<script type="text/html" id="barDemo">
+							<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
+					    		   <a class="layui-btn layui-btn-xs" lay-event="edits">编辑</a>
+					               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					        </script>
 
-							//表格渲染
-							table.render({
-									elem: '#test',
-									method: "GET",
-									url: commonSrc + 'api/train/demandController/list', //数据接口
-									// page: !0,
-									// limit: 10,
-									// limits: [10, 15, 20, 25, 30],//开启分页
+						<script>
+							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+								var $ = layui.$,
+									admin = layui.admin,
+									view = layui.view,
+									table = layui.table,
+									laydate = layui.laydate,
+									form = layui.form;
+
+								//表格渲染
+								table.render({
+										elem: '#test',
+										method: "GET",
+										url: commonSrc + 'api/train/demandController/list?type=1', //数据接口
+										response: {
+											statusCode: 200 //规定成功的状态码，默认：0
+										},
+										request: {
+											pageName: 'pageNum' //页码的参数名称，默认：page
+												,
+											limitName: 'pageSize' //每页数据量的参数名，默认：limit
+										},
+										parseData: function(res) { //res 即为原始返回的数据
+											// console.log(res);
+											return {
+												"code": res.code, //解析接口状态
+												"msg": res.desc, //解析提示文本
+												"count": res.total, //解析数据长度
+												"data": res.dataList //解析数据列表
+											};
+										},
+										//表头
+										cols: [
+											[{
+													field: 'id',
+													title: 'id',
+													align: 'center',
+													hide: true
+												}, {
+													field: 'type',
+													title: '需求类别',
+													align: 'center',
+													hide: true
+												},
+												{
+													field: 'userName',
+													title: '公司名称',
+													align: 'center'
+												}, {
+													field: 'applyTime',
+													title: '申请时间',
+													align: 'center'
+												}, {
+													fixed: 'right',
+													title: '操作',
+													fixed: 'right',
+													toolbar: '#barDemo',
+													align: 'center'
+												}
+											]
+										],
+										// page: !0,
+										// limit: 10,
+										// limits: [10, 15, 20, 25, 30],
+									}),
+
+									table.on("tool(test)", function(obj) {
+										var data = obj.data;
+										if (obj.event == "look") {
+											location.href = "#/train/demand/Look/demandId=" + data.id;
+
+										}
+										"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+											$.ajax({
+												url: commonSrc + "api/train/demandController/deleteDemandById", //换成自己的url
+												type: "POST",
+												dataType: "json",
+												data: {
+													id: data.id
+												},
+												success: function(b) {
+													layer.msg('删除成功');
+													obj.del(), layer.close(e)
+												},
+												error: function(e) {
+													layer.msg('删除失败')
+													layer.msg(e);
+												}
+											})
+										}) : "edits" === obj.event && admin.popup({
+											title: "编辑需求信息",
+											area: ['720px', '700px'],
+											id: "LAY-popup-content-edit",
+											success: function(t, layero) {
+												view(this.id).render("train/demand/DemandForm").done(function() {
+													$.ajax({
+														url: commonSrc + "api/train/demandController/selectDemandById", //换成自己的url
+														type: "GET",
+														dataType: "json",
+														data: {
+															id: data.id,
+
+														},
+														success: function(e) {
+															//layer.msg(e.contractCheckVo);
+															let obj = e.data;
+															form.val("layuiadmin-app-form-list", obj);
+															//日期
+															$(".date").each(function() {
+																laydate.render({
+																	elem: this,
+																	trigger: 'click',
+																});
+															})
+														},
+														error: function(e) {
+															layer.msg(e);
+														}
+													})
+													form.render(null, "layuiadmin-app-form-list"),
+														form.on("submit(form-submit)", function(
+															data) { //sub添加提交
+															console.log(data.field);
+															$.post(commonSrc + "api/train/demandController/updateDemand",
+																data.field,
+
+
+																function(ev) {
+																	console.log(ev);
+																	layer.msg("修改成功", {
+																		time: 1000
+																	}, function() {
+																		layui.table.reload("test"), layer.close(layero)
+																	})
+																});
+															return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+														})
+												})
+											}
+										})
+									})
+
+								form.render(null, 'app-content-list');
+
+								//监听搜索
+								form.on('submit(LAY-app-contlist-search)', function(data) {
+									var field = data.field;
+									console.log(field);
+									//执行重载
+									table.reload('test', {
+										where: field
+									});
+								});
+
+								//多条删除
+								var active = {
+									batchdelwag: function() {
+											var checkStatus = table.checkStatus('test'),
+												checkData = checkStatus.data; //得到选中的数据
+											if (checkData.length === 0) {
+												return layer.msg('请选择数据');
+											}
+											let arr = "";
+											let arrTwo = "";
+											for (var i in checkData) {
+												arr += checkData[i].id + ",";
+											}
+											for (var i in checkData) {
+												arrTwo += checkData[i].commonId + ",";
+											}
+											layer.confirm('确定删除吗？', function(index) {
+												$.ajax({
+													type: "POST",
+													url: commonSrc + "api/train/demandController/deleteDemandById",
+													dataType: "json",
+													data: {
+														id: arr,
+														traId: arrTwo
+													},
+													success: function(json) {
+														table.reload('test');
+														layer.msg('已删除');
+													}
+												});
+
+												//执行 Ajax 后重载
+												/*
+											
+												*/
+											});
+										}
+
+										//添加
+										,
+									add: function(othis) {
+										admin.popup({
+											title: '添加需求信息',
+											area: ['720px', '700px'],
+											id: 'LAY-popup-content-add',
+											success: function(layero, index) {
+												view(this.id).render('train/demand/DemandForm').done(function() { //跳转
+													form.render(null, 'layuiadmin-app-form-list');
+													//日期
+													$(".date").each(function() {
+														laydate.render({
+															elem: this,
+															trigger: 'click',
+														});
+													})
+													//监听提交
+													form.on('submit(form-submit)', function(data) {
+														var field=data.field;
+														field.type = '1';
+														$.post(commonSrc + "api/train/demandController/insertDemand",
+															data.field,
+															function(ev) {
+																layer.msg("新增成功", {
+																	time: 1000
+																}, function() {
+																	layer.close(index); //执行关闭 
+																	layui.table.reload('test'); //重载表格
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													});
+												});
+											}
+										});
+									}
+								};
+								$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+									var type = $(this).data('type');
+									active[type] ? active[type].call(this) : '';
+								});
+
+								$(".date").each(function() {
+									laydate.render({
+										elem: this,
+										trigger: 'click',
+									});
+								})
+
+							});
+						</script>
+					</div>
+					<!-- 按公司 end -->
+
+					<!-- 按职位类型 -->
+					<!-- start -->
+					<div class="layui-tab-item">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="addt">添加</button>
+						</div>
+						<table id="type-table-toolbar" lay-filter="type-table-toolbar"></table>
+						<script type="text/html" id="table-toolbar">
+							<a class="layui-btn layui-btn-xs" lay-event="lookt">查看</a>
+					                		           <a class="layui-btn layui-btn-xs" lay-event="editst">编辑</a>
+					                                   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					                        </script>
+						<script>
+							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+								var $ = layui.$,
+									admin = layui.admin,
+									view = layui.view,
+									table = layui.table,
+									laydate = layui.laydate,
+									form = layui.form;
+
+								table.render({
+									elem: '#type-table-toolbar',
+									url: commonSrc + 'api/train/demandController/list?type=2',
 									// toolbar: '#toolbarDemo',
+
 									response: {
 										statusCode: 200 //规定成功的状态码，默认：0
 									},
@@ -82,53 +317,36 @@
 											"data": res.dataList //解析数据列表
 										};
 									},
-									//表头
 									cols: [
 										[{
-											type: 'checkbox',
-											fixed: "left"
-										}, {
 											field: 'id',
 											title: 'id',
-											hide: true,
+											align: 'center',
+											hide: true
 										}, {
 											field: 'userName',
-											title: '名字',
+											title: '职位类型',
 											align: 'center'
 										}, {
-											field: 'type',
-											title: '需求类别',
-											toolbar:'#type',
-											align: 'center'
-										},{
 											field: 'applyTime',
 											title: '申请时间',
-											align: 'center',
-										}, {
-											field: 'companyId',
-											title: '公司id',
-											hide: true,
-										},  {
-											field: 'tenantCode',
-											title: '租户id',
-											hide: true,
+											align: 'center'
 										}, {
 											fixed: 'right',
 											title: '操作',
-											fixed: 'right',
-											toolbar: '#barDemo',
-											width: 150,
-											align: 'center'
+											toolbar: '#table-toolbar',
+											align: 'center',
+											minWidth: 150,
 										}]
 									],
 									// page: !0,
 									// limit: 10,
 									// limits: [10, 15, 20, 25, 30],
-								}),
+								});
 
-								table.on("tool(test)", function(obj) {
+								table.on("tool(type-table-toolbar)", function(obj) {
 									var data = obj.data;
-									"del" === obj.event ? layer.confirm("确定删除此文章？", function(e) {
+									"del" === obj.event ? layer.confirm("确定删除此列？", function(e) {
 										$.ajax({
 											url: commonSrc + "api/train/demandController/deleteDemandById", //换成自己的url
 											type: "POST",
@@ -138,31 +356,34 @@
 											},
 											success: function(b) {
 												layer.msg('删除成功');
-												obj.del(), layer.close(e)
+												obj.del(), layer.close(e),
+													layui.table.reload('type-table-toolbar'); //重载表格
+
 											},
 											error: function(e) {
 												layer.msg('删除失败')
 												layer.msg(e);
 											}
 										})
-									}) : "edits" === obj.event && admin.popup({
-										title: "编辑需求信息",
+									}) : "editst" === obj.event && admin.popup({
+										title: "编辑信息",
 										area: ['720px', '700px'],
 										id: "LAY-popup-content-edit",
 										success: function(t, layero) {
-											view(this.id).render("train/Demand/DemandForm").done(function() {
+											view(this.id).render("train/demand/DemandForm").done(function() {
 												$.ajax({
 													url: commonSrc + "api/train/demandController/selectDemandById", //换成自己的url
 													type: "GET",
 													dataType: "json",
 													data: {
-														id: data.id,
+														id: data.id
 
 													},
 													success: function(e) {
 														//layer.msg(e.contractCheckVo);
 														let obj = e.data;
-														form.val("layuiadmin-app-form-list", obj);
+														
+														form.val("layuiadmin-app-form-lists", obj);
 														//日期
 														$(".date").each(function() {
 															laydate.render({
@@ -175,8 +396,252 @@
 														layer.msg(e);
 													}
 												})
-												form.render(null, "layuiadmin-app-form-list"),
-													form.on("submit(form-submit)", function(
+												form.render(null, "layuiadmin-app-form-lists"),
+													form.on("submit(layuiadmin-app-form-submit)", function(
+														data) { //sub添加提交
+														$.post(commonSrc + "api/train/demandController/updateDemand",
+															data.field,
+
+															function(ev) {
+																layer.msg("修改成功", {
+																	time: 1000
+																}, function() {
+																	layui.table.reload("type-table-toolbar"), layer.close(layero)
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													})
+											})
+										}
+									})
+
+								})
+								form.render(null, 'app-content-list');
+								//监听搜索
+								form.on('submit(LAY-app-contlist-search)', function(data) {
+									var field = data.field;
+									console.log(field);
+									//执行重载
+									table.reload('type-table-toolbar', {
+										where: field
+									});
+
+								});
+								var active = {
+									batchdelwag: function() {
+											var checkStatus = table.checkStatus('type-table-toolbar'),
+												checkData = checkStatus.data; //得到选中的数据
+											if (checkData.length === 0) {
+												return layer.msg('请选择数据');
+											}
+											let arr = "";
+											let arrTwo = "";
+											for (var i in checkData) {
+												arr += checkData[i].id + ",";
+											}
+											for (var i in checkData) {
+												arrTwo += checkData[i].commonId + ",";
+											}
+											layer.confirm('确定删除吗？', function(index) {
+												$.ajax({
+													type: "POST",
+													url: commonSrc + "api/train/planController/deletePlanById",
+													dataType: "json",
+													data: {
+														id: arr,
+														traId: arrTwo
+													},
+													success: function(json) {
+														table.reload('type-table-toolbar');
+														layer.msg('已删除');
+													}
+												});
+
+												//执行 Ajax 后重载
+												/*
+															
+												*/
+											});
+										}
+
+										//添加
+										,
+									addt: function(othis) {
+										admin.popup({
+											title: '添加职位类型信息',
+											area: ['720px', '700px'],
+											id: 'LAY-popup-content-add-type',
+											success: function(layero, index) {
+												view(this.id).render('train/demand/DemandForm').done(function() { //跳转
+													form.render(null, 'layuiadmin-app-form-list');
+													//日期
+													$(".date").each(function() {
+														laydate.render({
+															elem: this,
+															trigger: 'click',
+														});
+													})
+													//监听提交
+													// alert();
+													form.on('submit(layuiadmin-app-form-submit)', function(data) {
+														var field = data.field; //获取提交的字段
+														field.type = '2';
+														console.log(field)
+														// $.post(commonSrc + "api/train/demandController/insertDemand",
+														// 	data.field,
+														// 	function(ev) {
+														// 		layer.msg("新增成功", {
+														// 			time: 1000
+														// 		}, function() {
+														// 			layer.close(index); //执行关闭 
+														// 			layui.table.reload('type-table-toolbar'); //重载表格
+														// 		})
+														// 	});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													});
+												});
+											}
+										});
+									}
+								};
+								$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+									var type = $(this).data('type');
+									active[type] ? active[type].call(this) : '';
+								});
+
+								$(".date").each(function() {
+									laydate.render({
+										elem: this,
+										trigger: 'click',
+									});
+								})
+							});
+						</script>
+					</div>
+					<!-- 按职位级别 -->
+				
+					<!-- start -->
+					<div class="layui-tab-item">
+						<div style="padding-bottom: 10px;">
+							<button class="layui-btn layuiadmin-btn-list" data-type="addl">添加</button>
+						</div>
+						<table id="level-table-toolbar" lay-filter="level-table-toolbar"></table>
+						<script type="text/html" id="table-toolbar">
+							<a class="layui-btn layui-btn-xs" lay-event="lookl">查看</a>
+										<a class="layui-btn layui-btn-xs" lay-event="editsl">编辑</a>
+								        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+								    </script>
+						<script>
+							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
+								var $ = layui.$,
+									admin = layui.admin,
+									view = layui.view,
+									table = layui.table,
+									laydate = layui.laydate,
+									form = layui.form;
+
+								table.render({
+									elem: '#level-table-toolbar',
+									url: commonSrc + 'api/train/demandController/list?type=3',
+									// toolbar: '#toolbarDemo',
+									title: '职位类型列表',
+									response: {
+										statusCode: 200 //规定成功的状态码，默认：0
+									},
+									request: {
+										pageName: 'pageNum' //页码的参数名称，默认：page
+											,
+										limitName: 'pageSize' //每页数据量的参数名，默认：limit
+									},
+									parseData: function(res) { //res 即为原始返回的数据
+										// console.log(res);
+										return {
+											"code": res.code, //解析接口状态
+											"msg": res.desc, //解析提示文本
+											"count": res.total, //解析数据长度
+											"data": res.dataList //解析数据列表
+										};
+									},
+									cols: [
+										[{
+											field: 'id',
+											title: 'id',
+											align: 'center',
+											hide: true
+										}, {
+											field: 'userName',
+											title: '职位级别',
+											align: 'center'
+										}, {
+											field: 'applyTime',
+											title: '申请时间',
+											align: 'center'
+										}, {
+											fixed: 'right',
+											title: '操作',
+											toolbar: '#table-toolbar',
+											align: 'center',
+											minWidth: 150,
+										}]
+									],
+									// page: !0,
+									// limit: 10,
+									// limits: [10, 15, 20, 25, 30],
+								});
+
+								table.on("tool(level-table-toolbar)", function(obj) {
+									var data = obj.data;
+									"del" === obj.event ? layer.confirm("确定删除此列？", function(e) {
+										$.ajax({
+											url: commonSrc + "api/train/demandController/deleteDemandById", //换成自己的url
+											type: "POST",
+											dataType: "json",
+											data: {
+												id: data.id
+											},
+											success: function(b) {
+												layer.msg('删除成功');
+												obj.del(), layer.close(e),
+													layui.table.reload('level-table-toolbar'); //重载表格
+
+											},
+											error: function(e) {
+												layer.msg('删除失败')
+												layer.msg(e);
+											}
+										})
+									}) : "editsl" === obj.event && admin.popup({
+										title: "编辑信息",
+										area: ['720px', '700px'],
+										id: "LAY-popup-content-edit",
+										success: function(t, layero) {
+											view(this.id).render("train/demand/DemandForm").done(function() {
+												$.ajax({
+													url: commonSrc + "api/train/demandController/selectDemandById", //换成自己的url
+													type: "GET",
+													dataType: "json",
+													data: {
+														id: data.id
+
+													},
+													success: function(e) {
+														//layer.msg(e.contractCheckVo);
+														let obj = e.data;
+														form.val("layuiadmin-app-form-lists", obj);
+														//日期
+														$(".date").each(function() {
+															laydate.render({
+																elem: this,
+																trigger: 'click',
+															});
+														})
+													},
+													error: function(e) {
+														layer.msg(e);
+													}
+												})
+												form.render(null, "layuiadmin-app-form-lists"),
+													form.on("submit(layuiadmin-app-form-submit)", function(
 														data) { //sub添加提交
 														$.post(commonSrc + "api/train/demandController/updateDemand",
 															data.field,
@@ -184,7 +649,7 @@
 																layer.msg("修改成功", {
 																	time: 1000
 																}, function() {
-																	layui.table.reload("test"), layer.close(layero)
+																	layui.table.reload("level-table-toolbar"), layer.close(layero)
 																})
 															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -193,118 +658,111 @@
 										}
 									})
 								})
+								form.render(null, 'app-content-list');
+								//监听搜索
+								form.on('submit(LAY-app-contlist-search)', function(data) {
+									var field = data.field;
+									console.log(field);
+									//执行重载
+									table.reload('LAY-app-content-list', {
+										where: field
+									});
 
-							form.render(null, 'app-content-list');
-
-							//监听搜索
-							form.on('submit(LAY-app-contlist-search)', function(data) {
-								var field = data.field;
-								console.log(field);
-								//执行重载
-								table.reload('test', {
-									where: field
 								});
-							});
+								var active = {
+									batchdelwag: function() {
+											var checkStatus = table.checkStatus('LAY-app-content-list'),
+												checkData = checkStatus.data; //得到选中的数据
+											if (checkData.length === 0) {
+												return layer.msg('请选择数据');
+											}
+											let arr = "";
+											let arrTwo = "";
+											for (var i in checkData) {
+												arr += checkData[i].id + ",";
+											}
+											for (var i in checkData) {
+												arrTwo += checkData[i].commonId + ",";
+											}
+											layer.confirm('确定删除吗？', function(index) {
+												$.ajax({
+													type: "POST",
+													url: commonSrc + "api/train/planController/deletePlanById",
+													dataType: "json",
+													data: {
+														id: arr,
+														traId: arrTwo
+													},
+													success: function(json) {
+														table.reload('LAY-app-content-list');
+														layer.msg('已删除');
+													}
+												});
 
-							//多条删除
-							var active = {
-								batchdelwag: function() {
-										var checkStatus = table.checkStatus('test'),
-											checkData = checkStatus.data; //得到选中的数据
-										if (checkData.length === 0) {
-											return layer.msg('请选择数据');
-										}
-										let arr = "";
-										let arrTwo = "";
-										for (var i in checkData) {
-											arr += checkData[i].id + ",";
-										}
-										for (var i in checkData) {
-											arrTwo += checkData[i].commonId + ",";
-										}
-										layer.confirm('确定删除吗？', function(index) {
-											$.ajax({
-												type: "POST",
-												url: commonSrc + "api/train/demandController/deleteDemandById",
-												dataType: "json",
-												data: {
-													id: arr,
-													traId: arrTwo
-												},
-												success: function(json) {
-													table.reload('test');
-													layer.msg('已删除');
-												}
+												//执行 Ajax 后重载
+												/*
+													
+															*/
 											});
+										}
 
-											//执行 Ajax 后重载
-											/*
-											
-											*/
+										//添加
+										,
+									addl: function(othis) {
+										admin.popup({
+											title: '添加职位级别信息',
+											area: ['720px', '700px'],
+											id: 'LAY-popup-content-add-level',
+											success: function(layero, index) {
+												view(this.id).render('train/demand/DemandForm').done(function() { //跳转
+													form.render(null, 'layuiadmin-app-form-list');
+													//日期
+													$(".date").each(function() {
+														laydate.render({
+															elem: this,
+															trigger: 'click',
+														});
+													})
+													//监听提交
+													form.on('submit(layuiadmin-app-form-submit)', function(data) {
+														var field = data.field; //获取提交的字段
+														field.type = '3';
+
+														$.post(commonSrc + "api/train/demandController/insertDemand",
+															data.field,
+															function(ev) {
+																layer.msg("新增成功", {
+																	time: 1000
+																}, function() {
+																	layer.close(index); //执行关闭 
+																	layui.table.reload('LAY-app-content-list'); //重载表格
+																})
+															});
+														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+													});
+												});
+											}
 										});
 									}
-
-									//添加
-									,
-								addwag: function(othis) {
-									admin.popup({
-										title: '添加需求信息',
-										area: ['720px', '700px'],
-										id: 'LAY-popup-content-add',
-										success: function(layero, index) {
-											view(this.id).render('train/Demand/DemandForm').done(function() { //跳转
-												form.render(null, 'layuiadmin-app-form-list');
-												//日期
-												$(".date").each(function() {
-													laydate.render({
-														elem: this,
-														trigger: 'click',
-													});
-												})
-												//监听提交
-												form.on('submit(form-submit)', function(data) {
-													var field = data.field; //获取提交的字段
-													$.post(commonSrc + "api/train/demandController/insertDemand",
-														data.field,
-														function(ev) {
-															layer.msg("新增成功", {
-																time: 1000
-															}, function() {
-																layer.close(index); //执行关闭 
-																layui.table.reload('test'); //重载表格
-															})
-														});
-													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-												});
-											});
-										}
-									});
-								}
-							};
-
-
-							$('.layui-btn.layuiadmin-btn-list').on('click', function() {
-								var type = $(this).data('type');
-								active[type] ? active[type].call(this) : '';
-							});
-
-							$(".date").each(function() {
-								laydate.render({
-									elem: this,
-									trigger: 'click',
+								};
+								$('.layui-btn.layuiadmin-btn-list').on('click', function() {
+									var type = $(this).data('type');
+									active[type] ? active[type].call(this) : '';
 								});
-							})
 
-						});
-					</script>
+								$(".date").each(function() {
+									laydate.render({
+										elem: this,
+										trigger: 'click',
+									});
+								})
+							});
+						</script>
+					</div>
 
 				</div>
-				<!-- one end -->
-
-				
+				<!-- end -->
 			</div>
 		</div>
-
 	</div>
-
 </div>

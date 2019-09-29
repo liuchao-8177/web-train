@@ -1,5 +1,23 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
 	<form action="" class="layui-form" method="post">
+		<div class="layui-form-item">
+			<label class="layui-form-label">员工姓名</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="employName" lay-verify="title" autocomplete="off" placeholder="员工姓名"
+			           class="layui-input">
+			</script>
+			</div>
+			<label class="layui-form-label">培训者名字</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="trainer" lay-verify="title" autocomplete="off" placeholder="培训者名字"
+			           class="layui-input">
+			</script>
+			</div>
+			
+			
+		</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">考核人名称</label>
 		<div class="layui-input-inline">
@@ -38,30 +56,9 @@
 		</div>
 	</div>
 
-	<div class="layui-form-item">
-		<label class="layui-form-label">培训者名字</label>
-		<div class="layui-input-inline">
-		<script type="text/html" template>
-			<input type="text" name="trainer" lay-verify="title" autocomplete="off" placeholder="培训者名字"
-		           class="layui-input">
-		</script>
-		</div>
-		<label class="layui-form-label">备注</label>
-		<div class="layui-input-inline">
-		<script type="text/html" template>
-			<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
-		           class="layui-input">
-		</script>
-		</div>
-	</div>
+	
 		<div class="layui-form-item">
-			<label class="layui-form-label">学员名称</label>
-			<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="employName" lay-verify="title" autocomplete="off" placeholder="学员名称"
-			           class="layui-input">
-			</script>
-			</div>
+			
 			<label class="layui-form-label">参考号</label>
 			<div class="layui-input-inline">	
 			<script type="text/html" template>
@@ -69,7 +66,13 @@
 			           class="layui-input">
 			</script>
 			</div>
-			
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-inline">
+			<script type="text/html" template>
+				<input type="text" name="remark" lay-verify="title" autocomplete="off" placeholder="备注"
+			           class="layui-input">
+			</script>
+			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">培训开始日期</label>
@@ -125,7 +128,7 @@
 		
 		
 
-		<input type="hidden" name="courseId" value="" />
+		<input type="hidden" name="courseId" />
 		<input type="hidden" name="employId" />
 		<input type="hidden" name="checkerId" />
 		<input type="hidden" name="trainerId" />
