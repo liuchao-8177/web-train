@@ -1,0 +1,179 @@
+<div class="layui-form" lay-filter="layuiadmin-app-form-list-recordStudentEdit"
+     id="layuiadmin-app-form-list-recordStudentEdit"
+     style="padding: 20px 30px 0 0;">
+    <form action="" class="layui-form" method="post">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">员工ID:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="employId" autocomplete="off" placeholder="员工ID" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">是否通过:</label>
+                <div class="layui-input-inline">
+                    <select name="isPass" lay-verify="" lay-search="">
+                        <option value="1">否</option>
+                        <option value="2">是</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!--        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">-->
+        <!--            <legend>费用相关</legend>-->
+        <!--        </fieldset>-->
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">学费:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="tuition" lay-verify="" autocomplete="off" placeholder="学费"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">差旅费:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="travel" lay-verify="" autocomplete="off" placeholder="差旅费"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">其它一:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="otherOne" lay-verify="" autocomplete="off" placeholder="其它一"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">其它二:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="otherTwo" lay-verify="title" autocomplete="off" placeholder="其它二"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">其它三:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="otherThree" lay-verify="" autocomplete="off" placeholder="其它一"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">个人支付:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="selfAmount" lay-verify="" autocomplete="off" placeholder="个人支付"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">成本中心:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="costCenter" autocomplete="off" placeholder="成本中心" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <!--        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">-->
+        <!--            <legend>成绩相关</legend>-->
+        <!--        </fieldset>-->
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">成绩一:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gradeOne" lay-verify="" autocomplete="off" placeholder="成绩一"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">成绩二:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gradeTwo" lay-verify="" autocomplete="off" placeholder="成绩二"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">成绩三:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gradeThree" lay-verify="" autocomplete="off" placeholder="成绩三"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">成绩四:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gradeFour" lay-verify="" autocomplete="off" placeholder="成绩四"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">成绩五:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="gradeFive" lay-verify="" autocomplete="off" placeholder="成绩五"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">讲师评语:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="comment" lay-verify="" autocomplete="off" placeholder="讲师评语"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <!--        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">-->
+        <!--            <legend>协议相关</legend>-->
+        <!--        </fieldset>-->
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">是否有协议:</label>
+                <div class="layui-input-inline">
+                    <select name="isProtocol" lay-verify="" lay-search="">
+                        <option value="1">否</option>
+                        <option value="2">是</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="proStart" class="layui-input date" id="test-laydate-start"
+                           placeholder="开始日期">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">结束日期:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="proEnd" class="layui-input date" id="test-laydate-end" placeholder="结束日期">
+                </div>
+            </div>
+        </div>
+
+        <!--        <input type="hidden" name="id"/>-->
+
+
+        <div class="layui-form-item" style="text-align: right;">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn layuiadmin-btn-list" lay-submit
+                        lay-filter="layuiadmin-app-form-submit">确认
+                </button>
+                <button type="reset" class="layui-btn layuiadmin-btn-list">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

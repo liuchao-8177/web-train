@@ -1,0 +1,955 @@
+<title>课程信息</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">培训评估</a>
+        <a><cite>计划内新增</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="record-in-plan"
+             id="record-in-plan">
+            <form action="" class="layui-form" method="post">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">课程别名 :</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="otherName" id="otherName" autocomplete="off" placeholder="课程别名"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">等效课程:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="topic" id="topic" readonly="readonly" autocomplete="off"
+                                   placeholder="等效课程" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">培训形式:</label>
+                        <div class="layui-input-inline">
+                            <select name="trainForm" id="trainForm" required="required" lay-filter="trainForm"
+                                    class="layui-form"
+                                    lay-verify="required" lay-search="">
+                                <option value=""></option>
+                                <option value="1">外部公开课</option>
+                                <option value="2">外聘内训</option>
+                                <option value="3">内部培训</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">培训机构:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="agency" id="agency" autocomplete="off" placeholder="培训机构"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">培训地点:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="place" id="place" lay-verify="title" autocomplete="off"
+                                   placeholder="培训地点"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">对应证书:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="cerLevel" id="cerLevel" readonly autocomplete="off"
+                                   placeholder="对应证书"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">开始日期:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="startTime" class="layui-input date" id="startTime"
+                                   placeholder="开始日期">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">结束日期:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="endTime" class="layui-input date" id="endTime"
+                                   placeholder="结束日期">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">讲师:</label>
+                        <div class="layui-input-inline">
+                            <select name="teacherId" id="teacherId" lay-filter="teacherId" class="layui-form"
+                                    lay-verify="required" lay-search="">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="text-align: right;">
+                        <div class="layui-input-block">
+                            <button type="button" class="layui-btn layuiadmin-btn-list" id="confirmEva"
+                                    lay-filter="layuiadmin-app-form-submit">确定
+                            </button>
+                            <a href="javascript:history.back(-1)">
+                                <button type="button" class="layui-btn layui-btn-normal daainfor">返回</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="planDetailId"/>
+
+                <div class="layui-card-body">
+                    <div class="layui-tab">
+                        <ul class="layui-tab-title layui-elem-field " style="margin-top: 30px;">
+                            <li class="layui-this">参训学员</li>
+                            <li>培训评估</li>
+                            <li>相关附件</li>
+                            <li>备注</li>
+                            <li>子课程</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <!-- 参训学员 -->
+                            <div class="layui-tab-item layui-show">
+                                <div style="padding-bottom: 10px;">
+                                    <button type="button" class="layui-btn layuiadmin-btn-list" data-type="add"
+                                            id="addEvaStudent">添加
+                                    </button>
+                                </div>
+                                <table class="layui-hide" id="evaluation-student-list"
+                                       lay-filter="evaluation-student-list"></table>
+                                <script type="text/html" id="isPass">
+                                    {{#  if(d.isPass==1){ }}
+                                    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
+                                    {{#  } else {d.isPass==2  }}
+                                    <button class="layui-btn layui-btn-xs">是</button>
+                                    {{#  } }}
+                                </script>
+                                <script type="text/html" id="isProtocol">
+                                    {{#  if(d.isProtocol==1){ }}
+                                    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
+                                    {{#  } else {d.isProtocol==2  }}
+                                    <button class="layui-btn layui-btn-xs">是</button>
+                                    {{#  } }}
+                                </script>
+
+                                <script type="text/html" id="table-content-list">
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i
+                                            class="layui-icon layui-icon-edit"></i>编辑</a>
+                                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                                            class="layui-icon layui-icon-delete"></i>删除</a>
+                                </script>
+
+                                <!--参训学员数据列表-->
+                            </div>
+
+                            <!--培训评估数据列表-->
+                            <div class="layui-tab-item">
+                                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                                    <legend>讲师评估</legend>
+                                </fieldset>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">讲师</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="teacherName" id="teacherName" lay-verify=""
+                                                   readonly
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="evaTeacherId">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">课时</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="planClass" id="planClass" lay-verify="" readonly
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">评估分</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="thacherGrade" id="thacherGrade" lay-verify=""
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                                    <legend>课程评估</legend>
+                                </fieldset>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">课程评分</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="courseGrade" id="courseGrade" lay-verify=""
+                                               autocomplete="off"
+                                               class="layui-input">
+                                    </div>
+                                    <!--                            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>-->
+                                </div>
+                                <input type="hidden" name="evaCourseId">
+                                <div class="layui-form-item layui-form-text">
+
+                                    <label class="layui-form-label">评语</label>
+                                    <div class="layui-input-block">
+                                    <textarea placeholder="请输入内容" class="layui-textarea" name="courseRemark"
+                                              id="courseRemark"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--相关附件上传列表-->
+                            <div class="layui-tab-item">
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn layui-btn-normal" id="addFile">添加文件</button>
+                                    <div class="layui-upload-list">
+                                        <table class="layui-table" id="LAY-app-content-list-file"
+                                               lay-filter="LAY-app-content-list-file"></table>
+                                        <script type="text/html" id="fileTemplate">
+                                            {{#  if( d.type==1){ }}
+                                            准备清单
+                                            {{#  } else if  (d.type==2) { }}
+                                            讲义
+                                            {{#  } else if (d.type==3) { }}
+                                            试卷
+                                            {{#  } }}
+                                        </script>
+                                        <script type="text/html" id="edit_file_table">
+                                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                                                    class="layui-icon layui-icon-delete"></i>删除</a>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--备注-->
+                            <div class="layui-tab-item">
+                                <div class="layui-input-block">
+                                    <textarea placeholder="请输入内容" class="layui-textarea" name="remark" id="remark"/>
+                                </div>
+                            </div>
+                            <!--子课程数据列表-->
+                            <div class="layui-tab-item">
+                                <div style="padding-bottom: 10px;">
+                                    <button type="button" class="layui-btn layuiadmin-btn-list" id="addChildCourse">添加
+                                    </button>
+                                    <!-- <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button> -->
+                                </div>
+                                <table id="LAY-app-content-list-childCourse"
+                                       lay-filter="LAY-app-content-list-childCourse"></table>
+                                <script type="text/html" id="childTeacherTemplate">
+                                    {{# if( sessionStorage.getItem("teacher" + d.teacherId)==null){ }}
+                                    {{#  } else {  }}
+                                    <span>{{ sessionStorage.getItem("teacher" + d.teacherId) }}</span>
+                                    {{#  } }}
+                                </script>
+                                <script type="text/html" id="childFileTool">
+                                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                                            class="layui-icon layui-icon-delete"></i>删除</a>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function () {
+        var $ = layui.$,
+            admin = layui.admin,
+            view = layui.view,
+            table = layui.table,
+            laydate = layui.laydate,
+            form = layui.form;
+
+        var planDetailId = layui.router().search.planDetailId;
+
+        var teacherList;
+
+        var studentList = [];
+
+        var childCourseData = [{
+            'id': '',
+            'childCourseName': '',
+            'startTime': '',
+            'endTime': ''
+        }];
+
+        // 初始化
+        function initHtml() {
+            //获取计划明细数据
+            $.ajax({
+                url: commonSrc + "api/train/planDetailController/selectPlanDetailById?id=" + planDetailId,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    var data = res.data;
+                    $.ajax({
+                        url: commonSrc + "api/train/courseController/selectCourseOneById?id=" + data.courseId,
+                        type: "get",
+                        dataType: "json",
+                        async: false,
+                        success: function (res) {
+                            var data = res.data;
+                            $("#topic").val(data.topic);
+                            $("#cerLevel").val(data.cerLevel);
+                        },
+                        error: function () {
+                            alert("错误");
+                        }
+                    });
+                    $("#otherName").val(data.otherName);
+                    $("#trainForm").val(data.trainForm);
+                    $("#agency").val(data.agency);
+                    $("#place").val(data.place);
+                    $("#startTime").val(data.startTime);
+                    $("#endTime").val(data.endTime);
+                    $("#planClass").val(data.planClass);
+                    $("#remark").val(data.remark);
+                    // $("#teacherId").val(data.teacherId);
+
+                    //讲师
+                    $.ajax({
+                        url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
+                        type: "GET",
+                        dataType: "json",
+                        async: false,
+                        success: function (res) {
+                            var tdata = res.dataList;
+                            teacherList = tdata;
+                            $.each(tdata, function (i, v) {
+                                if (data.teacherId == v.id) {
+                                    $("#teacherName").val(v.name);
+                                    $("#teacherId").append('<option selected="selected" value="' + v.id + '">' + v.name + '</option>');
+                                } else {
+                                    $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
+                                }
+                                sessionStorage.setItem("teacher" + v.id, v.name);
+                            });
+                        }
+                    });
+                    form.render('select');
+
+                    //报名学生
+                    $.ajax({
+                        url: commonSrc + "api/train/planSignController/selectPlanSignList?id=" + planDetailId + "&pageSize=99999&pageNum=1",
+                        type: "GET",
+                        dataType: "json",
+                        async: false,
+                        success: function (res) {
+                            var data = res.dataList;
+                            $.each(data, function (i, v) {
+                                if (v.isTrain == '2') {
+                                    var studentItem = {
+                                        'id': '',
+                                        'employId': v.employId,
+                                        'tuition': '',
+                                        'travel': '',
+                                        'selfAmount': '',
+                                        'costCenter': '',
+                                        'isPass': 2,
+                                        'isProtocol': 1,
+                                        'otherOne': ''
+                                    };
+                                    studentList.push(studentItem);
+                                }
+                            });
+                            // console.log(studentList);
+                        }
+                    });
+                },
+                error: function () {
+                    alert("错误");
+                }
+            });
+        }
+
+        initHtml();
+
+        //渲染子课程
+        table.render({
+            elem: '#LAY-app-content-list-childCourse'
+            , cols: [[ //标题栏
+                {field: 'id', title: 'ID', width: 1, hidden: true}
+                , {field: 'childCourseName', title: '子课程名称', edit: true, minWidth: 120}
+                , {field: 'startTime', title: '开始时间', minWidth: 150, event: "cellClick"}
+                , {field: 'endTime', title: '结束时间', minWidth: 160, event: "cellClick"}
+                , {
+                    field: 'teacherId',
+                    title: '讲师',
+                    minWidth: 100,
+                    event: "cellClick2",
+                    templet: '#childTeacherTemplate'
+                }
+                , {fixed: 'right', title: '操作', width: 100, align: 'center', toolbar: '#childFileTool'}
+            ]]
+            , done: function () {
+                $("[data-field='id']").css('display', 'none');
+            }
+            , data: []
+            // , data: childCourseData
+            //,skin: 'line' //表格风格
+            , even: true
+            //,page: true //是否显示分页
+            //,limits: [5, 7, 10]
+            //,limit: 5 //每页默认显示的数量
+        });
+
+
+        function CellClick(that, obj) {
+            //当前点击字段
+            var field = $(that).data("field");
+            //判断是否需要添加编辑框
+            // if(field=="edit")return true;
+
+            //当前行数据
+            var data = obj.data;
+            //当前单元格的值
+            var value = data[field];
+
+            //当前点击td的宽高
+            var height = $(that)[0].offsetHeight, width = $(that)[0].offsetWidth;
+            //当前点击td的坐标
+            var top = $(that).offset().top, left = $(that).offset().left;
+
+            //输入框 这里可以自定义表单内容
+            var input = '<input type="text" lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" id="' + field + '_input" data-field="' + field + '" style="width:' + width + 'px;height:' + height + 'px">';
+            // var input = '<input type="text" c1ass="1ayui-input" id ="date" onclick="Rendering()">'
+
+            //日期弹出层
+            layer.open({
+                type: 1
+                , title: false
+                , page: true
+                , limit: 1
+                , closeBtn: 0
+                , area: [width + "px", height + "px"]
+                , shade: [0.01, '#fff']
+                , shadeClose: true
+                , content: input //这里content是一个普通的String
+                , offset: [top, left]
+                , success: function () {
+                    // 执行一个laydate实例
+                    laydate.render({
+                        elem: "#" + field + "_input", //指定元素
+                        show: true,
+                        type: 'date',
+                        done: function (value, date, endDate) {
+                            $("#" + field + "_input").val(value);
+                            //同步更新缓存对应的值
+                            data[field] = value;
+                            obj.update(data);
+                        }
+                    });
+                    // //使弹出层相对定位
+                    $(".layui-layer-page").css("position", "absolute");
+                    // //设置输入框的值
+                    // $("#"+field+"_input").val(value);
+                    // $("#"+field+"_input").blur(function(){
+                    //     alert($("#"+field+"_input").val());
+
+                    // })
+                }
+            });
+
+        }
+
+        // 讲师弹出层
+        function CellClick2(that, obj) {
+            //当前点击字段
+            var field = $(that).data("field");
+            //判断是否需要添加编辑框
+            // if(field=="edit")return true;
+
+            //当前行数据
+            var data = obj.data;
+            //当前单元格的值
+            var value = data[field];
+
+            //当前点击td的宽高
+            var height = $(that)[0].offsetHeight, width = $(that)[0].offsetWidth;
+            //当前点击td的坐标
+            var top = $(that).offset().top, left = $(that).offset().left;
+
+            //输入框 这里可以自定义表单内容
+            var input = '<select name="childTeacherId" lay-search="" id="' + field + '_input" lay-filter="childTeacherId" data-field="' + field + '" class="layui-form" style="width:' + width + 'px;height:' + height + 'px">'
+                + '<option value="">请选择</option>'
+                + '</select>';
+            // var input = '<input type="text" lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" id="'+field+'_input" data-field="'+field+'" style="width:'+width+'px;height:'+height+'px">';
+
+            //日期弹出层
+            layer.open({
+                type: 1
+                , title: false
+                , page: true
+                , limit: 1
+                , closeBtn: 0
+                , area: [width + "px", height + "px"]
+                , shade: [0.01, '#fff']
+                , shadeClose: true
+                , content: input //这里content是一个普通的String
+                , offset: [top, left]
+                , success: function () {
+                    // 讲师下拉列表
+                    $.each(teacherList, function (i, v) {
+                        // console.log(v.id);
+                        $("#" + field + "_input").append('<option value="' + v.id + '">' + v.name + '</option>');
+                    });
+                    //使弹出层相对定位
+                    $(".layui-layer-page").css("position", "absolute");
+
+                    //设置输入框的值
+                    $("#" + field + "_input").val(value);
+                    $("#" + field + "_input").blur(function () {
+                        //同步更新缓存对应的值
+                        data[field] = $(this).val();
+                        obj.update(data);
+                    })
+                }
+            });
+
+        }
+
+        // 监听子课程工具条
+        table.on('tool(LAY-app-content-list-childCourse)', function (obj) {
+            switch (obj.event) {
+                case 'cellClick':
+                    CellClick(this, obj);
+                    break;
+                case 'cellClick2':
+                    CellClick2(this, obj);
+                    break;
+            }
+            ;
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    // console.log(obj.data.id);
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+
+            }
+        });
+
+        // 监听添加子课程按钮
+        $("#addChildCourse").click(function () {
+            //定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+            var dataBak = [];
+
+            // 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+            var tableBak = table.cache["LAY-app-content-list-childCourse"];
+
+            for (var i = 0; i < tableBak.length; i++) {
+                dataBak.push(tableBak[i]);      //将之前的数组备份
+            }
+
+            dataBak.push({
+                "id": ""
+                , "childCourseName": ""
+                , "startTime": ""
+                , "endTime": ""
+                , "teacherId": ""
+            });
+
+            table.reload("LAY-app-content-list-childCourse", {
+                data: dataBak   // 将新数据重新载入表格
+            });
+        });
+
+        //展示课程附件已知数据
+        table.render({
+            elem: '#LAY-app-content-list-file'
+            , cols: [[ //标题栏
+                {field: 'id', title: 'ID', width: 1, hidden: true}
+                , {field: 'type', title: '文件类型', event: "fileCellClick", minWidth: 120, templet: '#fileTemplate'}
+                , {field: 'fileId', title: '文件', minWidth: 100, edit: true}
+                , {fixed: 'right', title: '操作', width: 100, align: 'center', toolbar: '#edit_file_table'}
+            ]]
+            , done: function () {
+                $("[data-field='id']").css('display', 'none');
+            }
+            , data: []
+            //,skin: 'line' //表格风格
+            , even: true
+            //,page: true //是否显示分页
+            //,limits: [5, 7, 10]
+            //,limit: 5 //每页默认显示的数量
+        });
+
+        // 课程附件类型弹出
+        function fileCellClick(that, obj) {
+            //当前点击字段
+            var field = $(that).data("field");
+            //判断是否需要添加编辑框
+            // if(field=="edit")return true;
+
+            //当前行数据
+            var data = obj.data;
+            //当前单元格的值
+            var value = data[field];
+
+            //当前点击td的宽高
+            var height = $(that)[0].offsetHeight, width = $(that)[0].offsetWidth;
+            //当前点击td的坐标
+            var top = $(that).offset().top, left = $(that).offset().left;
+
+            //输入框 这里可以自定义表单内容
+            var input = '<select name="type" lay-search="" id="' + field + '_input" lay-filter="type" data-field="' + field + '" class="layui-form" style="width:' + width + 'px;height:' + height + 'px">'
+                + '<option value="1">准备清单</option>'
+                + '<option value="2">讲义</option>'
+                + '<option value="3">试卷</option>'
+                + '</select>';
+
+            //弹出层
+            layer.open({
+                type: 1
+                , title: false
+                , page: true
+                , limit: 1
+                , closeBtn: 0
+                , area: [width + "px", height + "px"]
+                , shade: [0.01, '#fff']
+                , shadeClose: true
+                , content: input //这里content是一个普通的String
+                , offset: [top, left]
+                , success: function () {
+                    //使弹出层相对定位
+                    $(".layui-layer-page").css("position", "absolute");
+                    //设置输入框的值
+                    $("#" + field + "_input").val(value);
+                    $("#" + field + "_input").blur(function () {
+                        //同步更新缓存对应的值
+                        data[field] = $(this).val();
+                        obj.update(data);
+                    })
+                }
+            });
+        }
+
+        // 监听附件工具条
+        table.on('tool(LAY-app-content-list-file)', function (obj) {
+            switch (obj.event) {
+                case 'fileCellClick':
+                    fileCellClick(this, obj);
+                    break;
+                // case 'cellClick2':
+                //     CellClick2(this,obj);
+                //     break;
+            }
+            ;
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+
+            }
+        });
+
+        // 添加课程附件空行
+        // 监听添加子课程按钮
+        $("#addFile").click(function () {
+            //定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+            var dataBak = [];
+            // 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+            var tableBak = table.cache["LAY-app-content-list-file"];
+            for (var i = 0; i < tableBak.length; i++) {
+                dataBak.push(tableBak[i]);      //将之前的数组备份
+            }
+            dataBak.push({
+                "id": ""
+                , "type": ""
+                , "fileId": ""
+            });
+            table.reload("LAY-app-content-list-file", {
+                data: dataBak   // 将新数据重新载入表格
+            });
+        });
+
+        // 渲染学生表格
+        table.render({
+            id: 'evaluation-student-list'
+            , elem: '#evaluation-student-list'
+            , cols: [[ //标题栏
+                {field: 'id', title: 'ID', wdth: 0, align: 'center'}
+                , {field: 'employId', title: '员工ID', align: 'center', minWidth: 80, width: '15%'}
+                , {field: 'tuition', title: '学费', align: 'center', minWidth: 80, width: '15%'}
+                , {field: 'travel', title: '差旅', align: 'center', minWidth: 80, width: '15%'}
+                , {field: 'selfAmount', title: '个人支付', align: 'center', minWidth: 100, width: '15%'}
+                , {field: 'costCenter', title: '成本中心', align: 'center', minWidth: 100, width: '15%'}
+
+
+                , {field: 'isPass', title: '是否通过', templet: '#isPass', align: 'center', minWidth: 100, width: '12.4%'}
+                , {
+                    field: 'isProtocol',
+                    title: '是否有协议',
+                    templet: '#isProtocol',
+                    align: 'center',
+                    minWidth: 100,
+                    width: '13%'
+                }
+                , {field: 'proStart', title: '协议开始时间', align: 'center', width: 0}
+                , {field: 'proEnd', title: '协议结束时间', align: 'center', width: 0}
+                , {field: 'otherOne', title: '其他一', align: 'center', width: 0}
+                , {field: 'otherTwo', title: '其他二', align: 'center', width: 0}
+                , {field: 'otherTwo', title: '其他二', width: 0}
+                , {field: 'otherThree', title: '其他三', width: 0}
+                , {field: 'comment', title: '老师评语', width: 0}
+                , {field: 'costCenter', title: '成本中心', width: 0}
+                , {field: 'gradeOne', title: '成绩一', width: 0}
+                , {field: 'gradeTwo', title: '成绩二', width: 0}
+                , {field: 'gradeThree', title: '成绩三', width: 0}
+                , {field: 'gradeFour', title: '成绩四', width: 0}
+                , {field: 'gradeFive', title: '成绩五', width: 0}
+
+                , {
+                    fixed: 'right',
+                    title: '操作',
+                    fixed: 'right',
+                    minWidth: 80,
+                    align: 'center',
+                    width: '15%',
+                    toolbar: '#edit_student_table'
+                }
+            ]]
+            , done: function () {
+                // cols[0][0].hide = true;
+                $("[data-field='id']").css('display', 'none');
+                $("[data-field='proStart']").css('display', 'none');
+                $("[data-field='proEnd']").css('display', 'none');
+                $("[data-field='otherOne']").css('display', 'none');
+                $("[data-field='otherTwo']").css('display', 'none');
+                $("[data-field='otherThree']").css('display', 'none');
+                $("[data-field='comment']").css('display', 'none');
+                $("[data-field='costCenter']").css('display', 'none');
+                $("[data-field='gradeOne']").css('display', 'none');
+                $("[data-field='gradeTwo']").css('display', 'none');
+                $("[data-field='gradeThree']").css('display', 'none');
+                $("[data-field='gradeFour']").css('display', 'none');
+                $("[data-field='gradeFive']").css('display', 'none');
+            }
+            , data: studentList
+            // , data: childCourseData
+            // ,skin: 'line' //表格风格
+            , even: true
+            , defaultToolbar: ['filter']
+            , page: true //是否显示分页
+            , limits: [99999]
+            , limit: 99999 //每页默认显示的数量
+        });
+        //表格渲染
+        form.render(null, 'evaluation-student-list');
+
+        // 监听评估学员工具条
+        table.on('tool(evaluation-student-list)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                admin.popup({
+                    title: "编辑参训学员",
+                    area: ['720px', '800px'],
+                    id: "LAY-popup-content-edit",
+                    success: function (t, layero) {
+                        view(this.id).render("train/record/RecordStudentEdit").done(function () {
+                            // let obj = e.data;
+                            // console.log(obj.data);
+                            form.val("layuiadmin-app-form-list-recordStudentEdit", obj.data);
+                            //日期
+                            $(".date").each(function () {
+                                laydate.render({
+                                    elem: this,
+                                    trigger: 'click',
+                                });
+                            });
+                            form.render(null, "layuiadmin-app-form-list-recordStudentEdit"),
+                                form.on("submit(layuiadmin-app-form-submit)", function (
+                                    data) { //sub添加提交
+                                    // console.log(data.field);
+                                    //同步更新缓存对应的值
+                                    // data[field] = $(this).val();
+                                    // console.log(data.field);
+                                    obj.update(data.field);
+                                    // console.log(table.cache["evaluation-student-list"]);
+                                    layer.msg("修改成功", {
+                                        time: 1000
+                                    }, function () {
+                                        layui.table.reload("evaluation-student-list"), layer.close(layero)
+                                    });
+                                    // $.post(commonSrc + "api/train/evaluationStudentController/updateEvaStudent",
+                                    //     data.field,
+
+                                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                                })
+                        });
+                    }
+                });
+            }
+        });
+
+        // 添加评估学员
+        $("#addEvaStudent").click(function () {
+            admin.popup({
+                title: '添加评估学员',
+                area: ['720px', '800px'],
+                id: 'LAY-popup-content-add',
+                success: function (layero, index) {
+                    view(this.id).render('train/record/RecordStudentEdit').done(function () { //跳转
+                        form.render(null, 'layuiadmin-app-form-list-recordStudentEdit');
+                        //日期
+                        $(".date").each(function () {
+                            laydate.render({
+                                elem: this,
+                                trigger: 'click',
+                            });
+                        });
+                        //监听提交
+                        form.on('submit(layuiadmin-app-form-submit)', function (data) {
+                            var field = data.field; //获取提交的字段
+                            var dataBak = [];
+                            var tableBak = table.cache["evaluation-student-list"];
+                            for (var i = 0; i < tableBak.length; i++) {
+                                dataBak.push(tableBak[i]);      //将之前的数组备份
+                            }
+                            dataBak.push(field);
+                            table.reload("evaluation-student-list", {
+                                data: dataBak   // 将新数据重新载入表格
+                            });
+                            layer.msg("新增成功", {
+                                time: 1000
+                            }, function () {
+                                layer.close(index); //执行关闭
+                                layui.table.reload('LAY-app-content-list'); //重载表格
+                            });
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    });
+                }
+            });
+
+        });
+
+
+        // 新增数据
+        $("#confirmEva").click(function () {
+            // console.log(JSON.stringify(table.cache["evaluation-student-list"]));
+            var childCourseDataFlush = [];
+            var fileDataFlush = [];
+            var studentDataFlush = [];
+            // 获取之前编辑过的全部数据，
+            var tableBak = table.cache["LAY-app-content-list-childCourse"];
+            var tableBak1 = table.cache["LAY-app-content-list-file"];
+            var tableBak2 = table.cache["evaluation-student-list"];
+
+            // console.log(tableBak2);
+
+            for (var i = 0; i < tableBak.length; i++) {
+                if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].startTime === undefined
+                    && tableBak[i].endTime === undefined && tableBak[i].teacherId === null) {
+                    continue;
+                }
+                var item = {
+                    'id': tableBak[i].id,
+                    'childCourseName': tableBak[i].childCourseName,
+                    'startTime': tableBak[i].startTime,
+                    'endTime': tableBak[i].endTime,
+                    'teacherId': tableBak[i].teacherId
+                }
+                childCourseDataFlush.push(item);      //将之前的数组备份
+            }
+            for (var i = 0; i < tableBak1.length; i++) {
+                if (tableBak1[i].id === undefined && tableBak1[i].type === undefined && tableBak1[i].fileId === undefined) {
+                    continue;
+                }
+                var item = {
+                    'id': tableBak1[i].id,
+                    'type': tableBak1[i].type,
+                    'fileId': tableBak1[i].fileId
+                }
+                fileDataFlush.push(item);      //将之前的数组备份
+            }
+            for (var i = 0; i < tableBak2.length; i++) {
+                if (tableBak2[i] == '') {
+                    continue;
+                }
+                var item = {
+                    // 'id': tableBak2[i].id,
+                    'employId': tableBak2[i].employId
+                    , 'tuition': tableBak2[i].tuition
+                    , 'travel': tableBak2[i].travel
+                    , 'selfAmount': tableBak2[i].selfAmount
+                    , 'isPass': tableBak2[i].isPass
+                    , 'isProtocol': tableBak2[i].isProtocol
+                    , 'proStart': tableBak2[i].proStart
+                    , 'proEnd': tableBak2[i].proEnd
+                    , 'otherOne': tableBak2[i].otherOne
+                    , 'otherTwo': tableBak2[i].otherTwo
+                    , 'otherThree': tableBak2[i].otherThree
+                    , 'comment': tableBak2[i].comment
+                    , 'costCenter': tableBak2[i].costCenter
+                    , 'gradeOne': tableBak2[i].gradeOne
+                    , 'gradeTwo': tableBak2[i].gradeTwo
+                    , 'gradeThree': tableBak2[i].gradeThree
+                    , 'gradeFour': tableBak2[i].gradeFour
+                    , 'gradeFive': tableBak2[i].gradeFive
+                }
+                studentDataFlush.push(item);      //将之前的数组备份
+            }
+
+            var recordData = {
+                'agency': $("#agency").val(),
+                'otherName': $("#otherName").val(),
+                'place': $("#place").val(),
+                'planClass': $("#planClass").val(),
+                'remark': $("#remark").val(),
+                'trainForm': $("#trainForm").val(),
+                'planDetailId': planDetailId,
+                'courseGrade': $("#courseGrade").val(),
+                'courseRemark': $("#courseRemark").val(),
+                'teacherId': $("#teacherId").val(),
+                'teacherGrade': $("#teacherGrade").val(),
+                'startTime': $("#startTime").val(),
+                'endTime': $("#endTime").val(),
+                'evaChildCourseBos': childCourseDataFlush,
+                'studentBos': studentDataFlush,
+                'planFileBos': fileDataFlush
+            };
+            // console.log(JSON.stringify(recordData));
+            $.ajax({
+                type: "post",
+                contentType: "application/json;charset=UTF-8",
+                dataType: 'json',
+                url: commonSrc + "api/train/evaluationRecordController/insertEvaInPlan",
+                data: JSON.stringify(recordData),
+                success: function (result) {
+                    layer.msg("新增成功", {
+                        time: 1000
+                    }, function () {
+
+                        // layer.close(index); //执行关闭
+                        location.href = "#/train/record/Record";
+                        // layui.table.reload('LAY-app-content-list'); //重载表格
+                    })
+                },
+                error: function (result) {
+                    console.log("error :" + result);
+                }
+            });
+        });
+
+    });
+</script>

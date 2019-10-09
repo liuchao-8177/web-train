@@ -1,0 +1,121 @@
+<div class="layui-form" lay-filter="evaluation-plan-detail-list" id="evaluation-plan-detail-list"
+     style="padding: 20px 30px 0 0;">
+    <div class="layui-inline">
+        <label class="layui-form-label">模糊查询</label>
+        <div class="layui-input-inline">
+            <input name="condition" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="layui-inline">
+            <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-planDetail-search">
+                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+            </button>
+        </div>
+    </div>
+    <table id="evaluation-plan-detail-table" lay-filter="evaluation-plan-detail-table"></table>
+</div>
+
+<script>
+    layui.use(['admin', 'table', 'form', 'laydate'], function () {
+            var $ = layui.$,
+                admin = layui.admin,
+                view = layui.view,
+                table = layui.table,
+                form = layui.form;
+
+            // alert("ddd");
+            // 表格渲染
+            table.render({
+                id: 'evaluation-plan-detail-table',
+                elem: '#evaluation-plan-detail-list',
+                type: "GET",
+                async: false,
+                url: commonSrc + 'api/train/planDetailController/selectUnEvaPlanList',
+                // toolbar: '#toolbarDemo',
+                response: {
+                    statusCode: 200 //规定成功的状态码，默认：0
+                },
+                request: {
+                    pageName: 'pageNum' //页码的参数名称，默认：page
+                    ,
+                    limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                },
+                parseData: function (res) { //res 即为原始返回的数据
+                    // console.log(res);
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.desc, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.dataList //解析数据列表
+                    };
+                },
+                //表头
+                cols: [
+                    [{
+                        field: 'id',
+                        title: 'id',
+                        hide: true,
+                    }, {
+                        field: 'year',
+                        title: '年度',
+                        align: 'center'
+                    }, {
+                        field: 'topic',
+                        title: '等效课程',
+                        align: 'center'
+                    }, {
+                        field: 'otherName',
+                        title: '别名',
+                        align: 'center'
+                    }, {
+                        field: 'startTime',
+                        title: '开始日期',
+                        align: 'center'
+                    }, {
+                        field: 'endTime',
+                        title: '结束日期',
+                        align: 'center'
+                    }, {
+                        field: 'teacherName',
+                        title: '讲师',
+                        align: 'center'
+                    }, {
+                        field: 'place',
+                        title: '培训地点',
+                        align: 'center'
+                    }]
+                ],
+                page: true,
+                limit: 10,
+                limits: [10, 15, 20, 25, 30],
+            });
+
+            //监听行单击事件（单击事件为：rowDouble）
+            // table.on('row(evaluation-plan-detail-list)', function(obj){
+            //     var data = obj.data;
+            //
+            //     // layer.alert(JSON.stringify(data), {
+            //     //     title: '当前行数据：'
+            //     // });
+            //
+            //     //标注选中样式
+            //     // obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+            // });
+            // table.on('row(evaluation-plan-detail-table)', function(obj){
+            //     // alert(obj);
+            //     // var data = obj.data;
+            //     alert("dfd");
+            // });
+            // //监听搜索
+            // form.on('submit(LAY-app-planDetail-search)', function(data){
+            //     var field = data.field;
+            //     console.log(field);
+            //     //执行重载
+            //     table.reload('evaluation-plan-detail-table', {
+            //         where: field
+            //     });
+            // });
+
+        }
+    )
+</script>
