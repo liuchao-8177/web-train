@@ -9,31 +9,31 @@
 	<div class="layui-card">
 		<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
 			<form action="" class="layui-form" method="post">
-			
+
 
 				<!-- 搜索按钮 -->
-				
-			<div class="layui-form-item" style="text-align: right;">
-				<div class="layui-input-block">
-					<!-- <button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
+
+				<div class="layui-form-item" style="text-align: right;">
+					<div class="layui-input-block">
+						<!-- <button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
 					<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button> -->
-					<button type="button" class="layui-btn layui-btn-normal" lay-href="train/plan/PlanDetails">返回</button>	
+						<button type="button" class="layui-btn layui-btn-normal" lay-href="train/plan/PlanDetails">返回</button>
+					</div>
 				</div>
-			</div>
 			</form>
 		</div>
-	
-		
+
+
 
 		<div class="layui-card-body">
 			<div style="padding-bottom: 10px;">
-				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>	
+				<button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
 			</div>
 
 
 			<table id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
-              <script type="text/html" id="absence">
-                 {{#  if(d.absence==1){ }}
+			<script type="text/html" id="absence">
+				{{#  if(d.absence==1){ }}
               	<button class="layui-btn layui-btn-xs">旷工</button>
 				{{#  } else if(d.absence==2) { }}
 				<button class="layui-btn layui-btn-danger layui-btn-xs">事假</button>
@@ -45,8 +45,8 @@
               	<button class="layui-btn layui-btn-danger layui-btn-xs">无理由</button>
               	{{#  } }}
               </script>
-		    <script type="text/html" id="isTrain">
-		     {{#  if(d.isTrain==1){ }}
+			<script type="text/html" id="isTrain">
+				{{#  if(d.isTrain==1){ }}
 		  	<button class="layui-btn layui-btn-xs">否</button>
 		  	{{#  } else {  }}
 		  	<button class="layui-btn layui-btn-danger layui-btn-xs">是</button>
@@ -54,8 +54,8 @@
 		  </script>
 
 			<script type="text/html" id="table-content-list">
-			
-				
+
+
 				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i class="layui-icon layui-icon-edit"></i>编辑</a>
 				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 			</script>
@@ -64,7 +64,7 @@
 
 </div>
 
-	
+
 
 <script>
 	layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
@@ -74,16 +74,16 @@
 			table = layui.table,
 			laydate = layui.laydate,
 			form = layui.form;
-        var router = layui.router();
-		var apply=router.search.planDetailId;
+		var router = layui.router();
+		var apply = router.search.planDetailId;
 		//表格渲染
 		table.render({
 				elem: '#LAY-app-content-list',
 				type: "GET",
-				url: commonSrc + 'api/train/planSignController/selectPlanSignList?id='+apply, //数据接口
-		        // page: !0,
-		        // limit: 10,
-		        // limits: [10, 15, 20, 25, 30],//开启分页
+				url: commonSrc + 'api/train/planSignController/selectPlanSignList?id=' + apply, //数据接口
+				// page: !0,
+				// limit: 10,
+				// limits: [10, 15, 20, 25, 30],//开启分页
 				// toolbar: '#toolbarDemo',
 				response: {
 					statusCode: 200 //规定成功的状态码，默认：0
@@ -93,7 +93,7 @@
 						,
 					limitName: 'pageSize' //每页数据量的参数名，默认：limit
 				},
-				parseData: function(res){ //res 即为原始返回的数据
+				parseData: function(res) { //res 即为原始返回的数据
 					// console.log(res);
 					return {
 						"code": res.code, //解析接口状态
@@ -104,50 +104,50 @@
 				},
 				//表头
 				cols: [
-									[{
-										field: 'id',
-										title: 'id',
-									 	align: 'center',
-										hide: true,
-									},{
-										field: 'detailId',
-										title: '计划明细id',
-									 	align: 'center',
-										hide: true,
-									},{
-										field: 'employId ',
-										title: '员工id',
-									 	align: 'center',
-										hide: true,
-									},{
-										field: 'remark',
-										title: '备注',
-									 	align: 'center'
-									},{
-										field: 'absence',
-										title: '缺席原因',
-										toolbar:'#absence',
-									 	align: 'center'
-									}, {
-										field: 'isTrain',
-										title: '是否已培训',
-										templet:'#isTrain',
-									 	align: 'center'
-									},{
-										field: 'signGroup',
-										title: '组',
-									 	align: 'center'
-									},{
-										fixed: 'right',
-										title: '操作',
-										toolbar: '#table-content-list',
-										align:'center',
-										minWidth: 150,
-									}]
-								],
-				  page: !0,
-				  limit: 10,
-				  limits: [10, 15, 20, 25, 30],
+					[{
+						field: 'id',
+						title: 'id',
+						align: 'center',
+						hide: true,
+					}, {
+						field: 'detailId',
+						title: '计划明细id',
+						align: 'center',
+						hide: true,
+					}, {
+						field: 'employId ',
+						title: '员工id',
+						align: 'center',
+						hide: true,
+					}, {
+						field: 'remark',
+						title: '备注',
+						align: 'center'
+					}, {
+						field: 'absence',
+						title: '缺席原因',
+						toolbar: '#absence',
+						align: 'center'
+					}, {
+						field: 'isTrain',
+						title: '是否已培训',
+						templet: '#isTrain',
+						align: 'center'
+					}, {
+						field: 'signGroup',
+						title: '组',
+						align: 'center'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						toolbar: '#table-content-list',
+						align: 'center',
+						minWidth: 150,
+					}]
+				],
+				page: !0,
+				limit: 10,
+				limits: [10, 15, 20, 25, 30],
 			}),
 
 			table.on("tool(LAY-app-content-list)", function(obj) {
@@ -163,8 +163,8 @@
 						success: function(b) {
 							layer.msg('删除成功');
 							obj.del(), layer.close(e),
-							layui.table.reload('LAY-app-content-list'); //重载表格
-							
+								layui.table.reload('LAY-app-content-list'); //重载表格
+
 						},
 						error: function(e) {
 							layer.msg('删除失败');
@@ -187,8 +187,8 @@
 								success: function(e) {
 									//layer.msg(e.contractCheckVo);
 									let obj = e.data;
-									
-									form.val("layuiadmin-app-form-list",obj);
+
+									form.val("layuiadmin-app-form-list", obj);
 									//日期
 									$(".date").each(function() {
 										laydate.render({
@@ -205,7 +205,7 @@
 								form.on("submit(layuiadmin-app-form-submit)", function(data) { //sub添加提交
 									$.post(commonSrc + "api/train/planSignController/updatePlanSign",
 										data.field,
-										
+
 										function(ev) {
 											layer.msg("修改成功", {
 												time: 1000
@@ -272,7 +272,7 @@
 
 				//添加
 				,
-			add: function(othis){
+			add: function(othis) {
 				admin.popup({
 					title: '添加报名',
 					area: ['720px', '700px'],
@@ -288,24 +288,24 @@
 							})
 							//监听提交
 							form.render(null, 'layuiadmin-app-form-list'),
-							form.on('submit(layuiadmin-app-form-submit)', function(data) {
-								var field = data.field; //获取提交的字段
-								field.detailId = apply;
-								console.log(field);
-								$.post(commonSrc + "api/train/planSignController/insertPlanSign",
-									field,
-									function(ev) {
-										console.log(ev);
-										layer.msg("新增成功", {
-											time: 1000
-										}, function() {
-											layer.close(index); //执行关闭 
-											layui.table.reload('LAY-app-content-list'); //重载表格
-										})
-									});
-								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-							});
-							
+								form.on('submit(layuiadmin-app-form-submit)', function(data) {
+									var field = data.field; //获取提交的字段
+									field.detailId = apply;
+									console.log(field);
+									$.post(commonSrc + "api/train/planSignController/insertPlanSign",
+										field,
+										function(ev) {
+											console.log(ev);
+											layer.msg("新增成功", {
+												time: 1000
+											}, function() {
+												layer.close(index); //执行关闭 
+												layui.table.reload('LAY-app-content-list'); //重载表格
+											})
+										});
+									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+								});
+
 						});
 					}
 				});
@@ -327,4 +327,3 @@
 
 	});
 </script>
-

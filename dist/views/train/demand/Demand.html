@@ -25,8 +25,7 @@
 							<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>
 					    		   <a class="layui-btn layui-btn-xs" lay-event="edits">编辑</a>
 					               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-					        </script>
-
+					    </script>
 						<script>
 							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
 								var $ = layui.$,
@@ -95,7 +94,7 @@
 
 									table.on("tool(test)", function(obj) {
 										var data = obj.data;
-										if (obj.event == "look") {
+										if (obj.event === "look") {
 											location.href = "#/train/demand/Look/demandId=" + data.id;
 
 										}
@@ -281,11 +280,11 @@
 							<button class="layui-btn layuiadmin-btn-list" data-type="addt">添加</button>
 						</div>
 						<table id="type-table-toolbar" lay-filter="type-table-toolbar"></table>
-						<script type="text/html" id="table-toolbar">
+						<script type="text/html" id="table-toolbar-type">
 							<a class="layui-btn layui-btn-xs" lay-event="lookt">查看</a>
-					                		           <a class="layui-btn layui-btn-xs" lay-event="editst">编辑</a>
-					                                   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-					                        </script>
+					        <a class="layui-btn layui-btn-xs" lay-event="editst">编辑</a>
+					        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					    </script>
 						<script>
 							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
 								var $ = layui.$,
@@ -298,8 +297,6 @@
 								table.render({
 									elem: '#type-table-toolbar',
 									url: commonSrc + 'api/train/demandController/list?type=2',
-									// toolbar: '#toolbarDemo',
-
 									response: {
 										statusCode: 200 //规定成功的状态码，默认：0
 									},
@@ -334,7 +331,7 @@
 										}, {
 											fixed: 'right',
 											title: '操作',
-											toolbar: '#table-toolbar',
+											toolbar: '#table-toolbar-type',
 											align: 'center',
 											minWidth: 150,
 										}]
@@ -346,6 +343,10 @@
 
 								table.on("tool(type-table-toolbar)", function(obj) {
 									var data = obj.data;
+									if (obj.event === "lookt") {
+										location.href = "#/train/demand/Look/demandId=" + data.id;
+									
+									}
 									"del" === obj.event ? layer.confirm("确定删除此列？", function(e) {
 										$.ajax({
 											url: commonSrc + "api/train/demandController/deleteDemandById", //换成自己的url
@@ -368,7 +369,7 @@
 									}) : "editst" === obj.event && admin.popup({
 										title: "编辑信息",
 										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
+										id: "LAY-popup-content-edit-type",
 										success: function(t, layero) {
 											view(this.id).render("train/demand/DemandForm").done(function() {
 												$.ajax({
@@ -382,8 +383,8 @@
 													success: function(e) {
 														//layer.msg(e.contractCheckVo);
 														let obj = e.data;
-														
-														form.val("layuiadmin-app-form-lists", obj);
+														// console.log(obj);
+														form.val("layuiadmin-app-form-list", obj);
 														//日期
 														$(".date").each(function() {
 															laydate.render({
@@ -396,12 +397,11 @@
 														layer.msg(e);
 													}
 												})
-												form.render(null, "layuiadmin-app-form-lists"),
-													form.on("submit(layuiadmin-app-form-submit)", function(
+												form.render(null, "layuiadmin-app-form-list"),
+													form.on("submit(form-submit)", function(
 														data) { //sub添加提交
 														$.post(commonSrc + "api/train/demandController/updateDemand",
 															data.field,
-
 															function(ev) {
 																layer.msg("修改成功", {
 																	time: 1000
@@ -483,20 +483,19 @@
 													})
 													//监听提交
 													// alert();
-													form.on('submit(layuiadmin-app-form-submit)', function(data) {
+													form.on('submit(form-submit)', function(data) {
 														var field = data.field; //获取提交的字段
-														field.type = '2';
-														console.log(field)
-														// $.post(commonSrc + "api/train/demandController/insertDemand",
-														// 	data.field,
-														// 	function(ev) {
-														// 		layer.msg("新增成功", {
-														// 			time: 1000
-														// 		}, function() {
-														// 			layer.close(index); //执行关闭 
-														// 			layui.table.reload('type-table-toolbar'); //重载表格
-														// 		})
-														// 	});
+														field.type = '2';										
+														$.post(commonSrc + "api/train/demandController/insertDemand",
+															data.field,
+															function(ev) {
+																layer.msg("新增成功", {
+																	time: 1000
+																}, function() {
+																	layer.close(index); //执行关闭 
+																	layui.table.reload('type-table-toolbar'); //重载表格
+																})
+															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 													});
 												});
@@ -519,18 +518,18 @@
 						</script>
 					</div>
 					<!-- 按职位级别 -->
-				
+
 					<!-- start -->
 					<div class="layui-tab-item">
 						<div style="padding-bottom: 10px;">
 							<button class="layui-btn layuiadmin-btn-list" data-type="addl">添加</button>
 						</div>
 						<table id="level-table-toolbar" lay-filter="level-table-toolbar"></table>
-						<script type="text/html" id="table-toolbar">
+						<script type="text/html" id="table-toolbar-level">
 							<a class="layui-btn layui-btn-xs" lay-event="lookl">查看</a>
-										<a class="layui-btn layui-btn-xs" lay-event="editsl">编辑</a>
-								        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-								    </script>
+							<a class="layui-btn layui-btn-xs" lay-event="editsl">编辑</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					    </script>
 						<script>
 							layui.use(['admin', 'contlist', 'table', 'form', 'laydate'], function() {
 								var $ = layui.$,
@@ -543,8 +542,6 @@
 								table.render({
 									elem: '#level-table-toolbar',
 									url: commonSrc + 'api/train/demandController/list?type=3',
-									// toolbar: '#toolbarDemo',
-									title: '职位类型列表',
 									response: {
 										statusCode: 200 //规定成功的状态码，默认：0
 									},
@@ -579,7 +576,7 @@
 										}, {
 											fixed: 'right',
 											title: '操作',
-											toolbar: '#table-toolbar',
+											toolbar: '#table-toolbar-level',
 											align: 'center',
 											minWidth: 150,
 										}]
@@ -591,6 +588,11 @@
 
 								table.on("tool(level-table-toolbar)", function(obj) {
 									var data = obj.data;
+									console.log(obj.event);
+									if (obj.event === "lookl") {
+										location.href = "#/train/demand/Look/demandId=" + data.id;
+
+									}
 									"del" === obj.event ? layer.confirm("确定删除此列？", function(e) {
 										$.ajax({
 											url: commonSrc + "api/train/demandController/deleteDemandById", //换成自己的url
@@ -613,7 +615,7 @@
 									}) : "editsl" === obj.event && admin.popup({
 										title: "编辑信息",
 										area: ['720px', '700px'],
-										id: "LAY-popup-content-edit",
+										id: "LAY-popup-content-edit-level",
 										success: function(t, layero) {
 											view(this.id).render("train/demand/DemandForm").done(function() {
 												$.ajax({
@@ -627,7 +629,7 @@
 													success: function(e) {
 														//layer.msg(e.contractCheckVo);
 														let obj = e.data;
-														form.val("layuiadmin-app-form-lists", obj);
+														form.val("layuiadmin-app-form-list", obj);
 														//日期
 														$(".date").each(function() {
 															laydate.render({
@@ -640,8 +642,8 @@
 														layer.msg(e);
 													}
 												})
-												form.render(null, "layuiadmin-app-form-lists"),
-													form.on("submit(layuiadmin-app-form-submit)", function(
+												form.render(null, "layuiadmin-app-form-list"),
+													form.on("submit(form-submit)", function(
 														data) { //sub添加提交
 														$.post(commonSrc + "api/train/demandController/updateDemand",
 															data.field,
@@ -724,18 +726,19 @@
 														});
 													})
 													//监听提交
-													form.on('submit(layuiadmin-app-form-submit)', function(data) {
+													form.on('submit(form-submit)', function(data) {
 														var field = data.field; //获取提交的字段
 														field.type = '3';
 
 														$.post(commonSrc + "api/train/demandController/insertDemand",
 															data.field,
 															function(ev) {
+																// console.log(ev);
 																layer.msg("新增成功", {
 																	time: 1000
 																}, function() {
 																	layer.close(index); //执行关闭 
-																	layui.table.reload('LAY-app-content-list'); //重载表格
+																	layui.table.reload('level-table-toolbar'); //重载表格
 																})
 															});
 														return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
