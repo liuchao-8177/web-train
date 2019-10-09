@@ -4,7 +4,7 @@
 
 		<a lay-href="">培训运作</a>
 		<a><cite>记录评估</cite></a>
-		<!-- <a><cite></cite></a> -->
+
 	</div>
 </div>
 
@@ -29,6 +29,7 @@
 					</div>
 
 
+
 					<div class="layui-inline">
 						<label class="layui-form-label">培训地点:</label>
 						<div class="layui-input-inline">
@@ -51,6 +52,7 @@
 							<input type="text" name="endTime" class="layui-input date" id="test-laydate-end" placeholder="结束日期">
 						</div>
 					</div>
+
 
 
 
@@ -127,7 +129,6 @@
 							fixed: 'left'
 						}, {
 							field: 'topic',
-
 							title: '等效课程',
 							align: 'center'
 						}, {
@@ -179,6 +180,7 @@
 				if ("edit" == obj.event) {
 					location.href = "#/train/record/RecordAdd/planDetailId=" + data.planDetailId;
 				}
+
 
 				if ("del" === obj.event) {
 					$.ajax({

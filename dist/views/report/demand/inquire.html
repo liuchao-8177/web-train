@@ -856,28 +856,7 @@
 								}),
 													
 							form.render(null, 'app-content-list');
-							
-							// active = {
-							//     reload: function(){
-							//       // // var demoReload = $('#demoReload');
-							//       // 
-							// 	  table.reload('LAY-report-inquire-exemptt', {
-							// 	  	where: field
-							// 	  });
-							//       // //执行重载
-							//       // table.reload('testReload', {
-							//       //   page: {
-							//       //     curr: 1 //重新从第 1 页开始
-							//       //   }
-							//       //   ,where: {
-							//       //     key: {
-							//       //       id: demoReload.val()
-							//       //     }
-							//       //   }
-							//       // }, 'data');
-							//     }
-							//   };
-					
+
 							//监听搜索
 							form.on('submit(LAY-app-contlist-search-exempt)', function(data) {
 								var field = data.field;
@@ -1164,7 +1143,7 @@
 											{
 												field: 'demandTime',
 												title: '需求日期',
-												align: 'center'
+												hide: true,
 											}, {
 												field: 'employId',
 												title: '员工ID',
@@ -1176,7 +1155,7 @@
 											}, {
 												field: 'recentPlan',
 												title: '最近计划中',
-												align: 'center'
+												hide: true,
 											}, {
 												field: 'status',
 												title: '状态',
