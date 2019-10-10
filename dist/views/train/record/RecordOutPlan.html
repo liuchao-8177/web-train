@@ -23,8 +23,10 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">等效课程:</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="topic" id="topic" readonly="readonly" autocomplete="off"
-                                   placeholder="等效课程" class="layui-input">
+                            <select name="courseId" id="courseId" lay-filter="courseId" class="layui-form"
+                                    lay-verify="required" lay-search="">
+                                <option value="">请选择</option>
+                            </select>
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -61,7 +63,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">对应证书:</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="cerLevel" id="cerLevel" readonly autocomplete="off"
+                            <input type="text" name="cerLevel" id="cerLevel" readonly="readonly" autocomplete="off"
                                    placeholder="对应证书"
                                    class="layui-input">
                         </div>
@@ -70,6 +72,7 @@
                         <label class="layui-form-label">开始日期:</label>
                         <div class="layui-input-inline">
                             <input type="text" name="startTime" class="layui-input date" id="startTime"
+                                   lay-verify="required|date"
                                    placeholder="开始日期">
                         </div>
                     </div>
@@ -77,6 +80,7 @@
                         <label class="layui-form-label">结束日期:</label>
                         <div class="layui-input-inline">
                             <input type="text" name="endTime" class="layui-input date" id="endTime"
+                                   lay-verify="required|date"
                                    placeholder="结束日期">
                         </div>
                     </div>
@@ -84,15 +88,25 @@
                         <label class="layui-form-label">讲师:</label>
                         <div class="layui-input-inline">
                             <select name="teacherId" id="teacherId" lay-filter="teacherId" class="layui-form"
+                                    lay-verify="required"
                                     lay-verify="required" lay-search="">
                                 <option value="">请选择</option>
                             </select>
                         </div>
                     </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">课时:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="planClass" id="planClass" autocomplete="off"
+                                   lay-verify="required|number"
+                                   placeholder="课时"
+                                   class="layui-input">
+                        </div>
+                    </div>
                     <div class="layui-form-item" style="text-align: right;">
                         <div class="layui-input-block">
                             <button type="button" lay-submit class="layui-btn layuiadmin-btn-list" id="confirmEva"
-                                    lay-filter="layuiadmin-app-form-submit">确定
+                                    lay-filter="layui-admin-app-form-submit">确定
                             </button>
                             <a href="javascript:history.back(-1)">
                                 <button type="button" class="layui-btn layui-btn-normal daainfor">返回</button>
@@ -112,6 +126,7 @@
                             <li>备注</li>
                             <li>子课程</li>
                         </ul>
+
                         <div class="layui-tab-content">
                             <!-- 参训学员 -->
                             <div class="layui-tab-item layui-show">
@@ -137,14 +152,12 @@
                                     {{#  } }}
                                 </script>
 
-                                <script type="text/html" id="table-content-list">
+                                <script type="text/html" id="edit_student_table">
                                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edits"><i
                                             class="layui-icon layui-icon-edit"></i>编辑</a>
                                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
                                             class="layui-icon layui-icon-delete"></i>删除</a>
                                 </script>
-
-                                <!--参训学员数据列表-->
                             </div>
 
                             <!--培训评估数据列表-->
@@ -165,14 +178,15 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">课时</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="planClass" id="planClass" lay-verify="" readonly
+                                            <input type="text" name="mplanClass" id="mplanClass" lay-verify="" readonly
                                                    autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
                                         <label class="layui-form-label">评估分</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="thacherGrade" id="thacherGrade" lay-verify=""
+                                            <input type="text" name="thacherGrade" id="thacherGrade"
+                                                   lay-verify="required|number"
                                                    autocomplete="off"
                                                    class="layui-input">
                                         </div>
@@ -184,7 +198,8 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">课程评分</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="courseGrade" id="courseGrade" lay-verify=""
+                                        <input type="text" name="courseGrade" id="courseGrade"
+                                               lay-verify="required|number"
                                                autocomplete="off"
                                                class="layui-input">
                                     </div>
@@ -268,9 +283,18 @@
             laydate = layui.laydate,
             form = layui.form;
 
-        var planDetailId = layui.router().search.planDetailId;
+        //日期
+        $(".date").each(function () {
+            laydate.render({
+                elem: this,
+                trigger: 'click',
+            });
+        });
+
+        var courseMap = new Map();
 
         var teacherList;
+        var courseList;
 
         var studentList = [];
 
@@ -283,92 +307,39 @@
 
         // 初始化
         function initHtml() {
-            //获取计划明细数据
+            //等效课程
             $.ajax({
-                url: commonSrc + "api/train/planDetailController/selectPlanDetailById?id=" + planDetailId,
-                type: "get",
+                url: commonSrc + "api/train/courseController/list?pageSize=99999&pageNum=1",
+                type: "GET",
                 dataType: "json",
                 async: false,
                 success: function (res) {
-                    var data = res.data;
-                    $.ajax({
-                        url: commonSrc + "api/train/courseController/selectCourseOneById?id=" + data.courseId,
-                        type: "get",
-                        dataType: "json",
-                        async: false,
-                        success: function (res) {
-                            var data = res.data;
-                            $("#topic").val(data.topic);
-                            $("#cerLevel").val(data.cerLevel);
-                        },
-                        error: function () {
-                            alert("错误");
-                        }
+                    var tdata = res.dataList;
+                    courseList = tdata;
+                    $.each(tdata, function (i, v) {
+                        $("#courseId").append('<option value="' + v.id + '">' + v.topic + '</option>');
+                        courseMap.set(v.id, v);
                     });
-                    $("#otherName").val(data.otherName);
-                    $("#trainForm").val(data.trainForm);
-                    $("#agency").val(data.agency);
-                    $("#place").val(data.place);
-                    $("#startTime").val(data.startTime);
-                    $("#endTime").val(data.endTime);
-                    $("#planClass").val(data.planClass);
-                    $("#remark").val(data.remark);
-                    // $("#teacherId").val(data.teacherId);
-
-                    //讲师
-                    $.ajax({
-                        url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
-                        type: "GET",
-                        dataType: "json",
-                        async: false,
-                        success: function (res) {
-                            var tdata = res.dataList;
-                            teacherList = tdata;
-                            $.each(tdata, function (i, v) {
-                                if (data.teacherId == v.id) {
-                                    $("#teacherName").val(v.name);
-                                    $("#teacherId").append('<option selected="selected" value="' + v.id + '">' + v.name + '</option>');
-                                } else {
-                                    $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
-                                }
-                                sessionStorage.setItem("teacher" + v.id, v.name);
-                            });
-                        }
-                    });
-                    form.render('select');
-
-                    //报名学生
-                    $.ajax({
-                        url: commonSrc + "api/train/planSignController/selectPlanSignList?id=" + planDetailId + "&pageSize=99999&pageNum=1",
-                        type: "GET",
-                        dataType: "json",
-                        async: false,
-                        success: function (res) {
-                            var data = res.dataList;
-                            $.each(data, function (i, v) {
-                                if (v.isTrain == '2') {
-                                    var studentItem = {
-                                        'id': '',
-                                        'employId': v.employId,
-                                        'tuition': '',
-                                        'travel': '',
-                                        'selfAmount': '',
-                                        'costCenter': '',
-                                        'isPass': 2,
-                                        'isProtocol': 1,
-                                        'otherOne': ''
-                                    };
-                                    studentList.push(studentItem);
-                                }
-                            });
-                            // console.log(studentList);
-                        }
-                    });
-                },
-                error: function () {
-                    alert("错误");
                 }
             });
+
+            //讲师
+            $.ajax({
+                url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    var tdata = res.dataList;
+                    teacherList = tdata;
+                    $.each(tdata, function (i, v) {
+                        $("#teacherId").append('<option value="' + v.id + '">' + v.name + '</option>');
+                        sessionStorage.setItem("teacher" + v.id, v.name);
+                    });
+                }
+            });
+
+            form.render('select');
         }
 
         initHtml();
@@ -402,6 +373,19 @@
             //,limit: 5 //每页默认显示的数量
         });
 
+        // 监听课程
+        form.on('select(courseId)', function (data) {
+            // console.log(data.elem); //得到select原始DOM对象
+            // console.log(data.value); //得到被选中的值
+            // console.log(data.othis); //得到美化后的DOM对象
+            $("#cerLevel").val(courseMap.get(data.value).cerLevel);
+            $("#planClass").val(courseMap.get(data.value).hours)
+        });
+
+        // 监听讲师
+        form.on('select(teacherId)', function (data) {
+            $("#teacherName").val(sessionStorage.getItem("teacher" + data.value));
+        });
 
         function CellClick(that, obj) {
             //当前点击字段
@@ -720,7 +704,7 @@
                     minWidth: 80,
                     align: 'center',
                     width: '15%',
-                    toolbar: '#table-content-list'
+                    toolbar: '#edit_student_table'
                 }
             ]]
             , done: function () {
@@ -846,7 +830,10 @@
 
         // 新增数据
         $("#confirmEva").click(function () {
-            // console.log(JSON.stringify(table.cache["evaluation-student-list"]));
+            // //自定义验证规则
+            // form.verify({
+            // });
+
             var childCourseDataFlush = [];
             var fileDataFlush = [];
             var studentDataFlush = [];
@@ -911,13 +898,13 @@
             }
 
             var recordData = {
+                'courseId': $("#courseId").val(),
                 'agency': $("#agency").val(),
                 'otherName': $("#otherName").val(),
                 'place': $("#place").val(),
                 'planClass': $("#planClass").val(),
                 'remark': $("#remark").val(),
                 'trainForm': $("#trainForm").val(),
-                'planDetailId': planDetailId,
                 'courseGrade': $("#courseGrade").val(),
                 'courseRemark': $("#courseRemark").val(),
                 'teacherId': $("#teacherId").val(),
@@ -933,7 +920,7 @@
                 type: "post",
                 contentType: "application/json;charset=UTF-8",
                 dataType: 'json',
-                url: commonSrc + "api/train/evaluationRecordController/insertEvaInPlan",
+                url: commonSrc + "api/train/evaluationRecordController/insertEvaUnPlan",
                 data: JSON.stringify(recordData),
                 success: function (result) {
                     layer.msg("新增成功", {
@@ -953,3 +940,4 @@
 
     });
 </script>
+

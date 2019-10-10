@@ -6,15 +6,16 @@
             <div class="layui-inline">
                 <label class="layui-form-label">员工ID:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="employId" autocomplete="off" placeholder="员工ID" class="layui-input">
+                    <input type="text" name="employId" autocomplete="off" placeholder="员工ID" class="layui-input"
+                           lay-verify="required">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">是否通过:</label>
                 <div class="layui-input-inline">
-                    <select name="isPass" lay-verify="" lay-search="">
+                    <select name="isPass" lay-verify="required" lay-search="">
                         <option value="1">否</option>
-                        <option value="2">是</option>
+                        <option value="2" selected="selected">是</option>
                     </select>
                 </div>
             </div>
@@ -163,7 +164,7 @@
             </div>
         </div>
 
-        <!--        <input type="hidden" name="id"/>-->
+        <input type="hidden" name="id"/>
 
 
         <div class="layui-form-item" style="text-align: right;">
@@ -171,7 +172,6 @@
                 <button type="button" class="layui-btn layuiadmin-btn-list" lay-submit
                         lay-filter="layuiadmin-app-form-submit">确认
                 </button>
-                <button type="reset" class="layui-btn layuiadmin-btn-list">取消</button>
             </div>
         </div>
     </form>

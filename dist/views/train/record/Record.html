@@ -53,26 +53,23 @@
 						</div>
 					</div>
 
-
-
-
-
 					<div class="layui-form-item" style="text-align: right;">
 						<div class="layui-input-block">
 							<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
-							<button type="button" class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
-							<button type="button" class="layui-btn layuiadmin-btn-list" data-type="addInPlan">计划内添加
-							</button>
 							<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
 						</div>
 					</div>
+                </div>
 			</form>
 
 			<!-- 搜索条件结束 -->
 
 		</div>
 		<div class="layui-card-body">
-
+            <div style="padding-bottom: 10px;">
+                <button type="button" class="layui-btn layuiadmin-btn-list" data-type="add">计划外添加</button>
+                <button type="button" class="layui-btn layuiadmin-btn-list" data-type="addInPlan">计划内添加</button>
+            </div>
 			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
 
 			<div id="userBar" style="display: none;">
@@ -248,38 +245,41 @@
 				});
 			},
 			add: function(othis) {
-				admin.popup({
-                    title: '添加评估信息',
-					area: ['720px', '700px'],
-					id: 'LAY-popup-content-add',
-					success: function(layero, index) {
-						view(this.id).render('train/record/RecordForm').done(function() { //跳转
-							form.render(null, 'layuiadmin-app-form-list');
-							//日期
-							$(".date").each(function() {
-								laydate.render({
-									elem: this,
-									trigger: 'click',
-								});
-							})
-							//监听提交
-							form.on('submit(layuiadmin-app-form-submit)', function(data) {
-								var field = data.field; //获取提交的字段
-								$.post(commonSrc + "api/train/evaluationRecordController/selectEvaluationList",
-									data.field,
-									function(ev) {
-										layer.msg("新增成功", {
-											time: 1000
-										}, function() {
-											layer.close(index); //执行关闭 
-											layui.table.reload('LAY-app-content-list'); //重载表格
-										})
-									});
-								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-							});
-						});
-					}
-				});
+                // 计划外添加
+
+                location.href = "#/train/record/RecordOutPlan";
+                // admin.popup({
+                //     title: '添加评估信息',
+                // 	area: ['720px', '700px'],
+                // 	id: 'LAY-popup-content-add',
+                // 	success: function(layero, index) {
+                // 		view(this.id).render('train/record/RecordForm').done(function() { //跳转
+                // 			form.render(null, 'layuiadmin-app-form-list');
+                // 			//日期
+                // 			$(".date").each(function() {
+                // 				laydate.render({
+                // 					elem: this,
+                // 					trigger: 'click',
+                // 				});
+                // 			})
+                // 			//监听提交
+                // 			form.on('submit(layuiadmin-app-form-submit)', function(data) {
+                // 				var field = data.field; //获取提交的字段
+                // 				$.post(commonSrc + "api/train/evaluationRecordController/selectEvaluationList",
+                // 					data.field,
+                // 					function(ev) {
+                // 						layer.msg("新增成功", {
+                // 							time: 1000
+                // 						}, function() {
+                // 							layer.close(index); //执行关闭
+                // 							layui.table.reload('LAY-app-content-list'); //重载表格
+                // 						})
+                // 					});
+                // 				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                // 			});
+                // 		});
+                // 	}
+                // });
 			},
 
 			// 计划内添加
