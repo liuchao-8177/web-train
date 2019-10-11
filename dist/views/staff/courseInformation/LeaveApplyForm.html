@@ -58,7 +58,6 @@
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="isDept">
-				<option value="">--请选择--</option>
 				<option value="1">是</option>
 				<option value="2">否</option>
 			</select>
@@ -70,7 +69,6 @@
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="isUse">
-				<option value="">--请选择--</option>
 				<option value="1">是</option>
 				<option value="2">否</option>
 			</select>
@@ -88,12 +86,6 @@
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">租户编码</label>
-		<div class="layui-input-inline">
-			<script type="text/html" template>
-				<input type="text" name="tenantCode"  lay-verify="title" placeholder="租户编码" autocomplete="off" class="layui-input" />
-						</script>
-		</div>
 		<label class="layui-form-label">等效课程</label>
 		<div class="layui-input-inline">
 			<div class="layui-input-inline">
@@ -102,24 +94,27 @@
 				</script>
 			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
 		<label class="layui-form-label">培训形式</label>
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="traForm">
-				<option value="">--请选择--</option>
-				<option value="1">外部公开课</option>
-				<option value="2">外聘培训</option>
-				<option value="3">内部培训</option>
-			</select>
+					<option value="">--请选择--</option>
+					<option value="1">外部公开课</option>
+					<option value="2">外聘培训</option>
+					<option value="3">内部培训</option>
+				</select>
 			</script>
 		</div>
-
 	</div>
+
 	<script type="text/html" template>
 		<input type="hidden" name="id" id="id" />
-		<input type="hidden" name="childCourseVoList" id="childCourseFile"/>
+		<input type="hidden" name="childCourseVoList" id="childCourseVoList"/>
+		<input type="hidden" name="courseFileVoList" id="courseFileVoList"/>
+		<input type="hidden" name="childCourseBoList" id="childCourseBoList"/>
+		<input type="hidden" name="courseFileBoList" id="courseFileBoList"/>
+		<input type="hidden" name="courseFileIds" id="courseFileIds"/>
+		<input type="hidden" name="childCourseIds" id="childCourseIds"/>
 </script>
 
 
@@ -196,11 +191,28 @@
 				<div class="layui-tab-content">
 					<!--相关课件bengin  -->
 					<div class="layui-tab-item layui-show">
+						<div style="padding-bottom: 10px;">
+							<button type="button" class="layui-btn layuiadmin-btn-list" id="addthinkpo">添加
+							</button>
+						</div>
+						<table id="chek" lay-filter="chek"></table>
 
+						<script type="text/html" id="fileTypeTemplate">
+							{{#  if( d.fileType==1){ }}
+							准备清单
+							{{#  } else if  (d.fileType==2) { }}
+							讲义
+							{{#  } else if (d.fileType==3) { }}
+							试卷
+							{{#  } }}
+						</script>
+						<script type="text/html" id="edit_chek">
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+									class="layui-icon layui-icon-delete"></i>删除</a>
+						</script>
 					</div>
-					<!--相关课件end  -->
 
-					<!--子课件bengin  -->
+					<!--子课程bengin  -->
 					<div class="layui-tab-item">
 						<div style="padding-bottom: 10px;">
 							<button type="button" class="layui-btn layuiadmin-btn-list" id="addChildCourse">添加
@@ -227,7 +239,7 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label"></label>
 		<div class="layui-input-inline">
-			<input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn">
+			<input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" id="confirms">
 		</div>
 	</div>
 </div>
@@ -240,7 +252,8 @@
 
 		var teacherList;
 
-		var childCourseData = null;
+		var courseFileIds = [];
+		var childCourseIds = [];
 		// 获取讲师数据列表
 		function initHtml() {
 			//讲师
@@ -263,106 +276,11 @@
 
 		initHtml();
 
-		// var data11 = [{
-		// 	'id': '',
-		// 	'name': '',
-		// 	'teacherId': ''
-		// }]
-		var data11 = $("#childCourseFile").val();
-		console.log(data11);
-		
-		var data12 = [{
-			'id': '',
-			'type': '',
-			'fileId': ''
-		}]
-		//展示子课程已知数据
-		table.render({
-			elem: '#book',
-			cols: [
-				[ //标题栏
-					{
-						field: 'id',
-						title: 'ID',
-						width: 1,
-						hidden: true
-					}, {
-						field: 'name',
-						title: '子课程名称',
-						edit: true,
-						minWidth: 120
-					}, {
-						field: 'teacherId',
-						title: '讲师',
-						minWidth: 100,
-						event: "cellClick",
-						templet: '#childTeacherTemplate'
-					}, {
-						fixed: 'right',
-						title: '操作',
-						width: 100,
-						align: 'center',
-						toolbar: '#edit_childCourse_table'
-					}
-				]
-			],
-			done: function() {
-				$("[data-field='id']").css('display', 'none');
-			},
-			data: data11
-				//,skin: 'line' //表格风格
-				,
-			even: true
-			//,page: true //是否显示分页
-			//,limits: [5, 7, 10]
-			//,limit: 5 //每页默认显示的数量
-		});
-		//展示相关附件类型
-		/* table.render({
-			elem: '#chek',
-			cols: [
-				[ //标题栏
-					{
-						field: 'id',
-						title: 'ID',
-						width: 1,
-						hidden: true
-					}, {
-						field: 'type',
-						title: '附件类型',
-						event: "filethink",
-						minWidth: 120,
-						templet: '#childthink'
-					}, {
-						field: 'fileId',
-						title: '附件名称',
-						edit: true,
-						minWidth: 120
-					}, {
-						fixed: 'right',
-						title: '操作',
-						width: 100,
-						align: 'center',
-						toolbar: '#edit_chek'
-					}
-				]
-			],
-			done: function() {
-				$("[data-field='id']").css('display', 'none');
-			},
-			data: data12
-				//,skin: 'line' //表格风格
-				,
-			even: true
-			//,page: true //是否显示分页
-			//,limits: [5, 7, 10]
-			//,limit: 5 //每页默认显示的数量
-		}); */
 		//添加子课程空行
 		$("#addChildCourse").click(function() {
 			//定义一个空数组,用来存储之前编辑过的数据已经存放新数据
 			var dataBak = [];
-			console.log(table.cache);
+			// console.log(table.cache);
 			// 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
 			var tableBak = table.cache["book"];
 			// console.log(tableBak)
@@ -371,7 +289,7 @@
 			}
 			// console.log(dataBak)
 			dataBak.push({
-				"id": "",
+				"id": null,
 				"name": "",
 				"teacherId": ""
 			});
@@ -393,8 +311,8 @@
 			}
 			// console.log(dataBak)
 			dataBak.push({
-				"id": "",
-				"type": "",
+				"id": null,
+				"fileType": "",
 				"fileId": ""
 			});
 
@@ -408,7 +326,7 @@
 			var field = $(that).data("field");
 			//判断是否需要添加编辑框
 			// if(field=="edit")return true;
-			console.log(obj)
+			// console.log(obj)
 			//当前行数据
 			var data = obj.data;
 			//当前单元格的值
@@ -422,7 +340,7 @@
 				left = $(that).offset().left;
 
 			//输入框 这里可以自定义表单内容
-			var input = '<select name="type" lay-search="" id="' + field + '_input" lay-filter="type" data-field="' + field +
+			var input = '<select name="fileType" lay-search="" id="' + field + '_input" lay-filter="type" data-field="' + field +
 				'" class="layui-form" style="width:' + width + 'px;height:' + height + 'px">' +
 				'<option value="1">准备清单</option>' +
 				'<option value="2">讲义</option>' +
@@ -450,6 +368,7 @@
 					$("#" + field + "_input").blur(function() {
 						data[field] = $(this).val();
 						obj.update(data);
+						console.log(obj);
 					})
 				}
 			});
@@ -526,6 +445,10 @@
 			var data = obj.data;
 			if (obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
+					// if (obj.data.id !=null){
+					// 	childCourseIds.push(obj.data.id)
+					// }
+					childCourseIds.push(obj.data.id);
 					obj.del();
 					layer.close(index);
 				});
@@ -543,6 +466,7 @@
 			var data = obj.data;
 			if (obj.event === 'del') {
 				layer.confirm('真的删除行么', function(index) {
+					courseFileIds.push(obj.data.id);
 					obj.del();
 					layer.close(index);
 				});
@@ -554,38 +478,45 @@
 
 		$("#confirms").click(function() {
 			var childCourseDataFlush = [];
-			//var childTypeDataFlush = [];
+			var childTypeDataFlush = [];
 			// 获取之前编辑过的全部数据，
 			var tableBak = table.cache["book"];
-			//var tableBak = table.cache["chek"];
+			var tableBak2 = table.cache["chek"];
+
 			for (var i = 0; i < tableBak.length; i++) {
-				if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].teacherId === null) {
+				// console.log("aaaaa" + tableBak[i].id + "-" + tableBak[i].name + '-' + tableBak[i].teacherId);
+				if (tableBak[i].id === undefined && tableBak[i].name === undefined && tableBak[i].teacherId === undefined) {
 					continue;
 				}
+
 				var item = {
 					'id': tableBak[i].id,
-					'name': tableBak[i].childCourseName,
+					'name': tableBak[i].name,
 					'teacherId': tableBak[i].teacherId
-				}
+				};
+				console.log(item);
 				childCourseDataFlush.push(item); //将之前的数组备份
 			}
+
 			//相关附件
-			/* for (var i = 0; i < tableBak.length; i++) {
-				if (tableBak[i].id === undefined && tableBak[i].type === undefined && tableBak[i].fileId === null) {
+			for (var i = 0; i < tableBak2.length; i++) {
+				if (tableBak2[i].id === undefined && tableBak2[i].fileType === undefined && tableBak2[i].fileId === undefined) {
 					continue;
 				}
 				var item = {
-					'id': tableBak[i].id,
-					'type': tableBak[i].type,
-					'fileId': tableBak[i].fileId
+					'id': tableBak2[i].id,
+					'fileType': tableBak2[i].fileType,
+					'fileId': tableBak2[i].fileId
 				}
 				childTypeDataFlush.push(item); //将之前的数组备份
-			} */
-			// console.log(childCourseDataFlush);
-			
-			
-			$("#insertChildCourse").val(JSON.stringify(childCourseDataFlush));
-			//$("#insertChildBook").val(JSON.stringify(childTypeDataFlush));
+			}
+
+			$("#childCourseVoList").val(null);
+			$("#courseFileVoList").val(null);
+			$("#childCourseBoList").val(JSON.stringify(childCourseDataFlush));
+			$("#courseFileBoList").val(JSON.stringify(childTypeDataFlush));
+			$("#childCourseIds").val(JSON.stringify(childCourseIds));
+			$("#courseFileIds").val(JSON.stringify(courseFileIds));
 		});
 		
 	});

@@ -55,9 +55,8 @@
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="isDept" lay-verify="required">
-				<option value="">--请选择--</option>
 				<option value="1">是</option>
-				<option value="2">否</option>
+				<option value="2" selected="selected">否</option>
 			</select>
 			</script>
 		</div>
@@ -67,8 +66,7 @@
 		<div class="layui-input-inline">
 			<script type="text/html" template>
 				<select name="isUse" lay-verify="required">
-				<option value="">--请选择--</option>
-				<option value="1">是</option>
+				<option value="1" selected="selected">是</option>
 				<option value="2">否</option>
 			</select>
 			</script>
@@ -106,12 +104,11 @@
 		</div>
 	</div>
 
-    <!-- <input type="hidden" id="insertChildBook" name="childCourseBook" /> -->
+     <input type="hidden" id="insertChildBook" name="courseFileBoList" />
 	<input type="hidden" id="insertChildCourse" name="childCourseBoList" />
 	<script type="text/html" template>
 		<input type="hidden" name="id" />
-</script>
-
+	</script>
 
 
 	<!-- 相关附件及子课程 begin -->
@@ -139,8 +136,7 @@
                                     {{#  } else if (d.type==3) { }}
                                     试卷
                                     {{#  } }}
-                                </script>
-						</script>
+                         </script>
 
 						<script type="text/html" id="edit_chek">
 							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
@@ -505,23 +501,24 @@
 
 		$("#confirm").click(function() {
 			var childCourseDataFlush = [];
-			//var childTypeDataFlush = [];
+			var CourseFileDataFlush = [];
 			// 获取之前编辑过的全部数据，
-			var tableBak = table.cache["book"];
-			//var tableBak = table.cache["chek"];
-			for (var i = 0; i < tableBak.length; i++) {
-				if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].teacherId === null) {
+			var tableBak1 = table.cache["book"];
+			var tableBak = table.cache["chek"];
+			for (var i = 0; i < tableBak1.length; i++) {
+				if (tableBak1[i].id === undefined && tableBak1[i].childCourseName === undefined && tableBak1[i].teacherId === null) {
 					continue;
 				}
 				var item = {
-					'id': tableBak[i].id,
-					'name': tableBak[i].childCourseName,
-					'teacherId': tableBak[i].teacherId
+					'id': tableBak1[i].id,
+					'name': tableBak1[i].childCourseName,
+					'teacherId': tableBak1[i].teacherId
 				}
 				childCourseDataFlush.push(item); //将之前的数组备份
 			}
+
 			//相关附件
-			/* for (var i = 0; i < tableBak.length; i++) {
+			for (var i = 0; i < tableBak.length; i++) {
 				if (tableBak[i].id === undefined && tableBak[i].type === undefined && tableBak[i].fileId === null) {
 					continue;
 				}
@@ -530,13 +527,11 @@
 					'type': tableBak[i].type,
 					'fileId': tableBak[i].fileId
 				}
-				childTypeDataFlush.push(item); //将之前的数组备份
-			} */
-			// console.log(childCourseDataFlush);
-			
+				CourseFileDataFlush.push(item); //将之前的数组备份
+			}
 			
 			$("#insertChildCourse").val(JSON.stringify(childCourseDataFlush));
-			//$("#insertChildBook").val(JSON.stringify(childTypeDataFlush));
+			$("#insertChildBook").val(JSON.stringify(CourseFileDataFlush));
 		});
 	});
 </script>

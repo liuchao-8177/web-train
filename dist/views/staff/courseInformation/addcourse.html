@@ -443,16 +443,112 @@
 									//layer.msg(e.contractCheckVo);
 									let obj = e.data;
 									obj.childCourseVoList = JSON.stringify(obj.childCourseVoList);
-									console.log(obj.childCourseVoList);
+									// console.log(obj.childCourseVoList);
+									obj.courseFileVoList = JSON.stringify(obj.courseFileVoList);
 									form.val("layuiadmin-app-form-list", obj);
 									//layTime(); //时间渲染
+
+									//展示子课程已知数据
+									var data11 = JSON.parse($("#childCourseVoList").val());
+									var data12 = JSON.parse($("#courseFileVoList").val());
+									// console.log("aa" + data11);
+									table.render({
+										elem: '#book',
+										cols: [
+											[ //标题栏
+												{
+													field: 'id',
+													title: 'ID',
+													width: 1,
+													hidden: true
+												}, {
+												field: 'name',
+												title: '子课程名称',
+												edit: true,
+												minWidth: 120
+											}, {
+												field: 'teacherId',
+												title: '讲师',
+												minWidth: 100,
+												event: "cellClick",
+												templet: '#childTeacherTemplate'
+											}, {
+												fixed: 'right',
+												title: '操作',
+												width: 100,
+												align: 'center',
+												toolbar: '#edit_childCourse_table'
+											}
+											]
+										],
+										done: function() {
+											$("[data-field='id']").css('display', 'none');
+										},
+										data: data11
+										//,skin: 'line' //表格风格
+										,
+										even: true
+										//,page: true //是否显示分页
+										//,limits: [5, 7, 10]
+										//,limit: 5 //每页默认显示的数量
+									});
+
+									//展示相关附件类型
+									table.render({
+                                        elem: '#chek',
+                                        cols: [
+                                            [ //标题栏
+                                                {
+                                                    field: 'id',
+                                                    title: 'ID',
+                                                    width: 1,
+                                                    hidden: true
+                                                }, {
+                                                    field: 'fileType',
+                                                    title: '附件类型',
+                                                    event: "filethink",
+                                                    minWidth: 120,
+                                                    templet: '#fileTypeTemplate'
+                                                }, {
+                                                    field: 'fileId',
+                                                    title: '附件名称',
+                                                    edit: true,
+                                                    minWidth: 120
+                                                }, {
+                                                    fixed: 'right',
+                                                    title: '操作',
+                                                    width: 100,
+                                                    align: 'center',
+                                                    toolbar: '#edit_chek'
+                                                }
+                                            ]
+                                        ],
+                                        done: function() {
+                                            $("[data-field='id']").css('display', 'none');
+                                        },
+                                        data: data12
+                                            //,skin: 'line' //表格风格
+                                            ,
+                                        even: true
+                                        //,page: true //是否显示分页
+                                        //,limits: [5, 7, 10]
+                                        //,limit: 5 //每页默认显示的数量
+                                    });
+									// console.log("dd" + table.cache["book"])
+
 								},
 								error: function(e) {
 									layer.msg(e);
 								}
-							})
+							});
+							console.log(table.cache["chek"]);
 							form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
 								data) {
+									data.field.childCourseBoList = JSON.parse(data.field.childCourseBoList);
+									data.field.courseFileBoList = JSON.parse(data.field.courseFileBoList);
+									data.field.childCourseIds = JSON.parse(data.field.childCourseIds);
+									data.field.courseFileIds = JSON.parse(data.field.courseFileIds);
+									console.log(JSON.stringify(data.field));
 									$.ajax({
 									    type: "post",
 									    contentType: "application/json;charset=UTF-8",
@@ -566,6 +662,7 @@
 							})
 							$("#editCourseAttributeId").click(function(){
 								admin.popup({
+									id: 'addCourseAttributeFrame',
 									title: '添加课程属性',
 									area: ['600px', '450px'],
 									success: function(layero1, index) {
@@ -576,10 +673,9 @@
 												table.on('row(arrtname)', function (obj) {
 													var data = obj.data;
 													var datanames=data.attrName;
-													console.log(datanames);
+													// console.log(datanames);
 													//$("#kechengleixing").attr('value',dataname);
 													$("#addttras").val(datanames);
-												
 												});
 												
 											}
@@ -610,7 +706,7 @@
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
 								field.childCourseBoList=JSON.parse(field.childCourseBoList);
-								//field.childCourseBook=JSON.parse(field.childCourseBook);
+								field.courseFileBoList=JSON.parse(field.courseFileBoList);
 								let listtypeIdAll = [];
 								let listTypeName = [];
 								let listattributeIdAll = [];
@@ -659,6 +755,7 @@
 										field.attributeId=listattributeIdAll[i]
 									}
 								}
+
 								$.ajax({
 								    type: "post",
 								    contentType: "application/json;charset=UTF-8",
