@@ -250,22 +250,21 @@
                                             })
                                         }) : "edits" === obj.event && admin.popup({
                                             title: "编辑参训学员",
-                                            area: ['720px', '700px'],
+                                            area: ['720px', '800px'],
                                             id: "LAY-popup-content-edit",
                                             success: function (t, layero) {
-                                                view(this.id).render("train/record/RecordStudentForm").done(function () {
+                                                view(this.id).render("train/record/RecordStudentEdit").done(function () {
                                                     $.ajax({
                                                         url: commonSrc + "api/train/evaluationStudentController/selectEvaStudentById", //换成自己的url
                                                         type: "GET",
                                                         dataType: "json",
                                                         data: {
                                                             id: data.id
-
                                                         },
                                                         success: function (e) {
                                                             //layer.msg(e.contractCheckVo);
                                                             let obj = e.data;
-                                                            form.val("layuiadmin-app-form-list-recordStudent", obj);
+                                                            form.val("layuiadmin-app-form-list-recordStudentEdit", obj);
                                                             //日期
                                                             $(".date").each(function () {
                                                                 laydate.render({
@@ -278,7 +277,7 @@
                                                             layer.msg(e);
                                                         }
                                                     })
-                                                    form.render(null, "layuiadmin-app-form-list-recordStudent"),
+                                                    form.render(null, "layuiadmin-app-form-list-recordStudentEdit"),
                                                         form.on("submit(layuiadmin-app-form-submit)", function (
                                                             data) { //sub添加提交
                                                             // console.log(data.field);
@@ -348,22 +347,23 @@
                                     ,
                                     add: function (othis) {
                                         admin.popup({
-                                            title: '添加计划信息',
-                                            area: ['720px', '700px'],
+                                            title: '添加参训学员',
+                                            area: ['720px', '800px'],
                                             id: 'LAY-popup-content-add',
                                             success: function (layero, index) {
-                                                view(this.id).render('train/record/RecordAddForm').done(function () { //跳转
-                                                    form.render(null, 'layuiadmin-app-form-list');
+                                                view(this.id).render('train/record/RecordStudentEdit').done(function () { //跳转
+                                                    form.render(null, 'layuiadmin-app-form-list-recordStudentEdit');
                                                     //日期
                                                     $(".date").each(function () {
                                                         laydate.render({
                                                             elem: this,
                                                             trigger: 'click',
                                                         });
-                                                    })
+                                                    });
                                                     //监听提交
                                                     form.on('submit(layuiadmin-app-form-submit)', function (data) {
                                                         var field = data.field; //获取提交的字段
+                                                        field.detailId = planDetailId;
                                                         $.post(commonSrc + "api/train/evaluationStudentController/insertEvaStudent",
                                                             data.field,
                                                             function (ev) {
@@ -371,7 +371,7 @@
                                                                     time: 1000
                                                                 }, function () {
                                                                     layer.close(index); //执行关闭
-                                                                    layui.table.reload('LAY-app-content-list'); //重载表格
+                                                                    layui.table.reload('evaluation-course-list'); //重载表格
                                                                 })
                                                             });
                                                         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

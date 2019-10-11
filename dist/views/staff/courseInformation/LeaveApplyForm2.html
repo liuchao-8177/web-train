@@ -6,7 +6,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">课程类型</label>
 					<div class="layui-input-inline">
-						<input name="typeName" lay-verify="" placeholder="请输入列表存在的课程类型" autocomplete="off" class="layui-input">
+						<input name="typeName" id="kechengleixing" lay-verify="" value="" placeholder="请输入列表存在的课程类型" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
@@ -73,9 +73,6 @@
 				},
 				cols: [
 					[{
-						type: 'checkbox',
-						fixed: "left"
-					}, {
 						field: 'id',
 						title: 'id',
 						hide: true,
