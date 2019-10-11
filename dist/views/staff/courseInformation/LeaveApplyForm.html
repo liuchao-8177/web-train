@@ -2,13 +2,13 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">课程类型</label>
 		<div class="layui-input-inline" id="layerDemo">
-					<script type="text/html" template>
-						<!--<input type="text" name="attributeId" lay-verify="title" autocomplete="off" placeholder="证书等级" class="layui-input">-->
+			<script type="text/html" template>
+				<!--<input type="text" name="attributeId" lay-verify="title" autocomplete="off" placeholder="证书等级" class="layui-input">-->
 						<select name="typeId" lay-search="" id="editCourseTypeId" lay-filter="editCourseTypeId" class="layui-form">
 							<option value="">请选择</option>
 						</select>
 					</script>
-				</div>
+		</div>
 		<label class="layui-form-label">课程属性</label>
 		<div class="layui-input-inline" id="layerBute">
 			<script type="text/html" template>
@@ -118,7 +118,8 @@
 
 	</div>
 	<script type="text/html" template>
-		<input type="hidden" name="id" />
+		<input type="hidden" name="id" id="id" />
+		<input type="hidden" name="childCourseVoList" id="childCourseFile"/>
 </script>
 
 
@@ -195,15 +196,28 @@
 				<div class="layui-tab-content">
 					<!--相关课件bengin  -->
 					<div class="layui-tab-item layui-show">
-			
+
 					</div>
 					<!--相关课件end  -->
 
 					<!--子课件bengin  -->
 					<div class="layui-tab-item">
-
+						<div style="padding-bottom: 10px;">
+							<button type="button" class="layui-btn layuiadmin-btn-list" id="addChildCourse">添加
+							</button>
+						</div>
+						<table id="book" lay-filter="book"></table>
+						<script type="text/html" id="childTeacherTemplate">
+							{{# if( sessionStorage.getItem("childTeacher" + d.teacherId)==null){ }}
+						    {{#  } else {  }}
+						    <span>{{ sessionStorage.getItem("childTeacher" + d.teacherId) }}</span>
+						    {{#  } }}
+						</script>
+						<script type="text/html" id="edit_childCourse_table">
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+						            class="layui-icon layui-icon-delete"></i>删除</a>
+						</script>
 					</div>
-
 					<!--子课件end  -->
 				</div>
 			</div>
@@ -217,3 +231,362 @@
 		</div>
 	</div>
 </div>
+<script>
+	layui.use(['table', 'layer', 'admin', 'laydate', 'form'], function() {
+		var table = layui.table;
+		var $ = layui.$;
+		var laydate = layui.laydate;
+		var form = layui.form;
+
+		var teacherList;
+
+		var childCourseData = null;
+		// 获取讲师数据列表
+		function initHtml() {
+			//讲师
+			$.ajax({
+			    url: commonSrc + "api/train/teacherController/list?pageSize=99999&pageNum=1",
+			    type: "GET",
+			    dataType: "json",
+			    async: false,
+			    success: function (res) {
+			        var data = res.dataList;
+			        teacherList = data;
+			        $.each(data, function (i, v) {
+			            
+			            sessionStorage.setItem("childTeacher" + v.id, v.name);
+			        });
+			    }
+			});
+
+		}
+
+		initHtml();
+
+		// var data11 = [{
+		// 	'id': '',
+		// 	'name': '',
+		// 	'teacherId': ''
+		// }]
+		var data11 = $("#childCourseFile").val();
+		console.log(data11);
+		
+		var data12 = [{
+			'id': '',
+			'type': '',
+			'fileId': ''
+		}]
+		//展示子课程已知数据
+		table.render({
+			elem: '#book',
+			cols: [
+				[ //标题栏
+					{
+						field: 'id',
+						title: 'ID',
+						width: 1,
+						hidden: true
+					}, {
+						field: 'name',
+						title: '子课程名称',
+						edit: true,
+						minWidth: 120
+					}, {
+						field: 'teacherId',
+						title: '讲师',
+						minWidth: 100,
+						event: "cellClick",
+						templet: '#childTeacherTemplate'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						width: 100,
+						align: 'center',
+						toolbar: '#edit_childCourse_table'
+					}
+				]
+			],
+			done: function() {
+				$("[data-field='id']").css('display', 'none');
+			},
+			data: data11
+				//,skin: 'line' //表格风格
+				,
+			even: true
+			//,page: true //是否显示分页
+			//,limits: [5, 7, 10]
+			//,limit: 5 //每页默认显示的数量
+		});
+		//展示相关附件类型
+		/* table.render({
+			elem: '#chek',
+			cols: [
+				[ //标题栏
+					{
+						field: 'id',
+						title: 'ID',
+						width: 1,
+						hidden: true
+					}, {
+						field: 'type',
+						title: '附件类型',
+						event: "filethink",
+						minWidth: 120,
+						templet: '#childthink'
+					}, {
+						field: 'fileId',
+						title: '附件名称',
+						edit: true,
+						minWidth: 120
+					}, {
+						fixed: 'right',
+						title: '操作',
+						width: 100,
+						align: 'center',
+						toolbar: '#edit_chek'
+					}
+				]
+			],
+			done: function() {
+				$("[data-field='id']").css('display', 'none');
+			},
+			data: data12
+				//,skin: 'line' //表格风格
+				,
+			even: true
+			//,page: true //是否显示分页
+			//,limits: [5, 7, 10]
+			//,limit: 5 //每页默认显示的数量
+		}); */
+		//添加子课程空行
+		$("#addChildCourse").click(function() {
+			//定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+			var dataBak = [];
+			console.log(table.cache);
+			// 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+			var tableBak = table.cache["book"];
+			// console.log(tableBak)
+			for (var i = 0; i < tableBak.length; i++) {
+				dataBak.push(tableBak[i]); //将之前的数组备份
+			}
+			// console.log(dataBak)
+			dataBak.push({
+				"id": "",
+				"name": "",
+				"teacherId": ""
+			});
+
+			table.reload("book", {
+				data: dataBak // 将新数据重新载入表格
+			});
+		});
+		//添加相关附件空行
+		$("#addthinkpo").click(function() {
+			//定义一个空数组,用来存储之前编辑过的数据已经存放新数据
+			var dataBak = [];
+			console.log(table.cache);
+			// 获取之前编辑过的全部数据，前提是编辑数据是要更新缓存，stock_add_table 为表格的id
+			var tableBak = table.cache["chek"];
+			// console.log(tableBak)
+			for (var i = 0; i < tableBak.length; i++) {
+				dataBak.push(tableBak[i]); //将之前的数组备份
+			}
+			// console.log(dataBak)
+			dataBak.push({
+				"id": "",
+				"type": "",
+				"fileId": ""
+			});
+
+			table.reload("chek", {
+				data: dataBak // 将新数据重新载入表格
+			});
+		});
+		//相关附件弹出层
+		function filethink(that, obj) {
+			//当前点击字段
+			var field = $(that).data("field");
+			//判断是否需要添加编辑框
+			// if(field=="edit")return true;
+			console.log(obj)
+			//当前行数据
+			var data = obj.data;
+			//当前单元格的值
+			var value = data[field];
+
+			//当前点击td的宽高
+			var height = $(that)[0].offsetHeight,
+				width = $(that)[0].offsetWidth;
+			//当前点击td的坐标
+			var top = $(that).offset().top,
+				left = $(that).offset().left;
+
+			//输入框 这里可以自定义表单内容
+			var input = '<select name="type" lay-search="" id="' + field + '_input" lay-filter="type" data-field="' + field +
+				'" class="layui-form" style="width:' + width + 'px;height:' + height + 'px">' +
+				'<option value="1">准备清单</option>' +
+				'<option value="2">讲义</option>' +
+				'<option value="3">试卷</option>' +
+				'</select>';
+
+			//弹出层
+			layer.open({
+				type: 1,
+				title: false,
+				page: true,
+				limit: 1,
+				closeBtn: 0,
+				area: [width + "px", height + "px"],
+				shade: [0.01, '#fff'],
+				shadeClose: true,
+				content: input //这里content是一个普通的String
+					,
+				offset: [top, left],
+				success: function() {
+					//console.log("success")
+					//使弹出层相对定位
+					$(".layui-layer-page").css("position", "absolute");
+					//设置输入框的值
+					$("#" + field + "_input").blur(function() {
+						data[field] = $(this).val();
+						obj.update(data);
+					})
+				}
+			});
+		}
+		// 讲师弹出层
+		function cellClick(that, obj) {
+			// alert();
+			//当前点击字段
+			var field = $(that).data("field");
+			//判断是否需要添加编辑框
+			// if(field=="edit")return true;
+
+			//当前行数据
+			var data = obj.data;
+			//当前单元格的值
+			var value = data[field];
+
+			//当前点击td的宽高
+			var height = $(that)[0].offsetHeight,
+				width = $(that)[0].offsetWidth;
+			//当前点击td的坐标
+			var top = $(that).offset().top,
+				left = $(that).offset().left;
+
+			//输入框 这里可以自定义表单内容
+			var input = '<select name="childTeacherId" lay-search="" id="' + field +
+				'_input" lay-filter="childTeacherId" data-field="' + field + '" class="layui-form" style="width:' + width +
+				'px;height:' + height + 'px">' +
+				'<option value="">请选择</option>' +
+				'</select>';
+			// var input = '<input type="text" lay-verify="date" placeholder="yyyy-MM-dd" class="layui-input" id="'+field+'_input" data-field="'+field+'" style="width:'+width+'px;height:'+height+'px">';
+
+			//日期弹出层
+			layer.open({
+				type: 1,
+				title: false,
+				page: true,
+				limit: 1,
+				closeBtn: 0,
+				area: [width + "px", height + "px"],
+				shade: [0.01, '#fff'],
+				shadeClose: true,
+				content: input //这里content是一个普通的String
+					,
+				offset: [top, left],
+				success: function() {
+					// 讲师下拉列表
+					$.each(teacherList, function(i, v) {
+						// console.log(v.id);
+						$("#" + field + "_input").append('<option value="' + v.id + '">' + v.name + '</option>');
+					});
+					//使弹出层相对定位
+					$(".layui-layer-page").css("position", "absolute");
+
+					//设置输入框的值
+					$("#" + field + "_input").val(value);
+					$("#" + field + "_input").blur(function() {
+						//同步更新缓存对应的值
+						data[field] = $(this).val();
+						obj.update(data);
+					})
+				}
+			});
+
+		}
+
+		// 监听子课程工具条
+		table.on('tool(book)', function(obj) {
+			switch (obj.event) {
+				case 'cellClick':
+					cellClick(this, obj);
+					break;
+			};
+			var data = obj.data;
+			if (obj.event === 'del') {
+				layer.confirm('真的删除行么', function(index) {
+					obj.del();
+					layer.close(index);
+				});
+			} else if (obj.event === 'edit') {
+
+			}
+		});
+		//监听相关附件
+		table.on('tool(chek)', function(obj) {
+			switch (obj.event) {
+				case 'filethink':
+					filethink(this, obj);
+					break;
+			};
+			var data = obj.data;
+			if (obj.event === 'del') {
+				layer.confirm('真的删除行么', function(index) {
+					obj.del();
+					layer.close(index);
+				});
+			} else if (obj.event === 'edit') {
+
+			}
+		});
+
+
+		$("#confirms").click(function() {
+			var childCourseDataFlush = [];
+			//var childTypeDataFlush = [];
+			// 获取之前编辑过的全部数据，
+			var tableBak = table.cache["book"];
+			//var tableBak = table.cache["chek"];
+			for (var i = 0; i < tableBak.length; i++) {
+				if (tableBak[i].id === undefined && tableBak[i].childCourseName === undefined && tableBak[i].teacherId === null) {
+					continue;
+				}
+				var item = {
+					'id': tableBak[i].id,
+					'name': tableBak[i].childCourseName,
+					'teacherId': tableBak[i].teacherId
+				}
+				childCourseDataFlush.push(item); //将之前的数组备份
+			}
+			//相关附件
+			/* for (var i = 0; i < tableBak.length; i++) {
+				if (tableBak[i].id === undefined && tableBak[i].type === undefined && tableBak[i].fileId === null) {
+					continue;
+				}
+				var item = {
+					'id': tableBak[i].id,
+					'type': tableBak[i].type,
+					'fileId': tableBak[i].fileId
+				}
+				childTypeDataFlush.push(item); //将之前的数组备份
+			} */
+			// console.log(childCourseDataFlush);
+			
+			
+			$("#insertChildCourse").val(JSON.stringify(childCourseDataFlush));
+			//$("#insertChildBook").val(JSON.stringify(childTypeDataFlush));
+		});
+		
+	});
+</script>

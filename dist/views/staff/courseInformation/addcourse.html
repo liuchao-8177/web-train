@@ -205,13 +205,6 @@
 			    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
 			    {{#  } }}
 			</script>
-			<script type="text/html" id="buttonTpl">
-				{{#  if(d.isDept==1){ }}
-			    <button class="layui-btn layui-btn-xs">是</button>
-			    {{#  } else {  }}
-			    <button class="layui-btn layui-btn-danger layui-btn-xs">否</button>
-			    {{#  } }}
-			</script>
 
 			<script type="text/html" id="table-content-list">
 				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edites"><i class="layui-icon layui-icon-edit"></i>编辑</a>
@@ -314,9 +307,6 @@
 
 				cols: [
 					[{
-						type: 'checkbox',
-						fixed: "left"
-					}, {
 						field: 'id',
 						title: 'id',
 						hide: true,
@@ -432,13 +422,13 @@
 							obj.del(), layer.close(e)
 						},
 						error: function(e) {
-							layer.msg('删除失败')
+							layer.msg("删除失败")
 							layer.msg(e);
 						}
 					})
 				}) : "edites" === obj.event && admin.popup({
 					title: "编辑课程信息",
-					area: ['720px', '700px'],
+					area: ['750px', '720px'],
 					id: "LAY-popup-content-edit",
 					success: function(t, layero) {
 						view(this.id).render("staff/courseInformation/LeaveApplyForm", data).done(function() {
@@ -452,6 +442,8 @@
 								success: function(e) {
 									//layer.msg(e.contractCheckVo);
 									let obj = e.data;
+									obj.childCourseVoList = JSON.stringify(obj.childCourseVoList);
+									console.log(obj.childCourseVoList);
 									form.val("layuiadmin-app-form-list", obj);
 									//layTime(); //时间渲染
 								},
@@ -557,7 +549,16 @@
 									success: function(layero1, index) {
 						                window.TianKeIndex = index;
 										view(this.id).render('staff/courseInformation/LeaveApplyForm2').done(function() {
-												form.render(null, 'layuiadmin-app-form-list');
+												form.render(null, 'contentTable');
+												
+												table.on('row(contentTable)', function (obj) {
+													var data = obj.data;
+													var dataname=data.typeName;
+													//$("#kechengleixing").attr('value',dataname);
+													$("#kechengleixing").val(dataname);
+												
+												});
+												
 											}
 										)
 									},
@@ -571,6 +572,15 @@
 										window.HianKeIndex = index;
 										view(this.id).render('staff/courseInformation/LeaveApplyForm4').done(function() {
 												form.render(null, 'layuiadmin-app-form-list');
+												
+												table.on('row(arrtname)', function (obj) {
+													var data = obj.data;
+													var datanames=data.attrName;
+													console.log(datanames);
+													//$("#kechengleixing").attr('value',dataname);
+													$("#addttras").val(datanames);
+												
+												});
 												
 											}
 										)
@@ -599,12 +609,14 @@
 							//监听提交
 							form.on('submit(layuiadmin-app-form-submit)', function(data) {
 								var field = data.field; //获取提交的字段
+								field.childCourseBoList=JSON.parse(field.childCourseBoList);
+								//field.childCourseBook=JSON.parse(field.childCourseBook);
 								let listtypeIdAll = [];
 								let listTypeName = [];
 								let listattributeIdAll = [];
 								let lsitattrName = [];
 								
-								console.log(field)
+								
                                 //课程类型
 								$.ajax({
 									url: commonSrc + "api/train/courseTypeController/list",

@@ -6,7 +6,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">课程属性</label>
 					<div class="layui-input-inline">
-						<input name="attrName" lay-verify="" placeholder="请输入列表存在的课程属性" autocomplete="off" class="layui-input">
+						<input name="attrName" id="addttras" lay-verify="" placeholder="请输入列表存在的课程属性" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
@@ -73,9 +73,6 @@
 				},
 				cols: [
 					[{
-						type: 'checkbox',
-						fixed: "left"
-					}, {
 						field: 'id',
 						title: 'id',
 						hide: true,
@@ -91,6 +88,7 @@
 						fixed: 'right',
 						title: '操作',
 						toolbar: '#tablelist',
+						align: 'center',
 						minWidth: 150,
 					}]
 				],
