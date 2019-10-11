@@ -10,11 +10,11 @@
 			"title": "员工信息",
 			"jump": "staff/addstaff/addstaffbankapply"
 		}, {
-			"name": "CourseInformation",
+			"name": "courseInformation",
 			"title": "课程信息",
 			"jump": "staff/courseInformation/addcourse"
 		}, {
-			"name": "LecturerInformation",
+			"name": "lecturerInformation",
 			"title": "讲师信息",
 			"jump": "staff/lecturer/addlecturer"
 		}, {
