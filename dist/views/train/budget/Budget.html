@@ -15,14 +15,15 @@
 					<label class="layui-form-label">课程类型:</label>
 					<div class="layui-input-inline">
 						<script type="text/html" template>
-							<input type="text" name="courseTypeId" lay-verify="title" autocomplete="off" placeholder="课程类型"
-						               class="layui-input">
+							<select name="courseTypeId" id="courseTypeId" lay-verify="courseTypeId">
+							<option value ="">请选择</option>
+							</select>
 						    </script>
 					</div>
 					<label class="layui-form-label">等效课程:</label>
 					<div class="layui-input-inline">
 						<script type="text/html" template>
-							<select name="courseId" lay-filter="editPlanDetailCourseId" id="editPlanDetailCourseId " lay-search="">
+							<select name="courseId" lay-filter="selectPlanDetailCourseId" id="selectPlanDetailCourseId" lay-search="">
 								<option value="">请选择</option>	
 							</select>
 						    </script>
@@ -30,26 +31,18 @@
 				</div>
 				<div class="layui-form-item" style="text-align: right;">
 					<div class="layui-input-block">
-						<button type="button" class="layui-btn layuiadmin-btn-list" id="doSearch">搜索</button>
+						<button type="button" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search" id="doSearch">搜索</button>
 						<button type="reset" class="layui-btn layuiadmin-btn-list">重置</button>
 					</div>
 				</div>
-				<input type="hidden" name="courseAttributeId" />
-				<input type="hidden" name="courseId"/>
-				<input type="hidden" name="courseTypeId"/>
+				
 			
 </div>
 			<!-- 搜索条件结束 -->
 		<div class="layui-card-body">
-			<script type="text/html" id="course">
-						 {{#  if(sessionStorage.getItem(d.courseId)==null){ }}
-						      
-						 {{#  } else {  }}
-						 <span>{{ sessionStorage.getItem(d.courseId) }}</span>
-						 {{#  } }}
-						 
-			 </script>
+			
 			<table class="layui-hide" id="LAY-app-content-list" lay-filter="LAY-app-content-list"></table>
+			
 			<!-- 数据表格结束 -->
 			<!-- 添加和修改的弹出层开始 -->
 		</div>
@@ -66,19 +59,36 @@
 			laydate = layui.laydate,
 			form = layui.form;
       $.ajax({
-      	url: commonSrc +'api/train/trainBudgetController/list', //换成自己的url
+      	url: commonSrc + 'api/train/courseController/list?pageNum=1&pageSize=99999', //换成自己的url
       	type: "GET",
       	dataType: "json",
       	success: function(e) {
-      			var data = e.dataList
-      			$.each(data, function(i,v){
-      				var id = v.id;
-      				var topic = v.topic;
-      				sessionStorage.setItem(id, topic);
-      			});
-      
+      		var data = e.dataList
+      		$.each(data, function(i, v) {
+      			var id = v.id;
+      			var topic = v.topic;
+      			// alert($("#selectPlanDetailCourseId").val());
+      			$("#selectPlanDetailCourseId").append('<option value="'+ id + '">' + topic + '</option>');
+      			sessionStorage.setItem(id, topic);
+      		});
+      		form.render('select');
       	},
       });
+	  $.ajax({
+	  	url: commonSrc + 'api/train/courseTypeController/list', //换成自己的url
+	  	type: "GET",
+	  	dataType: "json",
+	  	success: function(e) {
+	  		var data = e.dataList
+	  		$.each(data, function(i, v) {
+	  			var id = v.id;
+	  			var name = v.typeName;
+				// alert(id + name);
+				$("#courseTypeId").append('<option value="'+ id + '">' + name + '</option>');
+	  			sessionStorage.setItem(id, name);
+	  		});
+	  	}
+	  });
 
 		//绑定时间选择器
 		laydate.render({
@@ -192,42 +202,6 @@
 			}),
 			table.on("tool(LAY-app-content-list)", function(obj){
 				var data = obj.data;
-				if("look" === obj.event){
-					admin.popup({
-						title: "查看员工信息",
-						area: ['80%', '100%'],
-						id: "LAY-popup-content-view",
-						success: function(t, layero) {
-							view(this.id).render("train/budget/").done(function() {
-								$.ajax({
-									 url: './json/adminManagement/asset.json', //换成自己的url
-									// stype: "POST",
-									dataType: "json",
-									data: {
-										id: data.id
-									},
-									success: function(e) {
-										//layer.msg(e.contractCheckVo);
-										let obj = e;
-										form.val("layuiadmin-app-form-list", {
-											"id": obj.id,
-											"name": obj.name,
-											"sex": obj.sex,
-											"code": obj.code,
-											"phone": obj.phone,
-											"homeAddress": obj.homeAddress
-											
-										});
-									
-									},
-								})
-								form.render(null, "layuiadmin-app-form-list"), form.on("submit(layuiadmin-app-form-submit)", function(
-									data) {
-								})
-							})
-						}
-					}) 
-				}
 				"del" === obj.event ? layer.confirm("确定删除此条记录？", function(e) {
 					$.ajax({
 						url: './json/adminManagement/asset.json', //换成自己的url
@@ -320,6 +294,8 @@
 			var field = data.field;
 			// alert(field);
 			console.log(field);
+			
+			
 			//执行重载
 			table.reload('LAY-app-content-list', {
 				where: field
@@ -424,14 +400,3 @@
 		})
 	});
 </script>
-			<script type="text/html" id="state">
-				{{# if(d.state==1){ }}
-			       <button class="layui-btn layui-btn-xs">正常</button>
-			    {{#  } else if(d.state==2) { }}
-			       <button class="layui-btn layui-btn-danger layui-btn-xs">维修</button>
-			    {{#  } else if(d.state==3) { }}
-			        <button class="layui-btn  layui-btn-disabled layui-btn-xs">报废</button>
-			    {{#  } else { }}
-			       <button class="layui-btn layui-btn-primary layui-btn-xs">其他</button>
-			    {{#  } }}
-			  </script>
