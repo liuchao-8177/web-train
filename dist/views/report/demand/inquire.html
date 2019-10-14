@@ -334,7 +334,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">部门名称</label>
 							<div class="layui-input-inline">
-								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input"/>
+								<input type="text" name="" lay-verify="" placeholder="部门名称*" autocomplete="off" class="layui-input" />
 							</div>
 						</div>
 
@@ -384,7 +384,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">培训机构</label>
 							<div class="layui-input-inline">
-								<input type="agency" name="agency" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input"/>
+								<input type="agency" name="agency" lay-verify="" placeholder="培训机构" autocomplete="off" class="layui-input" />
 							</div>
 						</div>
 						<div class="layui-inline">
@@ -481,7 +481,7 @@
 						<table id="LAY-report-inquire-havenot" lay-filter="LAY-report-inquire-havenot"></table>
 					</div>
 
-					
+
 
 					<script>
 						layui.use(['admin', 'contlist', 'table', 'form', 'laydate','element'], function() {
@@ -1096,6 +1096,13 @@
 							<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
 						</button>
 					</div>
+					<script type="text/html" id="status">
+						{{#  if(d.status==1){ }}
+					           未培训
+					       {{#  } else {  }}
+					           已培训
+					       {{#  } }}
+					</script>
 
 					<div class="layui-card-body">
 						<div class="layui-form-item">
@@ -1159,6 +1166,7 @@
 											}, {
 												field: 'status',
 												title: '状态',
+												toolbar: '#status',
 												align: 'center'
 											}, {
 												field: 'topic',
