@@ -150,7 +150,6 @@
 									table.render({
 										elem: '#situationes', //指定原始表格元素选择器（推荐id选择器）
 										url: commonSrc + 'api/train/evaluationTeacherController/insertEvaTeacher', //设置异步接口
-										toolbar: '#toolbarDemo',
 										where: {
 											days: "-60",
 											teacherId: id
@@ -174,9 +173,6 @@
 
 										cols: [ //表头
 											[{
-												type: 'checkbox',
-												fixed: "left"
-											}, {
 												field: 'topic',
 												title: '等效课程',
 												align: 'center'
@@ -227,7 +223,6 @@
 											days: "60",
 											teacherId: id
 										},
-										toolbar: '#toolbarDemo',
 										request: { //用于对分页请求的参数：page、limit重新设定名称
 											pageName: 'pageNum' //页码的参数名称，默认：page
 												,
@@ -247,9 +242,6 @@
 
 										cols: [ //表头
 											[{
-												type: 'checkbox',
-												fixed: "left"
-											}, {
 												field: 'topic',
 												title: '等效课程',
 												align: 'center'
