@@ -1,2 +1,2 @@
 //统一开头路径
-var commonSrc="http://119.3.77.206:8004/";
+var commonSrc="http://39.100.236.10:8004/";
